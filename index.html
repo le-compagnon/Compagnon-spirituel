@@ -124,7 +124,6 @@ header {
 .nav-link { padding:12px 14px; text-decoration:none; font-size:0.94rem; border-radius:6px; color:var(--text); display:flex; align-items:center; gap:10px; transition: background .15s ease, font-weight .15s ease, color .15s ease; }
 @media (hover: hover) { .nav-link:hover { background: var(--bg-card-alt); } }
 .nav-link:active { background: var(--border); }
-/* La classe active est gérée dynamiquement par JS maintenant */
 .nav-link.highlight { background: var(--bg-card-alt); font-weight:700; color:var(--accent-dark); }
 
 main { padding: 20px 0 60px; }
@@ -183,9 +182,7 @@ section:last-of-type::after, section#apropos::after { display:none; }
 .card .cat { font-size:0.7rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.03em; }
 .card .muted { font-size:0.84rem; color:var(--text-muted); }
 
-/* Humeurs text forces */
-.mood-response, .mood-detail, #moodResult { color: #1a1a1a !important; font-weight: bold !important; }
-
+/* Humeurs */
 .detail-panel {
   margin-top:24px; background:var(--bg-card); border:1px solid var(--accent-soft); border-radius:10px;
   padding:28px; display:none; animation: fadeIn .35s var(--ease); box-shadow: var(--shadow-sm);
@@ -291,7 +288,6 @@ footer { padding:52px 0 40px; }
       </button>
     </div>
     
-    <!-- MENU CORRIGÉ : ID ajoutés pour la gestion JS de la surbrillance -->
     <nav class="nav-panel nav-links" id="navPanel" aria-label="Menu principal">
       <a href="#" class="nav-link highlight" id="nav-accueil" onclick="showPage('accueil'); return false;">Accueil</a>
       <a href="#" class="nav-link" id="nav-humeurs" onclick="showPage('humeurs'); return false;">Mes humeurs</a>
@@ -346,7 +342,7 @@ footer { padding:52px 0 40px; }
     <div class="wrap">
       <div class="section-head">
         <h2>Comment te sens-tu aujourd'hui ?</h2>
-        <p>Choisis ton état du jour pour recevoir un verset, une prière et un geste concret.</p>
+        <p>Clique sur ton état du jour. Re-clique pour obtenir un nouveau verset, une autre prière et un autre geste si besoin.</p>
       </div>
       <svg class="illustration" width="200" height="120" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M100 100c-30-18-60-38-60-64a28 28 0 0 1 52-16 28 28 0 0 1 52 16c0 26-30 46-60 64Z" fill="currentColor" opacity="0.16"/>
@@ -545,11 +541,51 @@ footer { padding:52px 0 40px; }
 <script>
 // ===================== DATA =====================
 const MOODS = [
-  { id:'souffrance', label:'Épreuve / Souffrance', verse:"L'Éternel est près de ceux qui ont le cœur brisé, et il sauve ceux qui ont l'esprit dans l'abattement.", ref:'Psaume 34, 19 — Louis Segond', prayer:"Seigneur, dans cette épreuve, tiens-moi debout. Que ma peine s'unisse à la tienne sur la croix. Amen.", action:'Confie un fardeau précis à quelqu\'un de confiance aujourd\'hui.' },
-  { id:'doute', label:'Doute / Recherche', verse:"Aussitôt le père de l'enfant s'écria : Je crois ! viens au secours de mon incrédulité !", ref:'Marc 9, 24 — Louis Segond', prayer:"Seigneur, je ne comprends pas tout, mais je veux croire. Éclaire mes questions. Amen.", action:'Note la question précise qui te trouble et lis une fiche théologique.' },
-  { id:'paix', label:'Besoin de paix', verse:"Je vous laisse la paix, je vous donne ma paix. Que votre cœur ne se trouble point.", ref:'Jean 14, 27 — Louis Segond', prayer:"Seigneur, calme le bruit en moi. Donne-moi ta paix. Amen.", action:'Accorde-toi cinq minutes de silence avant la fin de la journée.' },
-  { id:'grace', label:'Action de grâce', verse:"Rendez grâces en toutes choses, car c'est à votre égard la volonté de Dieu.", ref:'1 Thessaloniciens 5, 18 — Louis Segond', prayer:"Merci Seigneur pour ce jour et pour ce que j'ai reçu. Amen.", action:'Écris trois choses précises pour lesquelles tu es reconnaissant.' },
-  { id:'combat', label:'Combat spirituel', verse:"Nous n'avons pas à lutter contre la chair et le sang, mais contre les esprits méchants.", ref:'Éphésiens 6, 12 — Louis Segond', prayer:"Seigneur, revêts-moi de ta force. Que rien ne me sépare de ton amour. Amen.", action:'Identifie la tentation du jour et prépare une réponse concrète.' }
+  { 
+    id:'souffrance', label:'Épreuve / Souffrance',
+    items: [
+      { verse: "L'Éternel est près de ceux qui ont le cœur brisé, et il sauve ceux qui ont l'esprit dans l'abattement.", ref: "Psaume 34, 19", prayer: "Seigneur, dans cette épreuve, tiens-moi debout. Que ma peine s'unisse à la tienne sur la croix. Amen.", action: "Confie un fardeau précis à quelqu'un de confiance aujourd'hui." },
+      { verse: "Venez à moi, vous tous qui êtes fatigués et chargés, et je vous donnerai du repos.", ref: "Matthieu 11, 28", prayer: "Jésus, je n'en peux plus. Je dépose ce fardeau à tes pieds. Prends le relais. Amen.", action: "Va marcher 10 minutes dehors, seul(e), en offrant ta fatigue au Seigneur." },
+      { verse: "Béni soit Dieu... le Père des miséricordes et le Dieu de toute consolation, qui nous console dans toutes nos afflictions.", ref: "2 Corinthiens 1, 3-4", prayer: "Père, j'ai besoin de ta consolation. Viens panser mes blessures invisibles. Amen.", action: "Ferme les yeux, respire lentement et dis 'Jésus' trois fois au rythme de ton souffle." },
+      { verse: "Vous aurez des tribulations dans le monde ; mais prenez courage, j'ai vaincu le monde.", ref: "Jean 16, 33", prayer: "Seigneur, le monde me blesse, mais ta victoire est déjà acquise. Donne-moi ton courage. Amen.", action: "Regarde une croix ou un crucifix et rappelle-toi que la souffrance n'a pas le dernier mot." }
+    ]
+  },
+  { 
+    id:'doute', label:'Doute / Recherche',
+    items: [
+      { verse: "Aussitôt le père de l'enfant s'écria : Je crois ! viens au secours de mon incrédulité !", ref: "Marc 9, 24", prayer: "Seigneur, je ne comprends pas tout, mais je veux croire. Éclaire mes questions. Amen.", action: "Note la question précise qui te trouble et lis une fiche théologique." },
+      { verse: "Confie-toi en l'Éternel de tout ton cœur, et ne t'appuie pas sur ta sagesse.", ref: "Proverbes 3, 5", prayer: "Mon Dieu, mon intelligence est limitée. Je choisis de te faire confiance au-delà de mes doutes. Amen.", action: "Lâche prise sur ton besoin de tout comprendre aujourd'hui. Fais un acte de foi simple." },
+      { verse: "Si l'un de vous manque de sagesse, qu'il l'a demande à Dieu, qui donne à tous simplement.", ref: "Jacques 1, 5", prayer: "Esprit Saint, souffle sur mon brouillard mental. Donne-moi ta lumière. Amen.", action: "Ouvre l'Évangile au hasard et lis un seul paragraphe en demandant la lumière." },
+      { verse: "Ta parole est une lampe à mes pieds, Et une lumière sur mon sentier.", ref: "Psaume 119, 105", prayer: "Seigneur, je ne vois pas loin devant moi. Éclaire juste mon prochain pas. Amen.", action: "Ne pense pas à demain. Concentre-toi uniquement sur la prochaine bonne action à faire." }
+    ]
+  },
+  { 
+    id:'paix', label:'Besoin de paix',
+    items: [
+      { verse: "Je vous laisse la paix, je vous donne ma paix. Que votre cœur ne se trouble point.", ref: "Jean 14, 27", prayer: "Seigneur, calme le bruit en moi. Donne-moi ta paix qui surpasse toute intelligence. Amen.", action: "Accorde-toi cinq minutes de silence total avant la fin de la journée." },
+      { verse: "Ne vous inquiétez de rien ; mais en toute chose faites connaître vos besoins à Dieu par des prières.", ref: "Philippiens 4, 6", prayer: "Jésus, je t'abandonne mes ruminations. Prends soin de mes angoisses. Amen.", action: "Écris ce qui t'angoisse sur un papier, puis déchire-le pour signifier que tu le confies à Dieu." },
+      { verse: "À celui qui est ferme dans ses sentiments Tu assures la paix, la paix, Parce qu'il se confie en toi.", ref: "Ésaïe 26, 3", prayer: "Père, je choisis de m'ancrer en Toi, mon rocher inébranlable, au milieu de la tempête. Amen.", action: "Coupe les notifications de ton téléphone pendant une heure." },
+      { verse: "Je me couche et je m'endors en paix, Car toi seul, ô Éternel ! tu me donnes la sécurité dans ma demeure.", ref: "Psaume 4, 8", prayer: "Seigneur, la journée est finie. Ce qui est fait est fait. Je m'abandonne à ta garde. Amen.", action: "Fais une petite prière d'abandon (Bénédicité ou Complies) avant de te coucher ce soir." }
+    ]
+  },
+  { 
+    id:'grace', label:'Action de grâce',
+    items: [
+      { verse: "Rendez grâces en toutes choses, car c'est à votre égard la volonté de Dieu.", ref: "1 Thessaloniciens 5, 18", prayer: "Merci Seigneur pour ce jour et pour ce que j'ai reçu. Ma vie est un don. Amen.", action: "Écris trois choses précises pour lesquelles tu es reconnaissant(e) aujourd'hui." },
+      { verse: "Mon âme, bénis l'Éternel, Et n'oublie aucun de ses bienfaits !", ref: "Psaume 103, 2", prayer: "Dieu de bonté, je veux me souvenir de tes merveilles dans ma vie. Merci pour ton amour. Amen.", action: "Remercie quelqu'un aujourd'hui pour un petit détail que tu prends d'habitude pour acquis." },
+      { verse: "Rendez continuellement grâces pour toutes choses à Dieu le Père, au nom de notre Seigneur Jésus-Christ.", ref: "Éphésiens 5, 20", prayer: "Père, tout ce que j'ai de beau vient de Toi. Je te l'offre en retour. Amen.", action: "Dis un 'Gloire au Père' lent et joyeux." },
+      { verse: "Louez l'Éternel, car il est bon, Car sa miséricorde dure à toujours !", ref: "Psaume 118, 1", prayer: "Seigneur, la joie que je ressens est un rayon de ton visage. Sois béni. Amen.", action: "Partage ta bonne humeur : rends service à quelqu'un gratuitement aujourd'hui." }
+    ]
+  },
+  { 
+    id:'combat', label:'Combat spirituel',
+    items: [
+      { verse: "Nous n'avons pas à lutter contre la chair et le sang, mais contre les esprits méchants.", ref: "Éphésiens 6, 12", prayer: "Seigneur, revêts-moi de ta force. Que rien ne me sépare de ton amour. Amen.", action: "Identifie la tentation du jour et prépare une réponse claire pour dire 'Non'." },
+      { verse: "Soyez sobres, veillez. Votre adversaire, le diable, rôde comme un lion rugissant.", ref: "1 Pierre 5, 8", prayer: "Saint Michel Archange, défends-moi dans le combat. Ne me laisse pas tomber. Amen.", action: "Fais un beau et vrai signe de croix pour repousser les pensées toxiques qui t'assaillent." },
+      { verse: "Soumettez-vous donc à Dieu ; résistez au diable, et il fuira loin de vous.", ref: "Jacques 4, 7", prayer: "Jésus, je me place sous ton autorité. Je renonce à toute compromission avec le mal. Amen.", action: "Fuis physiquement ou numériquement l'occasion de chute qui te tente le plus en ce moment." },
+      { verse: "Car ce n'est pas un esprit de timidité que Dieu nous a donné, mais un esprit de force, d'amour et de sagesse.", ref: "2 Timothée 1, 7", prayer: "Esprit Saint, chasse mes peurs. Rends-moi fort(e) pour assumer ma foi et mes choix. Amen.", action: "Pose un acte courageux aujourd'hui : dis la vérité, même si elle coûte." }
+    ]
+  }
 ];
 
 const MYSTERIES = {
@@ -701,203 +737,16 @@ const NOVENAS = [
 ];
 
 const FICHES = [
-  {
-    id: 'incarnation',
-    title: "L'Incarnation du Verbe",
-    sub: 'Comment Dieu a pris chair en Jésus',
-    time: '18 min',
-    cat: 'christologie',
-    body: `
-      <h3>1. Le mystère de l'Union Hypostatique</h3>
-      <p>L'Incarnation n'est pas une simple "apparition" de Dieu ni la transformation de Dieu en homme. Le <strong>Concile de Chalcédoine (451)</strong> a défini le dogme de l'Union Hypostatique : en Jésus-Christ, la nature divine et la nature humaine sont unies <em>"sans confusion, sans changement, sans division et sans séparation"</em> dans l'unique Personne (Hypostase) du Verbe éternel. Jésus possède donc un corps humain, un cœur humain, une intelligence humaine, et une volonté humaine, tout en restant pleinement Dieu.</p>
-      <h3>2. Les quatre raisons de l'Incarnation (CEC 456-460)</h3>
-      <ul>
-        <li><strong>Pour nous sauver et nous réconcilier avec Dieu :</strong> Notre nature blessée par le péché originel ne pouvait réparer seule l'offense infinie faite à Dieu. Il fallait un Sauveur qui soit Dieu pour que la réparation soit infinie, et Homme pour représenter l'humanité.</li>
-        <li><strong>Pour nous faire connaître l'amour de Dieu :</strong> (1 Jn 4, 9). Dieu se rend visible et vulnérable dans la crèche pour attirer notre cœur sans l'écraser par sa majesté.</li>
-        <li><strong>Pour être notre modèle de sainteté :</strong> Le Christ nous montre le chemin de l'humanité parfaite, accomplie dans l'amour.</li>
-        <li><strong>Pour nous rendre participants de la nature divine :</strong> Comme l'écrit saint Irénée : <em>"Le Verbe de Dieu s'est fait homme pour que l'homme devienne fils de Dieu."</em></li>
-      </ul>
-      <h3>3. La convenance selon Saint Thomas d'Aquin</h3>
-      <p>Dans sa <em>Somme théologique</em>, saint Thomas se demande si l'Incarnation était "convenable". Il répond par un grand principe philosophique : <strong>"Le Bien est de soi diffusif"</strong> (<em>Bonum est diffusivum sui</em>). Dieu étant le Souverain Bien, il est dans sa nature de vouloir se communiquer à ses créatures de la façon la plus intime et absolue qui soit : en épousant notre condition.</p>
-    `
-  },
-  {
-    id: 'redemption',
-    title: 'La Rédemption par la Croix',
-    sub: 'Le sens théologique du sacrifice de Jésus',
-    time: '20 min',
-    cat: 'salut',
-    body: `
-      <h3>1. Pourquoi la Croix ? La doctrine de la Satisfaction</h3>
-      <p>Saint Anselme (XIe siècle) explique dans son œuvre <em>Cur Deus Homo</em> que le péché a causé un désordre d'une gravité infinie car il offense la majesté d'un Dieu infini. L'humanité devait payer une dette, mais seul Dieu en avait les moyens. Le Christ, vrai Dieu et vrai homme, offre sur la Croix une réparation ou "satisfaction vicariante" (à notre place) qui restaure la justice.</p>
-      <h3>2. La surabondance de l'Amour (Thomas d'Aquin)</h3>
-      <p>Saint Thomas sublime la pensée d'Anselme : ce n'est pas la "quantité de souffrance" physique qui a sauvé le monde (Dieu n'est pas un tyran sanguinaire). C'est la <strong>charité infinie</strong> et <strong>l'obéissance parfaite</strong> du Christ dans sa souffrance. <em>"C'est par amour que le Christ a souffert, et c'est cet amour qui a donné à sa Passion une valeur réparatrice surabondante"</em> (ST IIIa, q. 48, a. 2). La Croix est d'abord le sommet de l'Amour.</p>
-      <h3>3. Les quatre modes d'action du Salut</h3>
-      <ul>
-        <li><strong>Le Mérite :</strong> Le Christ, Nouvel Adam, a mérité la grâce pour tous les hommes par son obéissance, inversant la désobéissance du premier Adam.</li>
-        <li><strong>La Satisfaction :</strong> Il a offert une réparation qui plaît plus à Dieu que tous les péchés du monde ne lui déplaisent.</li>
-        <li><strong>Le Sacrifice :</strong> La Croix est l'acte liturgique parfait où le Christ est à la fois le Prêtre et la Victime.</li>
-        <li><strong>La Rédemption :</strong> Le paiement de notre "rançon" (au sens spirituel), nous arrachant à l'esclavage de la mort et de Satan.</li>
-      </ul>
-    `
-  },
-  {
-    id: 'grace',
-    title: 'La Grâce — cadeau gratuit de Dieu',
-    sub: 'Pourquoi on ne peut pas se sauver soi-même',
-    time: '15 min',
-    cat: 'salut',
-    body: `
-      <h3>1. Qu'est-ce que la grâce ? (CEC 1996)</h3>
-      <p>La grâce est une faveur imméritée, un secours gratuit que Dieu nous donne pour répondre à son appel. C'est une participation surnaturelle à la vie intime de la Trinité. Elle est absolument nécessaire : l'homme blessé par le péché ne peut, par ses seules forces naturelles, atteindre la vie éternelle ni même poser un acte surnaturel méritoire.</p>
-      <h3>2. Grâce sanctifiante et Grâces actuelles</h3>
-      <p>La théologie catholique distingue deux grands types de grâces (ST Ia-IIae, q. 110) :</p>
-      <ul>
-        <li><strong>La Grâce sanctifiante (ou habituelle) :</strong> Infusée au moment du Baptême, c'est une disposition permanente qui transforme notre âme de l'intérieur, efface le péché, et fait de nous des temples du Saint-Esprit. Elle se perd par le péché mortel et se retrouve par la Confession.</li>
-        <li><strong>Les Grâces actuelles :</strong> Ce sont les impulsions divines passagères. Ce sont ces "coups de pouce" de Dieu qui éclairent notre intelligence (pour comprendre une vérité) et poussent notre volonté (pour accomplir une bonne action ou résister à une tentation).</li>
-      </ul>
-      <h3>3. Le combat de Saint Augustin contre le Pélagisme</h3>
-      <p>Au Ve siècle, Pélage affirmait que le libre arbitre humain était intact et que l'homme pouvait être parfait par la seule force de sa volonté. Saint Augustin, le "Docteur de la grâce", s'y est opposé farouchement : sans la "grâce prévenante" (celle qui vient réveiller notre âme avant même que nous agissions), nous sommes incapables de nous tourner vers Dieu. <em>"Dieu couronne ses propres dons lorsqu'il couronne nos mérites."</em></p>
-    `
-  },
-  {
-    id: 'liberte',
-    title: 'Libre arbitre et prédestination',
-    sub: 'Si Dieu sait tout, sommes-nous vraiment libres ?',
-    time: '20 min',
-    cat: 'philosophie',
-    body: `
-      <h3>1. Le paradoxe apparent de la Prescience divine</h3>
-      <p>L'une des plus grandes questions philosophiques : si Dieu sait déjà ce que je vais faire demain, suis-je libre de ne pas le faire ? Boèce et saint Augustin résolvent ce problème en expliquant la nature de l'Éternité. Dieu ne "pré-voit" pas le futur. Il est totally hors du temps (dans un Éternel Présent). Dieu voit tout (passé, présent, futur) d'un seul regard instantané. <strong>Sa connaissance ne cause pas notre acte.</strong> Ce n'est pas parce que Dieu le voit que tu le fais ; c'est parce que tu choisis librement de le faire que Dieu le voit dans son éternité.</p>
-      <h3>2. L'harmonie de la grâce et de la liberté (Concile de Trente)</h3>
-      <p>Saint Thomas d'Aquin affirme que la toute-puissance de Dieu est si absolue qu'elle cause non seulement nos actions, mais aussi <em>la manière</em> dont nous les accomplissons : de façon libre et contingente. La grâce de Dieu ne violente jamais la volonté humaine. Elle l'attire, la guérit et la meut de l'intérieur. Face à la grâce, l'homme garde le pouvoir radical d'y consentir ou d'y résister.</p>
-      <h3>3. La Prédestination catholique vs le Fatalisme</h3>
-      <p>L'Église catholique rejette fermement la "double prédestination" (théorie de Calvin selon laquelle Dieu créerait certaines âmes expressément pour l'enfer). Au contraire, la doctrine catholique (CEC 1037) affirme que :</p>
-      <ul>
-        <li>Dieu veut le salut de <strong>tous</strong> les hommes (1 Tm 2, 4) et donne à chacun les grâces suffisantes pour être sauvé.</li>
-        <li>La prédestination est le dessein bienveillant de Dieu qui prépare la gloire pour ses élus.</li>
-        <li>La damnation n'est <strong>jamais</strong> voulue par Dieu. Elle est l'issue tragique, permise par Dieu, du refus obstiné et libre de l'homme d'accueillir l'Amour jusqu'à son dernier souffle.</li>
-      </ul>
-    `
-  },
-  {
-    id: 'eucharistie',
-    title: "L'Eucharistie — présence réelle",
-    sub: 'Comment Jésus est vraiment présent dans le pain et le vin',
-    time: '15 min',
-    cat: 'liturgie',
-    body: `
-      <h3>1. Le dogme de la Transsubstantiation</h3>
-      <p>Défini infailliblement par le <strong>Concile de Trente (1551)</strong>, ce terme signifie que par la consécration, il s'opère un changement de toute la substance du pain en la substance du Corps du Christ, et de toute la substance du vin en la substance de son Sang. L'Eucharistie n'est donc ni un symbole, ni une simple "présence spirituelle".</p>
-      <h3>2. L'explication philosophique (Substance et Accidents)</h3>
-      <p>Pour expliquer comment le pain reste visuellement du pain, saint Thomas utilise les catégories d'Aristote :</p>
-      <ul>
-        <li><strong>La Substance (l'être profond) :</strong> Ce qui fait qu'une chose est ce qu'elle est. Lors de la messe, la substance du pain cesse d'exister pour devenir le Christ.</li>
-        <li><strong>Les Accidents (les apparences) :</strong> Le goût, la couleur, le poids, la texture, la composition chimique. Par un miracle divin, ces accidents demeurent suspendus sans leur substance propre.</li>
-      </ul>
-      <h3>3. La Présence intégrale (La Concomitance)</h3>
-      <p>Le Christ étant vivant et ressuscité, on ne peut pas séparer son corps de son sang. La théologie parle de <em>concomitance</em> : sous l'apparence de l'hostie (le corps) se trouvent aussi le Sang, l'Âme et la Divinité. Quiconque communie à une seule des deux espèces reçoit le Christ dans sa totalité. De plus, le Christ est entièrement présent dans le moindre petit fragment de l'hostie.</p>
-    `
-  },
-  {
-    id: 'confession',
-    title: 'La Confession — sacrement de pardon',
-    sub: "Pourquoi se confesser à un prêtre plutôt qu'à Dieu directement ?",
-    time: '12 min',
-    cat: 'liturgie',
-    body: `
-      <h3>1. Le fondement scripturaire</h3>
-      <p>Le Christ aurait pu nous demander de nous confesser directement à lui en silence. Pourtant, au soir de Pâques, il dit à ses apôtres : <em>"Recevez le Saint-Esprit. À qui vous remettrez ses péchés, ils seront remis ; à qui vous les maintiendrez, ils sont maintenus."</em> (Jn 20, 22-23). En confessant à un prêtre, on obéit à la méthode voulue par Jésus lui-même. Le prêtre agit <strong>In Persona Christi Capitis</strong> : ce n'est pas l'homme qui pardonne, c'est le Christ lui-même à travers lui.</p>
-      <h3>2. La dimension ecclésiale du péché</h3>
-      <p>Tout péché, même le plus secret, abîme le tissu invisible de l'Église (le Corps Mystique du Christ). En se confessant à un prêtre, celui-ci représente à la fois Dieu (qui pardonne) et la communauté ecclésiale blessée (qui réintègre le pécheur dans la communion complète).</p>
-      <h3>3. Les 5 actes indispensables du pénitent (CEC 1450-1460)</h3>
-      <ul>
-        <li><strong>L'Examen de conscience :</strong> Faire le point sur sa vie sous le regard de la vérité.</li>
-        <li><strong>La Contrition :</strong> C'est l'acte le plus important. C'est la douleur de l'âme et la détestation du péché. Elle est <em>parfaite</em> si on regrette par amour pour Dieu, ou <em>imparfaite</em> (attrition) si on regrette par peur de l'enfer ou dégoût de soi.</li>
-        <li><strong>Le Ferme propos :</strong> La décision ferme de faire tout son possible pour ne pas recommencer et fuir les occasions de chute.</li>
-        <li><strong>L'Aveu :</strong> Énoncer ses péchés graves (mortels) avec clarté.</li>
-        <li><strong>La Satisfaction (la pénitence) :</strong> La prière ou l'acte réparateur donné par le prêtre pour guérir les "séquelles" du péché dans notre âme.</li>
-      </ul>
-    `
-  },
-  {
-    id: 'marie',
-    title: 'Marie dans le plan de Dieu',
-    sub: 'Mère de Dieu, médiatrice de grâce et Nouvelle Ève',
-    time: '16 min',
-    cat: 'mariologie',
-    body: `
-      <h3>1. Les quatre dogmes mariaux intangibles</h3>
-      <ul>
-        <li><strong>La Maternité divine (Théotokos - Éphèse, 431) :</strong> Marie n'a pas seulement enfanté la "nature humaine" de Jésus, elle a enfanté la Personne du Verbe incarné. Elle est donc véritablement Mère de Dieu.</li>
-        <li><strong>La Virginité perpétuelle (Latran, 649) :</strong> Marie a conçu par le Saint-Esprit sans semence humaine, a enfanté sans lésion, et est demeurée vierge tout au long de sa vie terrestre (signe de sa consécration totale).</li>
-        <li><strong>L'Immaculée Conception (Pie IX, 1854) :</strong> En prévision des mérites de la mort de son Fils sur la Croix, Marie a été préservée dès l'instant de sa conception de toute tache du péché originel. Elle est la "pleine de grâce".</li>
-        <li><strong>L'Assomption (Pie XII, 1950) :</strong> Au terme de son parcours terrestre, Marie a été élevée en corps et en âme dans la gloire du Ciel, anticipant la résurrection de nos propres corps à la fin des temps.</li>
-      </ul>
-      <h3>2. La Nouvelle Ève (Typologie patristique)</h3>
-      <p>Dès le IIe siècle, saint Irénée de Lyon oppose la désobéissance d'Ève à l'obéissance de Marie. Là où Ève a cru au mensonge du serpent (l'ange déchu) et a fait entrer la mort, Marie a cru à la vérité de l'Ange Gabriel, a prononcé son <em>Fiat</em> ("Que tout m'advienne selon ta parole"), et a fait entrer la Vie dans le monde.</p>
-      <h3>3. Médiation et culte d'Hyperdulie</h3>
-      <p>La médiation maternelle de Marie n'obscurcit en rien l'unique médiation du Christ ; au contraire, elle en découle et en montre la puissance (Lumen Gentium 60). L'Église ne voue jamais d'adoration (culte de <em>Latrie</em> réservé à Dieu) à Marie. Elle lui rend un culte d'<em>Hyperdulie</em>, une vénération suprême supérieure aux autres saints en raison de son lien charnel et spirituel unique avec la Trinité.</p>
-    `
-  },
-  {
-    id: 'trinite',
-    title: 'La Trinité — un Dieu en trois Personnes',
-    sub: "Le mystère d'un Dieu qui est relation",
-    time: '20 min',
-    cat: 'theologie',
-    body: `
-      <h3>1. Formule fondamentale de la Foi</h3>
-      <p>Le mystère central de la foi chrétienne. Dieu est Unique en Essence (ou Nature, ou Substance) et Trine en Personnes. Il n'y a pas trois dieux (trithéisme), ni un seul Dieu qui porterait trois masques différents selon les époques (modalisme). Le Père, le Fils et le Saint-Esprit possèdent entièrement et de façon indivisible la même nature divine.</p>
-      <h3>2. La théorie des Relations Subsistantes (ST Ia)</h3>
-      <p>Saint Thomas d'Aquin explique que puisque les trois Personnes partagent exactement la même substance infinie, elles ne peuvent se distinguer entre elles que par leurs <strong>relations d'origine</strong> :</p>
-      <ul>
-        <li><strong>Le Père :</strong> Est le Principe sans principe. Il engendre éternellement le Fils.</li>
-        <li><strong>Le Fils (Le Verbe) :</strong> Procède du Père par voie de l'intelligence (la Pensée parfaite que Dieu a de lui-même).</li>
-        <li><strong>Le Saint-Esprit :</strong> Procède du Père et du Fils (<em>Filioque</em>) par voie de volonté et d'amour infini (le souffle mutuel d'amour entre le Père et le Fils).</li>
-      </ul>
-      <h3>3. La Périchorèse (ou Circoninsession)</h3>
-      <p>La théologie utilise ce concept vertigineux pour décrire comment les Personnes divines s'interpénètrent mutuellement. L'unité divine est si absolue que le Père est tout entier dans le Fils, le Fils tout entier dans le Père, et le Saint-Esprit tout entier dans le Père et le Fils. Dieu est, de toute éternité, une communion familiale, une danse d'amour infini.</p>
-    `
-  },
-  {
-    id: 'eschatologie',
-    title: 'Les fins dernières',
-    sub: 'Mort, jugement, ciel, enfer et purgatoire',
-    time: '18 min',
-    cat: 'eschatologie',
-    body: `
-      <h3>1. Le double Jugement</h3>
-      <p>La doctrine catholique distingue :</p>
-      <ul>
-        <li><strong>Le Jugement particulier :</strong> A lieu pour chaque âme dans l'instant immédiat de la mort physique. L'âme voit alors sa vie à la lumière éblouissante de la vérité divine, et son éternité est fixée (Ciel, Purgatoire ou Enfer).</li>
-        <li><strong>Le Jugement dernier :</strong> Aura lieu à la fin des temps, lors du retour glorieux du Christ (Parousie). Il s'accompagnera de la <strong>Résurrection de la chair</strong> (nos âmes retrouveront nos corps transfigurés) pour juger publiquement toute l'histoire de l'humanité.</li>
-      </ul>
-      <h3>2. Le Purgatoire (Le feu purificateur de l'Amour)</h3>
-      <p>Le Purgatoire n'est pas un "mini-enfer" ni un camp de torture. Sainte Catherine de Gênes le décrit comme un mystère de joie paradoxale. C'est l'état des âmes qui meurent en état de grâce (sauvées) mais qui conservent des attachements désordonnés aux créatures ou n'ont pas expié les peines temporelles de leurs péchés. Au Purgatoire, l'Amour ardent de Dieu brûle douloureusement les dernières scories de l'égoïsme pour rendre l'âme capable de supporter la splendeur du Ciel.</p>
-      <h3>3. La Vision Béatifique (Ciel) et le Dam (Enfer)</h3>
-      <p><strong>Le Ciel</strong> est l'état de bonheur suprême et définitif. L'intellect humain est élevé par la "lumière de gloire" pour contempler l'Essence de Dieu face à face (la Vision Béatifique). <strong>L'Enfer</strong> est un dogme terrible mais nécessaire pour que la liberté humaine ait un sens. Il consiste en la "peine du dam" (la privation éternelle et désespérante de Dieu pour lequel nous sommes faits) et l'endurcissement définitif de la volonté dans la haine.</p>
-    `
-  },
-  {
-    id: 'conscience',
-    title: 'La conscience morale',
-    sub: 'Voix de Dieu en toi et Loi naturelle',
-    time: '15 min',
-    cat: 'morale',
-    body: `
-      <h3>1. Le sanctuaire inviolable de l'homme</h3>
-      <p>Le concile Vatican II (<em>Gaudium et Spes, 16</em>) définit la conscience avec poésie : <em>"La conscience est le centre le plus secret de l'homme, le sanctuaire où il est seul avec Dieu et où Sa voix se fait entendre."</em> Elle ordonne à l'homme, au moment opportun, d'accomplir le bien et d'éviter le mal.</p>
-      <h3>2. Synderèse et Jugement de conscience (Saint Thomas)</h3>
-      <p>Saint Thomas d'Aquin décompose le mécanisme moral en deux étapes :</p>
-      <ul>
-        <li><strong>La Synderèse :</strong> C'est l'étincelle intellectuelle innée, la connaissance infaillible des principes moraux fondamentaux (ex: "il ne faut pas tuer l'innocent", "il faut rendre à chacun ce qui lui est dû").</li>
-        <li><strong>Le Jugement de la conscience :</strong> C'est l'application pratique de cette loi générale à un cas particulier (ex: "dans cette situation complexe, agir ainsi revient à tuer, je dois l'éviter"). C'est ici que l'erreur est possible si l'homme raisonne mal.</li>
-      </ul>
-      <h3>3. Le devoir grave de former sa conscience</h3>
-      <p>Jean-Paul II a rappelé dans son encyclique <em>Veritatis Splendor</em> que la conscience n'est pas créatrice de la vérité morale ; elle ne fait que la découvrir. Une conscience peut être aveuglée par l'habitude du péché, l'ignorance ou la pression sociale. Le chrétien a l'obligation stricte d'éclairer sa conscience (par l'Évangile, la prière, et le Magistère) pour qu'elle juge droit.</p>
-    `
-  }
+  { id: 'incarnation', title: "L'Incarnation du Verbe", sub: 'Comment Dieu a pris chair en Jésus', time: '18 min', cat: 'christologie', body: `<h3>1. Le mystère de l'Union Hypostatique</h3><p>L'Incarnation n'est pas une simple "apparition" de Dieu ni la transformation de Dieu en homme. Le <strong>Concile de Chalcédoine (451)</strong> a défini le dogme de l'Union Hypostatique : en Jésus-Christ, la nature divine et la nature humaine sont unies <em>"sans confusion, sans changement, sans division et sans séparation"</em> dans l'unique Personne (Hypostase) du Verbe éternel. Jésus possède donc un corps humain, un cœur humain, une intelligence humaine, et une volonté humaine, tout en restant pleinement Dieu.</p><h3>2. Les quatre raisons de l'Incarnation (CEC 456-460)</h3><ul><li><strong>Pour nous sauver et nous réconcilier avec Dieu :</strong> Notre nature blessée par le péché originel ne pouvait réparer seule l'offense infinie faite à Dieu. Il fallait un Sauveur qui soit Dieu pour que la réparation soit infinie, et Homme pour représenter l'humanité.</li><li><strong>Pour nous faire connaître l'amour de Dieu :</strong> (1 Jn 4, 9). Dieu se rend visible et vulnérable dans la crèche pour attirer notre cœur sans l'écraser par sa majesté.</li><li><strong>Pour être notre modèle de sainteté :</strong> Le Christ nous montre le chemin de l'humanité parfaite, accomplie dans l'amour.</li><li><strong>Pour nous rendre participants de la nature divine :</strong> Comme l'écrit saint Irénée : <em>"Le Verbe de Dieu s'est fait homme pour que l'homme devienne fils de Dieu."</em></li></ul><h3>3. La convenance selon Saint Thomas d'Aquin</h3><p>Dans sa <em>Somme théologique</em>, saint Thomas se demande si l'Incarnation était "convenable". Il répond par un grand principe philosophique : <strong>"Le Bien est de soi diffusif"</strong> (<em>Bonum est diffusivum sui</em>). Dieu étant le Souverain Bien, il est dans sa nature de vouloir se communiquer à ses créatures de la façon la plus intime et absolue qui soit : en épousant notre condition.</p>` },
+  { id: 'redemption', title: 'La Rédemption par la Croix', sub: 'Le sens théologique du sacrifice de Jésus', time: '20 min', cat: 'salut', body: `<h3>1. Pourquoi la Croix ? La doctrine de la Satisfaction</h3><p>Saint Anselme (XIe siècle) explique dans son œuvre <em>Cur Deus Homo</em> que le péché a causé un désordre d'une gravité infinie car il offense la majesté d'un Dieu infini. L'humanité devait payer une dette, mais seul Dieu en avait les moyens. Le Christ, vrai Dieu et vrai homme, offre sur la Croix une réparation ou "satisfaction vicariante" (à notre place) qui restaure la justice.</p><h3>2. La surabondance de l'Amour (Thomas d'Aquin)</h3><p>Saint Thomas sublime la pensée d'Anselme : ce n'est pas la "quantité de souffrance" physique qui a sauvé le monde (Dieu n'est pas un tyran sanguinaire). C'est la <strong>charité infinie</strong> et <strong>l'obéissance parfaite</strong> du Christ dans sa souffrance. <em>"C'est par amour que le Christ a souffert, et c'est cet amour qui a donné à sa Passion une valeur réparatrice surabondante"</em> (ST IIIa, q. 48, a. 2). La Croix est d'abord le sommet de l'Amour.</p><h3>3. Les quatre modes d'action du Salut</h3><ul><li><strong>Le Mérite :</strong> Le Christ, Nouvel Adam, a mérité la grâce pour tous les hommes par son obéissance, inversant la désobéissance du premier Adam.</li><li><strong>La Satisfaction :</strong> Il a offert une réparation qui plaît plus à Dieu que tous les péchés du monde ne lui déplaisent.</li><li><strong>Le Sacrifice :</strong> La Croix est l'acte liturgique parfait où le Christ est à la fois le Prêtre et la Victime.</li><li><strong>La Rédemption :</strong> Le paiement de notre "rançon" (au sens spirituel), nous arrachant à l'esclavage de la mort et de Satan.</li></ul>` },
+  { id: 'grace', title: 'La Grâce — cadeau gratuit de Dieu', sub: 'Pourquoi on ne peut pas se sauver soi-même', time: '15 min', cat: 'salut', body: `<h3>1. Qu'est-ce que la grâce ? (CEC 1996)</h3><p>La grâce est une faveur imméritée, un secours gratuit que Dieu nous donne pour répondre à son appel. C'est une participation surnaturelle à la vie intime de la Trinité. Elle est absolument nécessaire : l'homme blessé par le péché ne peut, par ses seules forces naturelles, atteindre la vie éternelle ni même poser un acte surnaturel méritoire.</p><h3>2. Grâce sanctifiante et Grâces actuelles</h3><p>La théologie catholique distingue deux grands types de grâces (ST Ia-IIae, q. 110) :</p><ul><li><strong>La Grâce sanctifiante (ou habituelle) :</strong> Infusée au moment du Baptême, c'est une disposition permanente qui transforme notre âme de l'intérieur, efface le péché, et fait de nous des temples du Saint-Esprit. Elle se perd par le péché mortel et se retrouve par la Confession.</li><li><strong>Les Grâces actuelles :</strong> Ce sont les impulsions divines passagères. Ce sont ces "coups de pouce" de Dieu qui éclairent notre intelligence (pour comprendre une vérité) et poussent notre volonté (pour accomplir une bonne action ou résister à une tentation).</li></ul><h3>3. Le combat de Saint Augustin contre le Pélagisme</h3><p>Au Ve siècle, Pélage affirmait que le libre arbitre humain était intact et que l'homme pouvait être parfait par la seule force de sa volonté. Saint Augustin, le "Docteur de la grâce", s'y est opposé farouchement : sans la "grâce prévenante" (celle qui vient réveiller notre âme avant même que nous agissions), nous sommes incapables de nous tourner vers Dieu. <em>"Dieu couronne ses propres dons lorsqu'il couronne nos mérites."</em></p>` },
+  { id: 'liberte', title: 'Libre arbitre et prédestination', sub: 'Si Dieu sait tout, sommes-nous vraiment libres ?', time: '20 min', cat: 'philosophie', body: `<h3>1. Le paradoxe apparent de la Prescience divine</h3><p>L'une des plus grandes questions philosophiques : si Dieu sait déjà ce que je vais faire demain, suis-je libre de ne pas le faire ? Boèce et saint Augustin résolvent ce problème en expliquant la nature de l'Éternité. Dieu ne "pré-voit" pas le futur. Il est totalement hors du temps (dans un Éternel Présent). Dieu voit tout (passé, présent, futur) d'un seul regard instantané. <strong>Sa connaissance ne cause pas notre acte.</strong> Ce n'est pas parce que Dieu le voit que tu le fais ; c'est parce que tu choisis librement de le faire que Dieu le voit dans son éternité.</p><h3>2. L'harmonie de la grâce et de la liberté (Concile de Trente)</h3><p>Saint Thomas d'Aquin affirme que la toute-puissance de Dieu est si absolue qu'elle cause non seulement nos actions, mais aussi <em>la manière</em> dont nous les accomplissons : de façon libre et contingente. La grâce de Dieu ne violente jamais la volonté humaine. Elle l'attire, la guérit et la meut de l'intérieur. Face à la grâce, l'homme garde le pouvoir radical d'y consentir ou d'y résister.</p><h3>3. La Prédestination catholique vs le Fatalisme</h3><p>L'Église catholique rejette fermement la "double prédestination" (théorie de Calvin selon laquelle Dieu créerait certaines âmes expressément pour l'enfer). Au contraire, la doctrine catholique (CEC 1037) affirme que :</p><ul><li>Dieu veut le salut de <strong>tous</strong> les hommes (1 Tm 2, 4) et donne à chacun les grâces suffisantes pour être sauvé.</li><li>La prédestination est le dessein bienveillant de Dieu qui prépare la gloire pour ses élus.</li><li>La damnation n'est <strong>jamais</strong> voulue par Dieu. Elle est l'issue tragique, permise par Dieu, du refus obstiné et libre de l'homme d'accueillir l'Amour jusqu'à son dernier souffle.</li></ul>` },
+  { id: 'eucharistie', title: "L'Eucharistie — présence réelle", sub: 'Comment Jésus est vraiment présent dans le pain et le vin', time: '15 min', cat: 'liturgie', body: `<h3>1. Le dogme de la Transsubstantiation</h3><p>Défini infailliblement par le <strong>Concile de Trente (1551)</strong>, ce terme signifie que par la consécration, il s'opère un changement de toute la substance du pain en la substance du Corps du Christ, et de toute la substance du vin en la substance de son Sang. L'Eucharistie n'est donc ni un symbole, ni une simple "présence spirituelle".</p><h3>2. L'explication philosophique (Substance et Accidents)</h3><p>Pour expliquer comment le pain reste visuellement du pain, saint Thomas utilise les catégories d'Aristote :</p><ul><li><strong>La Substance (l'être profond) :</strong> Ce qui fait qu'une chose est ce qu'elle est. Lors de la messe, la substance du pain cesse d'exister pour devenir le Christ.</li><li><strong>Les Accidents (les apparences) :</strong> Le goût, la couleur, le poids, la texture, la composition chimique. Par un miracle divin, ces accidents demeurent suspendus sans leur substance propre.</li></ul><h3>3. La Présence intégrale (La Concomitance)</h3><p>Le Christ étant vivant et ressuscité, on ne peut pas séparer son corps de son sang. La théologie parle de <em>concomitance</em> : sous l'apparence de l'hostie (le corps) se trouvent aussi le Sang, l'Âme et la Divinité. Quiconque communie à une seule des deux espèces reçoit le Christ dans sa totalité. De plus, le Christ est entièrement présent dans le moindre petit fragment de l'hostie.</p>` },
+  { id: 'confession', title: 'La Confession — sacrement de pardon', sub: "Pourquoi se confesser à un prêtre plutôt qu'à Dieu directement ?", time: '12 min', cat: 'liturgie', body: `<h3>1. Le fondement scripturaire</h3><p>Le Christ aurait pu nous demander de nous confesser directement à lui en silence. Pourtant, au soir de Pâques, il dit à ses apôtres : <em>"Recevez le Saint-Esprit. À qui vous remettrez ses péchés, ils seront remis ; à qui vous les maintiendrez, ils sont maintenus."</em> (Jn 20, 22-23). En confessant à un prêtre, on obéit à la méthode voulue par Jésus lui-même. Le prêtre agit <strong>In Persona Christi Capitis</strong> : ce n'est pas l'homme qui pardonne, c'est le Christ lui-même à travers lui.</p><h3>2. La dimension ecclésiale du péché</h3><p>Tout péché, même le plus secret, abîme le tissu invisible de l'Église (le Corps Mystique du Christ). En se confessant à un prêtre, celui-ci représente à la fois Dieu (qui pardonne) et la communauté ecclésiale blessée (qui réintègre le pécheur dans la communion complète).</p><h3>3. Les 5 actes indispensables du pénitent (CEC 1450-1460)</h3><ul><li><strong>L'Examen de conscience :</strong> Faire le point sur sa vie sous le regard de la vérité.</li><li><strong>La Contrition :</strong> C'est l'acte le plus important. C'est la douleur de l'âme et la détestation du péché. Elle est <em>parfaite</em> si on regrette par amour pour Dieu, ou <em>imparfaite</em> (attrition) si on regrette par peur de l'enfer ou dégoût de soi.</li><li><strong>Le Ferme propos :</strong> La décision ferme de faire tout son possible pour ne pas recommencer et fuir les occasions de chute.</li><li><strong>L'Aveu :</strong> Énoncer ses péchés graves (mortels) avec clarté.</li><li><strong>La Satisfaction (la pénitence) :</strong> La prière ou l'acte réparateur donné par le prêtre pour guérir les "séquelles" du péché dans notre âme.</li></ul>` },
+  { id: 'marie', title: 'Marie dans le plan de Dieu', sub: 'Mère de Dieu, médiatrice de grâce et Nouvelle Ève', time: '16 min', cat: 'mariologie', body: `<h3>1. Les quatre dogmes mariaux intangibles</h3><ul><li><strong>La Maternité divine (Théotokos - Éphèse, 431) :</strong> Marie n'a pas seulement enfanté la "nature humaine" de Jésus, elle a enfanté la Personne du Verbe incarné. Elle est donc véritablement Mère de Dieu.</li><li><strong>La Virginité perpétuelle (Latran, 649) :</strong> Marie a conçu par le Saint-Esprit sans semence humaine, a enfanté sans lésion, et est demeurée vierge tout au long de sa vie terrestre (signe de sa consécration totale).</li><li><strong>L'Immaculée Conception (Pie IX, 1854) :</strong> En prévision des mérites de la mort de son Fils sur la Croix, Marie a été préservée dès l'instant de sa conception de toute tache du péché originel. Elle est la "pleine de grâce".</li><li><strong>L'Assomption (Pie XII, 1950) :</strong> Au terme de son parcours terrestre, Marie a été élevée en corps et en âme dans la gloire du Ciel, anticipant la résurrection de nos propres corps à la fin des temps.</li></ul><h3>2. La Nouvelle Ève (Typologie patristique)</h3><p>Dès le IIe siècle, saint Irénée de Lyon oppose la désobéissance d'Ève à l'obéissance de Marie. Là où Ève a cru au mensonge du serpent (l'ange déchu) et a fait entrer la mort, Marie a cru à la vérité de l'Ange Gabriel, a prononcé son <em>Fiat</em> ("Que tout m'advienne selon ta parole"), et a fait entrer la Vie dans le monde.</p><h3>3. Médiation et culte d'Hyperdulie</h3><p>La médiation maternelle de Marie n'obscurcit en rien l'unique médiation du Christ ; au contraire, elle en découle et en montre la puissance (Lumen Gentium 60). L'Église ne voue jamais d'adoration (culte de <em>Latrie</em> réservé à Dieu) à Marie. Elle lui rend un culte d'<em>Hyperdulie</em>, une vénération suprême supérieure aux autres saints en raison de son lien charnel et spirituel unique avec la Trinité.</p>` },
+  { id: 'trinite', title: 'La Trinité — un Dieu en trois Personnes', sub: "Le mystère d'un Dieu qui est relation", time: '20 min', cat: 'theologie', body: `<h3>1. Formule fondamentale de la Foi</h3><p>Le mystère central de la foi chrétienne. Dieu est Unique en Essence (ou Nature, ou Substance) et Trine en Personnes. Il n'y a pas trois dieux (trithéisme), ni un seul Dieu qui porterait trois masques différents selon les époques (modalisme). Le Père, le Fils et le Saint-Esprit possèdent entièrement et de façon indivisible la même nature divine.</p><h3>2. La théorie des Relations Subsistantes (ST Ia)</h3><p>Saint Thomas d'Aquin explique que puisque les trois Personnes partagent exactement la même substance infinie, elles ne peuvent se distinguer entre elles que par leurs <strong>relations d'origine</strong> :</p><ul><li><strong>Le Père :</strong> Est le Principe sans principe. Il engendre éternellement le Fils.</li><li><strong>Le Fils (Le Verbe) :</strong> Procède du Père par voie de l'intelligence (la Pensée parfaite que Dieu a de lui-même).</li><li><strong>Le Saint-Esprit :</strong> Procède du Père et du Fils (<em>Filioque</em>) par voie de volonté et d'amour infini (le souffle mutuel d'amour entre le Père et le Fils).</li></ul><h3>3. La Périchorèse (ou Circoninsession)</h3><p>La théologie utilise ce concept vertigineux pour décrire comment les Personnes divines s'interpénètrent mutuellement. L'unité divine est si absolue que le Père est tout entier dans le Fils, le Fils tout entier dans le Père, et le Saint-Esprit tout entier dans le Père et le Fils. Dieu est, de toute éternité, une communion familiale, une danse d'amour infini.</p>` },
+  { id: 'eschatologie', title: 'Les fins dernières', sub: 'Mort, jugement, ciel, enfer et purgatoire', time: '18 min', cat: 'eschatologie', body: `<h3>1. Le double Jugement</h3><p>La doctrine catholique distingue :</p><ul><li><strong>Le Jugement particulier :</strong> A lieu pour chaque âme dans l'instant immédiat de la mort physique. L'âme voit alors sa vie à la lumière éblouissante de la vérité divine, et son éternité est fixée (Ciel, Purgatoire ou Enfer).</li><li><strong>Le Jugement dernier :</strong> Aura lieu à la fin des temps, lors du retour glorieux du Christ (Parousie). Il s'accompagnera de la <strong>Résurrection de la chair</strong> (nos âmes retrouveront nos corps transfigurés) pour juger publiquement toute l'histoire de l'humanité.</li></ul><h3>2. Le Purgatoire (Le feu purificateur de l'Amour)</h3><p>Le Purgatoire n'est pas un "mini-enfer" ni un camp de torture. Sainte Catherine de Gênes le décrit comme un mystère de joie paradoxale. C'est l'état des âmes qui meurent en état de grâce (sauvées) mais qui conservent des attachements désordonnés aux créatures ou n'ont pas expié les peines temporelles de leurs péchés. Au Purgatoire, l'Amour ardent de Dieu brûle douloureusement les dernières scories de l'égoïsme pour rendre l'âme capable de supporter la splendeur du Ciel.</p><h3>3. La Vision Béatifique (Ciel) et le Dam (Enfer)</h3><p><strong>Le Ciel</strong> est l'état de bonheur suprême et définitif. L'intellect humain est élevé par la "lumière de gloire" pour contempler l'Essence de Dieu face à face (la Vision Béatifique). <strong>L'Enfer</strong> est un dogme terrible mais nécessaire pour que la liberté humaine ait un sens. Il consiste en la "peine du dam" (la privation éternelle et désespérante de Dieu pour lequel nous sommes faits) et l'endurcissement définitif de la volonté dans la haine.</p>` },
+  { id: 'conscience', title: 'La conscience morale', sub: 'Voix de Dieu en toi et Loi naturelle', time: '15 min', cat: 'morale', body: `<h3>1. Le sanctuaire inviolable de l'homme</h3><p>Le concile Vatican II (<em>Gaudium et Spes, 16</em>) définit la conscience avec poésie : <em>"La conscience est le centre le plus secret de l'homme, le sanctuaire où il est seul avec Dieu et où Sa voix se fait entendre."</em> Elle ordonne à l'homme, au moment opportun, d'accomplir le bien et d'éviter le mal.</p><h3>2. Synderèse et Jugement de conscience (Saint Thomas)</h3><p>Saint Thomas d'Aquin décompose le mécanisme moral en deux étapes :</p><ul><li><strong>La Synderèse :</strong> C'est l'étincelle intellectuelle innée, la connaissance infaillible des principes moraux fondamentaux (ex: "il ne faut pas tuer l'innocent", "il faut rendre à chacun ce qui lui est dû").</li><li><strong>Le Jugement de la conscience :</strong> C'est l'application pratique de cette loi générale à un cas particulier (ex: "dans cette situation complexe, agir ainsi revient à tuer, je dois l'éviter"). C'est ici que l'erreur est possible si l'homme raisonne mal.</li></ul><h3>3. Le devoir grave de former sa conscience</h3><p>Jean-Paul II a rappelé dans son encyclique <em>Veritatis Splendor</em> que la conscience n'est pas créatrice de la vérité morale ; elle ne fait que la découvrir. Une conscience peut être aveuglée par l'habitude du péché, l'ignorance ou la pression sociale. Le chrétien a l'obligation stricte d'éclairer sa conscience (par l'Évangile, la prière, et le Magistère) pour qu'elle juge droit.</p>` }
 ];
 
 const BIBLE_VERSES = [
@@ -921,112 +770,94 @@ const BIBLE_VERSES = [
 
 const SAINTS = [
   { 
+    name:'Saint Joseph', period:'Ier siècle', feast:'19 mars', patronage:'Pères de famille, travailleurs, Église universelle',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Guido_Reni_-_Saint_Joseph_and_the_Christ_Child_-_C._1640.jpg/600px-Guido_Reni_-_Saint_Joseph_and_the_Christ_Child_-_C._1640.jpg',
+    longBio:`<p><strong>Sa vie :</strong> Charpentier à Nazareth, fiancé à la Vierge Marie. Découvrant qu'elle est enceinte avant qu'ils n'aient habité ensemble, ce "juste" décide de la répudier en secret pour ne pas la livrer à la lapidation publique. Un ange lui apparaît en songe pour lui révéler le mystère divin. Il prend Marie chez lui, protège l'Enfant Jésus des massacres d'Hérode en fuyant en Égypte, et pourvoit aux besoins de la Sainte Famille par son travail manuel.</p><p><strong>Sa spiritualité :</strong> L'Évangile ne rapporte aucune parole de Saint Joseph. Il est l'homme du silence absolu, de l'obéissance totale et de l'action immédiate. Sa sainteté réside dans l'accomplissement parfait et humble de son devoir d'état au quotidien.</p><p><strong>Le fait marquant :</strong> Sainte Thérèse d'Avila affirmait n'avoir jamais demandé une grâce à saint Joseph sans l'avoir obtenue, conseillant à tous ceux qui ne savent pas prier de le prendre pour maître spirituel.</p>`
+  },
+  { 
     name:'François d\'Assise', period:'1182 – 1226', feast:'4 octobre', patronage:'Écologie, animaux, pauvres',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Giotto_-_Legend_of_St_Francis_-_--19-_-_Stigmatization_of_St_Francis.jpg/600px-Giotto_-_Legend_of_St_Francis_-_--19-_-_Stigmatization_of_St_Francis.jpg',
-    longBio:`
-      <p><strong>Sa vie :</strong> Né Giovanni di Pietro Bernardone dans une riche famille bourgeoise d'Ombrie, François mène d'abord une jeunesse dorée et fêtarde. Rêvant de gloire militaire, il part à la guerre mais tombe gravement malade. De retour à Assise, une profonde crise spirituelle l'envahit. Devant le crucifix de Saint-Damien, il entend le Christ lui dire : <em>"François, va et répare mon Église en ruine"</em>. Il se dépouille publiquement de ses vêtements et de son héritage devant son père et l'évêque pour embrasser "Dame Pauvreté".</p>
-      <p><strong>Sa spiritualité :</strong> Il fonde l'Ordre des Frères Mineurs (les Franciscains), révolutionnant la vie religieuse de son temps par un retour radical à l'Évangile, une pauvreté absolue et une prédication itinérante. Sa spiritualité est marquée par une humilité joyeuse et une fraternité cosmique avec toute la création, magnifiquement exprimée dans son <em>Cantique des Créatures</em> ("Loué sois-tu, mon Seigneur, pour frère Soleil...").</p>
-      <p><strong>Le fait marquant :</strong> En 1224, retiré sur le mont Alverne, son amour pour le Christ souffrant est tel qu'il reçoit les stigmates (les plaies de la crucifixion dans ses mains, pieds et côté), devenant le premier stigmatisé de l'histoire.</p>
-    `
+    longBio:`<p><strong>Sa vie :</strong> Né Giovanni di Pietro Bernardone dans une riche famille bourgeoise d'Ombrie, François mène d'abord une jeunesse dorée et fêtarde. Rêvant de gloire militaire, il part à la guerre mais tombe malade. De retour, une profonde crise spirituelle l'envahit. Devant le crucifix de Saint-Damien, il entend le Christ lui dire : <em>"François, va et répare mon Église en ruine"</em>. Il se dépouille publiquement de ses vêtements et de son héritage devant son père et l'évêque pour embrasser "Dame Pauvreté".</p><p><strong>Sa spiritualité :</strong> Il fonde l'Ordre des Frères Mineurs (les Franciscains), révolutionnant la vie religieuse par un retour radical à l'Évangile, une pauvreté absolue et une prédication itinérante. Sa spiritualité est marquée par une humilité joyeuse et une fraternité avec la création (le <em>Cantique des Créatures</em>).</p><p><strong>Le fait marquant :</strong> En 1224, retiré sur le mont Alverne, son amour pour le Christ souffrant est tel qu'il reçoit les stigmates dans sa chair, devenant le premier stigmatisé de l'histoire de l'Église.</p>`
   },
   { 
     name:'Thérèse de Lisieux', period:'1873 – 1897', feast:'1er octobre', patronage:'Missions, France',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Th%C3%A9r%C3%A8se_de_Lisieux.jpg/600px-Th%C3%A9r%C3%A8se_de_Lisieux.jpg',
-    longBio:`
-      <p><strong>Sa vie :</strong> Thérèse Martin est née à Alençon au sein d'une famille profondément pieuse (ses parents, Louis et Zélie, sont canonisés). Après avoir perdu sa mère très jeune, elle souffre d'une grande hypersensibilité dont elle est guérie la nuit de Noël 1886. Brûlant d'amour pour Jésus, elle supplie le Pape Léon XIII de la laisser entrer au Carmel de Lisieux à seulement 15 ans. Elle y mènera une vie cachée, rongée par la tuberculose et une terrible nuit de la foi, avant de mourir à 24 ans.</p>
-      <p><strong>Sa spiritualité :</strong> Connaissant ses faiblesses, elle invente une voie nouvelle : la "Petite Voie" de l'enfance spirituelle. Elle comprend que la sainteté ne réside pas dans de grandes mortifications extraordinaires, mais dans la confiance absolue en la miséricorde de Dieu et dans l'offrande des plus petites actions quotidiennes faites avec un amour immense. Ses écrits autobiographiques, <em>Histoire d'une âme</em>, bouleverseront le monde entier.</p>
-      <p><strong>Le fait marquant :</strong> Sur son lit de mort, étouffée par la maladie, elle promet : <em>"Je passerai mon Ciel à faire du bien sur la terre. Je ferai tomber une pluie de roses."</em> Elle est proclamée Docteur de l'Église en 1997 par Jean-Paul II.</p>
-    `
+    longBio:`<p><strong>Sa vie :</strong> Thérèse Martin naît à Alençon dans une famille très pieuse. Ayant perdu sa mère jeune, elle souffre d'une grande hypersensibilité dont elle est guérie la nuit de Noël 1886. Elle supplie le Pape Léon XIII de la laisser entrer au Carmel à seulement 15 ans. Elle y mènera une vie cachée, rongée par la tuberculose et une terrible nuit de la foi, avant de mourir à 24 ans.</p><p><strong>Sa spiritualité :</strong> Connaissant ses faiblesses, elle invente la "Petite Voie" de l'enfance spirituelle. Elle comprend que la sainteté ne réside pas dans de grandes œuvres, mais dans la confiance absolue en la miséricorde de Dieu et dans l'offrande des plus petites actions faites avec amour. Ses écrits autobiographiques, <em>Histoire d'une âme</em>, ont bouleversé le monde entier.</p><p><strong>Le fait marquant :</strong> Sur son lit de mort, elle promet : <em>"Je passerai mon Ciel à faire du bien sur la terre. Je ferai tomber une pluie de roses."</em> Elle est proclamée Docteur de l'Église en 1997 par Jean-Paul II.</p>`
+  },
+  { 
+    name:'Vincent de Paul', period:'1581 – 1660', feast:'27 septembre', patronage:'Œuvres de charité, hôpitaux, orphelins',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Simon_Fran%C3%A7ois_de_Tours_-_Saint_Vincent_de_Paul.jpg/600px-Simon_Fran%C3%A7ois_de_Tours_-_Saint_Vincent_de_Paul.jpg',
+    longBio:`<p><strong>Sa vie :</strong> Issu d'une modeste famille paysanne des Landes, Vincent devient prêtre très jeune, d'abord par ambition sociale pour assurer ses arrières. Capturé par des pirates et vendu comme esclave à Tunis (selon ses lettres), il s'échappe. Après une profonde crise spirituelle, il renonce à la vie mondaine des riches familles parisiennes pour se consacrer corps et âme aux misérables : galériens, enfants trouvés, et paysans ruinés par les guerres.</p><p><strong>Sa spiritualité :</strong> L'action charitable est inséparable de la prière. Il voit véritablement le Christ souffrant dans chaque pauvre. Avec sainte Louise de Marillac, il révolutionne la charité en fondant les "Filles de la Charité", les premières religieuses non cloîtrées pour pouvoir courir les rues et soigner les malades.</p><p><strong>Le fait marquant :</strong> Il a créé l'institution des Enfants-Trouvés à Paris pour sauver les milliers de bébés abandonnés dans la rue et voués à la mort à l'époque.</p>`
+  },
+  { 
+    name:'Bernadette Soubirous', period:'1844 – 1879', feast:'18 février', patronage:'Bergers, malades',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Bernadette_Soubirous_in_1866.jpg/600px-Bernadette_Soubirous_in_1866.jpg',
+    longBio:`<p><strong>Sa vie :</strong> Fille aînée d'un meunier ruiné, Bernadette vit dans la misère noire, au "Cachot" (une ancienne prison) de Lourdes. Asthmatique et analphabète, elle a 14 ans lorsqu'une "Belle Dame" lui apparaît à 18 reprises dans la grotte boueuse de Massabielle en 1858. Harcelée par la police, la foule et le clergé sceptique, elle ne fléchit jamais sur son témoignage. Fuyant la célébrité, elle se réfugie au couvent de Nevers où elle meurt de tuberculose osseuse à 35 ans.</p><p><strong>Sa spiritualité :</strong> Une humilité radicale et une transparence totale. Elle disait d'elle-même : <em>"La Sainte Vierge s'est servie de moi comme d'un balai. Quand on a fini de s'en servir, on le remet à sa place, derrière la porte."</em></p><p><strong>Le fait marquant :</strong> Lors de la dernière apparition, la Vierge lui a révélé son nom en patois local que Bernadette ne comprenait même pas : "Que soy era Immaculada Councepciou" (Je suis l'Immaculée Conception), confirmant le dogme proclamé 4 ans plus tôt par le Pape.</p>`
   },
   { 
     name:'Augustin d\'Hippone', period:'354 – 430', feast:'28 août', patronage:'Théologiens',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Sandro_Botticelli_-_St_Augustine_-_WGA02613.jpg/600px-Sandro_Botticelli_-_St_Augustine_-_WGA02613.jpg',
-    longBio:`
-      <p><strong>Sa vie :</strong> Né en Afrique du Nord (actuelle Algérie), Augustin est doté d'une intelligence brillante mais mène une jeunesse dissolue, cherchant la vérité dans les philosophies païennes et les hérésies (manichéisme), au grand désespoir de sa mère chrétienne, sainte Monique, qui prie pour lui en larmes pendant des années. C'est à Milan, en écoutant les sermons de l'évêque saint Ambroise, et lors d'une crise décisive dans un jardin ("Prends et lis"), qu'il se convertit. Il deviendra évêque d'Hippone.</p>
-      <p><strong>Sa spiritualité :</strong> Augustin est le penseur de la grâce et de l'intériorité. Il a compris que le cœur de l'homme est fait pour Dieu seul et reste inquiet tant qu'il ne repose pas en Lui. Sa théologie sur la Trinité, le péché originel et l'Église a littéralement structuré toute la pensée chrétienne occidentale.</p>
-      <p><strong>Le fait marquant :</strong> Il rédige <em>Les Confessions</em>, la toute première autobiographie intime de l'histoire humaine, où il met son âme à nu et écrit l'une des plus belles déclarations d'amour à Dieu : <em>"Bien tard je t'ai aimée, ô beauté si ancienne et si nouvelle, bien tard je t'ai aimée !"</em></p>
-    `
+    longBio:`<p><strong>Sa vie :</strong> Né en Afrique du Nord, Augustin est doté d'une intelligence brillante mais mène une jeunesse dissolue, cherchant la vérité dans les philosophies païennes et les hérésies (manichéisme), au grand désespoir de sa mère chrétienne, sainte Monique, qui prie en larmes pendant des années. À Milan, écoutant les sermons de saint Ambroise, et lors d'une crise dans un jardin ("Prends et lis"), il se convertit et deviendra évêque d'Hippone.</p><p><strong>Sa spiritualité :</strong> Augustin est le penseur de la grâce et de l'intériorité. Il a compris que le cœur de l'homme est fait pour Dieu seul et reste inquiet tant qu'il ne repose pas en Lui. Sa théologie sur la Trinité et le péché originel a structuré toute la pensée chrétienne occidentale.</p><p><strong>Le fait marquant :</strong> Il rédige <em>Les Confessions</em>, la toute première autobiographie intime de l'histoire humaine, avec cette déclaration vertigineuse : <em>"Bien tard je t'ai aimée, ô beauté si ancienne et si nouvelle, bien tard je t'ai aimée !"</em></p>`
+  },
+  { 
+    name:'Louis IX (Saint Louis)', period:'1214 – 1270', feast:'25 août', patronage:'France, monarques, maçons',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/El_Greco_011.jpg/600px-El_Greco_011.jpg',
+    longBio:`<p><strong>Sa vie :</strong> Roi de France couronné à 12 ans. Éduqué par sa mère Blanche de Castille ("Je préférerais te voir mort plutôt que de te voir commettre un seul péché mortel"), il devient l'archétype du roi chrétien. Il pacifie son royaume, réforme la justice (présomption d'innocence), et protège les pauvres. Il meurt du typhus lors de sa seconde croisade, devant Tunis.</p><p><strong>Sa spiritualité :</strong> Sous ses habits de roi, il portait un cilice. Il fondait des hôpitaux (les Quinze-Vingts pour les aveugles) et n'hésitait pas à laver lui-même les pieds des lépreux et à nourrir les pauvres à sa propre table. Sa foi était charnelle : il vénérait ardemment les reliques de la Passion.</p><p><strong>Le fait marquant :</strong> Pour abriter la Couronne d'épines du Christ qu'il a rachetée à prix d'or à l'empereur de Constantinople, il fait bâtir au cœur de Paris un reliquaire de verre et de lumière : la sublime Sainte-Chapelle.</p>`
   },
   { 
     name:'Thomas d\'Aquin', period:'1225 – 1274', feast:'28 janvier', patronage:'Étudiants, universités',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/St_thomas_aquinas.jpg/600px-St_thomas_aquinas.jpg',
-    longBio:`
-      <p><strong>Sa vie :</strong> Issu de la haute noblesse italienne, sa famille voulait faire de lui le riche abbé du Mont-Cassin. Il s'enfuit pour rejoindre un ordre mendiant naissant et pauvre : les Dominicains. Sa famille l'enferme dans un château pendant un an pour l'en dissuader, en vain. Devenu maître à l'Université de Paris, cet homme corrpulent et silencieux (ses camarades le surnommaient "le bœuf muet") se révèle être le plus grand génie intellectuel de son époque.</p>
-      <p><strong>Sa spiritualité :</strong> Thomas d'Aquin a réalisé une œuvre titanesque : réconcilier la philosophie grecque (Aristote) avec la révélation biblique, démontrant que la Raison et la Foi viennent du même Dieu et ne peuvent se contredire. Son chef-d'œuvre, la <em>Somme Théologique</em>, reste la base absolue de la théologie catholique. Mais ce génie était avant tout un immense mystique et un adorateur de l'Eucharistie.</p>
-      <p><strong>Le fait marquant :</strong> À la fin de sa vie, après une extase mystique pendant la messe, il cesse définitivement d'écrire, déclarant à son secrétaire : <em>"Je ne peux plus... Tout ce que j'ai écrit me semble de la paille en comparaison de ce que j'ai vu et de ce qui m'a été révélé."</em></p>
-    `
+    longBio:`<p><strong>Sa vie :</strong> Issu de la haute noblesse italienne, il s'enfuit pour rejoindre un ordre mendiant naissant : les Dominicains. Sa famille l'enferme dans un château pour l'en dissuader, en vain. Devenu maître à l'Université de Paris, cet homme corpulent (surnommé "le bœuf muet" par ses camarades) se révèle être le plus grand génie intellectuel de son époque.</p><p><strong>Sa spiritualité :</strong> Thomas d'Aquin réalise une œuvre titanesque : réconcilier la philosophie grecque avec la révélation biblique, démontrant que la Raison et la Foi viennent du même Dieu. Sa <em>Somme Théologique</em> reste la base absolue de la théologie catholique. Mais ce génie était avant tout un immense mystique et un adorateur de l'Eucharistie.</p><p><strong>Le fait marquant :</strong> À la fin de sa vie, après une extase mystique, il cesse d'écrire : <em>"Je ne peux plus... Tout ce que j'ai écrit me semble de la paille en comparaison de ce que j'ai vu et de ce qui m'a été révélé."</em></p>`
+  },
+  { 
+    name:'Hildegarde de Bingen', period:'1098 – 1179', feast:'17 septembre', patronage:'Écrivains, musiciens, naturalistes',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Hildegard_von_Bingen.jpg/600px-Hildegard_von_Bingen.jpg',
+    longBio:`<p><strong>Sa vie :</strong> Religieuse bénédictine allemande du XIIe siècle, elle devient abbesse de son propre couvent. Femme d'un savoir prodigieux à une époque où l'accès à la culture était difficile, elle est médecin, compositrice de musique sacrée, naturaliste et écrivain. Depuis son enfance, elle est favorisée de visions mystiques éblouissantes de "la lumière vivante".</p><p><strong>Sa spiritualité :</strong> Sa pensée est profondément prophétique et cosmique. Elle voit la création entière interconnectée et pénétrée par la puissance vitale du Saint-Esprit (la <em>viriditas</em>, la "verdeur" spirituelle). Elle n'hésitait pas à fustiger la corruption du clergé et de l'Empire romain germanique avec l'autorité d'un prophète.</p><p><strong>Le fait marquant :</strong> Elle est l'une des rares femmes du Moyen Âge à avoir entrepris des tournées de prédication publiques dans toute l'Europe. Benoît XVI l'a proclamée Docteur de l'Église en 2012.</p>`
   },
   { 
     name:'Jeanne d\'Arc', period:'1412 – 1431', feast:'30 mai', patronage:'France, soldats',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Ingres_-_Jeanne_d%27Arc_au_sacre_du_roi_Charles_VII%2C_dans_la_cath%C3%A9drale_de_Reims.jpg/600px-Ingres_-_Jeanne_d%27Arc_au_sacre_du_roi_Charles_VII%2C_dans_la_cath%C3%A9drale_de_Reims.jpg',
-    longBio:`
-      <p><strong>Sa vie :</strong> Simple jeune paysanne illettrée et très pieuse de Domrémy. En pleine guerre de Cent Ans, alors que la France est ravagée et quasiment perdue, elle commence à entendre les voix de l'archange saint Michel, sainte Catherine et sainte Marguerite. Elles lui confient une mission impossible : libérer la ville d'Orléans et faire sacrer le dauphin Charles VII à Reims. Contre toute attente, elle convainc le roi, prend la tête de l'armée à 17 ans, et accomplit sa mission de manière fulgurante.</p>
-      <p><strong>Sa spiritualité :</strong> Jeanne incarne la pureté du cœur, le patriotisme spirituel et l'obéissance totale à la volonté de Dieu ("Dieu premier servi"). Elle se distingue par une grande compassion pour les soldats (même ennemis) et une vie de prière intense au milieu des combats.</p>
-      <p><strong>Le fait marquant :</strong> Capturée, vendue aux Anglais et soumise à un procès ecclésiastique inique mené par des évêques corrompus, elle fait preuve d'une intelligence théologique stupéfiante face à ses juges. Condamnée comme hérétique, elle est brûlée vive à Rouen à l'âge de 19 ans, le regard fixé sur une croix en prononçant le nom de "Jésus". Elle sera réhabilitée 25 ans plus tard.</p>
-    `
+    longBio:`<p><strong>Sa vie :</strong> Simple paysanne très pieuse. En pleine guerre de Cent Ans, alors que la France est ravagée, elle entend les voix de saint Michel et de saintes. Mission impossible : libérer Orléans et faire sacrer Charles VII. Contre toute attente, elle prend la tête de l'armée à 17 ans et accomplit sa mission de manière fulgurante.</p><p><strong>Sa spiritualité :</strong> Jeanne incarne la pureté du cœur, le patriotisme spirituel et l'obéissance totale à la volonté de Dieu ("Dieu premier servi"). Elle se distingue par une grande compassion pour les soldats, pleurant sur les morts de la bataille.</p><p><strong>Le fait marquant :</strong> Capturée et soumise à un procès ecclésiastique inique mené par des évêques corrompus acquis aux Anglais, elle fait preuve d'une intelligence théologique stupéfiante face aux pièges de ses juges. Condamnée comme hérétique, elle est brûlée vive à 19 ans, fixant la croix et criant "Jésus". Elle sera réhabilitée 25 ans plus tard.</p>`
+  },
+  { 
+    name:'Charles de Foucauld', period:'1858 – 1916', feast:'1er décembre', patronage:'Personnes isolées, missionnaires',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Charles_de_Foucauld_1915_b.jpg/600px-Charles_de_Foucauld_1915_b.jpg',
+    longBio:`<p><strong>Sa vie :</strong> Vicomte, militaire rebelle et explorateur au Maroc, il perd la foi dans sa jeunesse et vit dans le luxe et la débauche. Frappé par la foi des musulmans dans le désert, il se met en quête de Dieu. Il se convertit radicalement en 1886. Après un passage chez les moines Trappistes, il devient prêtre ermite dans le Sahara algérien, à Tamanrasset, au milieu des Touaregs.</p><p><strong>Sa spiritualité :</strong> Fascination absolue pour "la vie cachée de Jésus à Nazareth". Il ne cherche pas à prêcher ou à convertir par de grands discours, mais à "crier l'Évangile par toute sa vie". Il se veut le "frère universel", accueillant chrétiens, musulmans, juifs ou païens. C'est l'apostolat de l'amitié et de l'adoration eucharistique silencieuse.</p><p><strong>Le fait marquant :</strong> Il meurt assassiné lors d'une razzia à la porte de son ermitage, seul, sans avoir jamais eu un seul disciple de son vivant. Son héritage spirituel donnera naissance à des dizaines de congrégations dans le monde entier.</p>`
   },
   { 
     name:'Padre Pio', period:'1887 – 1968', feast:'23 septembre', patronage:'Adolescents, confesseurs',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Padre_Pio_da_Pietrelcina.jpg/600px-Padre_Pio_da_Pietrelcina.jpg',
-    longBio:`
-      <p><strong>Sa vie :</strong> Francesco Forgione entre très jeune chez les frères Capucins en Italie. Il passe la majeure partie de sa vie dans le couvent pauvre de San Giovanni Rotondo. D'une santé fragile, il subit très tôt de violents assauts démoniaques mais reçoit aussi d'immenses consolations mystiques. Sa vie bascule en 1918 lorsqu'il reçoit les stigmates (les cinq plaies du Christ) qui saigneront chaque jour pendant 50 ans sans jamais s'infecter ni cicatriser.</p>
-      <p><strong>Sa spiritualité :</strong> L'Eucharistie et la Confession sont les deux piliers de sa vie. Ses messes duraient parfois des heures, vécues comme une véritable participation à la Passion du Christ sur le calvaire. Doté du don de lire dans les consciences (cardiognosie), il passait jusqu'à 15 heures par jour dans le confessionnal pour écouter et absolver des millions de pèlerins.</p>
-      <p><strong>Le fait marquant :</strong> Un jour, le futur Pape Jean-Paul II (alors jeune prêtre polonais) vient se confesser à lui. Padre Pio lui aurait prédit qu'il monterait sur le trône de Pierre. C'est d'ailleurs Jean-Paul II qui le canonisera en 2002 devant la plus grande foule jamais réunie à Rome.</p>
-    `
+    longBio:`<p><strong>Sa vie :</strong> Francesco Forgione entre très jeune chez les frères Capucins en Italie. D'une santé fragile, il subit très tôt de violents assauts démoniaques mais reçoit aussi d'immenses consolations mystiques. Sa vie bascule en 1918 lorsqu'il reçoit les stigmates (les cinq plaies du Christ) qui saigneront chaque jour pendant 50 ans sans jamais s'infecter ni cicatriser.</p><p><strong>Sa spiritualité :</strong> L'Eucharistie et la Confession sont ses deux piliers. Ses messes duraient parfois des heures, vécues comme une véritable participation à la Passion du Christ sur le calvaire. Doté du don de lire dans les consciences, il passait jusqu'à 15 heures par jour dans le confessionnal pour écouter et absolver.</p><p><strong>Le fait marquant :</strong> Un jour, le futur Pape Jean-Paul II (alors jeune prêtre) vient se confesser à lui. Padre Pio lui aurait prédit qu'il monterait sur le trône de Pierre. C'est d'ailleurs Jean-Paul II qui le canonisera en 2002.</p>`
   },
   { 
     name:'Antoine de Padoue', period:'1195 – 1231', feast:'13 juin', patronage:'Objets perdus, voyageurs',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/St._Anthony_of_Padua_holding_the_Infant_Jesus_with_an_open_book%2C_Guercino%2C_1656.jpg/600px-St._Anthony_of_Padua_holding_the_Infant_Jesus_with_an_open_book%2C_Guercino%2C_1656.jpg',
-    longBio:`
-      <p><strong>Sa vie :</strong> Né Fernando Martins de Bulhões à Lisbonne (Portugal) dans une famille noble, il entre chez les chanoines réguliers de saint Augustin où il acquiert une culture biblique exceptionnelle. Fasciné par les premiers martyrs franciscains, il rejoint l'Ordre naissant de saint François d'Assise et prend le nom d'Antoine. Cherchant le martyr en Afrique, la maladie le ramène en Europe, où ses incroyables talents d'orateur éclatent au grand jour en Italie et en France.</p>
-      <p><strong>Sa spiritualité :</strong> Il est surnommé "Le marteau des hérétiques" car sa prédication, ancrée dans la douceur évangélique et une connaissance parfaite de l'Écriture, ramenait les foules à la foi catholique. Il défendait vigoureusement les pauvres contre l'usure et l'exploitation des riches de son temps.</p>
-      <p><strong>Le fait marquant :</strong> Un jour, à Rimini, face à des hérétiques qui refusaient de l'écouter, il partit prêcher au bord de la mer. La légende raconte que les poissons sortirent la tête de l'eau pour écouter la parole de Dieu, ce qui bouleversa et convertit les habitants.</p>
-    `
+    longBio:`<p><strong>Sa vie :</strong> Né à Lisbonne (Portugal), il rejoint l'Ordre naissant de saint François d'Assise et prend le nom d'Antoine. Cherchant le martyr en Afrique, la maladie le ramène en Europe, où ses incroyables talents d'orateur éclatent au grand jour en Italie et en France.</p><p><strong>Sa spiritualité :</strong> Il est surnommé "Le marteau des hérétiques" car sa prédication, ancrée dans la douceur évangélique et une connaissance parfaite de l'Écriture, ramenait les foules à la foi catholique. Il défendait vigoureusement les pauvres contre l'usure et l'exploitation des riches.</p><p><strong>Le fait marquant :</strong> Un jour, à Rimini, face à des hérétiques qui refusaient de l'écouter, il partit prêcher au bord de la mer. La légende raconte que les poissons sortirent la tête de l'eau pour écouter la parole de Dieu, ce qui bouleversa et convertit les habitants.</p>`
   },
   { 
     name:'Mère Teresa', period:'1910 – 1997', feast:'5 septembre', patronage:'Les plus pauvres d\'entre les pauvres',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Mother_Teresa_1.jpg/600px-Mother_Teresa_1.jpg',
-    longBio:`
-      <p><strong>Sa vie :</strong> Née Anjezë Gonxhe Bojaxhiu en Macédoine, elle devient religieuse missionnaire en Inde, enseignante pour des jeunes filles de bonne famille. Lors d'un voyage en train en 1946, elle reçoit "l'appel dans l'appel" : Jésus lui demande de tout quitter pour Le servir dans les plus pauvres d'entre les pauvres. Elle fonde les Missionnaires de la Charité, vêtues d'un simple sari de coton blanc bordé de bleu, et s'installe dans les bidonvilles de Calcutta pour ramasser les mourants dans la rue.</p>
-      <p><strong>Sa spiritualité :</strong> Sa vocation se résume au cri de Jésus sur la croix : <em>"J'ai soif"</em>. Elle n'y voyait pas seulement une soif physique, mais la soif de Dieu d'être aimé, et la soif des pauvres d'être reconnus. Elle voyait et servait concrètement le Christ en chaque intouchable, malade du Sida ou lépreux.</p>
-      <p><strong>Le fait marquant :</strong> Après sa mort, la publication de son journal intime a révélé un secret stupéfiant : cette femme dont le sourire rayonnait dans le monde entier a traversé une "Nuit de la Foi" effroyable pendant près de 50 ans, se sentant totalement abandonnée de Dieu, prouvant que sa charité ne reposait sur aucune consolation émotionnelle, mais sur la volonté pure.</p>
-    `
+    longBio:`<p><strong>Sa vie :</strong> Religieuse missionnaire en Inde, elle reçoit un "appel dans l'appel" en 1946 : Jésus lui demande de tout quitter pour Le servir dans les plus pauvres. Elle fonde les Missionnaires de la Charité, vêtues d'un simple sari de coton blanc bordé de bleu, et s'installe dans les bidonvilles de Calcutta pour ramasser les mourants dans la rue.</p><p><strong>Sa spiritualité :</strong> Sa vocation se résume au cri de Jésus sur la croix : <em>"J'ai soif"</em>. Elle n'y voyait pas seulement une soif physique, mais la soif de Dieu d'être aimé, et la soif des pauvres d'être reconnus. Elle servait concrètement le Christ en chaque intouchable ou malade.</p><p><strong>Le fait marquant :</strong> Après sa mort, la publication de son journal intime a révélé un secret stupéfiant : cette femme dont le sourire rayonnait dans le monde entier a traversé une "Nuit de la Foi" effroyable pendant près de 50 ans, se sentant totalement abandonnée de Dieu.</p>`
   },
   { 
     name:'Maximilien Kolbe', period:'1894 – 1941', feast:'14 août', patronage:'Prisonniers politiques, journalistes',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Maksymilian_Kolbe.jpg/600px-Maksymilian_Kolbe.jpg',
-    longBio:`
-      <p><strong>Sa vie :</strong> Raymond Kolbe, prêtre franciscain polonais, est un pionnier de l'évangélisation par les médias. Passionné par l'Immaculée Conception, il fonde la "Milice de l'Immaculée" et crée de toutes pièces la "Cité de l'Immaculée" près de Varsovie, qui devient le plus grand couvent du monde (plus de 700 frères) gérant ses propres journaux, radios et imprimeries pour contrer la propagande nazie et franc-maçonne. En 1941, il est arrêté par la Gestapo et déporté au camp de concentration d'Auschwitz.</p>
-      <p><strong>Sa spiritualité :</strong> Une consécration mariale totale et inconditionnelle. Il croyait fermement que Marie était le chemin le plus sûr, le plus court et le plus parfait pour s'unir au Christ et écraser le mal en ce monde.</p>
-      <p><strong>Le fait marquant :</strong> À Auschwitz, à la suite d'une évasion, le commandant désigne 10 hommes au hasard pour mourir de faim dans le bunker de la mort. L'un d'eux pleure en évoquant sa femme et ses enfants. Le père Kolbe sort des rangs (chose impensable) et demande à prendre sa place. Dans le bunker de la faim, au lieu des hurlements habituels, on entendait Kolbe chanter des psaumes avec les condamnés. Étant le dernier survivant après 15 jours, les nazis l'achèvent par une piqûre de phénol.</p>
-    `
+    longBio:`<p><strong>Sa vie :</strong> Prêtre franciscain polonais, pionnier de l'évangélisation par les médias. Passionné par l'Immaculée Conception, il crée de toutes pièces la "Cité de l'Immaculée", un immense couvent gérant ses propres journaux et radios pour contrer la propagande nazie. En 1941, il est arrêté par la Gestapo et déporté à Auschwitz.</p><p><strong>Sa spiritualité :</strong> Une consécration mariale totale et inconditionnelle. Il croyait fermement que Marie était le chemin le plus sûr, le plus court et le plus parfait pour s'unir au Christ.</p><p><strong>Le fait marquant :</strong> À Auschwitz, à la suite d'une évasion, le commandant désigne 10 hommes au hasard pour mourir de faim dans le bunker de la mort. Kolbe sort des rangs (chose impensable) et demande à prendre la place d'un père de famille. Dans le bunker, au lieu des hurlements, on l'entend chanter des psaumes avec les condamnés jusqu'à sa mort.</p>`
   },
   { 
     name:'Benoît de Nursie', period:'480 – 547', feast:'11 juillet', patronage:'Europe, moines, spéléologues',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Fra_Angelico_-_Saint_Benedict_-_WGA00508.jpg/600px-Fra_Angelico_-_Saint_Benedict_-_WGA00508.jpg',
-    longBio:`
-      <p><strong>Sa vie :</strong> Jeune étudiant romain de bonne famille, Benoît est écœuré par la décadence morale de Rome au moment de la chute de l'Empire. Il fuit la ville et se réfugie dans une grotte isolée à Subiaco pour y vivre en ermite. Sa réputation de sainteté attire bientôt de nombreux disciples. Il fonde 12 monastères, dont la célèbre abbaye du Mont-Cassin. Il est le patriarche du monachisme occidental.</p>
-      <p><strong>Sa spiritualité :</strong> Il rédige la "Règle de Saint Benoît", un chef-d'œuvre de sagesse spirituelle et d'équilibre humain, résumé par la devise <em>Ora et Labora</em> (Prie et Travaille). Cette règle organise la vie communautaire en alternant avec justesse la prière liturgique (l'Office divin), la lecture méditée de la Bible, et le travail manuel ou intellectuel, sous l'autorité paternelle d'un Abbé.</p>
-      <p><strong>Le fait marquant :</strong> Au Moyen Âge, alors que l'Europe sombrait dans le chaos barbare, ce sont les monastères bénédictins qui ont recopié les manuscrits, préservé la culture antique, défriché les forêts et enseigné l'agriculture, sauvant ainsi la civilisation européenne.</p>
-    `
+    longBio:`<p><strong>Sa vie :</strong> Jeune étudiant romain fuyant la décadence de Rome, il se retire dans une grotte à Subiaco en ermite. Sa réputation de sainteté attire de nombreux disciples. Il fonde 12 monastères, dont l'abbaye du Mont-Cassin. Il est le patriarche du monachisme occidental.</p><p><strong>Sa spiritualité :</strong> Il rédige la "Règle de Saint Benoît", un chef-d'œuvre d'équilibre humain, résumé par la devise <em>Ora et Labora</em> (Prie et Travaille). Elle alterne la prière liturgique, la lecture et le travail manuel, sous l'autorité d'un Abbé.</p><p><strong>Le fait marquant :</strong> Au Moyen Âge, alors que l'Europe sombrait dans le chaos barbare, ce sont les monastères bénédictins qui ont recopié les manuscrits, préservé la culture antique, défriché les forêts et enseigné l'agriculture, sauvant ainsi la civilisation européenne.</p>`
   },
   { 
     name:'Catherine de Sienne', period:'1347 – 1380', feast:'29 avril', patronage:'Europe, Italie, malades',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Giovanni_di_Paolo_-_St_Catherine_of_Siena_-_WGA09069.jpg/600px-Giovanni_di_Paolo_-_St_Catherine_of_Siena_-_WGA09069.jpg',
-    longBio:`
-      <p><strong>Sa vie :</strong> 23e enfant d'un teinturier de Sienne, Catherine refuse le mariage et entre dans le Tiers-Ordre dominicain (vivant en religieuse mais dans le monde, sans clôture). Elle mène une vie d'une ascèse terrifiante, se nourrissant presque exclusivement de l'Eucharistie. Bien qu'illettrée au départ, elle dicte des lettres enflammées à toutes les têtes couronnées de son époque et s'occupe des pestiférés avec un courage héroïque.</p>
-      <p><strong>Sa spiritualité :</strong> L'union mystique totale avec le Christ ("le doux Christ sur la terre"). Sa spiritualité est centrée sur le sang du Christ, force purificatrice de l'Église. Elle a dicté dans des états d'extase <em>Le Dialogue</em>, une conversation sublime entre Dieu le Père et son âme, qui fait d'elle un Docteur de l'Église.</p>
-      <p><strong>Le fait marquant :</strong> Alors que les Papes avaient déserté Rome depuis 70 ans pour vivre dans le luxe à Avignon, cette simple jeune femme n'hésite pas à se rendre à pied en France pour réprimander le Pape Grégoire XI, l'appelant "son doux Babbo", et le convainc finalement de retourner à Rome, sauvant l'Église d'un schisme total.</p>
-    `
+    longBio:`<p><strong>Sa vie :</strong> Laïque du Tiers-Ordre dominicain, elle mène une vie d'une ascèse terrifiante. Bien qu'illettrée au départ, elle dicte des lettres enflammées à toutes les têtes couronnées de son époque et s'occupe des pestiférés avec un courage héroïque.</p><p><strong>Sa spiritualité :</strong> L'union mystique totale avec le Christ ("le doux Christ sur la terre"). Elle a dicté dans des états d'extase <em>Le Dialogue</em>, une conversation sublime entre Dieu le Père et son âme, qui fait d'elle un Docteur de l'Église.</p><p><strong>Le fait marquant :</strong> Alors que les Papes avaient déserté Rome depuis 70 ans pour vivre en France (Avignon), cette simple jeune femme n'hésite pas à s'y rendre à pied pour réprimander le Pape Grégoire XI et le convainc finalement de retourner à Rome.</p>`
   },
   { 
     name:'Jean-Paul II', period:'1920 – 2005', feast:'22 octobre', patronage:'Jeunes, familles, JMJ',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Johannes_Paul_II._%281993%29.jpg/600px-Johannes_Paul_II._%281993%29.jpg',
-    longBio:`
-      <p><strong>Sa vie :</strong> Karol Wojtyła a eu une jeunesse tragique en Pologne, perdant sa mère, son frère et son père très tôt. Ouvrier dans une carrière de pierre pendant l'occupation nazie, il entre au séminaire clandestin de Cracovie. Devenu archevêque, il s'oppose frontalement au régime communiste. Élu Pape en 1978 ("N'ayez pas peur !"), il réalise un pontificat vertigineux de 27 ans, parcourant la terre entière (104 voyages internationaux) pour annoncer l'Évangile jusqu'à l'épuisement de ses forces physiques.</p>
-      <p><strong>Sa spiritualité :</strong> Intégralement mariale (sa devise était <em>Totus Tuus</em> - "Tout à toi, Marie"). Philosophe brillant, il a rédigé des textes majeurs sur la dignité de la personne humaine, le respect de la vie de la conception à la mort naturelle, et a développé l'incroyable "Théologie du Corps", expliquant le sens profond de la sexualité humaine et du mariage.</p>
-      <p><strong>Le fait marquant :</strong> Le 13 mai 1981, il est grièvement blessé par balles lors d'un attentat sur la place Saint-Pierre. Attribuant sa survie à Notre-Dame de Fatima, il se rendra plus tard dans la cellule de la prison de son assassin, Ali Ağca, pour lui pardonner personnellement en face à face.</p>
-    `
+    longBio:`<p><strong>Sa vie :</strong> Karol Wojtyła a eu une jeunesse tragique en Pologne. Archevêque, il s'oppose frontalement au régime communiste. Élu Pape en 1978 ("N'ayez pas peur !"), il réalise un pontificat vertigineux de 27 ans, parcourant la terre entière pour annoncer l'Évangile jusqu'à l'épuisement de ses forces physiques.</p><p><strong>Sa spiritualité :</strong> Intégralement mariale (<em>Totus Tuus</em>). Philosophe brillant, il a développé l'incroyable "Théologie du Corps", expliquant le sens profond de la sexualité humaine et du mariage.</p><p><strong>Le fait marquant :</strong> Le 13 mai 1981, il est grièvement blessé par balles lors d'un attentat. Attribuant sa survie à Notre-Dame de Fatima, il se rendra plus tard dans la prison de son assassin, Ali Ağca, pour lui pardonner personnellement en face à face.</p>`
   }
 ];
 
@@ -1044,7 +875,6 @@ function showPage(id){
   document.querySelectorAll('main > section').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   
-  // Mise à jour visuelle du menu corrigée : la surbrillance suit la page
   document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('highlight'));
   const activeLink = document.getElementById('nav-' + id);
   if(activeLink) activeLink.classList.add('highlight');
@@ -1092,14 +922,19 @@ function renderMoods(){
 }
 function showMood(m){
   const panel = document.getElementById('moodDetail');
+  const randomItem = m.items[Math.floor(Math.random() * m.items.length)];
+  
   panel.innerHTML = `
-    <p class="eyebrow" style="margin-bottom:4px;">Pour ${m.label.toLowerCase()}</p>
-    <blockquote>${m.verse}</blockquote>
-    <cite>${m.ref}</cite>
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <p class="eyebrow" style="margin-bottom:4px;">Pour ${m.label.toLowerCase()}</p>
+      <button class="btn" style="padding:4px 10px; font-size:0.8rem;" onclick='showMood(${JSON.stringify(m)})'>Nouvelle suggestion ↻</button>
+    </div>
+    <blockquote style="margin-top:12px;">${randomItem.verse}</blockquote>
+    <cite>${randomItem.ref} — Louis Segond</cite>
     <h4>Prière du cœur</h4>
-    <p>${m.prayer}</p>
-    <h4>Un geste pour cette journée</h4>
-    <p style="margin:0;">${m.action}</p>
+    <p>${randomItem.prayer}</p>
+    <h4>Un geste concret aujourd'hui</h4>
+    <p style="margin:0;">${randomItem.action}</p>
   `;
   panel.classList.add('show');
 }
@@ -1306,14 +1141,14 @@ function drawChapeletSvg(){
   const svg = document.getElementById('chapeletSvg');
   if(!svg) return;
   const cx=140, cy=140, r=96;
-  const beadCount = 20;
+  const beadCount = 10;
   let beads = '';
   for(let i=0;i<beadCount;i++){
     const angle = (i/beadCount)*Math.PI*2 - Math.PI/2;
     const x = cx + Math.cos(angle)*r;
     const y = cy + Math.sin(angle)*r;
-    const highlighted = i <= Math.floor((state.grain/state.totalGrains)*beadCount);
-    beads += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="currentColor" opacity="${highlighted?0.9:0.22}"/>`;
+    const highlighted = i <= state.grain;
+    beads += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="currentColor" opacity="${highlighted?0.9:0.22}"/>`;
   }
   const cross = `
     <rect x="${cx-4}" y="${cy-26}" width="8" height="46" rx="3" fill="currentColor"/>

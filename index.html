@@ -39,6 +39,30 @@
   --ease: cubic-bezier(.16,1,.3,1);
   --on-accent: #FFFFFF;
 }
+
+/* Effet au survol du menu */
+.nav-links a {
+  transition: background-color 0.2s ease;
+}
+.nav-links a:hover {
+  background-color: var(--bg-card-alt, #ebebeb);
+}
+
+/* Forcer le texte des humeurs en noir et gras (plus de bleu) */
+.mood-response, .mood-detail, #moodResult {
+  color: #1a1a1a !important;
+  font-weight: bold !important;
+}
+
+// Fermer le menu en cliquant à l'extérieur
+document.addEventListener('click', function(event) {
+  const nav = document.querySelector('nav');
+  const menuBtn = document.querySelector('.menu-toggle');
+  if (nav && nav.classList.contains('open') && !nav.contains(event.target) && !menuBtn.contains(event.target)) {
+    nav.classList.remove('open');
+  }
+});
+  
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg: #1E1A15; --bg-card: #26211B; --bg-card-alt: #2F2821;
@@ -388,12 +412,9 @@ footer { padding:52px 0 40px; }
         <p>Les textes traditionnels, à portée de main.</p>
       </div>
 
-<svg class="illustration" width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M12 2v6" />
-        <path d="M12 18a6 6 0 0 0 6-6V9H6v3a6 6 0 0 0 6 6z" />
-        <path d="M4 11v1a8 8 0 0 0 16 0v-1" />
-        <path d="M12 18v4" />
-        <path d="M8 22h8" />
+<svg class="illustration" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-bottom: 24px;">
+        <path d="M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6a1 1 0 0 1-1-1z" />
+        <path d="M9 9h6M12 6v8" />
       </svg>
 
       <div id="prayersList"></div>
@@ -895,140 +916,137 @@ const BIBLE_VERSES = [
   { text:"L'Éternel est mon berger : je ne manquerai de rien.", ref:'Psaume 23, 1', theme:'Confiance' },
   { text:"Je puis tout par celui qui me fortifie.", ref:'Philippiens 4, 13', theme:'Force' },
   { text:"L'amour est patient, il est plein de bonté.", ref:'1 Corinthiens 13, 4', theme:'Amour' },
-  { text:"Ne crains rien, car je suis avec toi ; ne promène pas des regards inquiets, car je suis ton Dieu.", ref:'Ésaïe 41, 10', theme:'Confiance' },
   { text:"Venez à moi, vous tous qui êtes fatigués et chargés, et je vous donnerai du repos.", ref:'Matthieu 11, 28', theme:'Repos' },
   { text:"La joie de l'Éternel sera votre force.", ref:'Néhémie 8, 10', theme:'Joie' },
-  { text:"Heureux ceux qui procurent la paix, car ils seront appelés fils de Dieu.", ref:'Matthieu 5, 9', theme:'Paix' },
-  { text:"Confie-toi en l'Éternel de tout ton cœur, et ne t'appuie pas sur ta sagesse.", ref:'Proverbes 3, 5', theme:'Confiance' },
-  { text:"Demandez, et l'on vous donnera ; cherchez, et vous trouverez ; frappez, et l'on vous ouvrira.", ref:'Matthieu 7, 7', theme:'Espérance' },
-  { text:"Que la paix du Christ, à laquelle vous avez été appelés, règne dans vos cœurs.", ref:'Colossiens 3, 15', theme:'Paix' },
-  { text:"L'amour ne périt jamais.", ref:'1 Corinthiens 13, 8', theme:'Amour' },
-  { text:"Réjouissez-vous toujours dans le Seigneur ; je le redis, réjouissez-vous.", ref:'Philippiens 4, 4', theme:'Joie' },
-  { text:"Je suis avec toi partout où tu iras, et je ne t'abandonnerai point.", ref:'Genèse 28, 15', theme:'Confiance' },
-  { text:"Le Seigneur est proche de ceux qui l'invoquent, de tous ceux qui l'invoquent avec sincérité.", ref:'Psaume 145, 18', theme:'Espérance' },
-  { text:"Soyez forts et courageux ; ne craignez point et ne soyez effrayés devant eux.", ref:'Deutéronome 31, 6', theme:'Force' },
+  { text:"Je vous laisse la paix, je vous donne ma paix.", ref:'Jean 14, 27', theme:'Paix' },
+  { text:"Espère en l'Éternel ! Fortifie-toi et que ton cœur s'affermisse !", ref:'Psaume 27, 14', theme:'Espérance' },
   { text:"Quand les montagnes s'éloigneraient, ma bonté ne s'éloignera point de toi.", ref:'Ésaïe 54, 10', theme:'Consolation' },
-  { text:"Ta parole est une lampe à mes pieds, et une lumière sur mon sentier.", ref:'Psaume 119, 105', theme:'Lumière' },
-  { text:"L'Éternel est ma lumière et mon salut : de qui aurais-je peur ?", ref:'Psaume 27, 1', theme:'Force' },
-  { text:"Recommande ton sort à l'Éternel, mets en lui ta confiance, and il agira.", ref:'Psaume 37, 5', theme:'Confiance' },
-  { text:"Car je connais les projets que j'aiformés sur vous, projets de paix et non de malheur.", ref:'Jérémie 29, 11', theme:'Espérance' },
-  { text:"Ne vous inquiétez de rien ; mais en toute chose faites connaître vos besoins à Dieu.", ref:'Philippiens 4, 6', theme:'Paix' },
-  { text:"Approchez-vous de Dieu, and il s'approchera de vous.", ref:'Jacques 4, 8', theme:'Grâce' },
-  { text:"Goûtez and voyez combien l'Éternel est bon ! Heureux l'homme qui cherche en lui son refuge !", ref:'Psaume 34, 8', theme:'Joie' },
-  { text:"Celui qui demeure sous l'abri du Très-Haut repose à l'ombre du Tout-Puissant.", ref:'Psaume 91, 1', theme:'Confiance' },
-  { text:"Mon âme se repose en paix sur Dieu seul : de lui vient mon salut.", ref:'Psaume 62, 1', theme:'Paix' },
-  { text:"Dieu est notre refuge and notre appui, un secours qui ne manque jamais dans la détresse.", ref:'Psaume 46, 1', theme:'Force' },
-  { text:"Toute grâce excellente and tout don parfait descendent d'en haut, du Père des lumières.", ref:'Jacques 1, 17', theme:'Grâce' },
-  { text:"Je t'instruirai and te montrerai la voie que tu dois suivre ; je te conseilerai, j'aurai le regard sur toi.", ref:'Psaume 32, 8', theme:'Guidance' },
-  { text:"Marchez dans l'amour, comme le Christ nous a aimés, and s'est livré lui-même pour nous.", ref:'Éphésiens 5, 2', theme:'Amour' },
-  { text:"Si Dieu est pour nous, qui sera contre nous ?", ref:'Romains 8, 31', theme:'Force' },
-  { text:"Nous savons que toutes choses concourent au bien de ceux qui aiment Dieu.", ref:'Romains 8, 28', theme:'Espérance' },
-  { text:"Ceux qui se confient en l'Éternel renouvellent leur force. Ils prennent le vol comme les aigles.", ref:'Ésaïe 40, 31', theme:'Force' },
-  { text:"L'espérance ne trompe point, parce que l'amour de Dieu est répandu dans nos cœurs.", ref:'Romains 5, 5', theme:'Espérance' },
-  { text:"J'ai cherché l'Éternel, and il m'a répondu ; il m'a délivré de toutes mes frayeurs.", ref:'Psaume 34, 4', theme:'Consolation' },
-  { text:"Avant que je t'eusse formé dans le ventre de ta mère, je te connaissais.", ref:'Jérémie 1, 5', theme:'Amour' },
-  { text:"Ne crains point, car je t'ai racheté, je t'ai appelé par ton nom : tu es à moi !", ref:'Ésaïe 43, 1', theme:'Confiance' },
-  { text:"Venez, chantons avec allégresse à l'Éternel ! Poussons des cris de joie vers le rocher de notre salut.", ref:'Psaume 95, 1', theme:'Joie' },
-  { text:"Que la grâce du Seigneur Jésus-Christ, l'amour de Dieu, and la communion du Saint-Esprit soient avec vous tous !", ref:'2 Corinthiens 13, 13', theme:'Grâce' },
-  { text:"L'Éternel ta gardera de tout mal, il gardera ton âme.", ref:'Psaume 121, 7', theme:'Confiance' },
-  { text:"Consolez, consolez mon peuple, dit votre Dieu.", ref:'Ésaïe 40, 1', theme:'Consolation' },
-  { text:"Supportez-vous les uns les autres, and, si l'un a sujet de se plaindre de l'autre, pardonnez-vous.", ref:'Colossiens 3, 13', theme:'Amour' },
-  { text:"Confessez vos péchés les uns aux autres, and priez les uns pour les autres, afin que soyez guéris.", ref:'Jacques 5, 16', theme:'Grâce' },
-  { text:"Heureux les miséricordieux, car ils obtiendront miséricorde !", ref:'Matthieu 5, 7', theme:'Paix' },
-  { text:"Mieux vaut un jour dans tes parvis que mille ailleurs.", ref:'Psaume 84, 10', theme:'Joie' },
-  { text:"Humiliez-vous sous la puissante main de Dieu, afin qu'il vous élève en son temps.", ref:'1 Pierre 5, 6', theme:'Guidance' },
-  { text:"Mon cœur and ma chair poussent des cris vers le Dieu vivant !", ref:'Psaume 84, 2', theme:'Espérance' },
-  { text:"Tu me montres le sentier de la vie ; il y d'abondantes joies devant ta face.", ref:'Psaume 16, 11', theme:'Joie' },
-  { text:"Car là où est ton trésor, là aussi sera ton cœur.", ref:'Matthieu 6, 21', theme:'Guidance' },
-  { text:"Veillez and priez, afin que vous ne tombiez pas dans la tentation.", ref:'Matthieu 26, 41', theme:'Force' },
-  { text:"Je vous donne un commandement nouveau : Aimez-vous les uns les autres comme je vous ai aimés.", ref:'Jean 13, 34', theme:'Amour' }
+  { text:"Ne crains rien, car je suis avec toi.", ref:'Ésaïe 41, 10', theme:'Confiance' },
+  { text:"L'amour ne périt jamais.", ref:'1 Corinthiens 13, 8', theme:'Amour' },
+  { text:"Réjouissez-vous toujours dans le Seigneur.", ref:'Philippiens 4, 4', theme:'Joie' },
+  { text:"Mon âme se repose en paix sur Dieu seul : de lui vient mon salut.", ref:'Psaume 62, 1', theme:'Repos' },
+  { text:"Le Seigneur est proche de ceux qui l'invoquent.", ref:'Psaume 145, 18', theme:'Espérance' },
+  { text:"Dieu est pour nous un refuge et un appui, un secours qui ne manque jamais.", ref:'Psaume 46, 1', theme:'Force' },
+  { text:"Que la paix du Christ règne dans vos cœurs.", ref:'Colossiens 3, 15', theme:'Paix' },
+  { text:"Consolez, consolez mon peuple, dit votre Dieu.", ref:'Ésaïe 40, 1', theme:'Consolation' }
 ];
 const SAINTS = [
   { 
-    id:'francois', 
-    name:'François d\'Assise', 
-    period:'1182 – 1226',
-    feast:'4 octobre',
-    patronage:'Écologie, animaux, Italie, marchands',
+    id:'francois', name:'François d\'Assise', period:'1182 – 1226', feast:'4 octobre',
+    patronage:'Écologie, animaux, pauvres',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Giotto_di_Bondone_-_St_Francis_Receives_the_Stigmata_-_WGA09180.jpg/800px-Giotto_di_Bondone_-_St_Francis_Receives_the_Stigmata_-_WGA09180.jpg',
-    paintingTitle:'Saint François recevant les stigmates (Giotto, Basilique d\'Assise)',
-    quote:'« Loué sois-tu, mon Seigneur, avec toutes tes créatures. »',
     desc:'Fils de marchand, il épouse « Dame Pauvreté » et fonde l\'ordre des franciscains.',
-    longBio:'Né à Assise en Ombrie, François mène d\'abord une jeunesse insouciante de fils de riche bourgeois avant de connaître une profonde conversion spirituelle à la suite d\'une rencontre avec un lépreux. Il renonce publiquement à ses biens, se dépouille de ses vêtements devant son évêque et choisit de vivre selon l\'Évangile strict. Il fonde l\'Ordre des Frères Mineurs, marquant l\'Église par sa joie, son amour de la nature et sa quête de paix. Il reçoit les stigmates de la Passion peu avant sa mort en 1226.'
+    longBio:'Né à Assise en Ombrie, François mène d\'abord une jeunesse insouciante de fils de riche bourgeois avant de connaître une profonde conversion spirituelle à la suite d\'une rencontre avec un lépreux. Il renonce publiquement à ses biens, se dépouille de ses vêtements devant son évêque et choisit de vivre selon l\'Évangile strict. Il fonde l\'Ordre des Frères Mineurs, marquant l\'Église par sa joie, son amour de la nature et sa quête de paix. Il reçoit les stigmates de la Passion peu avant sa mort en 1226. Son cantique des créatures est un chef-d\'œuvre de la spiritualité.'
   },
   { 
-    id:'therese', 
-    name:'Thérèse de Lisieux', 
-    period:'1873 – 1897',
-    feast:'1er octobre',
-    patronage:'Missions, France, pilotes d\'aviation',
+    id:'therese', name:'Thérèse de Lisieux', period:'1873 – 1897', feast:'1er octobre',
+    patronage:'Missions, France',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Therese_de_Lisieux_1896.jpg/800px-Therese_de_Lisieux_1896.jpg',
-    paintingTitle:'Photographie officielle de Sainte Thérèse (Carmel de Lisieux, 1896)',
-    quote:'« Je veux passer mon ciel à faire du bien sur la terre. »',
     desc:'Carmélite morte à 24 ans, docteur de l\'Église et maître de la « Petite Voie ».',
-    longBio:'Née à Alençon, Thérèse Martin entre prématurément au Carmel de Lisieux à l\'âge de quinze ans avec l\'autorisation exceptionnelle du pape Léon XIII. Durant sa courte vie religieuse, rongée par la tuberculose qu\'elle endure en silence, elle développe une spiritualité révolutionnaire par sa simplicité : la « Petite Voie » de l\'enfance spirituelle. Elle démontre que la sainteté est accessible à tous à travers les actes les plus ordinaires accomplis par amour. Elle est déclarée Docteur de l\'Église par Jean-Paul II.'
+    longBio:'Née à Alençon, Thérèse Martin entre prématurément au Carmel de Lisieux à l\'âge de quinze ans avec l\'autorisation exceptionnelle du pape. Durant sa courte vie religieuse, rongée par la tuberculose qu\'elle endure en silence, elle développe une spiritualité révolutionnaire par sa simplicité : la « Petite Voie » de l\'enfance spirituelle. Elle démontre que la sainteté est accessible à tous à travers les actes les plus ordinaires accomplis par amour, sans besoin de grandes œuvres extraordinaires.'
   },
   { 
-    id:'augustin', 
-    name:'Augustin d\'Hippone', 
-    period:'354 – 430',
-    feast:'28 août',
-    patronage:'Théologiens, imprimeurs, brasseurs',
-    quote:'« Tu nous as faits pour toi, Seigneur, et notre cœur est sans repos tant qu\'il ne repose en toi. »',
+    id:'augustin', name:'Augustin d\'Hippone', period:'354 – 430', feast:'28 août',
+    patronage:'Théologiens',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Sandro_Botticelli_-_St_Augustine_-_WGA02613.jpg/800px-Sandro_Botticelli_-_St_Augustine_-_WGA02613.jpg',
     desc:'Évêque d\'Hippone, philosophe et géant de la théologie occidentale.',
-    longBio:'Originaire de Thagaste en Afrique romaine, Augustin mène une jeunesse ardente, cherchant la vérité à travers la rhétorique, le manichéisme et la philosophie néoplatonicienne tout en menant une vie mondaine. Grâce aux prières persistantes de sa mère sainte Monique et aux sermons de saint Ambroise à Milan, il se convertit et reçoit le baptême à 33 ans. Devenu évêque d\'Hippone, il rédige des œuvres monumentales comme « Les Confessions » et « La Cité de Dieu », qui structurent durablement la pensée chrétienne.'
+    longBio:'Originaire d\'Afrique romaine, Augustin mène une jeunesse ardente et mondaine, cherchant la vérité à travers diverses philosophies et hérésies. Grâce aux larmes et aux prières de sa mère sainte Monique, et aux sermons de saint Ambroise à Milan, il se convertit au christianisme. Devenu évêque, il rédige des œuvres monumentales (Les Confessions, La Cité de Dieu) qui structureront toute la pensée chrétienne occidentale pendant des siècles.'
   },
   { 
-    id:'thomas-aquin', 
-    name:'Thomas d\'Aquin', 
-    period:'1225 – 1274',
-    feast:'28 janvier',
-    patronage:'Étudiants, universités, libraires',
-    quote:'« La grâce ne détruit pas la nature, mais elle la perfectionne. »',
-    desc:'Le « Docteur Angélique », sommité intellectuelle de l\'ordre des Prêcheurs.',
-    longBio:'Issu de la noblesse italienne, Thomas intègre l\'ordre mendiant des Dominicains contre la volonté de sa famille, qui l\'enferme même durant plus d\'un an pour l\'en dissuader. Devenu maître en théologie à l\'Université de Paris, il réalise une œuvre magistrale en réconciliant la pensée d\'Aristote avec la foi chrétienne, notamment dans sa monumentale « Somme Théologique ». Son immense rigueur intellectuelle s\'accompagnait d\'une profonde vie mystique.'
+    id:'thomas', name:'Thomas d\'Aquin', period:'1225 – 1274', feast:'28 janvier',
+    patronage:'Étudiants, universités',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/St_thomas_aquinas.jpg/600px-St_thomas_aquinas.jpg',
+    desc:'Le « Docteur Angélique », sommité intellectuelle de l\'ordre des Dominicains.',
+    longBio:'Issu de la noblesse italienne, Thomas intègre l\'ordre mendiant des Dominicains contre la volonté de sa famille. Devenu maître en théologie à l\'Université de Paris, il réalise une œuvre magistrale en réconciliant la raison (la philosophie d\'Aristote) avec la foi chrétienne. Sa « Somme Théologique » reste le fondement de la doctrine catholique. Son génie intellectuel s\'accompagnait d\'une humilité absolue et d\'une vie intensément mystique.'
   },
   { 
-    id:'jeanne-arc', 
-    name:'Jeanne d\'Arc', 
-    period:'1412 – 1431',
-    feast:'30 mai',
-    patronage:'France, soldats, prisonniers',
-    quote:'« Les hommes d\'armes combattront et Dieu donnera la victoire ! »',
+    id:'jeanne', name:'Jeanne d\'Arc', period:'1412 – 1431', feast:'30 mai',
+    patronage:'France, soldats',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Ingres_-_Jeanne_d%27Arc_au_sacre_du_roi_Charles_VII%2C_dans_la_cath%C3%A9drale_de_Reims.jpg/800px-Ingres_-_Jeanne_d%27Arc_au_sacre_du_roi_Charles_VII%2C_dans_la_cath%C3%A9drale_de_Reims.jpg',
     desc:'La Pucelle d\'Orléans, héroïne nationale guidée par ses voix célestes.',
-    longBio:'Jeune paysanne pieuse de Domrémy en Lorraine, Jeanne entend dès l\'âge de treize ans les voix de l\'archange saint Michel, de sainte Catherine et de sainte Marguerite lui confiant la mission divine de faire sacrer le roi de France Charles VII et de bouter l\'occupant anglais hors du royaume. Gagnant la confiance des capitaines à Chinon, elle lève le siège d\'Orléans. Capturée par les Bourguignons et vendue aux Anglais, elle subit un procès inique à Rouen et périt sur le bûcher à 19 ans.'
-  },
-  { 
-    id:'antoine', 
-    name:'Antoine de Padoue', 
-    period:'1195 – 1231',
-    feast:'13 juin',
-    patronage:'Objets perdus, pauvres, voyageurs, opprimés',
-    quote:'« Le grand danger du chrétien, c\'est de parler de la foi sans la pratiquer. »',
-    desc:'Prédicateur hors pair, franciscain portugais et thaumaturge.',
-    longBio:'Né à Lisbonne sous le prénom de Fernando, il entre d\'abord chez les Chanoines réguliers de saint Augustin avant de rejoindre les Franciscains pour partir prêcher au Maroc. Souffrant, il est redirigé vers l\'Italie où ses talents exceptionnels de prédicateur éclatent au grand jour, convertissant les foules immenses et luttant contre l\'hérésie. Connu pour sa profonde érudition biblique et sa grande douceur, il meurt à Padoue à l\'âge de 36 ans.'
-  },
-  { 
-    id:'padre-pio', 
-    name:'Padre Pio de Pietrelcina', 
-    period:'1887 – 1968',
-    feast:'23 septembre',
-    patronage:'Volontaires de la protection civile, adolescents',
-    quote:'« Prie, espère et ne t\'inquiète pas. L\'inquiétude est inutile. »',
-    desc:'Capucin stigmatisé, grand mystique et confesseur infatigable des Pouilles.',
-    longBio:'Né Francesco Forgione à Pietrelcina en Italie, il entre chez les Frères mineurs capucins et prend le nom de frère Pio. Installé durant de longues décennies au couvent de San Giovanni Rotondo, il reçoit les stigmates visibles de la Passion du Christ, qu\'il porte dans sa chair pendant un demi-siècle. Exerçant un charisme de discernement extraordinaire, il passe des heures interminables dans le secret du confessionnal à réconcilier des foules immenses venues du monde entier.'
-  },
-  { 
-    id:'ignace', 
-    name:'Ignace de Loyola', 
-    period:'1491 – 1556',
-    feast:'31 juillet',
-    patronage:'Retraites spirituelles, soldats, Jésuites',
-    quote:'« Donne-moi ton amour et ta grâce, c\'est assez pour moi. »',
-    desc:'Ancien militaire, mystique et fondateur de la Compagnie de Jésus.',
-    longBio:'Iñigo López de Oñaz y Loyola mène une vie de chevalier mondain et batailleur jusqu\'au jour où un boulet de canon lui brise gravement les jambes lors du siège de Pampelune en 1521. Durant sa convalescence, cloué au lit, la lecture de la vie du Christ et des saints bouleverse radicalement ses aspirations. Il abandonne l\'épée pour se consacrer à Dieu, étudie à Paris avec ses premiers compagnons et fonde la Compagnie de Jésus (les Jésuites), un ordre marqué par une obéissance rigoureuse et un engagement missionnaire universel.'
+    longBio:'Jeune paysanne illettrée mais très pieuse de Domrémy, Jeanne entend les voix de l\'archange saint Michel et de plusieurs saintes lui confiant la mission divine de faire sacrer le roi Charles VII et de libérer la France. Réussissant à convaincre le roi, elle lève le siège d\'Orléans à 17 ans. Capturée par les Anglais, elle subit un procès inique et périt sur le bûcher à 19 ans. Elle incarne le courage absolu face à l\'oppression politique et religieuse.'
   }
 ];
+
+/* =========================================
+   CORRECTION DES FONCTIONS D'AFFICHAGE
+   ========================================= */
+
+// Fonction pour ouvrir les Saints (avec l'image)
+function showSaint(id){
+  // On retrouve le saint grâce à son ID
+  const s = SAINTS.find(x => x.id === id);
+  if(!s) return;
+  
+  document.getElementById('ficheModalContent').innerHTML = `
+    <span class="cat">Fête : ${s.feast}</span>
+    <h3 style="margin: 8px 0;">${s.name}</h3>
+    <p class="muted"><em>${s.period}</em></p>
+
+    <!-- Affichage de l'image réparé -->
+    ${s.painting ? `
+      <div style="margin: 16px 0; text-align: center;">
+        <img src="${s.painting}" alt="${s.name}" style="width:100%; max-height:400px; object-fit:cover; border-radius:8px; border:1px solid var(--border);">
+      </div>
+    ` : ''}
+
+    <p style="font-weight:bold; color:var(--accent); font-size:0.9rem;">Patronage : ${s.patronage}</p>
+    <div style="line-height:1.7; font-size:1.05rem; text-align:justify; margin-top:16px;">
+      <p>${s.longBio}</p>
+    </div>
+  `;
+  document.getElementById('ficheModal').classList.add('open');
+}
+
+// Fonction pour ouvrir les Fiches de Théologie (le bug venait d'ici)
+function showFiche(id){
+  const f = FICHES.find(x => x.id === id);
+  if(!f) return;
+  
+  document.getElementById('ficheModalContent').innerHTML = `
+    <span class="cat">${f.cat.toUpperCase()} · Temps de lecture : ${f.time}</span>
+    <h3 style="margin-top: 8px;">${f.title}</h3>
+    <p class="muted" style="margin-bottom: 20px;"><em>${f.sub}</em></p>
+    <div style="line-height: 1.7; font-size:1.05rem; text-align:justify;">
+        ${f.body}
+    </div>
+  `;
+  document.getElementById('ficheModal').classList.add('open');
+}
+
+// === TRÈS IMPORTANT : La génération des grilles ===
+// Remplace tes anciennes fonctions de rendu par celles-ci pour éviter les conflits
+function renderSaints(){
+  const grid = document.getElementById('saintsGrid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  SAINTS.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'card';
+    btn.innerHTML = `<span class="card-title">${s.name}</span><span class="card-subtitle">${s.period}</span>`;
+    // On passe l'ID en string, ce qui résout le bug
+    btn.onclick = () => showSaint(s.id); 
+    grid.appendChild(btn);
+  });
+}
+
+function renderFiches(){
+  const grid = document.getElementById('fichesGrid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  FICHES.forEach(f => {
+    const btn = document.createElement('button');
+    btn.className = 'card';
+    btn.innerHTML = `<span class="icon-badge">📖</span>
+                     <div>
+                       <span class="cat">${f.cat.toUpperCase()}</span>
+                       <span class="card-title">${f.title}</span>
+                       <span class="card-subtitle">${f.time}</span>
+                     </div>`;
+    btn.onclick = () => showFiche(f.id); 
+    grid.appendChild(btn);
+  });
+}
 
 // ===================== STATE =====================
 let state = {

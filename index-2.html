@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#7B4B30">
+<title>Le Compagnon Spirituel — Chapelet 3D, Prière et Théologie</title>
+<meta name="description" content="Espace sobre pour prier, réfléchir et tenir. Chapelet interactif, sélecteur d'humeur, neuvaines, prières essentielles, fiches théologiques. Gratuit, sans pub.">
+<link rel="canonical" href="https://logangamba.github.io/compagnon-spirituel/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='16' fill='%23F6F1E6' stroke='%237B4B30' stroke-width='1.4'/%3E%3Cpath d='M17 8V26M11 13H23' stroke='%237B4B30' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Le Compagnon Spirituel","description":"Chapelet, prières, fiches théologiques. Spiritualité catholique.","url":"https://logangamba.github.io/compagnon-spirituel/","inLanguage":"fr","isAccessibleForFree":true,"creator":{"@type":"Person","name":"Logan Gamba"}}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NF3RPV6K');</script>
+<!-- End Google Tag Manager -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #F6F1E6;
+  --bg-card: #FBF8F1;
+  --bg-card-alt: #F0E9DA;
+  --text: #2B2823;
+  --text-muted: #6E675A;
+  --accent: #7B4B30;
+  --accent-dark: #55331F;
+  --accent-soft: #C9A87A;
+  --border: #E2D6BE;
+  --border-soft: #EBE1CC;
+  --focus: #4E7A6B;
+  --shadow-sm: 0 2px 10px rgba(85,51,31,0.06);
+  --shadow-md: 0 14px 34px rgba(85,51,31,0.12);
+  --ease: cubic-bezier(.16,1,.3,1);
+  --on-accent: #FFFFFF;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg: #1E1A15; --bg-card: #26211B; --bg-card-alt: #2F2821;
+    --text: #EDE6D8; --text-muted: #A99C89; --accent: #D6A870;
+    --accent-dark: #EBC08E; --accent-soft: #8C6B46; --border: #3A3128;
+    --border-soft: #332B23; --focus: #8FBBA8;
+    --shadow-sm: 0 2px 10px rgba(0,0,0,0.25); --shadow-md: 0 14px 34px rgba(0,0,0,0.4);
+    --on-accent: #241A0E;
+  }
+}
+:root[data-theme="dark"]{
+  --bg: #1E1A15; --bg-card: #26211B; --bg-card-alt: #2F2821;
+  --text: #EDE6D8; --text-muted: #A99C89; --accent: #D6A870;
+  --accent-dark: #EBC08E; --accent-soft: #8C6B46; --border: #3A3128;
+  --border-soft: #332B23; --focus: #8FBBA8;
+  --shadow-sm: 0 2px 10px rgba(0,0,0,0.25); --shadow-md: 0 14px 34px rgba(0,0,0,0.4);
+  --on-accent: #241A0E;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--accent-soft) var(--bg); }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent-soft); border-radius: 6px; }
+
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: 'Inter', sans-serif; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background .3s ease, color .3s ease;
+  background-image:
+    radial-gradient(ellipse 900px 500px at 12% -8%, rgba(123,75,48,0.07), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 8%, rgba(123,75,48,0.05), transparent 60%);
+  background-attachment: fixed;
+}
+h1,h2,h3,h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; margin: 0; }
+p { margin: 0 0 1em; }
+a { color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; transition: transform .12s ease; }
+button:active { transform: scale(0.97); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+svg { display: block; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+@media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+/* HEADER */
+header {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(246,241,230,0.86); backdrop-filter: blur(10px) saturate(140%);
+  border-bottom: 1px solid var(--border-soft);
+}
+:root[data-theme="dark"] header, @media (prefers-color-scheme: dark) { }
+header { }
+.header-row { display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1080px; margin:0 auto; gap:20px; position:relative; }
+@media (max-width:640px){ .header-row{ padding:14px 20px; } }
+.brand { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.brand svg { color: var(--accent); flex-shrink:0; }
+.brand-text h1 { font-size:1.24rem; line-height:1.1; }
+.brand-text p { margin:2px 0 0; font-size:0.78rem; color:var(--text-muted); }
+.header-actions { display:flex; align-items:center; gap:10px; }
+.icon-btn { width:44px; height:44px; border-radius:50%; border:1px solid var(--border); background:var(--bg-card); display:flex; align-items:center; justify-content:center; color:var(--accent); transition: border-color .2s ease, transform .2s ease; }
+.icon-btn:hover { border-color: var(--accent); }
+.icon-btn svg { width:18px; height:18px; }
+.hamburger { flex-direction:column; gap:5px; }
+.hamburger span { width:18px; height:2px; background:var(--text); display:block; transition: transform .25s var(--ease), opacity .25s ease; }
+.hamburger.open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2){ opacity:0; }
+.hamburger.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+.nav-panel {
+  position:absolute; right:28px; top:64px;
+  background:var(--bg-card); border:1px solid var(--border); border-radius:10px;
+  box-shadow:var(--shadow-md); width:min(300px, calc(100vw - 40px)); padding:8px;
+  display:flex; flex-direction:column; opacity:0; visibility:hidden;
+  transform: translateY(-8px) scale(0.98);
+  transition: opacity .22s var(--ease), transform .22s var(--ease), visibility 0s linear .22s;
+  z-index:50;
+}
+@media (max-width:640px){ .nav-panel{ right:20px; } }
+.nav-panel.open { opacity:1; visibility:visible; transform:none; transition: opacity .22s var(--ease), transform .22s var(--ease); }
+.nav-link { padding:12px 14px; text-decoration:none; font-size:0.94rem; border-radius:6px; color:var(--text); display:flex; align-items:center; gap:10px; transition: background .15s ease; }
+.nav-link:hover { background: var(--bg-card-alt); }
+.nav-link.highlight { background: var(--bg-card-alt); font-weight:600; color:var(--accent-dark); }
+
+main { padding: 20px 0 60px; }
+section { padding: 64px 0; border-bottom: 1px solid var(--border-soft); scroll-margin-top:84px; display:none; animation: fadeIn .5s var(--ease); position:relative; }
+section.active { display:block; }
+section::after {
+  content:''; position:absolute; left:50%; bottom:0; transform:translateX(-50%);
+  width:64px; height:3px; border-radius:3px;
+  background: linear-gradient(90deg, transparent, var(--accent-soft), transparent);
+  opacity:0.6;
+}
+section:last-of-type::after, section#apropos::after { display:none; }
+@keyframes fadeIn { from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:none;} }
+
+.eyebrow { color:var(--accent); font-weight:700; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.eyebrow::before { content:''; width:20px; height:1px; background:var(--accent-soft); }
+.hero h2 { font-size:clamp(2.1rem, 4.6vw, 3.2rem); max-width:660px; line-height:1.08; margin-bottom:18px; }
+.hero p.lead { max-width:560px; color:var(--text-muted); font-size:1.08rem; margin-bottom:30px; }
+.hero-actions { display:flex; gap:12px; flex-wrap:wrap; }
+
+.quote-banner {
+  margin-top:44px; padding:26px 30px; border-radius:12px; background:var(--bg-card);
+  border:1px solid var(--border); box-shadow:var(--shadow-sm); display:flex; gap:18px; align-items:flex-start;
+  max-width:640px;
+}
+.quote-banner svg { color:var(--accent-soft); flex-shrink:0; margin-top:2px; }
+.quote-banner blockquote { font-family:'Fraunces',serif; font-style:italic; font-size:1.08rem; margin:0 0 6px; line-height:1.55; }
+.quote-banner cite { font-style:normal; font-size:0.82rem; color:var(--text-muted); }
+
+.btn { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--accent); background:transparent; color:var(--accent); padding:11px 20px; border-radius:6px; font-size:0.9rem; font-weight:500; transition: background .18s ease, color .18s ease, box-shadow .18s ease; }
+.btn:hover { background:var(--accent); color:var(--on-accent); box-shadow: var(--shadow-sm); }
+.btn-solid { background:var(--accent); color:var(--on-accent); border-color:var(--accent); }
+.btn-solid:hover { background:var(--accent-dark); border-color:var(--accent-dark); }
+
+.section-head { margin-bottom: 30px; }
+.section-head h2 { font-size:1.9rem; margin-bottom:6px; }
+.section-head p { color:var(--text-muted); margin:0; }
+
+.illustration { display:block; margin: 28px auto; color: var(--accent); }
+
+/* Grids & cards */
+.grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; }
+.card {
+  background:var(--bg-card); border:1px solid var(--border); border-radius:12px;
+  padding:22px; text-align:left; transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s ease;
+  width:100%; display:flex; flex-direction:column; gap:6px; position:relative; overflow:hidden;
+}
+.card::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:var(--accent-soft); opacity:0; transition: opacity .2s ease;
+}
+.card:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--accent-soft); }
+.card:hover::before { opacity:1; }
+.card .icon-badge { width:36px; height:36px; border-radius:9px; background:var(--bg-card-alt); display:flex; align-items:center; justify-content:center; color:var(--accent); margin-bottom:6px; }
+.card .icon-badge svg { width:18px; height:18px; }
+.card h3 { font-size:1.02rem; }
+.card .cat { font-size:0.7rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.03em; }
+.card .muted { font-size:0.84rem; color:var(--text-muted); }
+
+.detail-panel {
+  margin-top:24px; background:var(--bg-card); border:1px solid var(--accent-soft); border-radius:10px;
+  padding:28px; display:none; animation: fadeIn .35s var(--ease); box-shadow: var(--shadow-sm);
+}
+.detail-panel.show { display:block; }
+.detail-panel blockquote { font-family:'Fraunces',serif; font-style:italic; font-size:1.2rem; margin:0 0 8px; line-height:1.5; }
+.detail-panel cite { font-style:normal; font-size:0.85rem; color:var(--text-muted); display:block; margin-bottom:18px; }
+.detail-panel h4 { font-size:0.95rem; margin:18px 0 6px; }
+
+.chip-row { display:flex; gap:8px; flex-wrap:wrap; }
+.chip {
+  border:1px solid var(--border); background:var(--bg-card); color:var(--text-muted);
+  padding:7px 14px; border-radius:999px; font-size:0.82rem; font-weight:500;
+  transition: all .18s ease;
+}
+.chip:hover { border-color:var(--accent-soft); color:var(--text); }
+.chip.active { background:var(--accent); border-color:var(--accent); color:var(--on-accent); }
+
+/* Prayers accordion */
+.accordion-item { border:1px solid var(--border); border-radius:8px; background:var(--bg-card); margin-bottom:10px; overflow:hidden; }
+.accordion-item summary { padding:16px 18px; font-family:'Fraunces',serif; font-size:1.02rem; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+.accordion-item summary::-webkit-details-marker { display:none; }
+.accordion-item summary::after { content:'+'; color:var(--accent); font-size:1.3rem; transition: transform .2s ease; }
+.accordion-item[open] summary::after { transform: rotate(45deg); }
+.accordion-item .body { padding:0 18px 18px; color:var(--text); font-size:0.96rem; line-height:1.8; white-space:pre-line; }
+
+/* Novena day list */
+.novena-days { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
+.novena-day { background:var(--bg-card-alt); border-radius:8px; padding:14px 16px; }
+.novena-day .num { color:var(--accent); font-weight:700; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.03em; }
+.novena-day .prayer { font-family:'Fraunces',serif; font-style:italic; margin:4px 0; }
+.novena-day .action { font-size:0.86rem; color:var(--text-muted); }
+
+/* Chapelet */
+.chapelet-wrap { text-align:center; }
+.chapelet-hud { margin-top:24px; padding:26px; background:var(--bg-card); border-radius:12px; box-shadow:var(--shadow-sm); }
+.chapelet-hud .mystery-label { font-size:0.8rem; color:var(--accent); font-weight:600; text-transform:uppercase; letter-spacing:0.03em; margin-bottom:8px; }
+.chapelet-hud h3 { font-size:1.4rem; margin-bottom:8px; }
+.chapelet-hud .mystery-desc { color:var(--text-muted); margin-bottom:14px; }
+.chapelet-hud .grain-counter { font-size:0.82rem; color:var(--text-muted); margin-bottom:18px; }
+.chapelet-controls { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.dots { display:flex; gap:6px; justify-content:center; margin-top:14px; }
+.dots span { width:7px; height:7px; border-radius:50%; background:var(--border); }
+.dots span.on { background:var(--accent); }
+
+/* Modal */
+.modal-backdrop { position:fixed; inset:0; background:rgba(43,40,35,0.5); display:flex; align-items:flex-start; justify-content:center; padding:40px 20px; overflow-y:auto; z-index:60; visibility:hidden; opacity:0; pointer-events:none; transition: opacity .28s ease, visibility 0s linear .28s; }
+.modal-backdrop.open { visibility:visible; opacity:1; pointer-events:auto; transition: opacity .28s ease; }
+.modal { background:var(--bg-card); max-width:620px; width:100%; border-radius:12px; padding:36px; position:relative; margin-bottom:40px; transform:translateY(14px) scale(.97); transition: transform .32s var(--ease); box-shadow: var(--shadow-md); }
+.modal-backdrop.open .modal { transform:none; }
+.modal-close { position:absolute; top:16px; right:16px; width:34px; height:34px; border-radius:50%; border:1px solid var(--border); background:var(--bg); font-size:1.1rem; display:flex; align-items:center; justify-content:center; color:var(--text-muted); }
+.modal .cat { font-size:0.72rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.03em; }
+.modal h3 { font-size:1.4rem; margin:6px 0 4px; }
+.modal .muted { color:var(--text-muted); font-size:0.88rem; margin-bottom:16px; }
+.modal .body-text { font-size:0.98rem; line-height:1.75; }
+
+/* Consent */
+.consent-banner { position:fixed; left:0; right:0; bottom:0; z-index:80; background:var(--bg-card); border-top:1px solid var(--border); padding:18px 26px; display:flex; gap:20px; align-items:center; justify-content:space-between; flex-wrap:wrap; transform:translateY(110%); transition: transform .35s var(--ease); box-shadow: var(--shadow-md); }
+.consent-banner.show { transform:none; }
+.consent-text p { margin:0; font-size:0.85rem; color:var(--text-muted); line-height:1.6; max-width: 640px; }
+.link-btn { color:var(--accent); text-decoration:underline; font-size:inherit; }
+
+/* Footer */
+footer { padding:52px 0 40px; }
+.footer-grid { display:flex; gap:40px; flex-wrap:wrap; margin: 24px 0 30px; }
+.footer-col h4 { font-size:0.78rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:12px; }
+.footer-col { display:flex; flex-direction:column; gap:8px; min-width:160px; }
+.footer-link { text-align:left; font-size:0.88rem; color:var(--text-muted); transition:color .15s ease; }
+.footer-link:hover { color:var(--accent); }
+.legal-block { font-size:0.78rem; color:var(--text-muted); max-width:640px; line-height:1.7; border-top:1px solid var(--border-soft); padding-top:22px; }
+
+.skip-link { position:absolute; left:12px; top:-60px; z-index:100; background:var(--accent); color:var(--on-accent); padding:10px 16px; border-radius:6px; font-size:0.85rem; transition: top .2s ease; }
+.skip-link:focus { top:12px; }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NF3RPV6K" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a href="#contenu" class="skip-link">Aller au contenu principal</a>
+
+<header>
+  <div class="header-row">
+    <a href="#" class="brand" onclick="showPage('accueil'); return false;">
+      <svg width="32" height="32" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+        <circle cx="17" cy="17" r="16" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M17 8V26M11 13H23" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-text">
+        <h1>Le Compagnon Spirituel</h1>
+        <p>Prière, réflexion et présence</p>
+      </span>
+    </a>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Changer de thème" onclick="toggleTheme()">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke-linecap="round"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none;" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn hamburger" id="menuToggle" aria-expanded="false" aria-label="Ouvrir le menu" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav-panel" id="navPanel" aria-label="Menu principal">
+      <a href="#" class="nav-link" onclick="showPage('accueil'); toggleMenu(); return false;">Accueil</a>
+      <a href="#" class="nav-link" onclick="showPage('humeurs'); toggleMenu(); return false;">Mes humeurs</a>
+      <a href="#" class="nav-link highlight" onclick="showPage('chapelet'); toggleMenu(); return false;">Chapelet</a>
+      <a href="#" class="nav-link" onclick="showPage('prieres'); toggleMenu(); return false;">Prières essentielles</a>
+      <a href="#" class="nav-link" onclick="showPage('neuvaines'); toggleMenu(); return false;">Neuvaines</a>
+      <a href="#" class="nav-link" onclick="showPage('versets'); toggleMenu(); return false;">Versets bibliques</a>
+      <a href="#" class="nav-link" onclick="showPage('saints'); toggleMenu(); return false;">Figures de saints</a>
+      <a href="#" class="nav-link" onclick="showPage('fiches'); toggleMenu(); return false;">Réflexion et théologie</a>
+      <a href="#" class="nav-link" onclick="showPage('apropos'); toggleMenu(); return false;">À propos</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+  <!-- ACCUEIL -->
+  <section id="accueil" class="active">
+    <div class="wrap">
+      <div class="hero">
+        <p class="eyebrow">Bienvenue</p>
+        <h2>Un espace sobre pour prier, réfléchir et tenir.</h2>
+        <p class="lead">Choisis ce que tu traverses aujourd'hui, prie ton chapelet à travers les mystères du Rosaire, et retrouve des fiches théologiques claires pour nourrir ta foi.</p>
+        <div class="hero-actions">
+          <button class="btn btn-solid" onclick="showPage('chapelet')">Prier le Chapelet</button>
+          <button class="btn" onclick="showPage('fiches')">Explorer les fiches</button>
+        </div>
+
+        <div class="quote-banner" id="dailyQuote">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 8h4v4c0 3-2 5-4 5v-2c1 0 2-1 2-2H7V8Z"/><path d="M14 8h4v4c0 3-2 5-4 5v-2c1 0 2-1 2-2h-2V8Z"/></svg>
+          <div>
+            <blockquote id="dailyQuoteText"></blockquote>
+            <cite id="dailyQuoteRef"></cite>
+          </div>
+        </div>
+      </div>
+
+      <svg class="illustration" width="260" height="170" viewBox="0 0 260 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- bougie -->
+        <ellipse cx="70" cy="150" rx="46" ry="8" fill="currentColor" opacity="0.08"/>
+        <rect x="52" y="70" width="36" height="80" rx="6" fill="currentColor" opacity="0.16"/>
+        <rect x="60" y="55" width="20" height="20" rx="4" fill="currentColor" opacity="0.22"/>
+        <path d="M70 30c6 10 10 16 10 24a10 10 0 0 1-20 0c0-8 4-14 10-24Z" fill="currentColor" opacity="0.75"/>
+        <path d="M70 40c3 6 5 9 5 13a5 5 0 0 1-10 0c0-4 2-7 5-13Z" fill="#F6C453"/>
+        <!-- livre -->
+        <path d="M120 130V70c14-8 30-8 44 0v60c-14-8-30-8-44 0Z" fill="currentColor" opacity="0.14"/>
+        <path d="M164 130V70c14-8 30-8 44 0v60c-14-8-30-8-44 0Z" fill="currentColor" opacity="0.2"/>
+        <path d="M164 70v60" stroke="currentColor" stroke-width="1.4" opacity="0.4"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- HUMEURS -->
+  <section id="humeurs">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Comment te sens-tu aujourd'hui ?</h2>
+        <p>Choisis ton état du jour pour recevoir un verset, une prière et un geste concret.</p>
+      </div>
+
+      <svg class="illustration" width="200" height="120" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M100 100c-30-18-60-38-60-64a28 28 0 0 1 52-16 28 28 0 0 1 52 16c0 26-30 46-60 64Z" fill="currentColor" opacity="0.16"/>
+        <path d="M60 60l14 14 26-30" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+      </svg>
+
+      <div class="grid" id="moodsGrid"></div>
+      <div class="detail-panel" id="moodDetail"></div>
+    </div>
+  </section>
+
+  <!-- CHAPELET -->
+  <section id="chapelet">
+    <div class="wrap chapelet-wrap">
+      <div class="section-head" style="text-align:left;">
+        <h2>Chapelet interactif</h2>
+        <p>Le mystère du jour est choisi automatiquement selon la tradition. Avance grain par grain.</p>
+      </div>
+
+      <svg class="illustration" width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="chapeletSvg">
+        <circle cx="140" cy="140" r="96" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.28"/>
+      </svg>
+
+      <div class="chapelet-hud">
+        <p class="mystery-label" id="mysteryLabel"></p>
+        <h3 id="mysteryTitle"></h3>
+        <p class="mystery-desc" id="mysteryDesc"></p>
+        <p class="grain-counter" id="grainCounter"></p>
+        <div class="dots" id="grainDots"></div>
+        <div class="chapelet-controls" style="margin-top:18px;">
+          <button class="btn" onclick="prevGrain()">← Précédent</button>
+          <button class="btn btn-solid" onclick="nextGrain()">Suivant →</button>
+          <button class="btn" onclick="resetChapelet()">Recommencer</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIÈRES -->
+  <section id="prieres">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Prières essentielles</h2>
+        <p>Les textes traditionnels, à portée de main.</p>
+      </div>
+
+      <svg class="illustration" width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M70 40 L52 130 Q52 152 74 152 L86 152 Q108 152 108 130 L90 40 Z" fill="currentColor" opacity="0.5"/>
+        <path d="M110 40 L128 130 Q128 152 106 152 L94 152 Q72 152 72 130 L90 40 Z" fill="currentColor" opacity="0.32"/>
+        <circle cx="90" cy="24" r="14" fill="currentColor" opacity="0.18"/>
+      </svg>
+
+      <div id="prayersList"></div>
+    </div>
+  </section>
+
+  <!-- NEUVAINES -->
+  <section id="neuvaines">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Neuvaines</h2>
+        <p>Neuf jours de prière et de réflexion, à ton rythme.</p>
+      </div>
+
+      <svg class="illustration" width="220" height="140" viewBox="0 0 220 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g opacity="0.7">
+          <circle cx="30" cy="100" r="10" fill="currentColor" opacity="0.35"/>
+          <circle cx="58" cy="90" r="10" fill="currentColor" opacity="0.45"/>
+          <circle cx="86" cy="82" r="10" fill="currentColor" opacity="0.55"/>
+          <circle cx="114" cy="76" r="10" fill="currentColor" opacity="0.65"/>
+          <circle cx="142" cy="72" r="10" fill="currentColor" opacity="0.75"/>
+          <circle cx="170" cy="70" r="10" fill="currentColor" opacity="0.9"/>
+        </g>
+        <path d="M20 108 Q100 40 190 62" stroke="currentColor" stroke-width="1.4" stroke-dasharray="3 5" opacity="0.4" fill="none"/>
+      </svg>
+
+      <div class="grid" id="novenasGrid"></div>
+      <div class="detail-panel" id="novenaDetail"></div>
+    </div>
+  </section>
+
+  <!-- FICHES -->
+  <section id="fiches">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Fiches théologiques</h2>
+        <p>Des textes courts et structurés pour comprendre et approfondir.</p>
+      </div>
+      <div class="grid" id="fichesGrid"></div>
+    </div>
+  </section>
+
+  <!-- VERSETS BIBLIQUES -->
+  <section id="versets">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Versets bibliques</h2>
+        <p>Choisis un thème pour retrouver une parole à méditer.</p>
+      </div>
+      <div class="chip-row" id="verseThemes"></div>
+      <div class="grid" id="versesGrid" style="margin-top:18px;"></div>
+    </div>
+  </section>
+
+  <!-- FIGURES DE SAINTS -->
+  <section id="saints">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Figures de saints</h2>
+        <p>Des vies qui éclairent, à des époques et dans des chemins très différents.</p>
+      </div>
+      <div class="grid" id="saintsGrid"></div>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section id="apropos">
+    <div class="wrap">
+      <div class="section-head"><h2>À propos</h2></div>
+      <div style="max-width:640px;">
+        <p>Le Compagnon Spirituel est un espace simple, pensé pour accompagner une vie de prière concrète : un lieu où déposer ce que l'on traverse, prier un chapelet à travers ses mystères ou une neuvaine, retrouver les prières de toujours et lire des fiches théologiques sans jargon inutile.</p>
+        <p>Ce site est un prototype indépendant. Il ne remplace ni un accompagnement spirituel, ni le magistère de l'Église.</p>
+        <p><strong>Responsable :</strong> Logan Gamba (<a href="mailto:logan.g.ctc@gmail.com" style="color:var(--accent);">logan.g.ctc@gmail.com</a>)</p>
+        <p><strong>Hébergement :</strong> GitHub Pages</p>
+        <p><strong>Contenu :</strong> Versets Louis Segond (1910, domaine public), fiches © Logan Gamba 2026</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h4 style="font-family:'Fraunces',serif; font-size:1.1rem;">Le Compagnon Spirituel</h4>
+    <p class="muted" style="color:var(--text-muted); font-size:0.9rem;">Prière, réflexion et présence, jour après jour.</p>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <button class="footer-link" onclick="showPage('accueil')">Accueil</button>
+        <button class="footer-link" onclick="showPage('humeurs')">Mes humeurs</button>
+        <button class="footer-link" onclick="showPage('chapelet')">Chapelet</button>
+        <button class="footer-link" onclick="showPage('prieres')">Prières</button>
+        <button class="footer-link" onclick="showPage('neuvaines')">Neuvaines</button>
+        <button class="footer-link" onclick="showPage('fiches')">Fiches</button>
+      </div>
+      <div class="footer-col">
+        <h4>Légal</h4>
+        <button class="footer-link" onclick="showLegal('Politique de confidentialité','Le Compagnon Spirituel n\'enregistre aucune donnée personnelle sur ses serveurs. Tout est stocké localement dans votre navigateur. Google Tag Manager, si le consentement est accepté, mesure l\'usage de façon anonymisée.')">Confidentialité</button>
+        <button class="footer-link" onclick="showLegal('Conditions d\'utilisation','Ce site est gratuit, non-lucratif et indépendant. Il ne remplace ni un accompagnement pastoral, ni un conseil spirituel professionnel.')">Conditions</button>
+        <button class="footer-link" onclick="showLegal('Politique de cookies','localStorage : données conservées uniquement dans votre navigateur. Google Tag Manager : activé seulement sur consentement explicite.')">Cookies</button>
+      </div>
+    </div>
+    <div class="legal-block">
+      <strong>Mentions légales :</strong> Responsable de publication : Logan Gamba, logan.g.ctc@gmail.com. Hébergeur : GitHub Pages. Contenu : versets Louis Segond (1910, domaine public), fiches © Logan Gamba 2026.
+    </div>
+  </div>
+</footer>
+
+<!-- MODALS -->
+<div id="ficheModal" class="modal-backdrop" role="dialog" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close" onclick="closeFicheModal()">✕</button>
+    <div id="ficheModalContent"></div>
+  </div>
+</div>
+
+<div id="legalModal" class="modal-backdrop" role="dialog" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close" onclick="closeLegal()">✕</button>
+    <h3 id="legalTitle"></h3>
+    <p id="legalBody" style="color:var(--text-muted);"></p>
+  </div>
+</div>
+
+<!-- CONSENTEMENT RGPD -->
+<div class="consent-banner" id="consentBanner" role="region" aria-label="Préférences de confidentialité">
+  <div class="consent-text">
+    <p>Ce site n'utilise pas de cookies publicitaires. Google Tag Manager, avec votre consentement, mesure l'usage de façon anonymisée. <button class="link-btn" onclick="showLegal('En savoir plus','localStorage : données uniquement dans votre navigateur. GTM : tracking anonymisé, activé uniquement si vous l\'acceptez.')">En savoir plus</button></p>
+  </div>
+  <div style="display:flex; gap:10px; flex-shrink:0;">
+    <button class="btn" onclick="declineConsent()">Refuser</button>
+    <button class="btn btn-solid" onclick="acceptConsent()">Accepter</button>
+  </div>
+</div>
+
+<script>
+// ===================== DATA =====================
+const MOODS = [
+  { id:'souffrance', label:'Épreuve / Souffrance', verse:"L'Éternel est près de ceux qui ont le cœur brisé, et il sauve ceux qui ont l'esprit dans l'abattement.", ref:'Psaume 34, 19 — Louis Segond', prayer:"Seigneur, dans cette épreuve, tiens-moi debout. Que ma peine s'unisse à la tienne sur la croix. Amen.", action:'Confie un fardeau précis à quelqu\'un de confiance aujourd\'hui.' },
+  { id:'doute', label:'Doute / Recherche', verse:"Aussitôt le père de l'enfant s'écria : Je crois ! viens au secours de mon incrédulité !", ref:'Marc 9, 24 — Louis Segond', prayer:"Seigneur, je ne comprends pas tout, mais je veux croire. Éclaire mes questions. Amen.", action:'Note la question précise qui te trouble et lis une fiche théologique.' },
+  { id:'paix', label:'Besoin de paix', verse:"Je vous laisse la paix, je vous donne ma paix. Que votre cœur ne se trouble point.", ref:'Jean 14, 27 — Louis Segond', prayer:"Seigneur, calme le bruit en moi. Donne-moi ta paix. Amen.", action:'Accorde-toi cinq minutes de silence avant la fin de la journée.' },
+  { id:'grace', label:'Action de grâce', verse:"Rendez grâces en toutes choses, car c'est à votre égard la volonté de Dieu.", ref:'1 Thessaloniciens 5, 18 — Louis Segond', prayer:"Merci Seigneur pour ce jour et pour ce que j'ai reçu. Amen.", action:'Écris trois choses précises pour lesquelles tu es reconnaissant.' },
+  { id:'combat', label:'Combat spirituel', verse:"Nous n'avons pas à lutter contre la chair et le sang, mais contre les esprits méchants.", ref:'Éphésiens 6, 12 — Louis Segond', prayer:"Seigneur, revêts-moi de ta force. Que rien ne me sépare de ton amour. Amen.", action:'Identifie la tentation du jour et prépare une réponse concrète.' }
+];
+
+const MYSTERIES = {
+  joyeux: { label:'Mystères Joyeux', days:'lundi et samedi', items:[
+    {title:"L'Annonciation", text:"Marie accueille l'ange Gabriel."},
+    {title:'La Visitation', text:'Marie rend visite à Élisabeth.'},
+    {title:'La Nativité', text:'Jésus naît à Bethléem.'},
+    {title:'La Présentation', text:'Marie et Joseph présentent Jésus au Temple.'},
+    {title:'Le Recouvrement', text:'Jésus est retrouvé parmi les docteurs.'}
+  ]},
+  douloureux: { label:'Mystères Douloureux', days:'mardi et vendredi', items:[
+    {title:"L'Agonie", text:'Jésus prie seul à Gethsémani.'},
+    {title:'La Flagellation', text:'Jésus est battu.'},
+    {title:'Le Couronnement d\'épines', text:'Jésus est couronné d\'épines.'},
+    {title:'Le Portement de croix', text:'Jésus porte sa croix.'},
+    {title:'La Crucifixion', text:'Jésus meurt sur la croix.'}
+  ]},
+  lumineux: { label:'Mystères Lumineux', days:'jeudi', items:[
+    {title:'Le Baptême', text:'Jésus est baptisé par Jean.'},
+    {title:'Les Noces de Cana', text:"Jésus change l'eau en vin."},
+    {title:'Annonce du Royaume', text:'Jésus appelle à la conversion.'},
+    {title:'La Transfiguration', text:'Jésus se transfigure.'},
+    {title:"L'institution de l'Eucharistie", text:'Jésus donne son corps et son sang.'}
+  ]},
+  glorieux: { label:'Mystères Glorieux', days:'mercredi et dimanche', items:[
+    {title:'La Résurrection', text:"Jésus ressuscite d'entre les morts."},
+    {title:"L'Ascension", text:'Jésus monte aux cieux.'},
+    {title:'La Pentecôte', text:"L'Esprit Saint descend."},
+    {title:'Assomption de Marie', text:'Marie est élevée au ciel.'},
+    {title:'Couronnement de Marie', text:'Marie est couronnée reine.'}
+  ]}
+};
+
+const PRAYERS = [
+  { title:'Notre Père', text:"Notre Père, qui es aux cieux, que ton nom soit sanctifié, que ton règne vienne, que ta volonté soit faite sur la terre comme au ciel. Donne-nous aujourd'hui notre pain de ce jour. Pardonne-nous nos offenses, comme nous pardonnons à ceux qui nous ont offensés. Et ne nous laisse pas entrer en tentation, mais délivre-nous du Mal. Amen." },
+  { title:'Je vous salue Marie', text:"Je vous salue, Marie, pleine de grâce ; le Seigneur est avec vous. Vous êtes bénie entre toutes les femmes, et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et à l'heure de notre mort. Amen." },
+  { title:'Gloire au Père', text:"Gloire au Père, et au Fils, et au Saint-Esprit, comme il était au commencement, maintenant et toujours, pour les siècles des siècles. Amen." },
+  { title:'Je crois en Dieu (Credo)', text:"Je crois en Dieu, le Père tout-puissant, Créateur du ciel et de la terre. Et en Jésus-Christ, son Fils unique, notre Seigneur, qui a été conçu du Saint-Esprit, est né de la Vierge Marie, a souffert sous Ponce Pilate, a été crucifié, est mort et a été enseveli. Et en l'Esprit Saint, à la sainte Église catholique, à la communion des saints, à la rémission des péchés, à la résurrection de la chair, à la vie éternelle. Amen." },
+  { title:'Acte de contrition', text:"Mon Dieu, j'ai un profond regret de vous avoir offensé, parce que vous êtes infiniment bon et que le péché vous déplaît. Je prends la ferme résolution, avec le secours de votre grâce, de ne plus vous offenser et de faire pénitence. Amen." },
+  { title:"Prière à l'ange gardien", text:"Ange de Dieu, qui êtes mon gardien, puisque le ciel m'a confié à vous par sa bonté, vous, aujourd'hui, éclairez-moi, gardez-moi, conduisez-moi et gouvernez-moi. Amen." },
+  { title:'Salve Regina', text:"Salut, ô Reine, Mère de miséricorde, notre vie, notre douceur, notre espérance, salut ! Enfants d'Ève, exilés, nous crions vers vous ; vers vous nous soupirons, gémissant et pleurant dans cette vallée de larmes. Ô vous, notre avocate, tournez vers nous vos regards miséricordieux. Et après cet exil, montrez-nous Jésus, le fruit béni de vos entrailles. Amen." },
+  { title:'Prière pour la paix (saint François)', text:"Seigneur, fais de moi un instrument de ta paix. Là où est la haine, que je mette l'amour. Là où est l'offense, que je mette le pardon. Là où est la discorde, que je mette l'union. Là où est l'erreur, que je mette la vérité. Là où est le doute, que je mette la foi. Là où est le désespoir, que je mette l'espérance. Amen." }
+];
+
+const NOVENAS = [
+  { id:'pardon', title:'Neuvaine du Pardon', sub:'9 jours pour guérir de l\'amertume', days:[
+    {prayer:'Seigneur, aide-moi à reconnaître mes blessures.', action:'Note les rancunes que tu portes.'},
+    {prayer:'Je demande la force de pardonner.', action:'Identifie une personne à pardonner.'},
+    {prayer:'Tu as pardonné sur la croix ; apprends-moi.', action:'Médite sur le pardon de Jésus.'},
+    {prayer:'Libère mon cœur de la vengeance.', action:'Écris une lettre que tu ne dois pas envoyer.'},
+    {prayer:'Je lâche prise du passé.', action:'Pardonne à quelqu\'un en silence, dans ton cœur.'},
+    {prayer:'Donne-moi un cœur nouveau.', action:'Fais un geste de réconciliation.'},
+    {prayer:'Je me pardonne aussi à moi-même.', action:'Reconnais tes propres erreurs sans t\'y noyer.'},
+    {prayer:'Le pardon me libère.', action:'Remarque la paix que cela t\'apporte.'},
+    {prayer:'Merci pour cette guérison.', action:'Célèbre ce chemin parcouru.'}
+  ]},
+  { id:'esprit-saint', title:"Neuvaine à l'Esprit Saint", sub:'9 jours de renouveau intérieur', days:[
+    {prayer:'Viens, Esprit Saint, remplis mon cœur.', action:"Prends un temps calme pour l'invoquer."},
+    {prayer:'Donne-moi la sagesse.', action:'Demande de la clarté sur une question précise.'},
+    {prayer:'Renforce-moi dans ma foi.', action:'Nourris ta foi par une lecture courte.'},
+    {prayer:'Inspire-moi dans mes choix.', action:'Prie avant une décision à prendre.'},
+    {prayer:'Fais de moi un enfant de Dieu.', action:'Ressens cette filiation dans le silence.'},
+    {prayer:'Donne-moi l\'amour et la paix.', action:'Cultive ces fruits dans un geste concret.'},
+    {prayer:'Libère-moi de mes chaînes intérieures.', action:'Nomme ce qui t\'enchaîne encore.'},
+    {prayer:'Remplis-moi de joie.', action:'Célèbre une petite chose aujourd\'hui.'},
+    {prayer:'Viens établir ton règne en moi.', action:'Consacre cette journée à Dieu.'}
+  ]},
+  { id:'misericorde', title:'Neuvaine à la Divine Miséricorde', sub:'9 jours de confiance en Dieu', days:[
+    {prayer:'Jésus, j\'ai confiance en toi.', action:'Médite sur la miséricorde reçue.'},
+    {prayer:'Tu connais tous mes péchés et tu m\'aimes encore.', action:'Envisage la confession si besoin.'},
+    {prayer:'Je m\'abandonne à ta miséricorde.', action:'Lâche prise sur un souci précis.'},
+    {prayer:'Sauve ceux qui se sont endurcis.', action:'Prie pour une personne éloignée de la foi.'},
+    {prayer:'Tends ta miséricorde à ceux qui s\'éloignent.', action:'Inclus dans ta prière ceux que tu juges.'},
+    {prayer:'Touche les cœurs froids.', action:'Prie pour les indifférents que tu connais.'},
+    {prayer:'Tu as versé ton sang par amour.', action:'Reconnais la valeur de ce sacrifice.'},
+    {prayer:'Ta miséricorde m\'envahit.', action:'Ressens cette grâce sans la mériter.'},
+    {prayer:'Merci pour ta miséricorde infinie.', action:'Rends grâce simplement.'}
+  ]},
+  { id:'vierge-marie', title:'Neuvaine à la Vierge Marie', sub:'9 jours sous sa protection', days:[
+    {prayer:'Marie, mère très douce, je me confie à toi.', action:'Invoque-la dans une courte prière.'},
+    {prayer:'Intercède pour moi auprès de Dieu.', action:'Demande son aide pour une intention précise.'},
+    {prayer:'Tu as dit « qu\'il en soit ainsi » ; apprends-moi cet abandon.', action:'Accepte une chose que tu ne contrôles pas.'},
+    {prayer:'Protège-moi comme une mère.', action:'Cherche sa protection avant de dormir.'},
+    {prayer:'Enseigne-moi à aimer comme tu aimes.', action:'Pose un geste d\'attention envers un proche.'},
+    {prayer:'Guide-moi vers la sainteté.', action:'Suis un petit exemple qu\'elle t\'inspire.'},
+    {prayer:'Tu as souffert avec ton Fils.', action:'Accueille ta propre souffrance sans fuir.'},
+    {prayer:'Marie, je suis ton enfant.', action:'Accueille son amour maternel en silence.'},
+    {prayer:'Merci pour ton intercession.', action:'Rends hommage à Marie aujourd\'hui.'}
+  ]},
+  { id:'saint-joseph', title:'Neuvaine à saint Joseph', sub:'9 jours pour le travail et la famille', days:[
+    {prayer:'Joseph, serviteur silencieux, protège ma famille.', action:'Invoque-le pour tes proches.'},
+    {prayer:'Aide-moi dans mon travail.', action:'Prie pour ton métier ou ta recherche d\'emploi.'},
+    {prayer:'Tu as accueilli Jésus avec amour.', action:'Accueille une responsabilité avec cœur.'},
+    {prayer:'Donne-moi la force de pourvoir aux miens.', action:'Pose un acte concret pour ta famille.'},
+    {prayer:'Tu as tout quitté pour protéger l\'enfant.', action:'Prépare-toi à un sacrifice nécessaire.'},
+    {prayer:'Joseph, serviteur juste, inspire-moi.', action:'Sois honnête dans une situation précise.'},
+    {prayer:'Tu travaillais en silence.', action:'Travaille aujourd\'hui avec humilité.'},
+    {prayer:'Veille sur ceux qui te sont chers.', action:'Prépare-toi sereinement à ce qui vient.'},
+    {prayer:'Joseph, obtiens-moi cette grâce.', action:'Nomme clairement ce que tu désires.'}
+  ]}
+];
+
+const FICHES = [
+  { id:'incarnation', title:"L'Incarnation du Verbe", sub:'Comment Dieu a pris chair en Jésus', time:'8 min', cat:'christologie', body:"Le dogme central du christianisme : Jésus est Dieu fait homme. Non pas une réincarnation, mais l'Éternel entrant dans l'histoire. Jésus connaît la fatigue, la faim, la peur, la solitude, la mort. Cette solidarité radicale change tout : notre souffrance n'est jamais abandonnée de Dieu, car Dieu lui-même l'a habitée." },
+  { id:'redemption', title:'La Rédemption par la Croix', sub:'Le sens théologique du sacrifice de Jésus', time:'7 min', cat:'salut', body:"La mort de Jésus sur la croix a un effet cosmique. Elle n'est pas une fin malheureuse, mais le moment où le péché du monde est porté, pris en charge, transformé. C'est un acte d'amour radical qui dit : tu es aimé à ce point." },
+  { id:'grace', title:'La Grâce — cadeau gratuit de Dieu', sub:'Pourquoi on ne peut pas se sauver soi-même', time:'6 min', cat:'salut', body:"La grâce est l'aide gratuite de Dieu. Elle vient avant toute œuvre, toute prière, tout effort. Elle restaure notre capacité à choisir le bien. Tu dois y répondre par ton effort, ta prière, tes actes ; mais tu n'es jamais seul." },
+  { id:'liberte', title:'Libre arbitre et prédestination', sub:'Si Dieu sait tout, sommes-nous vraiment libres ?', time:'7 min', cat:'philosophie', body:"Dieu connaît tous les moments du temps à la fois, de l'extérieur du temps. Cela n'annule pas ton libre choix, toi qui es dans le temps. La prédestination, c'est que Dieu a voulu, de toute éternité, le bien de chaque personne. Tu restes responsable de tes actes." },
+  { id:'eucharistie', title:'L\'Eucharistie — présence réelle', sub:'Comment Jésus est vraiment présent dans le pain et le vin', time:'6 min', cat:'liturgie', body:"Après la consécration, ce n'est pas du pain qui rappelle Jésus : c'est Jésus lui-même, sous les apparences du pain. C'est une transformation de l'être profond, non du phénomène visible. Chaque messe renouvelle le sacrifice du Calvaire." },
+  { id:'confession', title:'La Confession — sacrement de pardon', sub:'Pourquoi se confesser à un prêtre plutôt que directement à Dieu', time:'6 min', cat:'liturgie', body:"Le péché n'est jamais qu'une affaire privée. La confession reconnaît cela : tu dis ton péché à voix haute, devant un tiers, ce qui change tout psychologiquement. Le prêtre n'est pas un juge, mais un instrument de l'absolution de Dieu." },
+  { id:'marie', title:'Marie dans le plan de Dieu', sub:'Mère de Dieu, médiatrice de grâce', time:'6 min', cat:'mariologie', body:"On ne prie pas Marie comme on prie Dieu : on la vénère et on demande son intercession. Son « Fiat » a changé l'histoire. Elle est le modèle du disciple : celle qui écoute la Parole de Dieu et la garde en son cœur." },
+  { id:'trinite', title:'La Trinité — un Dieu en trois Personnes', sub:'Le mystère d\'un Dieu qui est relation', time:'7 min', cat:'théologie', body:"Un seul Dieu subsiste en trois Personnes : Père, Fils et Saint-Esprit. Pas trois dieux, mais une relation, un amour, une communion. Tu es créé à l'image de cette Trinité : tu es fait pour la relation." },
+  { id:'eschatologie', title:'Les fins dernières', sub:'Mort, jugement, ciel, enfer', time:'8 min', cat:'eschatologie', body:"La mort est l'échéance de notre vie. Le jugement particulier révèle ta vie telle que Dieu la voit. Le ciel est l'union avec Dieu et les saints ; l'enfer, la privation de sa vision ; le purgatoire, un état de purification. Cette doctrine invite à bien vivre maintenant." },
+  { id:'conscience', title:'La conscience morale', sub:'Voix de Dieu en toi', time:'6 min', cat:'morale', body:"La conscience est ta capacité intérieure à discerner le bien et le mal. Elle n'est pas infaillible : elle doit être éduquée, informée, entraînée. Tu dois obéir à ta conscience rectifiée ; l'Église cherche à l'éduquer, jamais à l'annuler." }
+];
+
+const BIBLE_VERSES = [
+  { text:"L'Éternel est mon berger : je ne manquerai de rien.", ref:'Psaume 23, 1', theme:'Confiance' },
+  { text:"Je puis tout par celui qui me fortifie.", ref:'Philippiens 4, 13', theme:'Force' },
+  { text:"L'amour est patient, il est plein de bonté.", ref:'1 Corinthiens 13, 4', theme:'Amour' },
+  { text:"Ne crains rien, car je suis avec toi.", ref:'Ésaïe 41, 10', theme:'Confiance' },
+  { text:"Venez à moi, vous tous qui êtes fatigués et chargés, et je vous donnerai du repos.", ref:'Matthieu 11, 28', theme:'Repos' },
+  { text:"La joie de l'Éternel sera votre force.", ref:'Néhémie 8, 10', theme:'Joie' },
+  { text:"Heureux ceux qui procurent la paix, car ils seront appelés fils de Dieu.", ref:'Matthieu 5, 9', theme:'Paix' },
+  { text:"Confie-toi en l'Éternel de tout ton cœur.", ref:'Proverbes 3, 5', theme:'Confiance' },
+  { text:"Demandez, et l'on vous donnera ; cherchez, et vous trouverez.", ref:'Matthieu 7, 7', theme:'Espérance' },
+  { text:"Que la paix du Christ règne dans vos cœurs.", ref:'Colossiens 3, 15', theme:'Paix' },
+  { text:"L'amour ne périt jamais.", ref:'1 Corinthiens 13, 8', theme:'Amour' },
+  { text:"Réjouissez-vous toujours dans le Seigneur.", ref:'Philippiens 4, 4', theme:'Joie' },
+  { text:"Je suis avec toi partout où tu iras.", ref:'Genèse 28, 15', theme:'Confiance' },
+  { text:"Le Seigneur est proche de ceux qui l'invoquent.", ref:'Psaume 145, 18', theme:'Espérance' },
+  { text:"Soyez forts et courageux ; ne craignez point.", ref:'Deutéronome 31, 6', theme:'Force' }
+];
+
+const SAINTS = [
+  { id:'francois', name:'François d\'Assise', period:'1182 – 1226', desc:"Fils de marchand, il quitte tout pour vivre la pauvreté évangélique. Fondateur des franciscains, il voit en toute créature un reflet de Dieu. Sa prière pour la paix reste priée dans le monde entier." },
+  { id:'therese', name:'Thérèse de Lisieux', period:'1873 – 1897', desc:"Carmélite morte à 24 ans, elle enseigne la « petite voie » : faire les choses les plus simples avec un amour immense. Docteur de l'Église, patronne des missions." },
+  { id:'augustin', name:'Augustin d\'Hippone', period:'354 – 430', desc:"Après une jeunesse dissolue et un long chemin intellectuel, il se convertit et devient l'un des plus grands penseurs chrétiens. « Notre cœur est sans repos tant qu'il ne repose en toi. »" },
+  { id:'therese-avila', name:"Thérèse d'Ávila", period:'1515 – 1582', desc:"Réformatrice du Carmel, mystique et femme d'action à une époque où cela n'allait pas de soi. Ses écrits sur la prière intérieure restent des références." },
+  { id:'jean-vianney', name:'Jean-Marie Vianney', period:'1786 – 1859', desc:"Curé d'Ars, simple et peu doué pour les études, il devient un confesseur recherché par des milliers de pénitents venus de toute l'Europe." },
+  { id:'maximilien-kolbe', name:'Maximilien Kolbe', period:'1894 – 1941', desc:"Franciscain polonais, il offre sa vie à la place d'un père de famille condamné à mort au camp d'Auschwitz. Un des visages les plus forts de la charité au XXe siècle." },
+  { id:'mere-teresa', name:'Mère Teresa de Calcutta', period:'1910 – 1997', desc:"Fondatrice des Missionnaires de la Charité, elle consacre sa vie aux plus pauvres parmi les pauvres dans les rues de Calcutta." },
+  { id:'jean-paul-ii', name:'Jean-Paul II', period:'1920 – 2005', desc:"Pape pendant 27 ans, survivant du nazisme et du communisme en Pologne, il parcourt le monde et lance les Journées Mondiales de la Jeunesse." },
+  { id:'benoit', name:'Benoît de Nursie', period:'480 – 547', desc:"Père du monachisme occidental. Sa règle, fondée sur « prier et travailler », structure encore aujourd'hui de nombreuses communautés monastiques." },
+  { id:'catherine-siene', name:'Catherine de Sienne', period:'1347 – 1380', desc:"Mystique et diplomate, elle œuvre pour ramener le pape à Rome et pour la paix en Italie. Docteur de l'Église malgré une instruction très limitée." }
+];
+
+// ===================== STATE =====================
+let state = {
+  consent: JSON.parse(localStorage.getItem('consentGA') ?? 'null'),
+  mysterySet: ['glorieux','joyeux','douloureux','glorieux','lumineux','douloureux','joyeux'][new Date().getDay()],
+  mysteryIdx: 0,
+  grain: 0,
+  totalGrains: 10
+};
+
+// ===================== NAV =====================
+function showPage(id){
+  document.querySelectorAll('main > section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('navPanel').classList.remove('open');
+  document.getElementById('menuToggle').classList.remove('open');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function toggleMenu(){
+  document.getElementById('navPanel').classList.toggle('open');
+  document.getElementById('menuToggle').classList.toggle('open');
+}
+function toggleTheme(){
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateThemeIcon();
+}
+function updateThemeIcon(){
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark'
+    || (!document.documentElement.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.querySelector('.icon-moon').style.display = dark ? 'none' : 'block';
+  document.querySelector('.icon-sun').style.display = dark ? 'block' : 'none';
+}
+
+// ===================== HUMEURS =====================
+const MOOD_ICONS = {
+  souffrance: '<path d="M12 21s-7-4.4-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6C19 16.6 12 21 12 21Z" stroke-linecap="round" stroke-linejoin="round"/>',
+  doute: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.6-2.5 2-2.5 4" stroke-linecap="round"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/>',
+  paix: '<path d="M12 3v18M5 12h14" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/>',
+  grace: '<path d="M12 3l2.2 5.6L20 9l-4.5 3.9L16.8 19 12 15.8 7.2 19l1.3-6.1L4 9l5.8-.4L12 3Z" stroke-linejoin="round"/>',
+  combat: '<path d="M12 3l7 3.5v5.6c0 4.4-3 7.3-7 8.4-4-1.1-7-4-7-8.4V6.5L12 3Z" stroke-linejoin="round"/>'
+};
+function renderMoods(){
+  const grid = document.getElementById('moodsGrid');
+  MOODS.forEach(m=>{
+    const btn = document.createElement('button');
+    btn.className = 'card';
+    btn.innerHTML = `<span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">${MOOD_ICONS[m.id]||''}</svg></span><h3>${m.label}</h3><p class="muted">Verset, prière et geste du jour</p>`;
+    btn.onclick = () => showMood(m);
+    grid.appendChild(btn);
+  });
+}
+function showMood(m){
+  const panel = document.getElementById('moodDetail');
+  panel.innerHTML = `
+    <p class="eyebrow" style="margin-bottom:4px;">Pour ${m.label.toLowerCase()}</p>
+    <blockquote>${m.verse}</blockquote>
+    <cite>${m.ref}</cite>
+    <h4>Prière du cœur</h4>
+    <p>${m.prayer}</p>
+    <h4>Un geste pour cette journée</h4>
+    <p style="margin:0;">${m.action}</p>
+  `;
+  panel.classList.add('show');
+}
+
+// ===================== PRIÈRES =====================
+function renderPrayers(){
+  const list = document.getElementById('prayersList');
+  PRAYERS.forEach(p=>{
+    const d = document.createElement('details');
+    d.className = 'accordion-item';
+    d.innerHTML = `<summary>${p.title}</summary><div class="body">${p.text}</div>`;
+    list.appendChild(d);
+  });
+}
+
+// ===================== NEUVAINES =====================
+function renderNovenas(){
+  const grid = document.getElementById('novenasGrid');
+  const flame = '<path d="M12 2c1 3-3 4-3 8a3 3 0 0 0 6 0c0-1-1-1.5-1-2.5 2 1 3 3 3 5.5a5 5 0 0 1-10 0C7 8 12 6 12 2Z" stroke-linejoin="round"/>';
+  NOVENAS.forEach(n=>{
+    const btn = document.createElement('button');
+    btn.className = 'card';
+    btn.innerHTML = `<span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">${flame}</svg></span><h3>${n.title}</h3><p class="muted">${n.sub}</p>`;
+    btn.onclick = () => showNovena(n);
+    grid.appendChild(btn);
+  });
+}
+function showNovena(n){
+  const panel = document.getElementById('novenaDetail');
+  let html = `<h3 style="margin-bottom:4px;">${n.title}</h3><p class="muted" style="margin-bottom:6px;">${n.sub}</p><div class="novena-days">`;
+  n.days.forEach((d,i)=>{
+    html += `<div class="novena-day">
+      <div class="num">Jour ${i+1}</div>
+      <div class="prayer">${d.prayer}</div>
+      <div class="action">Geste : ${d.action}</div>
+    </div>`;
+  });
+  html += `</div>`;
+  panel.innerHTML = html;
+  panel.classList.add('show');
+}
+
+// ===================== FICHES =====================
+function renderFiches(){
+  const grid = document.getElementById('fichesGrid');
+  const book = '<path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/>';
+  FICHES.forEach(f=>{
+    const btn = document.createElement('button');
+    btn.className = 'card';
+    btn.innerHTML = `<span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">${book}</svg></span><span class="cat">${f.cat}</span><h3>${f.title}</h3><p class="muted">${f.sub}</p><p class="muted">${f.time}</p>`;
+    btn.onclick = () => showFiche(f);
+    grid.appendChild(btn);
+  });
+}
+function showFiche(f){
+  document.getElementById('ficheModalContent').innerHTML = `
+    <span class="cat">${f.cat}</span>
+    <h3>${f.title}</h3>
+    <p class="muted">${f.sub} · ${f.time}</p>
+    <p class="body-text">${f.body}</p>
+  `;
+  document.getElementById('ficheModal').classList.add('open');
+}
+function closeFicheModal(){ document.getElementById('ficheModal').classList.remove('open'); }
+
+// ===================== VERSETS =====================
+function renderVerses(theme){
+  const grid = document.getElementById('versesGrid');
+  grid.innerHTML = '';
+  const list = theme ? BIBLE_VERSES.filter(v=>v.theme===theme) : BIBLE_VERSES;
+  list.forEach(v=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<span class="cat">${v.theme}</span><blockquote style="font-family:'Fraunces',serif; font-style:italic; margin:6px 0; font-size:1rem; line-height:1.5;">${v.text}</blockquote><cite style="font-style:normal; font-size:0.82rem; color:var(--text-muted);">${v.ref}</cite>`;
+    grid.appendChild(card);
+  });
+}
+function renderVerseThemes(){
+  const row = document.getElementById('verseThemes');
+  const themes = ['Tous', ...new Set(BIBLE_VERSES.map(v=>v.theme))];
+  themes.forEach(t=>{
+    const chip = document.createElement('button');
+    chip.className = 'chip' + (t==='Tous' ? ' active' : '');
+    chip.textContent = t;
+    chip.onclick = () => {
+      row.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      renderVerses(t==='Tous' ? null : t);
+    };
+    row.appendChild(chip);
+  });
+}
+
+// ===================== SAINTS =====================
+function renderSaints(){
+  const grid = document.getElementById('saintsGrid');
+  SAINTS.forEach(s=>{
+    const btn = document.createElement('button');
+    btn.className = 'card';
+    btn.innerHTML = `<h3>${s.name}</h3><p class="muted">${s.period}</p>`;
+    btn.onclick = () => showSaint(s);
+    grid.appendChild(btn);
+  });
+}
+function showSaint(s){
+  document.getElementById('ficheModalContent').innerHTML = `
+    <span class="cat">Figure de saint</span>
+    <h3>${s.name}</h3>
+    <p class="muted">${s.period}</p>
+    <p class="body-text">${s.desc}</p>
+  `;
+  document.getElementById('ficheModal').classList.add('open');
+}
+
+// ===================== VERSET DU JOUR =====================
+function renderDailyQuote(){
+  const dayIndex = new Date().getDate() % BIBLE_VERSES.length;
+  const v = BIBLE_VERSES[dayIndex];
+  document.getElementById('dailyQuoteText').textContent = v.text;
+  document.getElementById('dailyQuoteRef').textContent = `${v.ref} — Parole du jour`;
+}
+
+// ===================== LEGAL =====================
+function showLegal(title, body){
+  document.getElementById('legalTitle').textContent = title;
+  document.getElementById('legalBody').textContent = body;
+  document.getElementById('legalModal').classList.add('open');
+}
+function closeLegal(){ document.getElementById('legalModal').classList.remove('open'); }
+
+// ===================== CONSENT =====================
+function acceptConsent(){
+  state.consent = true;
+  localStorage.setItem('consentGA','true');
+  document.getElementById('consentBanner').classList.remove('show');
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({event:'consent_accepted'});
+}
+function declineConsent(){
+  state.consent = false;
+  localStorage.setItem('consentGA','false');
+  document.getElementById('consentBanner').classList.remove('show');
+}
+
+// ===================== CHAPELET =====================
+function nextGrain(){
+  if(state.grain < state.totalGrains - 1){ state.grain++; }
+  else { state.mysteryIdx = (state.mysteryIdx+1) % 5; state.grain = 0; }
+  renderChapelet();
+}
+function prevGrain(){
+  if(state.grain > 0){ state.grain--; }
+  else { state.mysteryIdx = (state.mysteryIdx-1+5) % 5; state.grain = state.totalGrains-1; }
+  renderChapelet();
+}
+function resetChapelet(){ state.mysteryIdx = 0; state.grain = 0; renderChapelet(); }
+
+function renderChapelet(){
+  const set = MYSTERIES[state.mysterySet];
+  const myst = set.items[state.mysteryIdx];
+  document.getElementById('mysteryLabel').textContent = `${set.label} · ${set.days}`;
+  document.getElementById('mysteryTitle').textContent = `${state.mysteryIdx+1}. ${myst.title}`;
+  document.getElementById('mysteryDesc').textContent = myst.text;
+  document.getElementById('grainCounter').textContent = `Grain ${state.grain+1} sur ${state.totalGrains}`;
+
+  const dots = document.getElementById('grainDots');
+  dots.innerHTML = '';
+  for(let i=0;i<state.totalGrains;i++){
+    const s = document.createElement('span');
+    if(i <= state.grain) s.classList.add('on');
+    dots.appendChild(s);
+  }
+  drawChapeletSvg();
+}
+
+function drawChapeletSvg(){
+  const svg = document.getElementById('chapeletSvg');
+  const cx=140, cy=140, r=96;
+  const beadCount = 20;
+  let beads = '';
+  for(let i=0;i<beadCount;i++){
+    const angle = (i/beadCount)*Math.PI*2 - Math.PI/2;
+    const x = cx + Math.cos(angle)*r;
+    const y = cy + Math.sin(angle)*r;
+    const highlighted = i <= Math.floor((state.grain/state.totalGrains)*beadCount);
+    beads += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="currentColor" opacity="${highlighted?0.9:0.22}"/>`;
+  }
+  const cross = `
+    <rect x="${cx-4}" y="${cy-26}" width="8" height="46" rx="3" fill="currentColor"/>
+    <rect x="${cx-16}" y="${cy-14}" width="32" height="8" rx="3" fill="currentColor"/>
+  `;
+  svg.innerHTML = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.28"/>${beads}${cross}`;
+}
+
+// ===================== INIT =====================
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  if(savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon();
+
+  renderMoods();
+  renderPrayers();
+  renderNovenas();
+  renderFiches();
+  renderVerseThemes();
+  renderVerses();
+  renderSaints();
+  renderDailyQuote();
+  renderChapelet();
+
+  if(state.consent === null){
+    setTimeout(()=> document.getElementById('consentBanner').classList.add('show'), 1600);
+  }
+
+  ['ficheModal','legalModal'].forEach(id=>{
+    document.getElementById(id).addEventListener('click', e=>{
+      if(e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Escape'){
+      closeFicheModal(); closeLegal();
+    }
+  });
+});
+</script>
+</body>
+</html>

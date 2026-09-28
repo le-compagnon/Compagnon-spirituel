@@ -936,6 +936,7 @@ const FICHES = [
   }
 ];
 
+// === VERSETS BIBLIQUES (Thèmes demandés) ===
 const BIBLE_VERSES = [
   { text:"L'Éternel est mon berger : je ne manquerai de rien.", ref:'Psaume 23, 1', theme:'Confiance' },
   { text:"Je puis tout par celui qui me fortifie.", ref:'Philippiens 4, 13', theme:'Force' },
@@ -954,6 +955,19 @@ const BIBLE_VERSES = [
   { text:"Que la paix du Christ règne dans vos cœurs.", ref:'Colossiens 3, 15', theme:'Paix' },
   { text:"Consolez, consolez mon peuple, dit votre Dieu.", ref:'Ésaïe 40, 1', theme:'Consolation' }
 ];
+
+// Fonction pour afficher le verset du jour
+function renderDailyQuote() {
+  if (!BIBLE_VERSES || BIBLE_VERSES.length === 0) return;
+  const dayIndex = new Date().getDate() % BIBLE_VERSES.length;
+  const v = BIBLE_VERSES[dayIndex];
+  const textEl = document.getElementById('dailyQuoteText');
+  const refEl = document.getElementById('dailyQuoteRef');
+  if (textEl) textEl.textContent = v.text;
+  if (refEl) refEl.textContent = `${v.ref} — Parole du jour`;
+}
+
+// === SAINTS ===
 const SAINTS = [
   { 
     name:'François d\'Assise', period:'1182 – 1226', feast:'4 octobre', patronage:'Écologie, animaux, pauvres',
@@ -1017,7 +1031,83 @@ const SAINTS = [
   }
 ];
 
-// === FONCTIONS D'AFFICHAGE DIRECTES (SANS BUG D'ID) ===
+// === FONCTIONS D'AFFICHAGE ET OUVERTURE DES MODALES ===
+
+function showSaint(s) {
+  const content = document.getElementById('ficheModalContent');
+  if(!content) return;
+  content.innerHTML = `
+    <span class="cat">Fête : ${s.feast}</span>
+    <h3 style="margin: 8px 0; font-size:1.6rem;">${s.name}</h3>
+    <p class="muted"><em>${s.period}</em></p>
+
+    ${s.painting ? `
+      <div style="margin: 16px 0; text-align: center;">
+        <img src="${s.painting}" alt="${s.name}" onerror="this.style.display='none'" style="width:100%; max-height:400px; object-fit:cover; border-radius:8px; border:1px solid var(--border);">
+      </div>
+    ` : ''}
+
+    <p style="font-weight:bold; color:var(--accent); font-size:0.9rem;">Patronage : ${s.patronage}</p>
+    <div style="line-height:1.7; font-size:1.05rem; text-align:justify; margin-top:16px;">
+      <p>${s.longBio}</p>
+    </div>
+  `;
+  document.getElementById('ficheModal').classList.add('open');
+}
+
+function showFiche(f) {
+  const content = document.getElementById('ficheModalContent');
+  if(!content) return;
+  content.innerHTML = `
+    <span class="cat">${f.cat.toUpperCase()} · Temps de lecture : ${f.time}</span>
+    <h3 style="margin-top: 8px; font-size: 1.4rem;">${f.title}</h3>
+    <p class="muted" style="margin-bottom: 20px;"><em>${f.sub}</em></p>
+    <div class="article-body-text" style="line-height: 1.7;">
+        ${f.body}
+    </div>
+  `;
+  document.getElementById('ficheModal').classList.add('open');
+}
+
+function renderSaints() {
+  const grid = document.getElementById('saintsGrid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  SAINTS.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'card';
+    btn.innerHTML = `<span class="card-title">${s.name}</span><span class="card-subtitle">${s.period}</span>`;
+    btn.onclick = () => showSaint(s);
+    grid.appendChild(btn);
+  });
+}
+
+function renderFiches() {
+  const grid = document.getElementById('fichesGrid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  if(typeof FICHES !== 'undefined') {
+    FICHES.forEach(f => {
+      const btn = document.createElement('button');
+      btn.className = 'card';
+      btn.innerHTML = `<span class="icon-badge">📖</span>
+                       <div>
+                         <span class="cat">${f.cat.toUpperCase()}</span>
+                         <span class="card-title">${f.title}</span>
+                         <span class="card-subtitle">${f.time}</span>
+                       </div>`;
+      btn.onclick = () => showFiche(f);
+      grid.appendChild(btn);
+    });
+  }
+}
+
+// Lancement automatique au chargement
+document.addEventListener('DOMContentLoaded', () => {
+  renderDailyQuote();
+  renderSaints();
+  renderFiches();
+});
 
 function showSaint(s) {
   document.getElementById('ficheModalContent').innerHTML = `

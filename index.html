@@ -40,37 +40,6 @@
   --on-accent: #FFFFFF;
 }
 
-/* Effet au survol du menu */
-.nav-links a {
-  transition: background-color 0.2s ease;
-}
-.nav-links a:hover {
-  background-color: var(--bg-card-alt, #ebebeb);
-}
-
-/* Désactiver le survol permanent sur mobile/clic pour le menu */
-.nav-links a {
-  -webkit-tap-highlight-color: transparent;
-}
-.nav-links a:focus {
-  background-color: transparent;
-}
-
-/* Forcer le texte des humeurs en noir et gras (plus de bleu) */
-.mood-response, .mood-detail, #moodResult {
-  color: #1a1a1a !important;
-  font-weight: bold !important;
-}
-
-// Fermer le menu en cliquant à l'extérieur
-document.addEventListener('click', function(event) {
-  const nav = document.querySelector('nav');
-  const menuBtn = document.querySelector('.menu-toggle');
-  if (nav && nav.classList.contains('open') && !nav.contains(event.target) && !menuBtn.contains(event.target)) {
-    nav.classList.remove('open');
-  }
-});
-  
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg: #1E1A15; --bg-card: #26211B; --bg-card-alt: #2F2821;
@@ -123,8 +92,6 @@ header {
   background: rgba(246,241,230,0.86); backdrop-filter: blur(10px) saturate(140%);
   border-bottom: 1px solid var(--border-soft);
 }
-:root[data-theme="dark"] header, @media (prefers-color-scheme: dark) { }
-header { }
 .header-row { display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1080px; margin:0 auto; gap:20px; position:relative; }
 @media (max-width:640px){ .header-row{ padding:14px 20px; } }
 .brand { display:flex; align-items:center; gap:12px; text-decoration:none; }
@@ -152,9 +119,14 @@ header { }
 }
 @media (max-width:640px){ .nav-panel{ right:20px; } }
 .nav-panel.open { opacity:1; visibility:visible; transform:none; transition: opacity .22s var(--ease), transform .22s var(--ease); }
+
+/* MENU ET SURVOLS */
 .nav-link { padding:12px 14px; text-decoration:none; font-size:0.94rem; border-radius:6px; color:var(--text); display:flex; align-items:center; gap:10px; transition: background .15s ease; }
 .nav-link:hover { background: var(--bg-card-alt); }
 .nav-link.highlight { background: var(--bg-card-alt); font-weight:600; color:var(--accent-dark); }
+.nav-links a { -webkit-tap-highlight-color: transparent; transition: background-color 0.2s ease; }
+.nav-links a:hover { background-color: var(--bg-card-alt); }
+.nav-links a:focus { background-color: transparent; }
 
 main { padding: 20px 0 60px; }
 section { padding: 64px 0; border-bottom: 1px solid var(--border-soft); scroll-margin-top:84px; display:none; animation: fadeIn .5s var(--ease); position:relative; }
@@ -212,6 +184,9 @@ section:last-of-type::after, section#apropos::after { display:none; }
 .card h3 { font-size:1.02rem; }
 .card .cat { font-size:0.7rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.03em; }
 .card .muted { font-size:0.84rem; color:var(--text-muted); }
+
+/* Humeurs text forces */
+.mood-response, .mood-detail, #moodResult { color: #1a1a1a !important; font-weight: bold !important; }
 
 .detail-panel {
   margin-top:24px; background:var(--bg-card); border:1px solid var(--accent-soft); border-radius:10px;
@@ -286,24 +261,6 @@ footer { padding:52px 0 40px; }
 
 .skip-link { position:absolute; left:12px; top:-60px; z-index:100; background:var(--accent); color:var(--on-accent); padding:10px 16px; border-radius:6px; font-size:0.85rem; transition: top .2s ease; }
 .skip-link:focus { top:12px; }
-
-// Fermeture du menu au clic sur un lien ou à l'extérieur
-document.addEventListener('click', function(e) {
-  const nav = document.querySelector('nav');
-  const menuBtn = document.querySelector('.menu-toggle');
-  
-  if (!nav || !nav.classList.contains('open')) return;
-
-  // Si on clique sur un lien du menu, on ferme
-  if (e.target.closest('.nav-links a')) {
-    nav.classList.remove('open');
-  }
-  // Si on clique à l'extérieur du menu et du bouton, on ferme
-  else if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
-    nav.classList.remove('open');
-  }
-});
-  
 </style>
 </head>
 <body>
@@ -334,7 +291,7 @@ document.addEventListener('click', function(e) {
         <span></span><span></span><span></span>
       </button>
     </div>
-    <nav class="nav-panel" id="navPanel" aria-label="Menu principal">
+    <nav class="nav-panel nav-links" id="navPanel" aria-label="Menu principal">
       <a href="#" class="nav-link" onclick="showPage('accueil'); toggleMenu(); return false;">Accueil</a>
       <a href="#" class="nav-link" onclick="showPage('humeurs'); toggleMenu(); return false;">Mes humeurs</a>
       <a href="#" class="nav-link highlight" onclick="showPage('chapelet'); toggleMenu(); return false;">Chapelet</a>
@@ -438,7 +395,7 @@ document.addEventListener('click', function(e) {
         <p>Les textes traditionnels, à portée de main.</p>
       </div>
 
-<svg class="illustration" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-bottom: 24px;">
+      <svg class="illustration" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-bottom: 24px;">
         <path d="M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6a1 1 0 0 1-1-1z" />
         <path d="M9 9h6M12 6v8" />
       </svg>
@@ -455,7 +412,6 @@ document.addEventListener('click', function(e) {
         <p>Neuf jours de prière, de méditation profonde et d'action concrète à ton rythme.</p>
       </div>
 
-      <!-- Nouvelle illustration : Arche de lumière des 9 jours -->
       <svg class="illustration" width="300" height="140" viewBox="0 0 300 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M 30 115 Q 150 15 270 115" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.3"/>
         <g fill="currentColor">
@@ -463,12 +419,9 @@ document.addEventListener('click', function(e) {
           <circle cx="58" cy="88" r="5" opacity="0.3"/>
           <circle cx="84" cy="70" r="5" opacity="0.4"/>
           <circle cx="114" cy="55" r="5.5" opacity="0.5"/>
-          
-          <!-- Jour 5 : Centre (Flamme et aura) -->
           <circle cx="150" cy="48" r="8" opacity="0.15"/>
           <circle cx="150" cy="48" r="4" fill="#F6C453"/>
           <path d="M 150 34 Q 146 42 150 46 Q 154 42 150 34 Z" fill="#F6C453"/>
-          
           <circle cx="186" cy="55" r="5.5" opacity="0.5"/>
           <circle cx="216" cy="70" r="5" opacity="0.4"/>
           <circle cx="242" cy="88" r="5" opacity="0.3"/>
@@ -515,7 +468,7 @@ document.addEventListener('click', function(e) {
     </div>
   </section>
 
-<!-- À PROPOS -->
+  <!-- À PROPOS -->
   <section id="apropos">
     <div class="wrap" style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
       <div class="section-head" style="text-align: left; margin-bottom: 24px;">
@@ -726,7 +679,6 @@ const FICHES = [
     body: `
       <h3>1. Le mystère de l'Union Hypostatique</h3>
       <p>L'Incarnation n'est pas une simple "apparition" de Dieu ni la transformation de Dieu en homme. Le <strong>Concile de Chalcédoine (451)</strong> a défini le dogme de l'Union Hypostatique : en Jésus-Christ, la nature divine et la nature humaine sont unies <em>"sans confusion, sans changement, sans division et sans séparation"</em> dans l'unique Personne (Hypostase) du Verbe éternel. Jésus possède donc un corps humain, un cœur humain, une intelligence humaine, et une volonté humaine, tout en restant pleinement Dieu.</p>
-
       <h3>2. Les quatre raisons de l'Incarnation (CEC 456-460)</h3>
       <ul>
         <li><strong>Pour nous sauver et nous réconcilier avec Dieu :</strong> Notre nature blessée par le péché originel ne pouvait réparer seule l'offense infinie faite à Dieu. Il fallait un Sauveur qui soit Dieu pour que la réparation soit infinie, et Homme pour représenter l'humanité.</li>
@@ -734,7 +686,6 @@ const FICHES = [
         <li><strong>Pour être notre modèle de sainteté :</strong> Le Christ nous montre le chemin de l'humanité parfaite, accomplie dans l'amour.</li>
         <li><strong>Pour nous rendre participants de la nature divine :</strong> Comme l'écrit saint Irénée : <em>"Le Verbe de Dieu s'est fait homme pour que l'homme devienne fils de Dieu."</em></li>
       </ul>
-
       <h3>3. La convenance selon Saint Thomas d'Aquin</h3>
       <p>Dans sa <em>Somme théologique</em>, saint Thomas se demande si l'Incarnation était "convenable". Il répond par un grand principe philosophique : <strong>"Le Bien est de soi diffusif"</strong> (<em>Bonum est diffusivum sui</em>). Dieu étant le Souverain Bien, il est dans sa nature de vouloir se communiquer à ses créatures de la façon la plus intime et absolue qui soit : en épousant notre condition.</p>
     `
@@ -748,10 +699,8 @@ const FICHES = [
     body: `
       <h3>1. Pourquoi la Croix ? La doctrine de la Satisfaction</h3>
       <p>Saint Anselme (XIe siècle) explique dans son œuvre <em>Cur Deus Homo</em> que le péché a causé un désordre d'une gravité infinie car il offense la majesté d'un Dieu infini. L'humanité devait payer une dette, mais seul Dieu en avait les moyens. Le Christ, vrai Dieu et vrai homme, offre sur la Croix une réparation ou "satisfaction vicariante" (à notre place) qui restaure la justice.</p>
-
       <h3>2. La surabondance de l'Amour (Thomas d'Aquin)</h3>
       <p>Saint Thomas sublime la pensée d'Anselme : ce n'est pas la "quantité de souffrance" physique qui a sauvé le monde (Dieu n'est pas un tyran sanguinaire). C'est la <strong>charité infinie</strong> et <strong>l'obéissance parfaite</strong> du Christ dans sa souffrance. <em>"C'est par amour que le Christ a souffert, et c'est cet amour qui a donné à sa Passion une valeur réparatrice surabondante"</em> (ST IIIa, q. 48, a. 2). La Croix est d'abord le sommet de l'Amour.</p>
-
       <h3>3. Les quatre modes d'action du Salut</h3>
       <ul>
         <li><strong>Le Mérite :</strong> Le Christ, Nouvel Adam, a mérité la grâce pour tous les hommes par son obéissance, inversant la désobéissance du premier Adam.</li>
@@ -770,14 +719,12 @@ const FICHES = [
     body: `
       <h3>1. Qu'est-ce que la grâce ? (CEC 1996)</h3>
       <p>La grâce est une faveur imméritée, un secours gratuit que Dieu nous donne pour répondre à son appel. C'est une participation surnaturelle à la vie intime de la Trinité. Elle est absolument nécessaire : l'homme blessé par le péché ne peut, par ses seules forces naturelles, atteindre la vie éternelle ni même poser un acte surnaturel méritoire.</p>
-
       <h3>2. Grâce sanctifiante et Grâces actuelles</h3>
       <p>La théologie catholique distingue deux grands types de grâces (ST Ia-IIae, q. 110) :</p>
       <ul>
         <li><strong>La Grâce sanctifiante (ou habituelle) :</strong> Infusée au moment du Baptême, c'est une disposition permanente qui transforme notre âme de l'intérieur, efface le péché, et fait de nous des temples du Saint-Esprit. Elle se perd par le péché mortel et se retrouve par la Confession.</li>
         <li><strong>Les Grâces actuelles :</strong> Ce sont les impulsions divines passagères. Ce sont ces "coups de pouce" de Dieu qui éclairent notre intelligence (pour comprendre une vérité) et poussent notre volonté (pour accomplir une bonne action ou résister à une tentation).</li>
       </ul>
-
       <h3>3. Le combat de Saint Augustin contre le Pélagisme</h3>
       <p>Au Ve siècle, Pélage affirmait que le libre arbitre humain était intact et que l'homme pouvait être parfait par la seule force de sa volonté. Saint Augustin, le "Docteur de la grâce", s'y est opposé farouchement : sans la "grâce prévenante" (celle qui vient réveiller notre âme avant même que nous agissions), nous sommes incapables de nous tourner vers Dieu. <em>"Dieu couronne ses propres dons lorsqu'il couronne nos mérites."</em></p>
     `
@@ -791,10 +738,8 @@ const FICHES = [
     body: `
       <h3>1. Le paradoxe apparent de la Prescience divine</h3>
       <p>L'une des plus grandes questions philosophiques : si Dieu sait déjà ce que je vais faire demain, suis-je libre de ne pas le faire ? Boèce et saint Augustin résolvent ce problème en expliquant la nature de l'Éternité. Dieu ne "pré-voit" pas le futur. Il est totalement hors du temps (dans un Éternel Présent). Dieu voit tout (passé, présent, futur) d'un seul regard instantané. <strong>Sa connaissance ne cause pas notre acte.</strong> Ce n'est pas parce que Dieu le voit que tu le fais ; c'est parce que tu choisis librement de le faire que Dieu le voit dans son éternité.</p>
-
       <h3>2. L'harmonie de la grâce et de la liberté (Concile de Trente)</h3>
       <p>Saint Thomas d'Aquin affirme que la toute-puissance de Dieu est si absolue qu'elle cause non seulement nos actions, mais aussi <em>la manière</em> dont nous les accomplissons : de façon libre et contingente. La grâce de Dieu ne violente jamais la volonté humaine. Elle l'attire, la guérit et la meut de l'intérieur. Face à la grâce, l'homme garde le pouvoir radical d'y consentir ou d'y résister.</p>
-
       <h3>3. La Prédestination catholique vs le Fatalisme</h3>
       <p>L'Église catholique rejette fermement la "double prédestination" (théorie de Calvin selon laquelle Dieu créerait certaines âmes expressément pour l'enfer). Au contraire, la doctrine catholique (CEC 1037) affirme que :</p>
       <ul>
@@ -813,14 +758,12 @@ const FICHES = [
     body: `
       <h3>1. Le dogme de la Transsubstantiation</h3>
       <p>Défini infailliblement par le <strong>Concile de Trente (1551)</strong>, ce terme signifie que par la consécration, il s'opère un changement de toute la substance du pain en la substance du Corps du Christ, et de toute la substance du vin en la substance de son Sang. L'Eucharistie n'est donc ni un symbole, ni une simple "présence spirituelle".</p>
-
       <h3>2. L'explication philosophique (Substance et Accidents)</h3>
       <p>Pour expliquer comment le pain reste visuellement du pain, saint Thomas utilise les catégories d'Aristote :</p>
       <ul>
         <li><strong>La Substance (l'être profond) :</strong> Ce qui fait qu'une chose est ce qu'elle est. Lors de la messe, la substance du pain cesse d'exister pour devenir le Christ.</li>
         <li><strong>Les Accidents (les apparences) :</strong> Le goût, la couleur, le poids, la texture, la composition chimique. Par un miracle divin, ces accidents demeurent suspendus sans leur substance propre.</li>
       </ul>
-
       <h3>3. La Présence intégrale (La Concomitance)</h3>
       <p>Le Christ étant vivant et ressuscité, on ne peut pas séparer son corps de son sang. La théologie parle de <em>concomitance</em> : sous l'apparence de l'hostie (le corps) se trouvent aussi le Sang, l'Âme et la Divinité. Quiconque communie à une seule des deux espèces reçoit le Christ dans sa totalité. De plus, le Christ est entièrement présent dans le moindre petit fragment de l'hostie.</p>
     `
@@ -834,10 +777,8 @@ const FICHES = [
     body: `
       <h3>1. Le fondement scripturaire</h3>
       <p>Le Christ aurait pu nous demander de nous confesser directement à lui en silence. Pourtant, au soir de Pâques, il dit à ses apôtres : <em>"Recevez le Saint-Esprit. À qui vous remettrez ses péchés, ils seront remis ; à qui vous les maintiendrez, ils sont maintenus."</em> (Jn 20, 22-23). En confessant à un prêtre, on obéit à la méthode voulue par Jésus lui-même. Le prêtre agit <strong>In Persona Christi Capitis</strong> : ce n'est pas l'homme qui pardonne, c'est le Christ lui-même à travers lui.</p>
-
       <h3>2. La dimension ecclésiale du péché</h3>
       <p>Tout péché, même le plus secret, abîme le tissu invisible de l'Église (le Corps Mystique du Christ). En se confessant à un prêtre, celui-ci représente à la fois Dieu (qui pardonne) et la communauté ecclésiale blessée (qui réintègre le pécheur dans la communion complète).</p>
-
       <h3>3. Les 5 actes indispensables du pénitent (CEC 1450-1460)</h3>
       <ul>
         <li><strong>L'Examen de conscience :</strong> Faire le point sur sa vie sous le regard de la vérité.</li>
@@ -862,10 +803,8 @@ const FICHES = [
         <li><strong>L'Immaculée Conception (Pie IX, 1854) :</strong> En prévision des mérites de la mort de son Fils sur la Croix, Marie a été préservée dès l'instant de sa conception de toute tache du péché originel. Elle est la "pleine de grâce".</li>
         <li><strong>L'Assomption (Pie XII, 1950) :</strong> Au terme de son parcours terrestre, Marie a été élevée en corps et en âme dans la gloire du Ciel, anticipant la résurrection de nos propres corps à la fin des temps.</li>
       </ul>
-
       <h3>2. La Nouvelle Ève (Typologie patristique)</h3>
       <p>Dès le IIe siècle, saint Irénée de Lyon oppose la désobéissance d'Ève à l'obéissance de Marie. Là où Ève a cru au mensonge du serpent (l'ange déchu) et a fait entrer la mort, Marie a cru à la vérité de l'Ange Gabriel, a prononcé son <em>Fiat</em> ("Que tout m'advienne selon ta parole"), et a fait entrer la Vie dans le monde.</p>
-
       <h3>3. Médiation et culte d'Hyperdulie</h3>
       <p>La médiation maternelle de Marie n'obscurcit en rien l'unique médiation du Christ ; au contraire, elle en découle et en montre la puissance (Lumen Gentium 60). L'Église ne voue jamais d'adoration (culte de <em>Latrie</em> réservé à Dieu) à Marie. Elle lui rend un culte d'<em>Hyperdulie</em>, une vénération suprême supérieure aux autres saints en raison de son lien charnel et spirituel unique avec la Trinité.</p>
     `
@@ -879,7 +818,6 @@ const FICHES = [
     body: `
       <h3>1. Formule fondamentale de la Foi</h3>
       <p>Le mystère central de la foi chrétienne. Dieu est Unique en Essence (ou Nature, ou Substance) et Trine en Personnes. Il n'y a pas trois dieux (trithéisme), ni un seul Dieu qui porterait trois masques différents selon les époques (modalisme). Le Père, le Fils et le Saint-Esprit possèdent entièrement et de façon indivisible la même nature divine.</p>
-
       <h3>2. La théorie des Relations Subsistantes (ST Ia)</h3>
       <p>Saint Thomas d'Aquin explique que puisque les trois Personnes partagent exactement la même substance infinie, elles ne peuvent se distinguer entre elles que par leurs <strong>relations d'origine</strong> :</p>
       <ul>
@@ -887,7 +825,6 @@ const FICHES = [
         <li><strong>Le Fils (Le Verbe) :</strong> Procède du Père par voie de l'intelligence (la Pensée parfaite que Dieu a de lui-même).</li>
         <li><strong>Le Saint-Esprit :</strong> Procède du Père et du Fils (<em>Filioque</em>) par voie de volonté et d'amour infini (le souffle mutuel d'amour entre le Père et le Fils).</li>
       </ul>
-
       <h3>3. La Périchorèse (ou Circoninsession)</h3>
       <p>La théologie utilise ce concept vertigineux pour décrire comment les Personnes divines s'interpénètrent mutuellement. L'unité divine est si absolue que le Père est tout entier dans le Fils, le Fils tout entier dans le Père, et le Saint-Esprit tout entier dans le Père et le Fils. Dieu est, de toute éternité, une communion familiale, une danse d'amour infini.</p>
     `
@@ -905,10 +842,8 @@ const FICHES = [
         <li><strong>Le Jugement particulier :</strong> A lieu pour chaque âme dans l'instant immédiat de la mort physique. L'âme voit alors sa vie à la lumière éblouissante de la vérité divine, et son éternité est fixée (Ciel, Purgatoire ou Enfer).</li>
         <li><strong>Le Jugement dernier :</strong> Aura lieu à la fin des temps, lors du retour glorieux du Christ (Parousie). Il s'accompagnera de la <strong>Résurrection de la chair</strong> (nos âmes retrouveront nos corps transfigurés) pour juger publiquement toute l'histoire de l'humanité.</li>
       </ul>
-
       <h3>2. Le Purgatoire (Le feu purificateur de l'Amour)</h3>
       <p>Le Purgatoire n'est pas un "mini-enfer" ni un camp de torture. Sainte Catherine de Gênes le décrit comme un mystère de joie paradoxale. C'est l'état des âmes qui meurent en état de grâce (sauvées) mais qui conservent des attachements désordonnés aux créatures ou n'ont pas expié les peines temporelles de leurs péchés. Au Purgatoire, l'Amour ardent de Dieu brûle douloureusement les dernières scories de l'égoïsme pour rendre l'âme capable de supporter la splendeur du Ciel.</p>
-
       <h3>3. La Vision Béatifique (Ciel) et le Dam (Enfer)</h3>
       <p><strong>Le Ciel</strong> est l'état de bonheur suprême et définitif. L'intellect humain est élevé par la "lumière de gloire" pour contempler l'Essence de Dieu face à face (la Vision Béatifique). <strong>L'Enfer</strong> est un dogme terrible mais nécessaire pour que la liberté humaine ait un sens. Il consiste en la "peine du dam" (la privation éternelle et désespérante de Dieu pour lequel nous sommes faits) et l'endurcissement définitif de la volonté dans la haine.</p>
     `
@@ -922,21 +857,18 @@ const FICHES = [
     body: `
       <h3>1. Le sanctuaire inviolable de l'homme</h3>
       <p>Le concile Vatican II (<em>Gaudium et Spes, 16</em>) définit la conscience avec poésie : <em>"La conscience est le centre le plus secret de l'homme, le sanctuaire où il est seul avec Dieu et où Sa voix se fait entendre."</em> Elle ordonne à l'homme, au moment opportun, d'accomplir le bien et d'éviter le mal.</p>
-
       <h3>2. Synderèse et Jugement de conscience (Saint Thomas)</h3>
       <p>Saint Thomas d'Aquin décompose le mécanisme moral en deux étapes :</p>
       <ul>
         <li><strong>La Synderèse :</strong> C'est l'étincelle intellectuelle innée, la connaissance infaillible des principes moraux fondamentaux (ex: "il ne faut pas tuer l'innocent", "il faut rendre à chacun ce qui lui est dû").</li>
         <li><strong>Le Jugement de la conscience :</strong> C'est l'application pratique de cette loi générale à un cas particulier (ex: "dans cette situation complexe, agir ainsi revient à tuer, je dois l'éviter"). C'est ici que l'erreur est possible si l'homme raisonne mal.</li>
       </ul>
-
       <h3>3. Le devoir grave de former sa conscience</h3>
       <p>Jean-Paul II a rappelé dans son encyclique <em>Veritatis Splendor</em> que la conscience n'est pas créatrice de la vérité morale ; elle ne fait que la découvrir. Une conscience peut être aveuglée par l'habitude du péché, l'ignorance ou la pression sociale. Le chrétien a l'obligation stricte d'éclairer sa conscience (par l'Évangile, la prière, et le Magistère) pour qu'elle juge droit.</p>
     `
   }
 ];
 
-// === VERSETS BIBLIQUES (Thèmes demandés) ===
 const BIBLE_VERSES = [
   { text:"L'Éternel est mon berger : je ne manquerai de rien.", ref:'Psaume 23, 1', theme:'Confiance' },
   { text:"Je puis tout par celui qui me fortifie.", ref:'Philippiens 4, 13', theme:'Force' },
@@ -956,18 +888,6 @@ const BIBLE_VERSES = [
   { text:"Consolez, consolez mon peuple, dit votre Dieu.", ref:'Ésaïe 40, 1', theme:'Consolation' }
 ];
 
-// Fonction pour afficher le verset du jour
-function renderDailyQuote() {
-  if (!BIBLE_VERSES || BIBLE_VERSES.length === 0) return;
-  const dayIndex = new Date().getDate() % BIBLE_VERSES.length;
-  const v = BIBLE_VERSES[dayIndex];
-  const textEl = document.getElementById('dailyQuoteText');
-  const refEl = document.getElementById('dailyQuoteRef');
-  if (textEl) textEl.textContent = v.text;
-  if (refEl) refEl.textContent = `${v.ref} — Parole du jour`;
-}
-
-// === SAINTS ===
 const SAINTS = [
   { 
     name:'François d\'Assise', period:'1182 – 1226', feast:'4 octobre', patronage:'Écologie, animaux, pauvres',
@@ -1031,204 +951,6 @@ const SAINTS = [
   }
 ];
 
-// === FONCTIONS D'AFFICHAGE ET OUVERTURE DES MODALES ===
-
-function showSaint(s) {
-  const content = document.getElementById('ficheModalContent');
-  if(!content) return;
-  content.innerHTML = `
-    <span class="cat">Fête : ${s.feast}</span>
-    <h3 style="margin: 8px 0; font-size:1.6rem;">${s.name}</h3>
-    <p class="muted"><em>${s.period}</em></p>
-
-    ${s.painting ? `
-      <div style="margin: 16px 0; text-align: center;">
-        <img src="${s.painting}" alt="${s.name}" onerror="this.style.display='none'" style="width:100%; max-height:400px; object-fit:cover; border-radius:8px; border:1px solid var(--border);">
-      </div>
-    ` : ''}
-
-    <p style="font-weight:bold; color:var(--accent); font-size:0.9rem;">Patronage : ${s.patronage}</p>
-    <div style="line-height:1.7; font-size:1.05rem; text-align:justify; margin-top:16px;">
-      <p>${s.longBio}</p>
-    </div>
-  `;
-  document.getElementById('ficheModal').classList.add('open');
-}
-
-function showFiche(f) {
-  const content = document.getElementById('ficheModalContent');
-  if(!content) return;
-  content.innerHTML = `
-    <span class="cat">${f.cat.toUpperCase()} · Temps de lecture : ${f.time}</span>
-    <h3 style="margin-top: 8px; font-size: 1.4rem;">${f.title}</h3>
-    <p class="muted" style="margin-bottom: 20px;"><em>${f.sub}</em></p>
-    <div class="article-body-text" style="line-height: 1.7;">
-        ${f.body}
-    </div>
-  `;
-  document.getElementById('ficheModal').classList.add('open');
-}
-
-function renderSaints() {
-  const grid = document.getElementById('saintsGrid');
-  if(!grid) return;
-  grid.innerHTML = '';
-  SAINTS.forEach(s => {
-    const btn = document.createElement('button');
-    btn.className = 'card';
-    btn.innerHTML = `<span class="card-title">${s.name}</span><span class="card-subtitle">${s.period}</span>`;
-    btn.onclick = () => showSaint(s);
-    grid.appendChild(btn);
-  });
-}
-
-function renderFiches() {
-  const grid = document.getElementById('fichesGrid');
-  if(!grid) return;
-  grid.innerHTML = '';
-  if(typeof FICHES !== 'undefined') {
-    FICHES.forEach(f => {
-      const btn = document.createElement('button');
-      btn.className = 'card';
-      btn.innerHTML = `<span class="icon-badge">📖</span>
-                       <div>
-                         <span class="cat">${f.cat.toUpperCase()}</span>
-                         <span class="card-title">${f.title}</span>
-                         <span class="card-subtitle">${f.time}</span>
-                       </div>`;
-      btn.onclick = () => showFiche(f);
-      grid.appendChild(btn);
-    });
-  }
-}
-
-// Lancement automatique au chargement
-document.addEventListener('DOMContentLoaded', () => {
-  renderDailyQuote();
-  renderSaints();
-  renderFiches();
-});
-
-function showSaint(s) {
-  document.getElementById('ficheModalContent').innerHTML = `
-    <span class="cat">Fête : ${s.feast}</span>
-    <h3 style="margin: 8px 0; font-size:1.6rem;">${s.name}</h3>
-    <p class="muted"><em>${s.period}</em></p>
-
-    ${s.painting ? `
-      <div style="margin: 16px 0; text-align: center;">
-        <img src="${s.painting}" alt="${s.name}" onerror="this.style.display='none'" style="width:100%; max-height:400px; object-fit:cover; border-radius:8px; border:1px solid var(--border);">
-      </div>
-    ` : ''}
-
-    <p style="font-weight:bold; color:var(--accent); font-size:0.9rem;">Patronage : ${s.patronage}</p>
-    <div style="line-height:1.7; font-size:1.05rem; text-align:justify; margin-top:16px;">
-      <p>${s.longBio}</p>
-    </div>
-  `;
-  document.getElementById('ficheModal').classList.add('open');
-}
-
-function showFiche(f) {
-  document.getElementById('ficheModalContent').innerHTML = `
-    <span class="cat">${f.cat.toUpperCase()} · Temps de lecture : ${f.time}</span>
-    <h3 style="margin-top: 8px; font-size: 1.4rem;">${f.title}</h3>
-    <p class="muted" style="margin-bottom: 20px;"><em>${f.sub}</em></p>
-    <div class="article-body-text" style="line-height: 1.7;">
-        ${f.body}
-    </div>
-  `;
-  document.getElementById('ficheModal').classList.add('open');
-}
-
-function renderSaints() {
-  const grid = document.getElementById('saintsGrid');
-  if(!grid) return;
-  grid.innerHTML = '';
-  SAINTS.forEach(s => {
-    const btn = document.createElement('button');
-    btn.className = 'card';
-    btn.innerHTML = `<span class="card-title">${s.name}</span><span class="card-subtitle">${s.period}</span>`;
-    btn.onclick = () => showSaint(s);
-    grid.appendChild(btn);
-  });
-}
-
-function renderFiches() {
-  const grid = document.getElementById('fichesGrid');
-  if(!grid) return;
-  grid.innerHTML = '';
-  FICHES.forEach(f => {
-    const btn = document.createElement('button');
-    btn.className = 'card';
-    btn.innerHTML = `<span class="icon-badge">📖</span>
-                     <div>
-                       <span class="cat">${f.cat.toUpperCase()}</span>
-                       <span class="card-title">${f.title}</span>
-                       <span class="card-subtitle">${f.time}</span>
-                     </div>`;
-    btn.onclick = () => showFiche(f);
-    grid.appendChild(btn);
-  });
-}
-    <p style="font-weight:bold; color:var(--accent); font-size:0.9rem;">Patronage : ${s.patronage}</p>
-    <div style="line-height:1.7; font-size:1.05rem; text-align:justify; margin-top:16px;">
-      <p>${s.longBio}</p>
-    </div>
-  `;
-  document.getElementById('ficheModal').classList.add('open');
-}
-
-// Fonction pour ouvrir les Fiches de Théologie (le bug venait d'ici)
-function showFiche(id){
-  const f = FICHES.find(x => x.id === id);
-  if(!f) return;
-  
-  document.getElementById('ficheModalContent').innerHTML = `
-    <span class="cat">${f.cat.toUpperCase()} · Temps de lecture : ${f.time}</span>
-    <h3 style="margin-top: 8px;">${f.title}</h3>
-    <p class="muted" style="margin-bottom: 20px;"><em>${f.sub}</em></p>
-    <div style="line-height: 1.7; font-size:1.05rem; text-align:justify;">
-        ${f.body}
-    </div>
-  `;
-  document.getElementById('ficheModal').classList.add('open');
-}
-
-// === TRÈS IMPORTANT : La génération des grilles ===
-// Remplace tes anciennes fonctions de rendu par celles-ci pour éviter les conflits
-function renderSaints(){
-  const grid = document.getElementById('saintsGrid');
-  if(!grid) return;
-  grid.innerHTML = '';
-  SAINTS.forEach(s => {
-    const btn = document.createElement('button');
-    btn.className = 'card';
-    btn.innerHTML = `<span class="card-title">${s.name}</span><span class="card-subtitle">${s.period}</span>`;
-    // On passe l'ID en string, ce qui résout le bug
-    btn.onclick = () => showSaint(s.id); 
-    grid.appendChild(btn);
-  });
-}
-
-function renderFiches(){
-  const grid = document.getElementById('fichesGrid');
-  if(!grid) return;
-  grid.innerHTML = '';
-  FICHES.forEach(f => {
-    const btn = document.createElement('button');
-    btn.className = 'card';
-    btn.innerHTML = `<span class="icon-badge">📖</span>
-                     <div>
-                       <span class="cat">${f.cat.toUpperCase()}</span>
-                       <span class="card-title">${f.title}</span>
-                       <span class="card-subtitle">${f.time}</span>
-                     </div>`;
-    btn.onclick = () => showFiche(f.id); 
-    grid.appendChild(btn);
-  });
-}
-
 // ===================== STATE =====================
 let state = {
   consent: JSON.parse(localStorage.getItem('consentGA') ?? 'null'),
@@ -1274,6 +996,7 @@ const MOOD_ICONS = {
 };
 function renderMoods(){
   const grid = document.getElementById('moodsGrid');
+  if(!grid) return;
   MOODS.forEach(m=>{
     const btn = document.createElement('button');
     btn.className = 'card';
@@ -1299,6 +1022,7 @@ function showMood(m){
 // ===================== PRIÈRES =====================
 function renderPrayers(){
   const list = document.getElementById('prayersList');
+  if(!list) return;
   PRAYERS.forEach(p=>{
     const d = document.createElement('details');
     d.className = 'accordion-item';
@@ -1310,6 +1034,7 @@ function renderPrayers(){
 // ===================== NEUVAINES =====================
 function renderNovenas(){
   const grid = document.getElementById('novenasGrid');
+  if(!grid) return;
   const flame = '<path d="M12 2c1 3-3 4-3 8a3 3 0 0 0 6 0c0-1-1-1.5-1-2.5 2 1 3 3 3 5.5a5 5 0 0 1-10 0C7 8 12 6 12 2Z" stroke-linejoin="round"/>';
   NOVENAS.forEach(n=>{
     const btn = document.createElement('button');
@@ -1334,9 +1059,10 @@ function showNovena(n){
   panel.classList.add('show');
 }
 
-// ===================== FICHES =====================
+// ===================== FICHES ET SAINTS =====================
 function renderFiches(){
   const grid = document.getElementById('fichesGrid');
+  if(!grid) return;
   const book = '<path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/>';
   FICHES.forEach(f=>{
     const btn = document.createElement('button');
@@ -1346,19 +1072,47 @@ function renderFiches(){
     grid.appendChild(btn);
   });
 }
-function showFiche(id) {
-  const f = FICHES.find(x => x.id === id);
-  if (!f) return;
-  
-  // Construction du contenu de la modale avec les bonnes balises
+function showFiche(f) {
   document.getElementById('ficheModalContent').innerHTML = `
     <span class="cat">${f.cat.toUpperCase()} · Temps de lecture : ${f.time}</span>
     <h3 style="margin-top: 8px; font-size: 1.5rem;">${f.title}</h3>
     <p class="muted" style="margin-bottom: 20px;"><em>${f.sub}</em></p>
-    
     <div class="article-body-text" style="line-height: 1.6; text-align: justify;">
       ${f.body}
     </div>
+  `;
+  document.getElementById('ficheModal').classList.add('open');
+}
+
+function renderSaints(){
+  const grid = document.getElementById('saintsGrid');
+  if(!grid) return;
+  SAINTS.forEach(s=>{
+    const btn = document.createElement('button');
+    btn.className = 'card';
+    btn.innerHTML = `<h3>${s.name}</h3><p class="muted">${s.period}</p>`;
+    btn.onclick = () => showSaint(s);
+    grid.appendChild(btn);
+  });
+}
+function showSaint(s){
+  document.getElementById('ficheModalContent').innerHTML = `
+    <span class="cat">Notice biographique · Fête : ${s.feast}</span>
+    <h3 style="margin: 8px 0; font-size:1.6rem;">${s.name}</h3>
+    <p class="muted">${s.period}</p>
+    ${s.painting ? `
+      <div style="margin: 16px 0; border-radius: 8px; overflow:hidden; border: 1px solid var(--border);">
+        <img src="${s.painting}" alt="${s.name}" style="width:100%; height:auto; display:block; max-height:360px; object-fit:cover;" loading="lazy">
+        <p style="font-size:0.75rem; color:var(--text-muted); background:var(--bg-card-alt); padding:6px 12px; margin:0; text-align:center; font-style:italic;">
+          Représentation historique
+        </p>
+      </div>
+    ` : ''}
+    <div class="chip-row" style="margin-bottom:14px;">
+      <span class="chip"><strong>Patronages :</strong> ${s.patronage}</span>
+    </div>
+    <h4 style="font-size:1rem; margin-top:16px; margin-bottom:6px; color:var(--accent);">Parcours et vie spirituelle</h4>
+    <p class="body-text" style="line-height:1.7; text-align:justify;">${s.longBio}</p>
   `;
   document.getElementById('ficheModal').classList.add('open');
 }
@@ -1367,6 +1121,7 @@ function closeFicheModal(){ document.getElementById('ficheModal').classList.remo
 // ===================== VERSETS =====================
 function renderVerses(theme){
   const grid = document.getElementById('versesGrid');
+  if(!grid) return;
   grid.innerHTML = '';
   const list = theme ? BIBLE_VERSES.filter(v=>v.theme===theme) : BIBLE_VERSES;
   list.forEach(v=>{
@@ -1378,6 +1133,7 @@ function renderVerses(theme){
 }
 function renderVerseThemes(){
   const row = document.getElementById('verseThemes');
+  if(!row) return;
   const themes = ['Tous', ...new Set(BIBLE_VERSES.map(v=>v.theme))];
   themes.forEach(t=>{
     const chip = document.createElement('button');
@@ -1391,62 +1147,23 @@ function renderVerseThemes(){
     row.appendChild(chip);
   });
 }
-
-// ===================== SAINTS =====================
-function renderSaints(){
-  const grid = document.getElementById('saintsGrid');
-  SAINTS.forEach(s=>{
-    const btn = document.createElement('button');
-    btn.className = 'card';
-    btn.innerHTML = `<h3>${s.name}</h3><p class="muted">${s.period}</p>`;
-    btn.onclick = () => showSaint(s);
-    grid.appendChild(btn);
-  });
-}
-function showSaint(s){
-  document.getElementById('ficheModalContent').innerHTML = `
-    <span class="cat">Notice biographique · Fête : ${s.feast}</span>
-    <h3>${s.name}</h3>
-    <p class="muted">${s.period}</p>
-
-    <!-- Affichage d'une grande œuvre d'art historique -->
-    ${s.painting ? `
-      <div style="margin: 16px 0; border-radius: 8px; overflow:hidden; border: 1px solid var(--border);">
-        <img src="${s.painting}" alt="${s.name}" style="width:100%; height:auto; display:block; max-height:360px; object-fit:cover;" loading="lazy">
-        <p style="font-size:0.75rem; color:var(--text-muted); background:var(--bg-card-alt); padding:6px 12px; margin:0; text-align:center; font-style:italic;">
-          ${s.paintingTitle || 'Représentation historique'}
-        </p>
-      </div>
-    ` : ''}
-
-    <div class="chip-row" style="margin-bottom:14px;">
-      <span class="chip"><strong>Patronages :</strong> ${s.patronage}</span>
-    </div>
-
-    ${s.quote ? `<div class="modal-quote">${s.quote}</div>` : ''}
-
-    <h4 style="font-size:1rem; margin-top:16px; margin-bottom:6px; color:var(--accent);">Parcours et vie spirituelle</h4>
-    <p class="body-text">${s.longBio}</p>
-  `;
-  document.getElementById('ficheModal').classList.add('open');
-}
-// ===================== VERSET DU JOUR =====================
 function renderDailyQuote(){
+  if (!BIBLE_VERSES || BIBLE_VERSES.length === 0) return;
   const dayIndex = new Date().getDate() % BIBLE_VERSES.length;
   const v = BIBLE_VERSES[dayIndex];
-  document.getElementById('dailyQuoteText').textContent = v.text;
-  document.getElementById('dailyQuoteRef').textContent = `${v.ref} — Parole du jour`;
+  const textEl = document.getElementById('dailyQuoteText');
+  const refEl = document.getElementById('dailyQuoteRef');
+  if(textEl) textEl.textContent = v.text;
+  if(refEl) refEl.textContent = `${v.ref} — Parole du jour`;
 }
 
-// ===================== LEGAL =====================
+// ===================== LEGAL & CONSENT =====================
 function showLegal(title, body){
   document.getElementById('legalTitle').textContent = title;
   document.getElementById('legalBody').textContent = body;
   document.getElementById('legalModal').classList.add('open');
 }
 function closeLegal(){ document.getElementById('legalModal').classList.remove('open'); }
-
-// ===================== CONSENT =====================
 function acceptConsent(){
   state.consent = true;
   localStorage.setItem('consentGA','true');
@@ -1475,24 +1192,31 @@ function resetChapelet(){ state.mysteryIdx = 0; state.grain = 0; renderChapelet(
 
 function renderChapelet(){
   const set = MYSTERIES[state.mysterySet];
+  if(!set) return;
   const myst = set.items[state.mysteryIdx];
-  document.getElementById('mysteryLabel').textContent = `${set.label} · ${set.days}`;
-  document.getElementById('mysteryTitle').textContent = `${state.mysteryIdx+1}. ${myst.title}`;
-  document.getElementById('mysteryDesc').textContent = myst.text;
-  document.getElementById('grainCounter').textContent = `Grain ${state.grain+1} sur ${state.totalGrains}`;
+  const lbl = document.getElementById('mysteryLabel');
+  if(lbl) lbl.textContent = `${set.label} · ${set.days}`;
+  const title = document.getElementById('mysteryTitle');
+  if(title) title.textContent = `${state.mysteryIdx+1}. ${myst.title}`;
+  const desc = document.getElementById('mysteryDesc');
+  if(desc) desc.textContent = myst.text;
+  const counter = document.getElementById('grainCounter');
+  if(counter) counter.textContent = `Grain ${state.grain+1} sur ${state.totalGrains}`;
 
   const dots = document.getElementById('grainDots');
-  dots.innerHTML = '';
-  for(let i=0;i<state.totalGrains;i++){
-    const s = document.createElement('span');
-    if(i <= state.grain) s.classList.add('on');
-    dots.appendChild(s);
+  if(dots) {
+    dots.innerHTML = '';
+    for(let i=0;i<state.totalGrains;i++){
+      const s = document.createElement('span');
+      if(i <= state.grain) s.classList.add('on');
+      dots.appendChild(s);
+    }
   }
   drawChapeletSvg();
 }
-
 function drawChapeletSvg(){
   const svg = document.getElementById('chapeletSvg');
+  if(!svg) return;
   const cx=140, cy=140, r=96;
   const beadCount = 20;
   let beads = '';
@@ -1527,13 +1251,19 @@ document.addEventListener('DOMContentLoaded', () => {
   renderChapelet();
 
   if(state.consent === null){
-    setTimeout(()=> document.getElementById('consentBanner').classList.add('show'), 1600);
+    setTimeout(()=> {
+      const banner = document.getElementById('consentBanner');
+      if(banner) banner.classList.add('show');
+    }, 1600);
   }
 
   ['ficheModal','legalModal'].forEach(id=>{
-    document.getElementById(id).addEventListener('click', e=>{
-      if(e.target === e.currentTarget) e.currentTarget.classList.remove('open');
-    });
+    const el = document.getElementById(id);
+    if(el) {
+      el.addEventListener('click', e=>{
+        if(e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+      });
+    }
   });
 
   document.addEventListener('keydown', e=>{

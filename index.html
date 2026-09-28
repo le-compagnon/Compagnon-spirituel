@@ -388,10 +388,12 @@ footer { padding:52px 0 40px; }
         <p>Les textes traditionnels, à portée de main.</p>
       </div>
 
-      <svg class="illustration" width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M70 40 L52 130 Q52 152 74 152 L86 152 Q108 152 108 130 L90 40 Z" fill="currentColor" opacity="0.5"/>
-        <path d="M110 40 L128 130 Q128 152 106 152 L94 152 Q72 152 72 130 L90 40 Z" fill="currentColor" opacity="0.32"/>
-        <circle cx="90" cy="24" r="14" fill="currentColor" opacity="0.18"/>
+<svg class="illustration" width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 2v6" />
+        <path d="M12 18a6 6 0 0 0 6-6V9H6v3a6 6 0 0 0 6 6z" />
+        <path d="M4 11v1a8 8 0 0 0 16 0v-1" />
+        <path d="M12 18v4" />
+        <path d="M8 22h8" />
       </svg>
 
       <div id="prayersList"></div>
@@ -466,16 +468,36 @@ footer { padding:52px 0 40px; }
     </div>
   </section>
 
-  <!-- À PROPOS -->
+<!-- À PROPOS -->
   <section id="apropos">
-    <div class="wrap">
-      <div class="section-head"><h2>À propos</h2></div>
-      <div style="max-width:640px;">
-        <p>Le Compagnon Spirituel est un espace simple, pensé pour accompagner une vie de prière concrète : un lieu où déposer ce que l'on traverse, prier un chapelet à travers ses mystères ou une neuvaine, retrouver les prières de toujours et lire des fiches théologiques sans jargon inutile.</p>
-        <p>Ce site est un prototype indépendant. Il ne remplace ni un accompagnement spirituel, ni le magistère de l'Église.</p>
-        <p><strong>Responsable :</strong> Logan Gamba (<a href="mailto:logan.g.ctc@gmail.com" style="color:var(--accent);">logan.g.ctc@gmail.com</a>)</p>
-        <p><strong>Hébergement :</strong> GitHub Pages</p>
-        <p><strong>Contenu :</strong> Versets Louis Segond (1910, domaine public), fiches © Logan Gamba 2026</p>
+    <div class="wrap" style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+      <div class="section-head" style="text-align: left; margin-bottom: 24px;">
+        <h2>À propos du Compagnon Spirituel</h2>
+        <p style="font-style: italic; color: var(--text-muted);">« La prière n'est pas de demander. La prière est de se mettre entre les mains de Dieu. » — Saint Jean-Marie Vianney</p>
+      </div>
+
+      <div style="line-height: 1.8; font-size: 1.05rem; display: flex; flex-direction: column; gap: 16px;">
+        <p>
+          <strong>Le Compagnon Spirituel</strong> est un espace numérique épuré, conçu de manière indépendante pour accompagner la vie de prière concrète au quotidien. Il se veut un havre de paix numérique, un lieu ressourçant où l'on peut déposer ce que l'on traverse, méditer les mystères du saint chapelet, suivre un parcours de neuvaine à son rythme, retrouver les prières traditionnelles de l'Église et approfondir des fiches théologiques rigoureuses sans jargon superflu.
+        </p>
+
+        <p>
+          Ce projet est né de la volonté de remettre la Tradition, la beauté des textes sacrés et la solidité de la doctrine catholique (enracinée dans l'Écriture, les Pères de l'Église et la Somme théologique de saint Thomas d'Aquin) à portée de main, de manière simple et accessible sur tous les appareils.
+        </p>
+
+        <div style="background: var(--bg-card-alt, rgba(0,0,0,0.03)); border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: 4px; margin: 10px 0;">
+          <p style="margin: 0; font-size: 0.95rem;">
+            <em>Avertissement :</em> Ce site est un prototype indépendant et un outil d'édification personnelle. Il ne remplace en aucun cas un accompagnement spirituel sacerdotal ni le magistère officiel de l'Église catholique.
+          </p>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid var(--border); margin: 20px 0;">
+
+        <div style="font-size: 0.9rem; color: var(--text-muted); display: grid; gap: 8px;">
+          <div><strong>Responsable de publication :</strong> Logan Gamba (<a href="mailto:logan.g.ctc@gmail.com" style="color: var(--accent); text-decoration: underline;">logan.g.ctc@gmail.com</a>)</div>
+          <div><strong>Hébergement technique :</strong> GitHub Pages</div>
+          <div><strong>Sources textuelles :</strong> Versets bibliques issus de la traduction Louis Segond (1910, domaine public), fiches et rédaction doctrinale © Logan Gamba, 2026.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -577,14 +599,18 @@ const MYSTERIES = {
 };
 
 const PRAYERS = [
-  { title:'Notre Père', text:"Notre Père, qui es aux cieux, que ton nom soit sanctifié, que ton règne vienne, que ta volonté soit faite sur la terre comme au ciel. Donne-nous aujourd'hui notre pain de ce jour. Pardonne-nous nos offenses, comme nous pardonnons à ceux qui nous ont offensés. Et ne nous laisse pas entrer en tentation, mais délivre-nous du Mal. Amen." },
+  { title:'Notre Père', text:"Notre Père, qui es aux cieux, que ton nom soit sanctifié, que ton règne vienne, que ta volonté soit faite sur la terre comme au ciel. Donne-nous aujourd'hui notre pain de ce jour. Pardonne-nous nos offenses, comme nous pardonnons aussi à ceux qui nous ont offensés. Et ne nous laisse pas entrer en tentation, mais délivre-nous du Mal. Amen." },
   { title:'Je vous salue Marie', text:"Je vous salue, Marie, pleine de grâce ; le Seigneur est avec vous. Vous êtes bénie entre toutes les femmes, et Jésus, le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et à l'heure de notre mort. Amen." },
   { title:'Gloire au Père', text:"Gloire au Père, et au Fils, et au Saint-Esprit, comme il était au commencement, maintenant et toujours, pour les siècles des siècles. Amen." },
-  { title:'Je crois en Dieu (Credo)', text:"Je crois en Dieu, le Père tout-puissant, Créateur du ciel et de la terre. Et en Jésus-Christ, son Fils unique, notre Seigneur, qui a été conçu du Saint-Esprit, est né de la Vierge Marie, a souffert sous Ponce Pilate, a été crucifié, est mort et a été enseveli. Et en l'Esprit Saint, à la sainte Église catholique, à la communion des saints, à la rémission des péchés, à la résurrection de la chair, à la vie éternelle. Amen." },
-  { title:'Acte de contrition', text:"Mon Dieu, j'ai un profond regret de vous avoir offensé, parce que vous êtes infiniment bon et que le péché vous déplaît. Je prends la ferme résolution, avec le secours de votre grâce, de ne plus vous offenser et de faire pénitence. Amen." },
+  { title:'Je crois en Dieu (Credo)', text:"Je crois en Dieu, le Père tout-puissant, Créateur du ciel et de la terre. Et en Jésus-Christ, son Fils unique, notre Seigneur, qui a été conçu du Saint-Esprit, est né de la Vierge Marie, a souffert sous Ponce Pilate, a été crucifié, est mort et a été enseveli. Il est descendu aux enfers ; le troisième jour il est ressuscité des morts ; il est monté aux cieux, est assis à la droite de Dieu le Père tout-puissant, d'où il viendra juger les vivants et les morts. Je crois en l'Esprit Saint, à la sainte Église catholique, à la communion des saints, à la rémission des péchés, à la résurrection de la chair, à la vie éternelle. Amen." },
+  { title:'Souvenez-vous (Prière à saint Bernard)', text:"Souvenez-vous, ô très pieuse Vierge Marie, qu'on n'a jamais ouï dire qu'aucun de ceux qui ont côtoyé votre protection, imploré votre aide ou réclamé vos suffrages, ait été abandonné. Animé d'une pareille confiance, ô Vierge des vierges, ô ma Mère, je cours vers vous, et, gémissant sous le poids de mes péchés, je me prosterne devant vous. ô Mère du Verbe incarné, ne méprisez pas mes prières, mais écoutez-les favorablement et daignez les exaucer. Amen." },
+  { title:'L\'Angélus', text:"— L'Ange du Seigneur porta l'annonce à Marie,\n— Et elle a conçu du Saint-Esprit.\n(Je vous salue Marie...)\n\n— Voici la servante du Seigneur,\n— Qu'il m'advienne selon votre parole.\n(Je vous salue Marie...)\n\n— Et le Verbe s'est fait chair,\n— Et il a habité parmi nous.\n(Je vous salue Marie...)\n\nPriez pour nous, ô Sainte Mère de Dieu,\nAfin que nous soyons rendus dignes des promesses du Christ.\n\nPrions : Que ta grâce, Seigneur, se répande dans nos cœurs... Par Jésus, le Christ, notre Seigneur. Amen." },
+  { title:'Acte de contrition', text:"Mon Dieu, j'ai un profond regret de vous avoir offensé, parce que vous êtes infiniment bon, infiniment aimable et que le péché vous déplaît. Je prends la ferme résolution, avec le secours de votre sainte grâce, de ne plus vous offenser et de faire pénitence. Amen." },
   { title:"Prière à l'ange gardien", text:"Ange de Dieu, qui êtes mon gardien, puisque le ciel m'a confié à vous par sa bonté, vous, aujourd'hui, éclairez-moi, gardez-moi, conduisez-moi et gouvernez-moi. Amen." },
-  { title:'Salve Regina', text:"Salut, ô Reine, Mère de miséricorde, notre vie, notre douceur, notre espérance, salut ! Enfants d'Ève, exilés, nous crions vers vous ; vers vous nous soupirons, gémissant et pleurant dans cette vallée de larmes. Ô vous, notre avocate, tournez vers nous vos regards miséricordieux. Et après cet exil, montrez-nous Jésus, le fruit béni de vos entrailles. Amen." },
-  { title:'Prière pour la paix (saint François)', text:"Seigneur, fais de moi un instrument de ta paix. Là où est la haine, que je mette l'amour. Là où est l'offense, que je mette le pardon. Là où est la discorde, que je mette l'union. Là où est l'erreur, que je mette la vérité. Là où est le doute, que je mette la foi. Là où est le désespoir, que je mette l'espérance. Amen." }
+  { title:'Bénédicité (avant le repas)', text:"Bénissez-nous, Seigneur, ainsi que ces dons que nous allons recevoir de votre munificence. Par Jésus-Christ notre Seigneur. Amen." },
+  { title:'Grâces (après le repas)', text:"Nous vous rendons grâces pour tous vos bienfaits, Dieu tout-puissant, qui vivez et régnez pour les siècles des siècles. Amen." },
+  { title:'Salve Regina', text:"Salut, ô Reine, Mère de miséricorde, notre vie, notre douceur, notre espérance, salut ! Enfants d'Ève, exilés, nous crions vers vous ; vers vous nous soupirons, gémissant et pleurant dans cette vallée de larmes. Ô vous, notre avocate, tournez vers nous vos regards miséricordieux. Et après cet exil, montrez-nous Jésus, le fruit béni de vos entrailles. Ô clémente, ô pieuse, ô douce Vierge Marie. Amen." },
+  { title:'Prière pour la paix (saint François)', text:"Seigneur, fais de moi un instrument de ta paix. Là où est la haine, que je mette l'amour. Là où est l'offense, que je mette le pardon. Là où est la discorde, que je mette l'union. Là où est l'erreur, que je mette la vérité. Là où est le doute, que je mette la foi. Là où est le désespoir, que je mette l'espérance. Là où sont les ténèbres, que je mette la lumière. Là où est la tristesse, que je mette la joie. Amen." }
 ];
 
 const NOVENAS = [
@@ -646,47 +672,362 @@ const NOVENAS = [
 ];
 
 const FICHES = [
-  { id:'incarnation', title:"L'Incarnation du Verbe", sub:'Comment Dieu a pris chair en Jésus', time:'8 min', cat:'christologie', body:"Le dogme central du christianisme : Jésus est Dieu fait homme. Non pas une réincarnation, mais l'Éternel entrant dans l'histoire. Jésus connaît la fatigue, la faim, la peur, la solitude, la mort. Cette solidarité radicale change tout : notre souffrance n'est jamais abandonnée de Dieu, car Dieu lui-même l'a habitée." },
-  { id:'redemption', title:'La Rédemption par la Croix', sub:'Le sens théologique du sacrifice de Jésus', time:'7 min', cat:'salut', body:"La mort de Jésus sur la croix a un effet cosmique. Elle n'est pas une fin malheureuse, mais le moment où le péché du monde est porté, pris en charge, transformé. C'est un acte d'amour radical qui dit : tu es aimé à ce point." },
-  { id:'grace', title:'La Grâce — cadeau gratuit de Dieu', sub:'Pourquoi on ne peut pas se sauver soi-même', time:'6 min', cat:'salut', body:"La grâce est l'aide gratuite de Dieu. Elle vient avant toute œuvre, toute prière, tout effort. Elle restaure notre capacité à choisir le bien. Tu dois y répondre par ton effort, ta prière, tes actes ; mais tu n'es jamais seul." },
-  { id:'liberte', title:'Libre arbitre et prédestination', sub:'Si Dieu sait tout, sommes-nous vraiment libres ?', time:'7 min', cat:'philosophie', body:"Dieu connaît tous les moments du temps à la fois, de l'extérieur du temps. Cela n'annule pas ton libre choix, toi qui es dans le temps. La prédestination, c'est que Dieu a voulu, de toute éternité, le bien de chaque personne. Tu restes responsable de tes actes." },
-  { id:'eucharistie', title:'L\'Eucharistie — présence réelle', sub:'Comment Jésus est vraiment présent dans le pain et le vin', time:'6 min', cat:'liturgie', body:"Après la consécration, ce n'est pas du pain qui rappelle Jésus : c'est Jésus lui-même, sous les apparences du pain. C'est une transformation de l'être profond, non du phénomène visible. Chaque messe renouvelle le sacrifice du Calvaire." },
-  { id:'confession', title:'La Confession — sacrement de pardon', sub:'Pourquoi se confesser à un prêtre plutôt que directement à Dieu', time:'6 min', cat:'liturgie', body:"Le péché n'est jamais qu'une affaire privée. La confession reconnaît cela : tu dis ton péché à voix haute, devant un tiers, ce qui change tout psychologiquement. Le prêtre n'est pas un juge, mais un instrument de l'absolution de Dieu." },
-  { id:'marie', title:'Marie dans le plan de Dieu', sub:'Mère de Dieu, médiatrice de grâce', time:'6 min', cat:'mariologie', body:"On ne prie pas Marie comme on prie Dieu : on la vénère et on demande son intercession. Son « Fiat » a changé l'histoire. Elle est le modèle du disciple : celle qui écoute la Parole de Dieu et la garde en son cœur." },
-  { id:'trinite', title:'La Trinité — un Dieu en trois Personnes', sub:'Le mystère d\'un Dieu qui est relation', time:'7 min', cat:'théologie', body:"Un seul Dieu subsiste en trois Personnes : Père, Fils et Saint-Esprit. Pas trois dieux, mais une relation, un amour, une communion. Tu es créé à l'image de cette Trinité : tu es fait pour la relation." },
-  { id:'eschatologie', title:'Les fins dernières', sub:'Mort, jugement, ciel, enfer', time:'8 min', cat:'eschatologie', body:"La mort est l'échéance de notre vie. Le jugement particulier révèle ta vie telle que Dieu la voit. Le ciel est l'union avec Dieu et les saints ; l'enfer, la privation de sa vision ; le purgatoire, un état de purification. Cette doctrine invite à bien vivre maintenant." },
-  { id:'conscience', title:'La conscience morale', sub:'Voix de Dieu en toi', time:'6 min', cat:'morale', body:"La conscience est ta capacité intérieure à discerner le bien et le mal. Elle n'est pas infaillible : elle doit être éduquée, informée, entraînée. Tu dois obéir à ta conscience rectifiée ; l'Église cherche à l'éduquer, jamais à l'annuler." }
+  {
+    id: 'incarnation',
+    title: "L'Incarnation du Verbe",
+    sub: 'Comment Dieu a pris chair en Jésus',
+    time: '18 min',
+    cat: 'christologie',
+    body: `
+      <h3>1. Le mystère de l'Union Hypostatique</h3>
+      <p>L'Incarnation n'est pas une simple "apparition" de Dieu ni la transformation de Dieu en homme. Le <strong>Concile de Chalcédoine (451)</strong> a défini le dogme de l'Union Hypostatique : en Jésus-Christ, la nature divine et la nature humaine sont unies <em>"sans confusion, sans changement, sans division et sans séparation"</em> dans l'unique Personne (Hypostase) du Verbe éternel. Jésus possède donc un corps humain, un cœur humain, une intelligence humaine, et une volonté humaine, tout en restant pleinement Dieu.</p>
+
+      <h3>2. Les quatre raisons de l'Incarnation (CEC 456-460)</h3>
+      <ul>
+        <li><strong>Pour nous sauver et nous réconcilier avec Dieu :</strong> Notre nature blessée par le péché originel ne pouvait réparer seule l'offense infinie faite à Dieu. Il fallait un Sauveur qui soit Dieu pour que la réparation soit infinie, et Homme pour représenter l'humanité.</li>
+        <li><strong>Pour nous faire connaître l'amour de Dieu :</strong> (1 Jn 4, 9). Dieu se rend visible et vulnérable dans la crèche pour attirer notre cœur sans l'écraser par sa majesté.</li>
+        <li><strong>Pour être notre modèle de sainteté :</strong> Le Christ nous montre le chemin de l'humanité parfaite, accomplie dans l'amour.</li>
+        <li><strong>Pour nous rendre participants de la nature divine :</strong> Comme l'écrit saint Irénée : <em>"Le Verbe de Dieu s'est fait homme pour que l'homme devienne fils de Dieu."</em></li>
+      </ul>
+
+      <h3>3. La convenance selon Saint Thomas d'Aquin</h3>
+      <p>Dans sa <em>Somme théologique</em>, saint Thomas se demande si l'Incarnation était "convenable". Il répond par un grand principe philosophique : <strong>"Le Bien est de soi diffusif"</strong> (<em>Bonum est diffusivum sui</em>). Dieu étant le Souverain Bien, il est dans sa nature de vouloir se communiquer à ses créatures de la façon la plus intime et absolue qui soit : en épousant notre condition.</p>
+    `
+  },
+  {
+    id: 'redemption',
+    title: 'La Rédemption par la Croix',
+    sub: 'Le sens théologique du sacrifice de Jésus',
+    time: '20 min',
+    cat: 'salut',
+    body: `
+      <h3>1. Pourquoi la Croix ? La doctrine de la Satisfaction</h3>
+      <p>Saint Anselme (XIe siècle) explique dans son œuvre <em>Cur Deus Homo</em> que le péché a causé un désordre d'une gravité infinie car il offense la majesté d'un Dieu infini. L'humanité devait payer une dette, mais seul Dieu en avait les moyens. Le Christ, vrai Dieu et vrai homme, offre sur la Croix une réparation ou "satisfaction vicariante" (à notre place) qui restaure la justice.</p>
+
+      <h3>2. La surabondance de l'Amour (Thomas d'Aquin)</h3>
+      <p>Saint Thomas sublime la pensée d'Anselme : ce n'est pas la "quantité de souffrance" physique qui a sauvé le monde (Dieu n'est pas un tyran sanguinaire). C'est la <strong>charité infinie</strong> et <strong>l'obéissance parfaite</strong> du Christ dans sa souffrance. <em>"C'est par amour que le Christ a souffert, et c'est cet amour qui a donné à sa Passion une valeur réparatrice surabondante"</em> (ST IIIa, q. 48, a. 2). La Croix est d'abord le sommet de l'Amour.</p>
+
+      <h3>3. Les quatre modes d'action du Salut</h3>
+      <ul>
+        <li><strong>Le Mérite :</strong> Le Christ, Nouvel Adam, a mérité la grâce pour tous les hommes par son obéissance, inversant la désobéissance du premier Adam.</li>
+        <li><strong>La Satisfaction :</strong> Il a offert une réparation qui plaît plus à Dieu que tous les péchés du monde ne lui déplaisent.</li>
+        <li><strong>Le Sacrifice :</strong> La Croix est l'acte liturgique parfait où le Christ est à la fois le Prêtre et la Victime.</li>
+        <li><strong>La Rédemption :</strong> Le paiement de notre "rançon" (au sens spirituel), nous arrachant à l'esclavage de la mort et de Satan.</li>
+      </ul>
+    `
+  },
+  {
+    id: 'grace',
+    title: 'La Grâce — cadeau gratuit de Dieu',
+    sub: 'Pourquoi on ne peut pas se sauver soi-même',
+    time: '15 min',
+    cat: 'salut',
+    body: `
+      <h3>1. Qu'est-ce que la grâce ? (CEC 1996)</h3>
+      <p>La grâce est une faveur imméritée, un secours gratuit que Dieu nous donne pour répondre à son appel. C'est une participation surnaturelle à la vie intime de la Trinité. Elle est absolument nécessaire : l'homme blessé par le péché ne peut, par ses seules forces naturelles, atteindre la vie éternelle ni même poser un acte surnaturel méritoire.</p>
+
+      <h3>2. Grâce sanctifiante et Grâces actuelles</h3>
+      <p>La théologie catholique distingue deux grands types de grâces (ST Ia-IIae, q. 110) :</p>
+      <ul>
+        <li><strong>La Grâce sanctifiante (ou habituelle) :</strong> Infusée au moment du Baptême, c'est une disposition permanente qui transforme notre âme de l'intérieur, efface le péché, et fait de nous des temples du Saint-Esprit. Elle se perd par le péché mortel et se retrouve par la Confession.</li>
+        <li><strong>Les Grâces actuelles :</strong> Ce sont les impulsions divines passagères. Ce sont ces "coups de pouce" de Dieu qui éclairent notre intelligence (pour comprendre une vérité) et poussent notre volonté (pour accomplir une bonne action ou résister à une tentation).</li>
+      </ul>
+
+      <h3>3. Le combat de Saint Augustin contre le Pélagisme</h3>
+      <p>Au Ve siècle, Pélage affirmait que le libre arbitre humain était intact et que l'homme pouvait être parfait par la seule force de sa volonté. Saint Augustin, le "Docteur de la grâce", s'y est opposé farouchement : sans la "grâce prévenante" (celle qui vient réveiller notre âme avant même que nous agissions), nous sommes incapables de nous tourner vers Dieu. <em>"Dieu couronne ses propres dons lorsqu'il couronne nos mérites."</em></p>
+    `
+  },
+  {
+    id: 'liberte',
+    title: 'Libre arbitre et prédestination',
+    sub: 'Si Dieu sait tout, sommes-nous vraiment libres ?',
+    time: '20 min',
+    cat: 'philosophie',
+    body: `
+      <h3>1. Le paradoxe apparent de la Prescience divine</h3>
+      <p>L'une des plus grandes questions philosophiques : si Dieu sait déjà ce que je vais faire demain, suis-je libre de ne pas le faire ? Boèce et saint Augustin résolvent ce problème en expliquant la nature de l'Éternité. Dieu ne "pré-voit" pas le futur. Il est totalement hors du temps (dans un Éternel Présent). Dieu voit tout (passé, présent, futur) d'un seul regard instantané. <strong>Sa connaissance ne cause pas notre acte.</strong> Ce n'est pas parce que Dieu le voit que tu le fais ; c'est parce que tu choisis librement de le faire que Dieu le voit dans son éternité.</p>
+
+      <h3>2. L'harmonie de la grâce et de la liberté (Concile de Trente)</h3>
+      <p>Saint Thomas d'Aquin affirme que la toute-puissance de Dieu est si absolue qu'elle cause non seulement nos actions, mais aussi <em>la manière</em> dont nous les accomplissons : de façon libre et contingente. La grâce de Dieu ne violente jamais la volonté humaine. Elle l'attire, la guérit et la meut de l'intérieur. Face à la grâce, l'homme garde le pouvoir radical d'y consentir ou d'y résister.</p>
+
+      <h3>3. La Prédestination catholique vs le Fatalisme</h3>
+      <p>L'Église catholique rejette fermement la "double prédestination" (théorie de Calvin selon laquelle Dieu créerait certaines âmes expressément pour l'enfer). Au contraire, la doctrine catholique (CEC 1037) affirme que :</p>
+      <ul>
+        <li>Dieu veut le salut de <strong>tous</strong> les hommes (1 Tm 2, 4) et donne à chacun les grâces suffisantes pour être sauvé.</li>
+        <li>La prédestination est le dessein bienveillant de Dieu qui prépare la gloire pour ses élus.</li>
+        <li>La damnation n'est <strong>jamais</strong> voulue par Dieu. Elle est l'issue tragique, permise par Dieu, du refus obstiné et libre de l'homme d'accueillir l'Amour jusqu'à son dernier souffle.</li>
+      </ul>
+    `
+  },
+  {
+    id: 'eucharistie',
+    title: "L'Eucharistie — présence réelle",
+    sub: 'Comment Jésus est vraiment présent dans le pain et le vin',
+    time: '15 min',
+    cat: 'liturgie',
+    body: `
+      <h3>1. Le dogme de la Transsubstantiation</h3>
+      <p>Défini infailliblement par le <strong>Concile de Trente (1551)</strong>, ce terme signifie que par la consécration, il s'opère un changement de toute la substance du pain en la substance du Corps du Christ, et de toute la substance du vin en la substance de son Sang. L'Eucharistie n'est donc ni un symbole, ni une simple "présence spirituelle".</p>
+
+      <h3>2. L'explication philosophique (Substance et Accidents)</h3>
+      <p>Pour expliquer comment le pain reste visuellement du pain, saint Thomas utilise les catégories d'Aristote :</p>
+      <ul>
+        <li><strong>La Substance (l'être profond) :</strong> Ce qui fait qu'une chose est ce qu'elle est. Lors de la messe, la substance du pain cesse d'exister pour devenir le Christ.</li>
+        <li><strong>Les Accidents (les apparences) :</strong> Le goût, la couleur, le poids, la texture, la composition chimique. Par un miracle divin, ces accidents demeurent suspendus sans leur substance propre.</li>
+      </ul>
+
+      <h3>3. La Présence intégrale (La Concomitance)</h3>
+      <p>Le Christ étant vivant et ressuscité, on ne peut pas séparer son corps de son sang. La théologie parle de <em>concomitance</em> : sous l'apparence de l'hostie (le corps) se trouvent aussi le Sang, l'Âme et la Divinité. Quiconque communie à une seule des deux espèces reçoit le Christ dans sa totalité. De plus, le Christ est entièrement présent dans le moindre petit fragment de l'hostie.</p>
+    `
+  },
+  {
+    id: 'confession',
+    title: 'La Confession — sacrement de pardon',
+    sub: "Pourquoi se confesser à un prêtre plutôt qu'à Dieu directement ?",
+    time: '12 min',
+    cat: 'liturgie',
+    body: `
+      <h3>1. Le fondement scripturaire</h3>
+      <p>Le Christ aurait pu nous demander de nous confesser directement à lui en silence. Pourtant, au soir de Pâques, il dit à ses apôtres : <em>"Recevez le Saint-Esprit. À qui vous remettrez ses péchés, ils seront remis ; à qui vous les maintiendrez, ils sont maintenus."</em> (Jn 20, 22-23). En confessant à un prêtre, on obéit à la méthode voulue par Jésus lui-même. Le prêtre agit <strong>In Persona Christi Capitis</strong> : ce n'est pas l'homme qui pardonne, c'est le Christ lui-même à travers lui.</p>
+
+      <h3>2. La dimension ecclésiale du péché</h3>
+      <p>Tout péché, même le plus secret, abîme le tissu invisible de l'Église (le Corps Mystique du Christ). En se confessant à un prêtre, celui-ci représente à la fois Dieu (qui pardonne) et la communauté ecclésiale blessée (qui réintègre le pécheur dans la communion complète).</p>
+
+      <h3>3. Les 5 actes indispensables du pénitent (CEC 1450-1460)</h3>
+      <ul>
+        <li><strong>L'Examen de conscience :</strong> Faire le point sur sa vie sous le regard de la vérité.</li>
+        <li><strong>La Contrition :</strong> C'est l'acte le plus important. C'est la douleur de l'âme et la détestation du péché. Elle est <em>parfaite</em> si on regrette par amour pour Dieu, ou <em>imparfaite</em> (attrition) si on regrette par peur de l'enfer ou dégoût de soi.</li>
+        <li><strong>Le Ferme propos :</strong> La décision ferme de faire tout son possible pour ne pas recommencer et fuir les occasions de chute.</li>
+        <li><strong>L'Aveu :</strong> Énoncer ses péchés graves (mortels) avec clarté.</li>
+        <li><strong>La Satisfaction (la pénitence) :</strong> La prière ou l'acte réparateur donné par le prêtre pour guérir les "séquelles" du péché dans notre âme.</li>
+      </ul>
+    `
+  },
+  {
+    id: 'marie',
+    title: 'Marie dans le plan de Dieu',
+    sub: 'Mère de Dieu, médiatrice de grâce et Nouvelle Ève',
+    time: '16 min',
+    cat: 'mariologie',
+    body: `
+      <h3>1. Les quatre dogmes mariaux intangibles</h3>
+      <ul>
+        <li><strong>La Maternité divine (Théotokos - Éphèse, 431) :</strong> Marie n'a pas seulement enfanté la "nature humaine" de Jésus, elle a enfanté la Personne du Verbe incarné. Elle est donc véritablement Mère de Dieu.</li>
+        <li><strong>La Virginité perpétuelle (Latran, 649) :</strong> Marie a conçu par le Saint-Esprit sans semence humaine, a enfanté sans lésion, et est demeurée vierge tout au long de sa vie terrestre (signe de sa consécration totale).</li>
+        <li><strong>L'Immaculée Conception (Pie IX, 1854) :</strong> En prévision des mérites de la mort de son Fils sur la Croix, Marie a été préservée dès l'instant de sa conception de toute tache du péché originel. Elle est la "pleine de grâce".</li>
+        <li><strong>L'Assomption (Pie XII, 1950) :</strong> Au terme de son parcours terrestre, Marie a été élevée en corps et en âme dans la gloire du Ciel, anticipant la résurrection de nos propres corps à la fin des temps.</li>
+      </ul>
+
+      <h3>2. La Nouvelle Ève (Typologie patristique)</h3>
+      <p>Dès le IIe siècle, saint Irénée de Lyon oppose la désobéissance d'Ève à l'obéissance de Marie. Là où Ève a cru au mensonge du serpent (l'ange déchu) et a fait entrer la mort, Marie a cru à la vérité de l'Ange Gabriel, a prononcé son <em>Fiat</em> ("Que tout m'advienne selon ta parole"), et a fait entrer la Vie dans le monde.</p>
+
+      <h3>3. Médiation et culte d'Hyperdulie</h3>
+      <p>La médiation maternelle de Marie n'obscurcit en rien l'unique médiation du Christ ; au contraire, elle en découle et en montre la puissance (Lumen Gentium 60). L'Église ne voue jamais d'adoration (culte de <em>Latrie</em> réservé à Dieu) à Marie. Elle lui rend un culte d'<em>Hyperdulie</em>, une vénération suprême supérieure aux autres saints en raison de son lien charnel et spirituel unique avec la Trinité.</p>
+    `
+  },
+  {
+    id: 'trinite',
+    title: 'La Trinité — un Dieu en trois Personnes',
+    sub: "Le mystère d'un Dieu qui est relation",
+    time: '20 min',
+    cat: 'theologie',
+    body: `
+      <h3>1. Formule fondamentale de la Foi</h3>
+      <p>Le mystère central de la foi chrétienne. Dieu est Unique en Essence (ou Nature, ou Substance) et Trine en Personnes. Il n'y a pas trois dieux (trithéisme), ni un seul Dieu qui porterait trois masques différents selon les époques (modalisme). Le Père, le Fils et le Saint-Esprit possèdent entièrement et de façon indivisible la même nature divine.</p>
+
+      <h3>2. La théorie des Relations Subsistantes (ST Ia)</h3>
+      <p>Saint Thomas d'Aquin explique que puisque les trois Personnes partagent exactement la même substance infinie, elles ne peuvent se distinguer entre elles que par leurs <strong>relations d'origine</strong> :</p>
+      <ul>
+        <li><strong>Le Père :</strong> Est le Principe sans principe. Il engendre éternellement le Fils.</li>
+        <li><strong>Le Fils (Le Verbe) :</strong> Procède du Père par voie de l'intelligence (la Pensée parfaite que Dieu a de lui-même).</li>
+        <li><strong>Le Saint-Esprit :</strong> Procède du Père et du Fils (<em>Filioque</em>) par voie de volonté et d'amour infini (le souffle mutuel d'amour entre le Père et le Fils).</li>
+      </ul>
+
+      <h3>3. La Périchorèse (ou Circoninsession)</h3>
+      <p>La théologie utilise ce concept vertigineux pour décrire comment les Personnes divines s'interpénètrent mutuellement. L'unité divine est si absolue que le Père est tout entier dans le Fils, le Fils tout entier dans le Père, et le Saint-Esprit tout entier dans le Père et le Fils. Dieu est, de toute éternité, une communion familiale, une danse d'amour infini.</p>
+    `
+  },
+  {
+    id: 'eschatologie',
+    title: 'Les fins dernières',
+    sub: 'Mort, jugement, ciel, enfer et purgatoire',
+    time: '18 min',
+    cat: 'eschatologie',
+    body: `
+      <h3>1. Le double Jugement</h3>
+      <p>La doctrine catholique distingue :</p>
+      <ul>
+        <li><strong>Le Jugement particulier :</strong> A lieu pour chaque âme dans l'instant immédiat de la mort physique. L'âme voit alors sa vie à la lumière éblouissante de la vérité divine, et son éternité est fixée (Ciel, Purgatoire ou Enfer).</li>
+        <li><strong>Le Jugement dernier :</strong> Aura lieu à la fin des temps, lors du retour glorieux du Christ (Parousie). Il s'accompagnera de la <strong>Résurrection de la chair</strong> (nos âmes retrouveront nos corps transfigurés) pour juger publiquement toute l'histoire de l'humanité.</li>
+      </ul>
+
+      <h3>2. Le Purgatoire (Le feu purificateur de l'Amour)</h3>
+      <p>Le Purgatoire n'est pas un "mini-enfer" ni un camp de torture. Sainte Catherine de Gênes le décrit comme un mystère de joie paradoxale. C'est l'état des âmes qui meurent en état de grâce (sauvées) mais qui conservent des attachements désordonnés aux créatures ou n'ont pas expié les peines temporelles de leurs péchés. Au Purgatoire, l'Amour ardent de Dieu brûle douloureusement les dernières scories de l'égoïsme pour rendre l'âme capable de supporter la splendeur du Ciel.</p>
+
+      <h3>3. La Vision Béatifique (Ciel) et le Dam (Enfer)</h3>
+      <p><strong>Le Ciel</strong> est l'état de bonheur suprême et définitif. L'intellect humain est élevé par la "lumière de gloire" pour contempler l'Essence de Dieu face à face (la Vision Béatifique). <strong>L'Enfer</strong> est un dogme terrible mais nécessaire pour que la liberté humaine ait un sens. Il consiste en la "peine du dam" (la privation éternelle et désespérante de Dieu pour lequel nous sommes faits) et l'endurcissement définitif de la volonté dans la haine.</p>
+    `
+  },
+  {
+    id: 'conscience',
+    title: 'La conscience morale',
+    sub: 'Voix de Dieu en toi et Loi naturelle',
+    time: '15 min',
+    cat: 'morale',
+    body: `
+      <h3>1. Le sanctuaire inviolable de l'homme</h3>
+      <p>Le concile Vatican II (<em>Gaudium et Spes, 16</em>) définit la conscience avec poésie : <em>"La conscience est le centre le plus secret de l'homme, le sanctuaire où il est seul avec Dieu et où Sa voix se fait entendre."</em> Elle ordonne à l'homme, au moment opportun, d'accomplir le bien et d'éviter le mal.</p>
+
+      <h3>2. Synderèse et Jugement de conscience (Saint Thomas)</h3>
+      <p>Saint Thomas d'Aquin décompose le mécanisme moral en deux étapes :</p>
+      <ul>
+        <li><strong>La Synderèse :</strong> C'est l'étincelle intellectuelle innée, la connaissance infaillible des principes moraux fondamentaux (ex: "il ne faut pas tuer l'innocent", "il faut rendre à chacun ce qui lui est dû").</li>
+        <li><strong>Le Jugement de la conscience :</strong> C'est l'application pratique de cette loi générale à un cas particulier (ex: "dans cette situation complexe, agir ainsi revient à tuer, je dois l'éviter"). C'est ici que l'erreur est possible si l'homme raisonne mal.</li>
+      </ul>
+
+      <h3>3. Le devoir grave de former sa conscience</h3>
+      <p>Jean-Paul II a rappelé dans son encyclique <em>Veritatis Splendor</em> que la conscience n'est pas créatrice de la vérité morale ; elle ne fait que la découvrir. Une conscience peut être aveuglée par l'habitude du péché, l'ignorance ou la pression sociale. Le chrétien a l'obligation stricte d'éclairer sa conscience (par l'Évangile, la prière, et le Magistère) pour qu'elle juge droit.</p>
+    `
+  }
 ];
 
 const BIBLE_VERSES = [
   { text:"L'Éternel est mon berger : je ne manquerai de rien.", ref:'Psaume 23, 1', theme:'Confiance' },
   { text:"Je puis tout par celui qui me fortifie.", ref:'Philippiens 4, 13', theme:'Force' },
   { text:"L'amour est patient, il est plein de bonté.", ref:'1 Corinthiens 13, 4', theme:'Amour' },
-  { text:"Ne crains rien, car je suis avec toi.", ref:'Ésaïe 41, 10', theme:'Confiance' },
+  { text:"Ne crains rien, car je suis avec toi ; ne promène pas des regards inquiets, car je suis ton Dieu.", ref:'Ésaïe 41, 10', theme:'Confiance' },
   { text:"Venez à moi, vous tous qui êtes fatigués et chargés, et je vous donnerai du repos.", ref:'Matthieu 11, 28', theme:'Repos' },
   { text:"La joie de l'Éternel sera votre force.", ref:'Néhémie 8, 10', theme:'Joie' },
   { text:"Heureux ceux qui procurent la paix, car ils seront appelés fils de Dieu.", ref:'Matthieu 5, 9', theme:'Paix' },
-  { text:"Confie-toi en l'Éternel de tout ton cœur.", ref:'Proverbes 3, 5', theme:'Confiance' },
-  { text:"Demandez, et l'on vous donnera ; cherchez, et vous trouverez.", ref:'Matthieu 7, 7', theme:'Espérance' },
-  { text:"Que la paix du Christ règne dans vos cœurs.", ref:'Colossiens 3, 15', theme:'Paix' },
+  { text:"Confie-toi en l'Éternel de tout ton cœur, et ne t'appuie pas sur ta sagesse.", ref:'Proverbes 3, 5', theme:'Confiance' },
+  { text:"Demandez, et l'on vous donnera ; cherchez, et vous trouverez ; frappez, et l'on vous ouvrira.", ref:'Matthieu 7, 7', theme:'Espérance' },
+  { text:"Que la paix du Christ, à laquelle vous avez été appelés, règne dans vos cœurs.", ref:'Colossiens 3, 15', theme:'Paix' },
   { text:"L'amour ne périt jamais.", ref:'1 Corinthiens 13, 8', theme:'Amour' },
-  { text:"Réjouissez-vous toujours dans le Seigneur.", ref:'Philippiens 4, 4', theme:'Joie' },
-  { text:"Je suis avec toi partout où tu iras.", ref:'Genèse 28, 15', theme:'Confiance' },
-  { text:"Le Seigneur est proche de ceux qui l'invoquent.", ref:'Psaume 145, 18', theme:'Espérance' },
-  { text:"Soyez forts et courageux ; ne craignez point.", ref:'Deutéronome 31, 6', theme:'Force' }
+  { text:"Réjouissez-vous toujours dans le Seigneur ; je le redis, réjouissez-vous.", ref:'Philippiens 4, 4', theme:'Joie' },
+  { text:"Je suis avec toi partout où tu iras, et je ne t'abandonnerai point.", ref:'Genèse 28, 15', theme:'Confiance' },
+  { text:"Le Seigneur est proche de ceux qui l'invoquent, de tous ceux qui l'invoquent avec sincérité.", ref:'Psaume 145, 18', theme:'Espérance' },
+  { text:"Soyez forts et courageux ; ne craignez point et ne soyez effrayés devant eux.", ref:'Deutéronome 31, 6', theme:'Force' },
+  { text:"Quand les montagnes s'éloigneraient, ma bonté ne s'éloignera point de toi.", ref:'Ésaïe 54, 10', theme:'Consolation' },
+  { text:"Ta parole est une lampe à mes pieds, et une lumière sur mon sentier.", ref:'Psaume 119, 105', theme:'Lumière' },
+  { text:"L'Éternel est ma lumière et mon salut : de qui aurais-je peur ?", ref:'Psaume 27, 1', theme:'Force' },
+  { text:"Recommande ton sort à l'Éternel, mets en lui ta confiance, and il agira.", ref:'Psaume 37, 5', theme:'Confiance' },
+  { text:"Car je connais les projets que j'aiformés sur vous, projets de paix et non de malheur.", ref:'Jérémie 29, 11', theme:'Espérance' },
+  { text:"Ne vous inquiétez de rien ; mais en toute chose faites connaître vos besoins à Dieu.", ref:'Philippiens 4, 6', theme:'Paix' },
+  { text:"Approchez-vous de Dieu, and il s'approchera de vous.", ref:'Jacques 4, 8', theme:'Grâce' },
+  { text:"Goûtez and voyez combien l'Éternel est bon ! Heureux l'homme qui cherche en lui son refuge !", ref:'Psaume 34, 8', theme:'Joie' },
+  { text:"Celui qui demeure sous l'abri du Très-Haut repose à l'ombre du Tout-Puissant.", ref:'Psaume 91, 1', theme:'Confiance' },
+  { text:"Mon âme se repose en paix sur Dieu seul : de lui vient mon salut.", ref:'Psaume 62, 1', theme:'Paix' },
+  { text:"Dieu est notre refuge and notre appui, un secours qui ne manque jamais dans la détresse.", ref:'Psaume 46, 1', theme:'Force' },
+  { text:"Toute grâce excellente and tout don parfait descendent d'en haut, du Père des lumières.", ref:'Jacques 1, 17', theme:'Grâce' },
+  { text:"Je t'instruirai and te montrerai la voie que tu dois suivre ; je te conseilerai, j'aurai le regard sur toi.", ref:'Psaume 32, 8', theme:'Guidance' },
+  { text:"Marchez dans l'amour, comme le Christ nous a aimés, and s'est livré lui-même pour nous.", ref:'Éphésiens 5, 2', theme:'Amour' },
+  { text:"Si Dieu est pour nous, qui sera contre nous ?", ref:'Romains 8, 31', theme:'Force' },
+  { text:"Nous savons que toutes choses concourent au bien de ceux qui aiment Dieu.", ref:'Romains 8, 28', theme:'Espérance' },
+  { text:"Ceux qui se confient en l'Éternel renouvellent leur force. Ils prennent le vol comme les aigles.", ref:'Ésaïe 40, 31', theme:'Force' },
+  { text:"L'espérance ne trompe point, parce que l'amour de Dieu est répandu dans nos cœurs.", ref:'Romains 5, 5', theme:'Espérance' },
+  { text:"J'ai cherché l'Éternel, and il m'a répondu ; il m'a délivré de toutes mes frayeurs.", ref:'Psaume 34, 4', theme:'Consolation' },
+  { text:"Avant que je t'eusse formé dans le ventre de ta mère, je te connaissais.", ref:'Jérémie 1, 5', theme:'Amour' },
+  { text:"Ne crains point, car je t'ai racheté, je t'ai appelé par ton nom : tu es à moi !", ref:'Ésaïe 43, 1', theme:'Confiance' },
+  { text:"Venez, chantons avec allégresse à l'Éternel ! Poussons des cris de joie vers le rocher de notre salut.", ref:'Psaume 95, 1', theme:'Joie' },
+  { text:"Que la grâce du Seigneur Jésus-Christ, l'amour de Dieu, and la communion du Saint-Esprit soient avec vous tous !", ref:'2 Corinthiens 13, 13', theme:'Grâce' },
+  { text:"L'Éternel ta gardera de tout mal, il gardera ton âme.", ref:'Psaume 121, 7', theme:'Confiance' },
+  { text:"Consolez, consolez mon peuple, dit votre Dieu.", ref:'Ésaïe 40, 1', theme:'Consolation' },
+  { text:"Supportez-vous les uns les autres, and, si l'un a sujet de se plaindre de l'autre, pardonnez-vous.", ref:'Colossiens 3, 13', theme:'Amour' },
+  { text:"Confessez vos péchés les uns aux autres, and priez les uns pour les autres, afin que soyez guéris.", ref:'Jacques 5, 16', theme:'Grâce' },
+  { text:"Heureux les miséricordieux, car ils obtiendront miséricorde !", ref:'Matthieu 5, 7', theme:'Paix' },
+  { text:"Mieux vaut un jour dans tes parvis que mille ailleurs.", ref:'Psaume 84, 10', theme:'Joie' },
+  { text:"Humiliez-vous sous la puissante main de Dieu, afin qu'il vous élève en son temps.", ref:'1 Pierre 5, 6', theme:'Guidance' },
+  { text:"Mon cœur and ma chair poussent des cris vers le Dieu vivant !", ref:'Psaume 84, 2', theme:'Espérance' },
+  { text:"Tu me montres le sentier de la vie ; il y d'abondantes joies devant ta face.", ref:'Psaume 16, 11', theme:'Joie' },
+  { text:"Car là où est ton trésor, là aussi sera ton cœur.", ref:'Matthieu 6, 21', theme:'Guidance' },
+  { text:"Veillez and priez, afin que vous ne tombiez pas dans la tentation.", ref:'Matthieu 26, 41', theme:'Force' },
+  { text:"Je vous donne un commandement nouveau : Aimez-vous les uns les autres comme je vous ai aimés.", ref:'Jean 13, 34', theme:'Amour' }
 ];
-
 const SAINTS = [
-  { id:'francois', name:'François d\'Assise', period:'1182 – 1226', desc:"Fils de marchand, il quitte tout pour vivre la pauvreté évangélique. Fondateur des franciscains, il voit en toute créature un reflet de Dieu. Sa prière pour la paix reste priée dans le monde entier." },
-  { id:'therese', name:'Thérèse de Lisieux', period:'1873 – 1897', desc:"Carmélite morte à 24 ans, elle enseigne la « petite voie » : faire les choses les plus simples avec un amour immense. Docteur de l'Église, patronne des missions." },
-  { id:'augustin', name:'Augustin d\'Hippone', period:'354 – 430', desc:"Après une jeunesse dissolue et un long chemin intellectuel, il se convertit et devient l'un des plus grands penseurs chrétiens. « Notre cœur est sans repos tant qu'il ne repose en toi. »" },
-  { id:'therese-avila', name:"Thérèse d'Ávila", period:'1515 – 1582', desc:"Réformatrice du Carmel, mystique et femme d'action à une époque où cela n'allait pas de soi. Ses écrits sur la prière intérieure restent des références." },
-  { id:'jean-vianney', name:'Jean-Marie Vianney', period:'1786 – 1859', desc:"Curé d'Ars, simple et peu doué pour les études, il devient un confesseur recherché par des milliers de pénitents venus de toute l'Europe." },
-  { id:'maximilien-kolbe', name:'Maximilien Kolbe', period:'1894 – 1941', desc:"Franciscain polonais, il offre sa vie à la place d'un père de famille condamné à mort au camp d'Auschwitz. Un des visages les plus forts de la charité au XXe siècle." },
-  { id:'mere-teresa', name:'Mère Teresa de Calcutta', period:'1910 – 1997', desc:"Fondatrice des Missionnaires de la Charité, elle consacre sa vie aux plus pauvres parmi les pauvres dans les rues de Calcutta." },
-  { id:'jean-paul-ii', name:'Jean-Paul II', period:'1920 – 2005', desc:"Pape pendant 27 ans, survivant du nazisme et du communisme en Pologne, il parcourt le monde et lance les Journées Mondiales de la Jeunesse." },
-  { id:'benoit', name:'Benoît de Nursie', period:'480 – 547', desc:"Père du monachisme occidental. Sa règle, fondée sur « prier et travailler », structure encore aujourd'hui de nombreuses communautés monastiques." },
-  { id:'catherine-siene', name:'Catherine de Sienne', period:'1347 – 1380', desc:"Mystique et diplomate, elle œuvre pour ramener le pape à Rome et pour la paix en Italie. Docteur de l'Église malgré une instruction très limitée." }
+  { 
+    id:'francois', 
+    name:'François d\'Assise', 
+    period:'1182 – 1226',
+    feast:'4 octobre',
+    patronage:'Écologie, animaux, Italie, marchands',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Giotto_di_Bondone_-_St_Francis_Receives_the_Stigmata_-_WGA09180.jpg/800px-Giotto_di_Bondone_-_St_Francis_Receives_the_Stigmata_-_WGA09180.jpg',
+    paintingTitle:'Saint François recevant les stigmates (Giotto, Basilique d\'Assise)',
+    quote:'« Loué sois-tu, mon Seigneur, avec toutes tes créatures. »',
+    desc:'Fils de marchand, il épouse « Dame Pauvreté » et fonde l\'ordre des franciscains.',
+    longBio:'Né à Assise en Ombrie, François mène d\'abord une jeunesse insouciante de fils de riche bourgeois avant de connaître une profonde conversion spirituelle à la suite d\'une rencontre avec un lépreux. Il renonce publiquement à ses biens, se dépouille de ses vêtements devant son évêque et choisit de vivre selon l\'Évangile strict. Il fonde l\'Ordre des Frères Mineurs, marquant l\'Église par sa joie, son amour de la nature et sa quête de paix. Il reçoit les stigmates de la Passion peu avant sa mort en 1226.'
+  },
+  { 
+    id:'therese', 
+    name:'Thérèse de Lisieux', 
+    period:'1873 – 1897',
+    feast:'1er octobre',
+    patronage:'Missions, France, pilotes d\'aviation',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Therese_de_Lisieux_1896.jpg/800px-Therese_de_Lisieux_1896.jpg',
+    paintingTitle:'Photographie officielle de Sainte Thérèse (Carmel de Lisieux, 1896)',
+    quote:'« Je veux passer mon ciel à faire du bien sur la terre. »',
+    desc:'Carmélite morte à 24 ans, docteur de l\'Église et maître de la « Petite Voie ».',
+    longBio:'Née à Alençon, Thérèse Martin entre prématurément au Carmel de Lisieux à l\'âge de quinze ans avec l\'autorisation exceptionnelle du pape Léon XIII. Durant sa courte vie religieuse, rongée par la tuberculose qu\'elle endure en silence, elle développe une spiritualité révolutionnaire par sa simplicité : la « Petite Voie » de l\'enfance spirituelle. Elle démontre que la sainteté est accessible à tous à travers les actes les plus ordinaires accomplis par amour. Elle est déclarée Docteur de l\'Église par Jean-Paul II.'
+  },
+  { 
+    id:'augustin', 
+    name:'Augustin d\'Hippone', 
+    period:'354 – 430',
+    feast:'28 août',
+    patronage:'Théologiens, imprimeurs, brasseurs',
+    quote:'« Tu nous as faits pour toi, Seigneur, et notre cœur est sans repos tant qu\'il ne repose en toi. »',
+    desc:'Évêque d\'Hippone, philosophe et géant de la théologie occidentale.',
+    longBio:'Originaire de Thagaste en Afrique romaine, Augustin mène une jeunesse ardente, cherchant la vérité à travers la rhétorique, le manichéisme et la philosophie néoplatonicienne tout en menant une vie mondaine. Grâce aux prières persistantes de sa mère sainte Monique et aux sermons de saint Ambroise à Milan, il se convertit et reçoit le baptême à 33 ans. Devenu évêque d\'Hippone, il rédige des œuvres monumentales comme « Les Confessions » et « La Cité de Dieu », qui structurent durablement la pensée chrétienne.'
+  },
+  { 
+    id:'thomas-aquin', 
+    name:'Thomas d\'Aquin', 
+    period:'1225 – 1274',
+    feast:'28 janvier',
+    patronage:'Étudiants, universités, libraires',
+    quote:'« La grâce ne détruit pas la nature, mais elle la perfectionne. »',
+    desc:'Le « Docteur Angélique », sommité intellectuelle de l\'ordre des Prêcheurs.',
+    longBio:'Issu de la noblesse italienne, Thomas intègre l\'ordre mendiant des Dominicains contre la volonté de sa famille, qui l\'enferme même durant plus d\'un an pour l\'en dissuader. Devenu maître en théologie à l\'Université de Paris, il réalise une œuvre magistrale en réconciliant la pensée d\'Aristote avec la foi chrétienne, notamment dans sa monumentale « Somme Théologique ». Son immense rigueur intellectuelle s\'accompagnait d\'une profonde vie mystique.'
+  },
+  { 
+    id:'jeanne-arc', 
+    name:'Jeanne d\'Arc', 
+    period:'1412 – 1431',
+    feast:'30 mai',
+    patronage:'France, soldats, prisonniers',
+    quote:'« Les hommes d\'armes combattront et Dieu donnera la victoire ! »',
+    desc:'La Pucelle d\'Orléans, héroïne nationale guidée par ses voix célestes.',
+    longBio:'Jeune paysanne pieuse de Domrémy en Lorraine, Jeanne entend dès l\'âge de treize ans les voix de l\'archange saint Michel, de sainte Catherine et de sainte Marguerite lui confiant la mission divine de faire sacrer le roi de France Charles VII et de bouter l\'occupant anglais hors du royaume. Gagnant la confiance des capitaines à Chinon, elle lève le siège d\'Orléans. Capturée par les Bourguignons et vendue aux Anglais, elle subit un procès inique à Rouen et périt sur le bûcher à 19 ans.'
+  },
+  { 
+    id:'antoine', 
+    name:'Antoine de Padoue', 
+    period:'1195 – 1231',
+    feast:'13 juin',
+    patronage:'Objets perdus, pauvres, voyageurs, opprimés',
+    quote:'« Le grand danger du chrétien, c\'est de parler de la foi sans la pratiquer. »',
+    desc:'Prédicateur hors pair, franciscain portugais et thaumaturge.',
+    longBio:'Né à Lisbonne sous le prénom de Fernando, il entre d\'abord chez les Chanoines réguliers de saint Augustin avant de rejoindre les Franciscains pour partir prêcher au Maroc. Souffrant, il est redirigé vers l\'Italie où ses talents exceptionnels de prédicateur éclatent au grand jour, convertissant les foules immenses et luttant contre l\'hérésie. Connu pour sa profonde érudition biblique et sa grande douceur, il meurt à Padoue à l\'âge de 36 ans.'
+  },
+  { 
+    id:'padre-pio', 
+    name:'Padre Pio de Pietrelcina', 
+    period:'1887 – 1968',
+    feast:'23 septembre',
+    patronage:'Volontaires de la protection civile, adolescents',
+    quote:'« Prie, espère et ne t\'inquiète pas. L\'inquiétude est inutile. »',
+    desc:'Capucin stigmatisé, grand mystique et confesseur infatigable des Pouilles.',
+    longBio:'Né Francesco Forgione à Pietrelcina en Italie, il entre chez les Frères mineurs capucins et prend le nom de frère Pio. Installé durant de longues décennies au couvent de San Giovanni Rotondo, il reçoit les stigmates visibles de la Passion du Christ, qu\'il porte dans sa chair pendant un demi-siècle. Exerçant un charisme de discernement extraordinaire, il passe des heures interminables dans le secret du confessionnal à réconcilier des foules immenses venues du monde entier.'
+  },
+  { 
+    id:'ignace', 
+    name:'Ignace de Loyola', 
+    period:'1491 – 1556',
+    feast:'31 juillet',
+    patronage:'Retraites spirituelles, soldats, Jésuites',
+    quote:'« Donne-moi ton amour et ta grâce, c\'est assez pour moi. »',
+    desc:'Ancien militaire, mystique et fondateur de la Compagnie de Jésus.',
+    longBio:'Iñigo López de Oñaz y Loyola mène une vie de chevalier mondain et batailleur jusqu\'au jour où un boulet de canon lui brise gravement les jambes lors du siège de Pampelune en 1521. Durant sa convalescence, cloué au lit, la lecture de la vie du Christ et des saints bouleverse radicalement ses aspirations. Il abandonne l\'épée pour se consacrer à Dieu, étudie à Paris avec ses premiers compagnons et fonde la Compagnie de Jésus (les Jésuites), un ordre marqué par une obéissance rigoureuse et un engagement missionnaire universel.'
+  }
 ];
 
 // ===================== STATE =====================
@@ -806,12 +1147,19 @@ function renderFiches(){
     grid.appendChild(btn);
   });
 }
-function showFiche(f){
+function showFiche(id) {
+  const f = FICHES.find(x => x.id === id);
+  if (!f) return;
+  
+  // Construction du contenu de la modale avec les bonnes balises
   document.getElementById('ficheModalContent').innerHTML = `
-    <span class="cat">${f.cat}</span>
-    <h3>${f.title}</h3>
-    <p class="muted">${f.sub} · ${f.time}</p>
-    <p class="body-text">${f.body}</p>
+    <span class="cat">${f.cat.toUpperCase()} · Temps de lecture : ${f.time}</span>
+    <h3 style="margin-top: 8px; font-size: 1.5rem;">${f.title}</h3>
+    <p class="muted" style="margin-bottom: 20px;"><em>${f.sub}</em></p>
+    
+    <div class="article-body-text" style="line-height: 1.6; text-align: justify;">
+      ${f.body}
+    </div>
   `;
   document.getElementById('ficheModal').classList.add('open');
 }
@@ -858,14 +1206,31 @@ function renderSaints(){
 }
 function showSaint(s){
   document.getElementById('ficheModalContent').innerHTML = `
-    <span class="cat">Figure de saint</span>
+    <span class="cat">Notice biographique · Fête : ${s.feast}</span>
     <h3>${s.name}</h3>
     <p class="muted">${s.period}</p>
-    <p class="body-text">${s.desc}</p>
+
+    <!-- Affichage d'une grande œuvre d'art historique -->
+    ${s.painting ? `
+      <div style="margin: 16px 0; border-radius: 8px; overflow:hidden; border: 1px solid var(--border);">
+        <img src="${s.painting}" alt="${s.name}" style="width:100%; height:auto; display:block; max-height:360px; object-fit:cover;" loading="lazy">
+        <p style="font-size:0.75rem; color:var(--text-muted); background:var(--bg-card-alt); padding:6px 12px; margin:0; text-align:center; font-style:italic;">
+          ${s.paintingTitle || 'Représentation historique'}
+        </p>
+      </div>
+    ` : ''}
+
+    <div class="chip-row" style="margin-bottom:14px;">
+      <span class="chip"><strong>Patronages :</strong> ${s.patronage}</span>
+    </div>
+
+    ${s.quote ? `<div class="modal-quote">${s.quote}</div>` : ''}
+
+    <h4 style="font-size:1rem; margin-top:16px; margin-bottom:6px; color:var(--accent);">Parcours et vie spirituelle</h4>
+    <p class="body-text">${s.longBio}</p>
   `;
   document.getElementById('ficheModal').classList.add('open');
 }
-
 // ===================== VERSET DU JOUR =====================
 function renderDailyQuote(){
   const dayIndex = new Date().getDate() % BIBLE_VERSES.length;

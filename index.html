@@ -9,10 +9,6 @@
 <link rel="canonical" href="https://logangamba.github.io/compagnon-spirituel/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='16' fill='%23F6F1E6' stroke='%237B4B30' stroke-width='1.4'/%3E%3Cpath d='M17 8V26M11 13H23' stroke='%237B4B30' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
 
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"Le Compagnon Spirituel","description":"Chapelet, prières, fiches théologiques. Spiritualité catholique.","url":"https://logangamba.github.io/compagnon-spirituel/","inLanguage":"fr","isAccessibleForFree":true,"creator":{"@type":"Person","name":"Logan Gamba"}}
-</script>
-
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NF3RPV6K');</script>
 <!-- End Google Tag Manager -->
@@ -108,25 +104,29 @@ header {
 .hamburger.open span:nth-child(2){ opacity:0; }
 .hamburger.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
+/* MENU CORRIGÉ : Affichage fiable sans bug de survol */
 .nav-panel {
-  position:absolute; right:28px; top:64px;
-  background:var(--bg-card); border:1px solid var(--border); border-radius:10px;
-  box-shadow:var(--shadow-md); width:min(300px, calc(100vw - 40px)); padding:8px;
-  display:flex; flex-direction:column; opacity:0; visibility:hidden;
-  transform: translateY(-8px) scale(0.98);
-  transition: opacity .22s var(--ease), transform .22s var(--ease), visibility 0s linear .22s;
-  z-index:50;
+  position: absolute; right: 28px; top: 64px;
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+  box-shadow: var(--shadow-md); width: min(300px, calc(100vw - 40px)); padding: 8px;
+  display: none; flex-direction: column; z-index: 50;
 }
 @media (max-width:640px){ .nav-panel{ right:20px; } }
-.nav-panel.open { opacity:1; visibility:visible; transform:none; transition: opacity .22s var(--ease), transform .22s var(--ease); }
+.nav-panel.open {
+  display: flex;
+  animation: menuPop 0.2s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes menuPop {
+  0% { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  100% { opacity: 1; transform: none; }
+}
 
-/* MENU ET SURVOLS */
 .nav-link { padding:12px 14px; text-decoration:none; font-size:0.94rem; border-radius:6px; color:var(--text); display:flex; align-items:center; gap:10px; transition: background .15s ease; }
-.nav-link:hover { background: var(--bg-card-alt); }
+@media (hover: hover) {
+  .nav-link:hover { background: var(--bg-card-alt); }
+}
+.nav-link:active { background: var(--border); }
 .nav-link.highlight { background: var(--bg-card-alt); font-weight:600; color:var(--accent-dark); }
-.nav-links a { -webkit-tap-highlight-color: transparent; transition: background-color 0.2s ease; }
-.nav-links a:hover { background-color: var(--bg-card-alt); }
-.nav-links a:focus { background-color: transparent; }
 
 main { padding: 20px 0 60px; }
 section { padding: 64px 0; border-bottom: 1px solid var(--border-soft); scroll-margin-top:84px; display:none; animation: fadeIn .5s var(--ease); position:relative; }
@@ -163,7 +163,6 @@ section:last-of-type::after, section#apropos::after { display:none; }
 .section-head { margin-bottom: 30px; }
 .section-head h2 { font-size:1.9rem; margin-bottom:6px; }
 .section-head p { color:var(--text-muted); margin:0; }
-
 .illustration { display:block; margin: 28px auto; color: var(--accent); }
 
 /* Grids & cards */
@@ -328,13 +327,11 @@ footer { padding:52px 0 40px; }
       </div>
 
       <svg class="illustration" width="260" height="170" viewBox="0 0 260 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <!-- bougie -->
         <ellipse cx="70" cy="150" rx="46" ry="8" fill="currentColor" opacity="0.08"/>
         <rect x="52" y="70" width="36" height="80" rx="6" fill="currentColor" opacity="0.16"/>
         <rect x="60" y="55" width="20" height="20" rx="4" fill="currentColor" opacity="0.22"/>
         <path d="M70 30c6 10 10 16 10 24a10 10 0 0 1-20 0c0-8 4-14 10-24Z" fill="currentColor" opacity="0.75"/>
         <path d="M70 40c3 6 5 9 5 13a5 5 0 0 1-10 0c0-4 2-7 5-13Z" fill="#F6C453"/>
-        <!-- livre -->
         <path d="M120 130V70c14-8 30-8 44 0v60c-14-8-30-8-44 0Z" fill="currentColor" opacity="0.14"/>
         <path d="M164 130V70c14-8 30-8 44 0v60c-14-8-30-8-44 0Z" fill="currentColor" opacity="0.2"/>
         <path d="M164 70v60" stroke="currentColor" stroke-width="1.4" opacity="0.4"/>
@@ -349,12 +346,10 @@ footer { padding:52px 0 40px; }
         <h2>Comment te sens-tu aujourd'hui ?</h2>
         <p>Choisis ton état du jour pour recevoir un verset, une prière et un geste concret.</p>
       </div>
-
       <svg class="illustration" width="200" height="120" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M100 100c-30-18-60-38-60-64a28 28 0 0 1 52-16 28 28 0 0 1 52 16c0 26-30 46-60 64Z" fill="currentColor" opacity="0.16"/>
         <path d="M60 60l14 14 26-30" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
       </svg>
-
       <div class="grid" id="moodsGrid"></div>
       <div class="detail-panel" id="moodDetail"></div>
     </div>
@@ -367,11 +362,9 @@ footer { padding:52px 0 40px; }
         <h2>Chapelet interactif</h2>
         <p>Le mystère du jour est choisi automatiquement selon la tradition. Avance grain par grain.</p>
       </div>
-
       <svg class="illustration" width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="chapeletSvg">
         <circle cx="140" cy="140" r="96" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.28"/>
       </svg>
-
       <div class="chapelet-hud">
         <p class="mystery-label" id="mysteryLabel"></p>
         <h3 id="mysteryTitle"></h3>
@@ -394,12 +387,10 @@ footer { padding:52px 0 40px; }
         <h2>Prières essentielles</h2>
         <p>Les textes traditionnels, à portée de main.</p>
       </div>
-
       <svg class="illustration" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-bottom: 24px;">
         <path d="M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6a1 1 0 0 1-1-1z" />
         <path d="M9 9h6M12 6v8" />
       </svg>
-
       <div id="prayersList"></div>
     </div>
   </section>
@@ -411,7 +402,6 @@ footer { padding:52px 0 40px; }
         <h2>Neuvaines</h2>
         <p>Neuf jours de prière, de méditation profonde et d'action concrète à ton rythme.</p>
       </div>
-
       <svg class="illustration" width="300" height="140" viewBox="0 0 300 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M 30 115 Q 150 15 270 115" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.3"/>
         <g fill="currentColor">
@@ -428,7 +418,6 @@ footer { padding:52px 0 40px; }
           <circle cx="264" cy="108" r="5" opacity="0.2"/>
         </g>
       </svg>
-
       <div class="grid" id="novenasGrid"></div>
       <div class="detail-panel" id="novenaDetail"></div>
     </div>
@@ -474,7 +463,6 @@ footer { padding:52px 0 40px; }
       <div class="section-head" style="text-align: left; margin-bottom: 24px;">
         <h2>À propos</h2>
       </div>
-
       <div style="line-height: 1.8; font-size: 1.05rem; display: flex; flex-direction: column; gap: 16px;">
         <p>
           Ce site est né d'un besoin très simple : avoir sous la main l'essentiel de la vie spirituelle chrétienne, sans distractions, sans publicités et sans jargon.
@@ -482,15 +470,12 @@ footer { padding:52px 0 40px; }
         <p>
           L'idée est de proposer un outil clair et direct pour la prière au quotidien : pouvoir lire un verset, méditer les mystères du chapelet, retrouver les prières traditionnelles ou comprendre des concepts théologiques solides (enracinés dans l'Écriture, les Conciles et saint Thomas d'Aquin), le tout à son propre rythme.
         </p>
-
         <div style="background: var(--bg-card-alt, rgba(0,0,0,0.03)); border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: 4px; margin: 10px 0;">
           <p style="margin: 0; font-size: 0.95rem;">
             <em>Note :</em> Cet espace est un projet personnel. Il sert d'outil d'accompagnement et ne remplace évidemment pas les sacrements, un directeur spirituel ou l'enseignement de l'Église.
           </p>
         </div>
-
         <hr style="border: none; border-top: 1px solid var(--border); margin: 20px 0;">
-
         <div style="font-size: 0.9rem; color: var(--text-muted); display: grid; gap: 8px;">
           <div><strong>Création & Textes :</strong> Logan Gamba (<a href="mailto:logan.g.ctc@gmail.com" style="color: var(--accent); text-decoration: underline;">logan.g.ctc@gmail.com</a>)</div>
           <div><strong>Hébergement :</strong> GitHub Pages</div>
@@ -858,7 +843,7 @@ const FICHES = [
       <h3>1. Le sanctuaire inviolable de l'homme</h3>
       <p>Le concile Vatican II (<em>Gaudium et Spes, 16</em>) définit la conscience avec poésie : <em>"La conscience est le centre le plus secret de l'homme, le sanctuaire où il est seul avec Dieu et où Sa voix se fait entendre."</em> Elle ordonne à l'homme, au moment opportun, d'accomplir le bien et d'éviter le mal.</p>
       <h3>2. Synderèse et Jugement de conscience (Saint Thomas)</h3>
-      <p>Saint Thomas d'Aquin décompose le mécanisme moral en deux étapes :</p>
+      <p>Saint Thomas d'Aquin décompose le mechanism moral en deux étapes :</p>
       <ul>
         <li><strong>La Synderèse :</strong> C'est l'étincelle intellectuelle innée, la connaissance infaillible des principes moraux fondamentaux (ex: "il ne faut pas tuer l'innocent", "il faut rendre à chacun ce qui lui est dû").</li>
         <li><strong>Le Jugement de la conscience :</strong> C'est l'application pratique de cette loi générale à un cas particulier (ex: "dans cette situation complexe, agir ainsi revient à tuer, je dois l'éviter"). C'est ici que l'erreur est possible si l'homme raisonne mal.</li>
@@ -891,62 +876,62 @@ const BIBLE_VERSES = [
 const SAINTS = [
   { 
     name:'François d\'Assise', period:'1182 – 1226', feast:'4 octobre', patronage:'Écologie, animaux, pauvres',
-    painting:'https://upload.wikimedia.org/wikipedia/commons/e/e0/Giotto_-_Legend_of_St_Francis_-_--19-_-_Stigmatization_of_St_Francis.jpg',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Giotto_-_Legend_of_St_Francis_-_--19-_-_Stigmatization_of_St_Francis.jpg/600px-Giotto_-_Legend_of_St_Francis_-_--19-_-_Stigmatization_of_St_Francis.jpg',
     longBio:'Né à Assise en Ombrie, François mène d\'abord une jeunesse insouciante de fils de riche bourgeois avant de connaître une profonde conversion spirituelle à la suite d\'une rencontre avec un lépreux. Il renonce publiquement à ses biens, se dépouille de ses vêtements devant son évêque et choisit de vivre selon l\'Évangile strict. Il fonde l\'Ordre des Frères Mineurs, marquant l\'Église par sa joie, son amour de la nature et sa quête de paix.'
   },
   { 
     name:'Thérèse de Lisieux', period:'1873 – 1897', feast:'1er octobre', patronage:'Missions, France',
-    painting:'https://upload.wikimedia.org/wikipedia/commons/1/10/Th%C3%A9r%C3%A8se_de_Lisieux.jpg',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Th%C3%A9r%C3%A8se_de_Lisieux.jpg/600px-Th%C3%A9r%C3%A8se_de_Lisieux.jpg',
     longBio:'Carmélite morte à 24 ans, rongée par la tuberculose. Elle développe une spiritualité révolutionnaire : la « Petite Voie » de l\'enfance spirituelle. Elle démontre que la sainteté est accessible à tous à travers les actes les plus ordinaires accomplis par amour, sans besoin de grandes œuvres extraordinaires. Elle est reconnue Docteur de l\'Église.'
   },
   { 
     name:'Augustin d\'Hippone', period:'354 – 430', feast:'28 août', patronage:'Théologiens',
-    painting:'https://upload.wikimedia.org/wikipedia/commons/1/1b/Sandro_Botticelli_-_St_Augustine_-_WGA02613.jpg',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Sandro_Botticelli_-_St_Augustine_-_WGA02613.jpg/600px-Sandro_Botticelli_-_St_Augustine_-_WGA02613.jpg',
     longBio:'Originaire d\'Afrique romaine, Augustin mène une jeunesse ardente et mondaine. Grâce aux prières de sa mère sainte Monique et aux sermons de saint Ambroise, il se convertit au christianisme. Devenu évêque, il rédige des œuvres monumentales (Les Confessions, La Cité de Dieu) qui structureront toute la pensée chrétienne occidentale.'
   },
   { 
     name:'Thomas d\'Aquin', period:'1225 – 1274', feast:'28 janvier', patronage:'Étudiants, universités',
-    painting:'https://upload.wikimedia.org/wikipedia/commons/b/be/St_thomas_aquinas.jpg',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/St_thomas_aquinas.jpg/600px-St_thomas_aquinas.jpg',
     longBio:'Surnommé le « Docteur Angélique ». Devenu maître en théologie à l\'Université de Paris, ce frère dominicain réalise une œuvre magistrale en réconciliant la raison (Aristote) avec la foi chrétienne. Sa « Somme Théologique » reste le fondement absolu de la doctrine catholique. Son génie s\'accompagnait d\'une grande humilité.'
   },
   { 
     name:'Jeanne d\'Arc', period:'1412 – 1431', feast:'30 mai', patronage:'France, soldats',
-    painting:'https://upload.wikimedia.org/wikipedia/commons/0/0c/Ingres_-_Jeanne_d%27Arc_au_sacre_du_roi_Charles_VII%2C_dans_la_cath%C3%A9drale_de_Reims.jpg',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Ingres_-_Jeanne_d%27Arc_au_sacre_du_roi_Charles_VII%2C_dans_la_cath%C3%A9drale_de_Reims.jpg/600px-Ingres_-_Jeanne_d%27Arc_au_sacre_du_roi_Charles_VII%2C_dans_la_cath%C3%A9drale_de_Reims.jpg',
     longBio:'Jeune paysanne pieuse de Domrémy, Jeanne entend les voix célestes lui confiant la mission de faire sacrer Charles VII et de libérer la France. Elle lève le siège d\'Orléans à 17 ans. Capturée, elle subit un procès inique et périt sur le bûcher à 19 ans, incarnant la fidélité absolue à Dieu face aux puissants.'
   },
   { 
     name:'Padre Pio', period:'1887 – 1968', feast:'23 septembre', patronage:'Adolescents, confesseurs',
-    painting:'https://upload.wikimedia.org/wikipedia/commons/1/1a/Padre_Pio_da_Pietrelcina.jpg',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Padre_Pio_da_Pietrelcina.jpg/600px-Padre_Pio_da_Pietrelcina.jpg',
     longBio:'Frère capucin italien, grand mystique et confesseur infatigable. Il reçoit les stigmates visibles de la Passion du Christ qu\'il porte dans sa chair pendant 50 ans. Exerçant un charisme de discernement extraordinaire, il passe des heures interminables dans le confessionnal pour réconcilier des foules immenses venues du monde entier.'
   },
   { 
     name:'Antoine de Padoue', period:'1195 – 1231', feast:'13 juin', patronage:'Objets perdus, voyageurs',
-    painting:'https://upload.wikimedia.org/wikipedia/commons/0/00/St._Anthony_of_Padua_holding_the_Infant_Jesus_with_an_open_book%2C_Guercino%2C_1656.jpg',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/St._Anthony_of_Padua_holding_the_Infant_Jesus_with_an_open_book%2C_Guercino%2C_1656.jpg/600px-St._Anthony_of_Padua_holding_the_Infant_Jesus_with_an_open_book%2C_Guercino%2C_1656.jpg',
     longBio:'Né à Lisbonne, il rejoint les Franciscains. Ses talents exceptionnels de prédicateur éclatent au grand jour en Italie, où il convertit les foules et lutte contre l\'hérésie. Connu pour sa profonde érudition biblique et sa douceur, la tradition veut que l\'Enfant Jésus lui soit apparu.'
   },
   { 
     name:'Mère Teresa', period:'1910 – 1997', feast:'5 septembre', patronage:'Les plus pauvres d\'entre les pauvres',
-    painting:'https://upload.wikimedia.org/wikipedia/commons/d/d6/Mother_Teresa_1.jpg',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Mother_Teresa_1.jpg/600px-Mother_Teresa_1.jpg',
     longBio:'Religieuse albanaise missionnaire en Inde, elle fonde les Missionnaires de la Charité pour servir "les plus pauvres d\'entre les pauvres" dans les bidonvilles de Calcutta. Elle a vécu une terrible nuit de la foi pendant des décennies, cachée derrière son sourire, s\'offrant totalement au service des intouchables et des mourants.'
   },
   { 
     name:'Maximilien Kolbe', period:'1894 – 1941', feast:'14 août', patronage:'Prisonniers politiques, journalistes',
-    painting:'https://upload.wikimedia.org/wikipedia/commons/4/4b/Maksymilian_Kolbe.jpg',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Maksymilian_Kolbe.jpg/600px-Maksymilian_Kolbe.jpg',
     longBio:'Prêtre franciscain polonais, apôtre de l\'Immaculée Conception et pionnier de la presse catholique. Déporté au camp de concentration d\'Auschwitz, il se porte volontaire pour mourir de faim à la place d\'un père de famille condamné. Il meurt en achevant ses bourreaux par l\'amour et la prière.'
   },
   { 
     name:'Benoît de Nursie', period:'480 – 547', feast:'11 juillet', patronage:'Europe, moines, spéléologues',
-    painting:'https://upload.wikimedia.org/wikipedia/commons/c/c8/Fra_Angelico_-_Saint_Benedict_-_WGA00508.jpg',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Fra_Angelico_-_Saint_Benedict_-_WGA00508.jpg/600px-Fra_Angelico_-_Saint_Benedict_-_WGA00508.jpg',
     longBio:'Patriarche du monachisme occidental. Fuyant la décadence de Rome, il se retire dans une grotte à Subiaco. Sa célèbre Règle (Ora et Labora - Prie et Travaille) organise la vie monastique avec un équilibre parfait entre prière, travail manuel et obéissance, sauvant ainsi la culture européenne durant le haut Moyen Âge.'
   },
   { 
     name:'Catherine de Sienne', period:'1347 – 1380', feast:'29 avril', patronage:'Europe, Italie, malades',
-    painting:'https://upload.wikimedia.org/wikipedia/commons/6/6c/Giovanni_di_Paolo_-_St_Catherine_of_Siena_-_WGA09069.jpg',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Giovanni_di_Paolo_-_St_Catherine_of_Siena_-_WGA09069.jpg/600px-Giovanni_di_Paolo_-_St_Catherine_of_Siena_-_WGA09069.jpg',
     longBio:'Laïque dominicaine italienne, elle mène une vie d\'ascèse et de contemplation mystique extrême. Bien qu\'illettrée, sa sagesse est telle qu\'elle conseille les papes et les monarques, contribuant à ramener la papauté d\'Avignon à Rome. Le livre de ses "Dialogues" est un sommet de la mystique.'
   },
   { 
     name:'Jean-Paul II', period:'1920 – 2005', feast:'22 octobre', patronage:'Jeunes, familles, JMJ',
-    painting:'https://upload.wikimedia.org/wikipedia/commons/3/30/Johannes_Paul_II._%281993%29.jpg',
+    painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Johannes_Paul_II._%281993%29.jpg/600px-Johannes_Paul_II._%281993%29.jpg',
     longBio:'Karol Wojtyła, pape polonais au pontificat exceptionnellement long. Résistant face aux totalitarismes nazi et communiste, il a parcouru le monde entier pour annoncer le Christ. Initiateur des Journées Mondiales de la Jeunesse (JMJ) et auteur d\'un enseignement magistral (la théologie du corps), il a marqué l\'histoire contemporaine.'
   }
 ];
@@ -1095,14 +1080,16 @@ function renderSaints(){
     grid.appendChild(btn);
   });
 }
+
 function showSaint(s){
+  // Note: j'ai supprimé loading="lazy" de l'image car il bloque parfois le rendu dans les fenêtres modales
   document.getElementById('ficheModalContent').innerHTML = `
     <span class="cat">Notice biographique · Fête : ${s.feast}</span>
     <h3 style="margin: 8px 0; font-size:1.6rem;">${s.name}</h3>
     <p class="muted">${s.period}</p>
     ${s.painting ? `
-      <div style="margin: 16px 0; border-radius: 8px; overflow:hidden; border: 1px solid var(--border);">
-        <img src="${s.painting}" alt="${s.name}" style="width:100%; height:auto; display:block; max-height:360px; object-fit:cover;" loading="lazy">
+      <div style="margin: 16px 0; border-radius: 8px; overflow:hidden; border: 1px solid var(--border); text-align: center;">
+        <img src="${s.painting}" alt="${s.name}" style="width:100%; height:auto; display:block; max-height:360px; object-fit:contain; background:var(--bg-card-alt);">
         <p style="font-size:0.75rem; color:var(--text-muted); background:var(--bg-card-alt); padding:6px 12px; margin:0; text-align:center; font-style:italic;">
           Représentation historique
         </p>

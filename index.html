@@ -104,7 +104,7 @@ header {
 .hamburger.open span:nth-child(2){ opacity:0; }
 .hamburger.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
-/* MENU CORRIGÉ : Affichage fiable sans bug de survol */
+/* MENU DÉROULANT */
 .nav-panel {
   position: absolute; right: 28px; top: 64px;
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
@@ -121,12 +121,11 @@ header {
   100% { opacity: 1; transform: none; }
 }
 
-.nav-link { padding:12px 14px; text-decoration:none; font-size:0.94rem; border-radius:6px; color:var(--text); display:flex; align-items:center; gap:10px; transition: background .15s ease; }
-@media (hover: hover) {
-  .nav-link:hover { background: var(--bg-card-alt); }
-}
+.nav-link { padding:12px 14px; text-decoration:none; font-size:0.94rem; border-radius:6px; color:var(--text); display:flex; align-items:center; gap:10px; transition: background .15s ease, font-weight .15s ease, color .15s ease; }
+@media (hover: hover) { .nav-link:hover { background: var(--bg-card-alt); } }
 .nav-link:active { background: var(--border); }
-.nav-link.highlight { background: var(--bg-card-alt); font-weight:600; color:var(--accent-dark); }
+/* La classe active est gérée dynamiquement par JS maintenant */
+.nav-link.highlight { background: var(--bg-card-alt); font-weight:700; color:var(--accent-dark); }
 
 main { padding: 20px 0 60px; }
 section { padding: 64px 0; border-bottom: 1px solid var(--border-soft); scroll-margin-top:84px; display:none; animation: fadeIn .5s var(--ease); position:relative; }
@@ -235,13 +234,14 @@ section:last-of-type::after, section#apropos::after { display:none; }
 /* Modal */
 .modal-backdrop { position:fixed; inset:0; background:rgba(43,40,35,0.5); display:flex; align-items:flex-start; justify-content:center; padding:40px 20px; overflow-y:auto; z-index:60; visibility:hidden; opacity:0; pointer-events:none; transition: opacity .28s ease, visibility 0s linear .28s; }
 .modal-backdrop.open { visibility:visible; opacity:1; pointer-events:auto; transition: opacity .28s ease; }
-.modal { background:var(--bg-card); max-width:620px; width:100%; border-radius:12px; padding:36px; position:relative; margin-bottom:40px; transform:translateY(14px) scale(.97); transition: transform .32s var(--ease); box-shadow: var(--shadow-md); }
+.modal { background:var(--bg-card); max-width:660px; width:100%; border-radius:12px; padding:36px; position:relative; margin-bottom:40px; transform:translateY(14px) scale(.97); transition: transform .32s var(--ease); box-shadow: var(--shadow-md); }
 .modal-backdrop.open .modal { transform:none; }
 .modal-close { position:absolute; top:16px; right:16px; width:34px; height:34px; border-radius:50%; border:1px solid var(--border); background:var(--bg); font-size:1.1rem; display:flex; align-items:center; justify-content:center; color:var(--text-muted); }
 .modal .cat { font-size:0.72rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.03em; }
 .modal h3 { font-size:1.4rem; margin:6px 0 4px; }
 .modal .muted { color:var(--text-muted); font-size:0.88rem; margin-bottom:16px; }
-.modal .body-text { font-size:0.98rem; line-height:1.75; }
+.modal .body-text { font-size:1rem; line-height:1.75; text-align: justify; }
+.modal .body-text p { margin-bottom: 14px; }
 
 /* Consent */
 .consent-banner { position:fixed; left:0; right:0; bottom:0; z-index:80; background:var(--bg-card); border-top:1px solid var(--border); padding:18px 26px; display:flex; gap:20px; align-items:center; justify-content:space-between; flex-wrap:wrap; transform:translateY(110%); transition: transform .35s var(--ease); box-shadow: var(--shadow-md); }
@@ -290,16 +290,18 @@ footer { padding:52px 0 40px; }
         <span></span><span></span><span></span>
       </button>
     </div>
+    
+    <!-- MENU CORRIGÉ : ID ajoutés pour la gestion JS de la surbrillance -->
     <nav class="nav-panel nav-links" id="navPanel" aria-label="Menu principal">
-      <a href="#" class="nav-link" onclick="showPage('accueil'); toggleMenu(); return false;">Accueil</a>
-      <a href="#" class="nav-link" onclick="showPage('humeurs'); toggleMenu(); return false;">Mes humeurs</a>
-      <a href="#" class="nav-link highlight" onclick="showPage('chapelet'); toggleMenu(); return false;">Chapelet</a>
-      <a href="#" class="nav-link" onclick="showPage('prieres'); toggleMenu(); return false;">Prières essentielles</a>
-      <a href="#" class="nav-link" onclick="showPage('neuvaines'); toggleMenu(); return false;">Neuvaines</a>
-      <a href="#" class="nav-link" onclick="showPage('versets'); toggleMenu(); return false;">Versets bibliques</a>
-      <a href="#" class="nav-link" onclick="showPage('saints'); toggleMenu(); return false;">Figures de saints</a>
-      <a href="#" class="nav-link" onclick="showPage('fiches'); toggleMenu(); return false;">Réflexion et théologie</a>
-      <a href="#" class="nav-link" onclick="showPage('apropos'); toggleMenu(); return false;">À propos</a>
+      <a href="#" class="nav-link highlight" id="nav-accueil" onclick="showPage('accueil'); return false;">Accueil</a>
+      <a href="#" class="nav-link" id="nav-humeurs" onclick="showPage('humeurs'); return false;">Mes humeurs</a>
+      <a href="#" class="nav-link" id="nav-chapelet" onclick="showPage('chapelet'); return false;">Chapelet</a>
+      <a href="#" class="nav-link" id="nav-prieres" onclick="showPage('prieres'); return false;">Prières essentielles</a>
+      <a href="#" class="nav-link" id="nav-neuvaines" onclick="showPage('neuvaines'); return false;">Neuvaines</a>
+      <a href="#" class="nav-link" id="nav-versets" onclick="showPage('versets'); return false;">Versets bibliques</a>
+      <a href="#" class="nav-link" id="nav-saints" onclick="showPage('saints'); return false;">Figures de saints</a>
+      <a href="#" class="nav-link" id="nav-fiches" onclick="showPage('fiches'); return false;">Réflexion et théologie</a>
+      <a href="#" class="nav-link" id="nav-apropos" onclick="showPage('apropos'); return false;">À propos</a>
     </nav>
   </div>
 </header>
@@ -651,6 +653,50 @@ const NOVENAS = [
     {prayer:'Saint Joseph au cœur pur, garde mon âme et mon corps dans la tempérance et la paix.', action:'Exerce le recueillement et la maîtrise de soi dans tes réactions impulsives.'},
     {prayer:'Tu as protégé l\'Enfant fuyant la persécution. Protège les persécutés et les exilés.', action:'Fais un don ou aie une pensée solidaire pour les réfugiés et les opprimés.'},
     {prayer:'O grand saint Joseph, intercède pour moi à l\'heure de ma mort et guide mes derniers pas.', action:'Termine cette neuvaine par un acte de confiance absolue en la Providence divine.'}
+  ]},
+  { id:'therese-lisieux', title:'Neuvaine à Ste Thérèse', sub:'9 jours sur la Petite Voie', days:[
+    {prayer:'Sainte Thérèse, apprends-moi ta "Petite Voie" d\'enfance spirituelle et de confiance aveugle.', action:'Choisis de ne pas te justifier aujourd\'hui si on te fait un petit reproche injuste.'},
+    {prayer:'Aide-moi à comprendre que la sainteté n\'est pas dans les grands exploits, mais dans l\'amour.', action:'Fais une tâche ménagère ennuyeuse avec un grand sourire intérieur pour Dieu.'},
+    {prayer:'Toi qui as promis de passer ton Ciel à faire du bien sur la terre, fais tomber une pluie de roses sur ma vie.', action:'Offre un sourire chaleureux ou un mot d\'encouragement à une personne que tu apprécies peu.'},
+    {prayer:'Donne-moi ton amour brûlant pour Jésus, que je puisse le consoler de l\'indifférence du monde.', action:'Passe 5 minutes en silence à dire simplement : "Jésus, je t\'aime".'},
+    {prayer:'Soutiens-moi dans mes nuits de la foi, toi qui as connu les pires ténèbres avant de mourir.', action:'Fais un acte de foi conscient (récite le Credo) même si tu ne "ressens" rien émotionnellement.'},
+    {prayer:'Petite fleur de Jésus, intercède pour que je m\'accepte tel que je suis, avec mes limites.', action:'Arrête de te comparer aux autres sur les réseaux sociaux ou dans tes pensées aujourd\'hui.'},
+    {prayer:'Apprends-moi à offrir mes petites souffrances quotidiennes pour le salut des âmes.', action:'Au lieu de te plaindre d\'une petite douleur ou d\'un inconfort, offre-le en silence.'},
+    {prayer:'Prie pour les prêtres et les missionnaires, toi la patronne des missions.', action:'Récite un "Je vous salue Marie" pour le prêtre de ta paroisse ou de ton diocèse.'},
+    {prayer:'Merci Sainte Thérèse pour ton intercession. Que je garde un cœur d\'enfant face au Père éternel.', action:'Cueille ou achète une fleur (ou dessines-en une) en souvenir de cette neuvaine.'}
+  ]},
+  { id:'saint-michel', title:'Neuvaine à St Michel Archange', sub:'9 jours pour le combat spirituel', days:[
+    {prayer:'Saint Michel Archange, défends-nous dans le combat, sois notre secours contre la malice du démon.', action:'Fais un signe de croix lent et solennel au début de ta journée pour te placer sous la protection de Dieu.'},
+    {prayer:'Prince de la milice céleste, repousse en enfer Satan et les esprits mauvais qui rôdent.', action:'Identifie la principale tentation qui te fait tomber actuellement et nomme-la clairement.'},
+    {prayer:'Toi dont le nom signifie "Qui est comme Dieu ?", donne-moi l\'humilité qui terrasse l\'orgueil.', action:'Accepte volontiers de passer au second plan ou de céder ta place aujourd\'hui.'},
+    {prayer:'Ange de la paix, pacifie mon cœur tourmenté et chasse les angoisses soufflées par l\'Ennemi.', action:'Refuse d\'entretenir une pensée anxieuse. Dès qu\'elle vient, dis : "Jésus, je m\'en remets à toi".'},
+    {prayer:'Protecteur de l\'Église, veille sur le Pape, les évêques et tous les fidèles dans l\'épreuve.', action:'Prie pour l\'Église persécutée dans le monde, ou pour ceux qui subissent des moqueries pour leur foi.'},
+    {prayer:'Archange de la lumière, éclaire mon intelligence pour que je ne me laisse pas tromper par les mensonges du monde.', action:'Éteins tes écrans 30 minutes plus tôt ce soir pour lire quelques pages de l\'Évangile ou d\'un livre spirituel.'},
+    {prayer:'Défenseur des agonisants, sois à mes côtés à l\'heure de ma mort pour me présenter à Dieu.', action:'Prie avec ferveur pour une personne de ton entourage qui est gravement malade ou en fin de vie.'},
+    {prayer:'Saint Michel, donne-moi le courage de confesser ma foi sans honte au milieu du monde.', action:'Ne cache pas tes convictions si une conversation aborde la foi aujourd\'hui, reste doux mais ferme.'},
+    {prayer:'Merci, grand Archange, pour ton bouclier invisible. Que Dieu t\'envoie toujours à ma garde.', action:'Récite la prière à Saint Michel du Pape Léon XIII en conclusion de cette neuvaine.'}
+  ]},
+  { id:'sacre-coeur', title:'Neuvaine au Sacré-Cœur', sub:'9 jours pour consoler Jésus', days:[
+    {prayer:'Cœur Sacré de Jésus, fournaise ardente de charité, je te consacre ma vie et mon cœur.', action:'Regarde une image du Sacré-Cœur et prends conscience de l\'amour infini que Dieu te porte.'},
+    {prayer:'Seigneur, tu as dit à sainte Marguerite-Marie : "Voici ce Cœur qui a tant aimé les hommes".', action:'Remercie Jésus pour 3 grâces précises que tu as reçues dans ta vie.'},
+    {prayer:'Je te demande pardon pour mes froideurs, mes ingratitudes et mes manques d\'amour envers toi.', action:'Fais un bon et sincère examen de conscience sur la façon dont tu traites tes proches.'},
+    {prayer:'Cœur doux et humble, rends mon cœur semblable au tien.', action:'Réponds avec une grande douceur à une personne qui t\'irrite ou te contrarie aujourd\'hui.'},
+    {prayer:'Jésus, je te présente tous ceux qui ne te connaissent pas ou qui refusent ton amour.', action:'Prie pour une personne dont tu sais qu\'elle est hostile à la foi ou très loin de Dieu.'},
+    {prayer:'Cœur transpercé par la lance, que l\'eau et le sang qui en jaillissent purifient mon âme.', action:'Fais le projet concret d\'aller te confesser prochainement pour renouveler ta pureté.'},
+    {prayer:'Je t\'offre mes peines du jour en réparation pour les outrages que ton amour subit dans le monde.', action:'Supporte une contrariété (embouteillage, retard, fatigue) sans aucun murmure, en l\'offrant.'},
+    {prayer:'Dans ton Cœur, je trouve ma paix, mon refuge et ma force pour affronter demain.', action:'Passe un moment dans une église (si possible devant le Saint-Sacrement) en silence absolu.'},
+    {prayer:'Cœur Sacré de Jésus, j\'ai confiance en toi ! Que ton règne d\'amour vienne sur la terre.', action:'Partage la bonté de Dieu avec quelqu\'un aujourd\'hui (par un service, une écoute, un mot).'}
+  ]},
+  { id:'abandon', title:'Neuvaine de l\'Abandon', sub:'9 jours pour tout remettre à Dieu', days:[
+    {prayer:'Mon Père, je m\'abandonne à toi, fais de moi ce qu\'il te plaira.', action:'Répète lentement cette phrase de Charles de Foucauld au réveil et au coucher.'},
+    {prayer:'Quoi que tu fasses de moi, je te remercie. Je suis prêt à tout, j\'accepte tout.', action:'Lâche prise sur un détail d\'organisation qui ne se passe pas comme tu l\'avais prévu.'},
+    {prayer:'Pourvu que ta volonté se fasse en moi, en toutes tes créatures, je ne désire rien d\'autre, mon Dieu.', action:'Cesse de vouloir changer l\'autre aujourd\'hui. Accueille-le tel que Dieu l\'a permis.'},
+    {prayer:'Je remets mon âme entre tes mains. Je te la donne, mon Dieu, avec tout l\'amour de mon cœur.', action:'Prends une grande inspiration, et souffle en imaginant que tu remets tes angoisses à Dieu.'},
+    {prayer:'Parce que je t\'aime, c\'est pour moi un besoin d\'amour de me donner, de me remettre entre tes mains sans mesure.', action:'Pose un acte de confiance aveugle : donne de ton temps sans calculer à quelqu\'un qui te le demande.'},
+    {prayer:'Seigneur, je sais que tu tires le bien du mal. Je te confie cette situation qui m\'échappe.', action:'Arrête d\'analyser ou de ruminer ton problème actuel. Dis simplement : "Jésus, occupe-t\'en".'},
+    {prayer:'Aide-moi à vivre pleinement le moment présent, qui est le seul endroit où ta grâce m\'attend.', action:'Concentre-toi à 100% sur ce que tu fais aujourd\'hui (manger, marcher, écouter) sans fuir dans tes pensées.'},
+    {prayer:'Avec une infinie confiance, car tu es mon Père. Je me repose en toi.', action:'Écris sur un papier ce qui te fait peur, plie-le et place-le sous une croix ou une Bible, puis n\'y touche plus.'},
+    {prayer:'Merci, Père, car je sais que tu m\'as exaucé. Je pars confiant sur le chemin de ma vie.', action:'Fête cette liberté nouvelle intérieurement. Loue Dieu pour sa Providence qui ne fait jamais défaut.'}
   ]}
 ];
 
@@ -722,7 +768,7 @@ const FICHES = [
     cat: 'philosophie',
     body: `
       <h3>1. Le paradoxe apparent de la Prescience divine</h3>
-      <p>L'une des plus grandes questions philosophiques : si Dieu sait déjà ce que je vais faire demain, suis-je libre de ne pas le faire ? Boèce et saint Augustin résolvent ce problème en expliquant la nature de l'Éternité. Dieu ne "pré-voit" pas le futur. Il est totalement hors du temps (dans un Éternel Présent). Dieu voit tout (passé, présent, futur) d'un seul regard instantané. <strong>Sa connaissance ne cause pas notre acte.</strong> Ce n'est pas parce que Dieu le voit que tu le fais ; c'est parce que tu choisis librement de le faire que Dieu le voit dans son éternité.</p>
+      <p>L'une des plus grandes questions philosophiques : si Dieu sait déjà ce que je vais faire demain, suis-je libre de ne pas le faire ? Boèce et saint Augustin résolvent ce problème en expliquant la nature de l'Éternité. Dieu ne "pré-voit" pas le futur. Il est totally hors du temps (dans un Éternel Présent). Dieu voit tout (passé, présent, futur) d'un seul regard instantané. <strong>Sa connaissance ne cause pas notre acte.</strong> Ce n'est pas parce que Dieu le voit que tu le fais ; c'est parce que tu choisis librement de le faire que Dieu le voit dans son éternité.</p>
       <h3>2. L'harmonie de la grâce et de la liberté (Concile de Trente)</h3>
       <p>Saint Thomas d'Aquin affirme que la toute-puissance de Dieu est si absolue qu'elle cause non seulement nos actions, mais aussi <em>la manière</em> dont nous les accomplissons : de façon libre et contingente. La grâce de Dieu ne violente jamais la volonté humaine. Elle l'attire, la guérit et la meut de l'intérieur. Face à la grâce, l'homme garde le pouvoir radical d'y consentir ou d'y résister.</p>
       <h3>3. La Prédestination catholique vs le Fatalisme</h3>
@@ -843,7 +889,7 @@ const FICHES = [
       <h3>1. Le sanctuaire inviolable de l'homme</h3>
       <p>Le concile Vatican II (<em>Gaudium et Spes, 16</em>) définit la conscience avec poésie : <em>"La conscience est le centre le plus secret de l'homme, le sanctuaire où il est seul avec Dieu et où Sa voix se fait entendre."</em> Elle ordonne à l'homme, au moment opportun, d'accomplir le bien et d'éviter le mal.</p>
       <h3>2. Synderèse et Jugement de conscience (Saint Thomas)</h3>
-      <p>Saint Thomas d'Aquin décompose le mechanism moral en deux étapes :</p>
+      <p>Saint Thomas d'Aquin décompose le mécanisme moral en deux étapes :</p>
       <ul>
         <li><strong>La Synderèse :</strong> C'est l'étincelle intellectuelle innée, la connaissance infaillible des principes moraux fondamentaux (ex: "il ne faut pas tuer l'innocent", "il faut rendre à chacun ce qui lui est dû").</li>
         <li><strong>Le Jugement de la conscience :</strong> C'est l'application pratique de cette loi générale à un cas particulier (ex: "dans cette situation complexe, agir ainsi revient à tuer, je dois l'éviter"). C'est ici que l'erreur est possible si l'homme raisonne mal.</li>
@@ -877,62 +923,110 @@ const SAINTS = [
   { 
     name:'François d\'Assise', period:'1182 – 1226', feast:'4 octobre', patronage:'Écologie, animaux, pauvres',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Giotto_-_Legend_of_St_Francis_-_--19-_-_Stigmatization_of_St_Francis.jpg/600px-Giotto_-_Legend_of_St_Francis_-_--19-_-_Stigmatization_of_St_Francis.jpg',
-    longBio:'Né à Assise en Ombrie, François mène d\'abord une jeunesse insouciante de fils de riche bourgeois avant de connaître une profonde conversion spirituelle à la suite d\'une rencontre avec un lépreux. Il renonce publiquement à ses biens, se dépouille de ses vêtements devant son évêque et choisit de vivre selon l\'Évangile strict. Il fonde l\'Ordre des Frères Mineurs, marquant l\'Église par sa joie, son amour de la nature et sa quête de paix.'
+    longBio:`
+      <p><strong>Sa vie :</strong> Né Giovanni di Pietro Bernardone dans une riche famille bourgeoise d'Ombrie, François mène d'abord une jeunesse dorée et fêtarde. Rêvant de gloire militaire, il part à la guerre mais tombe gravement malade. De retour à Assise, une profonde crise spirituelle l'envahit. Devant le crucifix de Saint-Damien, il entend le Christ lui dire : <em>"François, va et répare mon Église en ruine"</em>. Il se dépouille publiquement de ses vêtements et de son héritage devant son père et l'évêque pour embrasser "Dame Pauvreté".</p>
+      <p><strong>Sa spiritualité :</strong> Il fonde l'Ordre des Frères Mineurs (les Franciscains), révolutionnant la vie religieuse de son temps par un retour radical à l'Évangile, une pauvreté absolue et une prédication itinérante. Sa spiritualité est marquée par une humilité joyeuse et une fraternité cosmique avec toute la création, magnifiquement exprimée dans son <em>Cantique des Créatures</em> ("Loué sois-tu, mon Seigneur, pour frère Soleil...").</p>
+      <p><strong>Le fait marquant :</strong> En 1224, retiré sur le mont Alverne, son amour pour le Christ souffrant est tel qu'il reçoit les stigmates (les plaies de la crucifixion dans ses mains, pieds et côté), devenant le premier stigmatisé de l'histoire.</p>
+    `
   },
   { 
     name:'Thérèse de Lisieux', period:'1873 – 1897', feast:'1er octobre', patronage:'Missions, France',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Th%C3%A9r%C3%A8se_de_Lisieux.jpg/600px-Th%C3%A9r%C3%A8se_de_Lisieux.jpg',
-    longBio:'Carmélite morte à 24 ans, rongée par la tuberculose. Elle développe une spiritualité révolutionnaire : la « Petite Voie » de l\'enfance spirituelle. Elle démontre que la sainteté est accessible à tous à travers les actes les plus ordinaires accomplis par amour, sans besoin de grandes œuvres extraordinaires. Elle est reconnue Docteur de l\'Église.'
+    longBio:`
+      <p><strong>Sa vie :</strong> Thérèse Martin est née à Alençon au sein d'une famille profondément pieuse (ses parents, Louis et Zélie, sont canonisés). Après avoir perdu sa mère très jeune, elle souffre d'une grande hypersensibilité dont elle est guérie la nuit de Noël 1886. Brûlant d'amour pour Jésus, elle supplie le Pape Léon XIII de la laisser entrer au Carmel de Lisieux à seulement 15 ans. Elle y mènera une vie cachée, rongée par la tuberculose et une terrible nuit de la foi, avant de mourir à 24 ans.</p>
+      <p><strong>Sa spiritualité :</strong> Connaissant ses faiblesses, elle invente une voie nouvelle : la "Petite Voie" de l'enfance spirituelle. Elle comprend que la sainteté ne réside pas dans de grandes mortifications extraordinaires, mais dans la confiance absolue en la miséricorde de Dieu et dans l'offrande des plus petites actions quotidiennes faites avec un amour immense. Ses écrits autobiographiques, <em>Histoire d'une âme</em>, bouleverseront le monde entier.</p>
+      <p><strong>Le fait marquant :</strong> Sur son lit de mort, étouffée par la maladie, elle promet : <em>"Je passerai mon Ciel à faire du bien sur la terre. Je ferai tomber une pluie de roses."</em> Elle est proclamée Docteur de l'Église en 1997 par Jean-Paul II.</p>
+    `
   },
   { 
     name:'Augustin d\'Hippone', period:'354 – 430', feast:'28 août', patronage:'Théologiens',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Sandro_Botticelli_-_St_Augustine_-_WGA02613.jpg/600px-Sandro_Botticelli_-_St_Augustine_-_WGA02613.jpg',
-    longBio:'Originaire d\'Afrique romaine, Augustin mène une jeunesse ardente et mondaine. Grâce aux prières de sa mère sainte Monique et aux sermons de saint Ambroise, il se convertit au christianisme. Devenu évêque, il rédige des œuvres monumentales (Les Confessions, La Cité de Dieu) qui structureront toute la pensée chrétienne occidentale.'
+    longBio:`
+      <p><strong>Sa vie :</strong> Né en Afrique du Nord (actuelle Algérie), Augustin est doté d'une intelligence brillante mais mène une jeunesse dissolue, cherchant la vérité dans les philosophies païennes et les hérésies (manichéisme), au grand désespoir de sa mère chrétienne, sainte Monique, qui prie pour lui en larmes pendant des années. C'est à Milan, en écoutant les sermons de l'évêque saint Ambroise, et lors d'une crise décisive dans un jardin ("Prends et lis"), qu'il se convertit. Il deviendra évêque d'Hippone.</p>
+      <p><strong>Sa spiritualité :</strong> Augustin est le penseur de la grâce et de l'intériorité. Il a compris que le cœur de l'homme est fait pour Dieu seul et reste inquiet tant qu'il ne repose pas en Lui. Sa théologie sur la Trinité, le péché originel et l'Église a littéralement structuré toute la pensée chrétienne occidentale.</p>
+      <p><strong>Le fait marquant :</strong> Il rédige <em>Les Confessions</em>, la toute première autobiographie intime de l'histoire humaine, où il met son âme à nu et écrit l'une des plus belles déclarations d'amour à Dieu : <em>"Bien tard je t'ai aimée, ô beauté si ancienne et si nouvelle, bien tard je t'ai aimée !"</em></p>
+    `
   },
   { 
     name:'Thomas d\'Aquin', period:'1225 – 1274', feast:'28 janvier', patronage:'Étudiants, universités',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/St_thomas_aquinas.jpg/600px-St_thomas_aquinas.jpg',
-    longBio:'Surnommé le « Docteur Angélique ». Devenu maître en théologie à l\'Université de Paris, ce frère dominicain réalise une œuvre magistrale en réconciliant la raison (Aristote) avec la foi chrétienne. Sa « Somme Théologique » reste le fondement absolu de la doctrine catholique. Son génie s\'accompagnait d\'une grande humilité.'
+    longBio:`
+      <p><strong>Sa vie :</strong> Issu de la haute noblesse italienne, sa famille voulait faire de lui le riche abbé du Mont-Cassin. Il s'enfuit pour rejoindre un ordre mendiant naissant et pauvre : les Dominicains. Sa famille l'enferme dans un château pendant un an pour l'en dissuader, en vain. Devenu maître à l'Université de Paris, cet homme corrpulent et silencieux (ses camarades le surnommaient "le bœuf muet") se révèle être le plus grand génie intellectuel de son époque.</p>
+      <p><strong>Sa spiritualité :</strong> Thomas d'Aquin a réalisé une œuvre titanesque : réconcilier la philosophie grecque (Aristote) avec la révélation biblique, démontrant que la Raison et la Foi viennent du même Dieu et ne peuvent se contredire. Son chef-d'œuvre, la <em>Somme Théologique</em>, reste la base absolue de la théologie catholique. Mais ce génie était avant tout un immense mystique et un adorateur de l'Eucharistie.</p>
+      <p><strong>Le fait marquant :</strong> À la fin de sa vie, après une extase mystique pendant la messe, il cesse définitivement d'écrire, déclarant à son secrétaire : <em>"Je ne peux plus... Tout ce que j'ai écrit me semble de la paille en comparaison de ce que j'ai vu et de ce qui m'a été révélé."</em></p>
+    `
   },
   { 
     name:'Jeanne d\'Arc', period:'1412 – 1431', feast:'30 mai', patronage:'France, soldats',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Ingres_-_Jeanne_d%27Arc_au_sacre_du_roi_Charles_VII%2C_dans_la_cath%C3%A9drale_de_Reims.jpg/600px-Ingres_-_Jeanne_d%27Arc_au_sacre_du_roi_Charles_VII%2C_dans_la_cath%C3%A9drale_de_Reims.jpg',
-    longBio:'Jeune paysanne pieuse de Domrémy, Jeanne entend les voix célestes lui confiant la mission de faire sacrer Charles VII et de libérer la France. Elle lève le siège d\'Orléans à 17 ans. Capturée, elle subit un procès inique et périt sur le bûcher à 19 ans, incarnant la fidélité absolue à Dieu face aux puissants.'
+    longBio:`
+      <p><strong>Sa vie :</strong> Simple jeune paysanne illettrée et très pieuse de Domrémy. En pleine guerre de Cent Ans, alors que la France est ravagée et quasiment perdue, elle commence à entendre les voix de l'archange saint Michel, sainte Catherine et sainte Marguerite. Elles lui confient une mission impossible : libérer la ville d'Orléans et faire sacrer le dauphin Charles VII à Reims. Contre toute attente, elle convainc le roi, prend la tête de l'armée à 17 ans, et accomplit sa mission de manière fulgurante.</p>
+      <p><strong>Sa spiritualité :</strong> Jeanne incarne la pureté du cœur, le patriotisme spirituel et l'obéissance totale à la volonté de Dieu ("Dieu premier servi"). Elle se distingue par une grande compassion pour les soldats (même ennemis) et une vie de prière intense au milieu des combats.</p>
+      <p><strong>Le fait marquant :</strong> Capturée, vendue aux Anglais et soumise à un procès ecclésiastique inique mené par des évêques corrompus, elle fait preuve d'une intelligence théologique stupéfiante face à ses juges. Condamnée comme hérétique, elle est brûlée vive à Rouen à l'âge de 19 ans, le regard fixé sur une croix en prononçant le nom de "Jésus". Elle sera réhabilitée 25 ans plus tard.</p>
+    `
   },
   { 
     name:'Padre Pio', period:'1887 – 1968', feast:'23 septembre', patronage:'Adolescents, confesseurs',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Padre_Pio_da_Pietrelcina.jpg/600px-Padre_Pio_da_Pietrelcina.jpg',
-    longBio:'Frère capucin italien, grand mystique et confesseur infatigable. Il reçoit les stigmates visibles de la Passion du Christ qu\'il porte dans sa chair pendant 50 ans. Exerçant un charisme de discernement extraordinaire, il passe des heures interminables dans le confessionnal pour réconcilier des foules immenses venues du monde entier.'
+    longBio:`
+      <p><strong>Sa vie :</strong> Francesco Forgione entre très jeune chez les frères Capucins en Italie. Il passe la majeure partie de sa vie dans le couvent pauvre de San Giovanni Rotondo. D'une santé fragile, il subit très tôt de violents assauts démoniaques mais reçoit aussi d'immenses consolations mystiques. Sa vie bascule en 1918 lorsqu'il reçoit les stigmates (les cinq plaies du Christ) qui saigneront chaque jour pendant 50 ans sans jamais s'infecter ni cicatriser.</p>
+      <p><strong>Sa spiritualité :</strong> L'Eucharistie et la Confession sont les deux piliers de sa vie. Ses messes duraient parfois des heures, vécues comme une véritable participation à la Passion du Christ sur le calvaire. Doté du don de lire dans les consciences (cardiognosie), il passait jusqu'à 15 heures par jour dans le confessionnal pour écouter et absolver des millions de pèlerins.</p>
+      <p><strong>Le fait marquant :</strong> Un jour, le futur Pape Jean-Paul II (alors jeune prêtre polonais) vient se confesser à lui. Padre Pio lui aurait prédit qu'il monterait sur le trône de Pierre. C'est d'ailleurs Jean-Paul II qui le canonisera en 2002 devant la plus grande foule jamais réunie à Rome.</p>
+    `
   },
   { 
     name:'Antoine de Padoue', period:'1195 – 1231', feast:'13 juin', patronage:'Objets perdus, voyageurs',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/St._Anthony_of_Padua_holding_the_Infant_Jesus_with_an_open_book%2C_Guercino%2C_1656.jpg/600px-St._Anthony_of_Padua_holding_the_Infant_Jesus_with_an_open_book%2C_Guercino%2C_1656.jpg',
-    longBio:'Né à Lisbonne, il rejoint les Franciscains. Ses talents exceptionnels de prédicateur éclatent au grand jour en Italie, où il convertit les foules et lutte contre l\'hérésie. Connu pour sa profonde érudition biblique et sa douceur, la tradition veut que l\'Enfant Jésus lui soit apparu.'
+    longBio:`
+      <p><strong>Sa vie :</strong> Né Fernando Martins de Bulhões à Lisbonne (Portugal) dans une famille noble, il entre chez les chanoines réguliers de saint Augustin où il acquiert une culture biblique exceptionnelle. Fasciné par les premiers martyrs franciscains, il rejoint l'Ordre naissant de saint François d'Assise et prend le nom d'Antoine. Cherchant le martyr en Afrique, la maladie le ramène en Europe, où ses incroyables talents d'orateur éclatent au grand jour en Italie et en France.</p>
+      <p><strong>Sa spiritualité :</strong> Il est surnommé "Le marteau des hérétiques" car sa prédication, ancrée dans la douceur évangélique et une connaissance parfaite de l'Écriture, ramenait les foules à la foi catholique. Il défendait vigoureusement les pauvres contre l'usure et l'exploitation des riches de son temps.</p>
+      <p><strong>Le fait marquant :</strong> Un jour, à Rimini, face à des hérétiques qui refusaient de l'écouter, il partit prêcher au bord de la mer. La légende raconte que les poissons sortirent la tête de l'eau pour écouter la parole de Dieu, ce qui bouleversa et convertit les habitants.</p>
+    `
   },
   { 
     name:'Mère Teresa', period:'1910 – 1997', feast:'5 septembre', patronage:'Les plus pauvres d\'entre les pauvres',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Mother_Teresa_1.jpg/600px-Mother_Teresa_1.jpg',
-    longBio:'Religieuse albanaise missionnaire en Inde, elle fonde les Missionnaires de la Charité pour servir "les plus pauvres d\'entre les pauvres" dans les bidonvilles de Calcutta. Elle a vécu une terrible nuit de la foi pendant des décennies, cachée derrière son sourire, s\'offrant totalement au service des intouchables et des mourants.'
+    longBio:`
+      <p><strong>Sa vie :</strong> Née Anjezë Gonxhe Bojaxhiu en Macédoine, elle devient religieuse missionnaire en Inde, enseignante pour des jeunes filles de bonne famille. Lors d'un voyage en train en 1946, elle reçoit "l'appel dans l'appel" : Jésus lui demande de tout quitter pour Le servir dans les plus pauvres d'entre les pauvres. Elle fonde les Missionnaires de la Charité, vêtues d'un simple sari de coton blanc bordé de bleu, et s'installe dans les bidonvilles de Calcutta pour ramasser les mourants dans la rue.</p>
+      <p><strong>Sa spiritualité :</strong> Sa vocation se résume au cri de Jésus sur la croix : <em>"J'ai soif"</em>. Elle n'y voyait pas seulement une soif physique, mais la soif de Dieu d'être aimé, et la soif des pauvres d'être reconnus. Elle voyait et servait concrètement le Christ en chaque intouchable, malade du Sida ou lépreux.</p>
+      <p><strong>Le fait marquant :</strong> Après sa mort, la publication de son journal intime a révélé un secret stupéfiant : cette femme dont le sourire rayonnait dans le monde entier a traversé une "Nuit de la Foi" effroyable pendant près de 50 ans, se sentant totalement abandonnée de Dieu, prouvant que sa charité ne reposait sur aucune consolation émotionnelle, mais sur la volonté pure.</p>
+    `
   },
   { 
     name:'Maximilien Kolbe', period:'1894 – 1941', feast:'14 août', patronage:'Prisonniers politiques, journalistes',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Maksymilian_Kolbe.jpg/600px-Maksymilian_Kolbe.jpg',
-    longBio:'Prêtre franciscain polonais, apôtre de l\'Immaculée Conception et pionnier de la presse catholique. Déporté au camp de concentration d\'Auschwitz, il se porte volontaire pour mourir de faim à la place d\'un père de famille condamné. Il meurt en achevant ses bourreaux par l\'amour et la prière.'
+    longBio:`
+      <p><strong>Sa vie :</strong> Raymond Kolbe, prêtre franciscain polonais, est un pionnier de l'évangélisation par les médias. Passionné par l'Immaculée Conception, il fonde la "Milice de l'Immaculée" et crée de toutes pièces la "Cité de l'Immaculée" près de Varsovie, qui devient le plus grand couvent du monde (plus de 700 frères) gérant ses propres journaux, radios et imprimeries pour contrer la propagande nazie et franc-maçonne. En 1941, il est arrêté par la Gestapo et déporté au camp de concentration d'Auschwitz.</p>
+      <p><strong>Sa spiritualité :</strong> Une consécration mariale totale et inconditionnelle. Il croyait fermement que Marie était le chemin le plus sûr, le plus court et le plus parfait pour s'unir au Christ et écraser le mal en ce monde.</p>
+      <p><strong>Le fait marquant :</strong> À Auschwitz, à la suite d'une évasion, le commandant désigne 10 hommes au hasard pour mourir de faim dans le bunker de la mort. L'un d'eux pleure en évoquant sa femme et ses enfants. Le père Kolbe sort des rangs (chose impensable) et demande à prendre sa place. Dans le bunker de la faim, au lieu des hurlements habituels, on entendait Kolbe chanter des psaumes avec les condamnés. Étant le dernier survivant après 15 jours, les nazis l'achèvent par une piqûre de phénol.</p>
+    `
   },
   { 
     name:'Benoît de Nursie', period:'480 – 547', feast:'11 juillet', patronage:'Europe, moines, spéléologues',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Fra_Angelico_-_Saint_Benedict_-_WGA00508.jpg/600px-Fra_Angelico_-_Saint_Benedict_-_WGA00508.jpg',
-    longBio:'Patriarche du monachisme occidental. Fuyant la décadence de Rome, il se retire dans une grotte à Subiaco. Sa célèbre Règle (Ora et Labora - Prie et Travaille) organise la vie monastique avec un équilibre parfait entre prière, travail manuel et obéissance, sauvant ainsi la culture européenne durant le haut Moyen Âge.'
+    longBio:`
+      <p><strong>Sa vie :</strong> Jeune étudiant romain de bonne famille, Benoît est écœuré par la décadence morale de Rome au moment de la chute de l'Empire. Il fuit la ville et se réfugie dans une grotte isolée à Subiaco pour y vivre en ermite. Sa réputation de sainteté attire bientôt de nombreux disciples. Il fonde 12 monastères, dont la célèbre abbaye du Mont-Cassin. Il est le patriarche du monachisme occidental.</p>
+      <p><strong>Sa spiritualité :</strong> Il rédige la "Règle de Saint Benoît", un chef-d'œuvre de sagesse spirituelle et d'équilibre humain, résumé par la devise <em>Ora et Labora</em> (Prie et Travaille). Cette règle organise la vie communautaire en alternant avec justesse la prière liturgique (l'Office divin), la lecture méditée de la Bible, et le travail manuel ou intellectuel, sous l'autorité paternelle d'un Abbé.</p>
+      <p><strong>Le fait marquant :</strong> Au Moyen Âge, alors que l'Europe sombrait dans le chaos barbare, ce sont les monastères bénédictins qui ont recopié les manuscrits, préservé la culture antique, défriché les forêts et enseigné l'agriculture, sauvant ainsi la civilisation européenne.</p>
+    `
   },
   { 
     name:'Catherine de Sienne', period:'1347 – 1380', feast:'29 avril', patronage:'Europe, Italie, malades',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Giovanni_di_Paolo_-_St_Catherine_of_Siena_-_WGA09069.jpg/600px-Giovanni_di_Paolo_-_St_Catherine_of_Siena_-_WGA09069.jpg',
-    longBio:'Laïque dominicaine italienne, elle mène une vie d\'ascèse et de contemplation mystique extrême. Bien qu\'illettrée, sa sagesse est telle qu\'elle conseille les papes et les monarques, contribuant à ramener la papauté d\'Avignon à Rome. Le livre de ses "Dialogues" est un sommet de la mystique.'
+    longBio:`
+      <p><strong>Sa vie :</strong> 23e enfant d'un teinturier de Sienne, Catherine refuse le mariage et entre dans le Tiers-Ordre dominicain (vivant en religieuse mais dans le monde, sans clôture). Elle mène une vie d'une ascèse terrifiante, se nourrissant presque exclusivement de l'Eucharistie. Bien qu'illettrée au départ, elle dicte des lettres enflammées à toutes les têtes couronnées de son époque et s'occupe des pestiférés avec un courage héroïque.</p>
+      <p><strong>Sa spiritualité :</strong> L'union mystique totale avec le Christ ("le doux Christ sur la terre"). Sa spiritualité est centrée sur le sang du Christ, force purificatrice de l'Église. Elle a dicté dans des états d'extase <em>Le Dialogue</em>, une conversation sublime entre Dieu le Père et son âme, qui fait d'elle un Docteur de l'Église.</p>
+      <p><strong>Le fait marquant :</strong> Alors que les Papes avaient déserté Rome depuis 70 ans pour vivre dans le luxe à Avignon, cette simple jeune femme n'hésite pas à se rendre à pied en France pour réprimander le Pape Grégoire XI, l'appelant "son doux Babbo", et le convainc finalement de retourner à Rome, sauvant l'Église d'un schisme total.</p>
+    `
   },
   { 
     name:'Jean-Paul II', period:'1920 – 2005', feast:'22 octobre', patronage:'Jeunes, familles, JMJ',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Johannes_Paul_II._%281993%29.jpg/600px-Johannes_Paul_II._%281993%29.jpg',
-    longBio:'Karol Wojtyła, pape polonais au pontificat exceptionnellement long. Résistant face aux totalitarismes nazi et communiste, il a parcouru le monde entier pour annoncer le Christ. Initiateur des Journées Mondiales de la Jeunesse (JMJ) et auteur d\'un enseignement magistral (la théologie du corps), il a marqué l\'histoire contemporaine.'
+    longBio:`
+      <p><strong>Sa vie :</strong> Karol Wojtyła a eu une jeunesse tragique en Pologne, perdant sa mère, son frère et son père très tôt. Ouvrier dans une carrière de pierre pendant l'occupation nazie, il entre au séminaire clandestin de Cracovie. Devenu archevêque, il s'oppose frontalement au régime communiste. Élu Pape en 1978 ("N'ayez pas peur !"), il réalise un pontificat vertigineux de 27 ans, parcourant la terre entière (104 voyages internationaux) pour annoncer l'Évangile jusqu'à l'épuisement de ses forces physiques.</p>
+      <p><strong>Sa spiritualité :</strong> Intégralement mariale (sa devise était <em>Totus Tuus</em> - "Tout à toi, Marie"). Philosophe brillant, il a rédigé des textes majeurs sur la dignité de la personne humaine, le respect de la vie de la conception à la mort naturelle, et a développé l'incroyable "Théologie du Corps", expliquant le sens profond de la sexualité humaine et du mariage.</p>
+      <p><strong>Le fait marquant :</strong> Le 13 mai 1981, il est grièvement blessé par balles lors d'un attentat sur la place Saint-Pierre. Attribuant sa survie à Notre-Dame de Fatima, il se rendra plus tard dans la cellule de la prison de son assassin, Ali Ağca, pour lui pardonner personnellement en face à face.</p>
+    `
   }
 ];
 
@@ -949,6 +1043,12 @@ let state = {
 function showPage(id){
   document.querySelectorAll('main > section').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  
+  // Mise à jour visuelle du menu corrigée : la surbrillance suit la page
+  document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('highlight'));
+  const activeLink = document.getElementById('nav-' + id);
+  if(activeLink) activeLink.classList.add('highlight');
+
   document.getElementById('navPanel').classList.remove('open');
   document.getElementById('menuToggle').classList.remove('open');
   window.scrollTo({top:0, behavior:'smooth'});
@@ -1082,7 +1182,6 @@ function renderSaints(){
 }
 
 function showSaint(s){
-  // Note: j'ai supprimé loading="lazy" de l'image car il bloque parfois le rendu dans les fenêtres modales
   document.getElementById('ficheModalContent').innerHTML = `
     <span class="cat">Notice biographique · Fête : ${s.feast}</span>
     <h3 style="margin: 8px 0; font-size:1.6rem;">${s.name}</h3>
@@ -1098,8 +1197,10 @@ function showSaint(s){
     <div class="chip-row" style="margin-bottom:14px;">
       <span class="chip"><strong>Patronages :</strong> ${s.patronage}</span>
     </div>
-    <h4 style="font-size:1rem; margin-top:16px; margin-bottom:6px; color:var(--accent);">Parcours et vie spirituelle</h4>
-    <p class="body-text" style="line-height:1.7; text-align:justify;">${s.longBio}</p>
+    
+    <div class="body-text" style="margin-top:16px;">
+      ${s.longBio}
+    </div>
   `;
   document.getElementById('ficheModal').classList.add('open');
 }

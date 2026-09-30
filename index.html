@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#7A431D">
+<meta name="theme-color" content="#1B3B2B">
 <title>Le Compagnon Spirituel</title>
 <meta name="description" content="Espace sobre pour prier, réfléchir et tenir. Rosaire interactif, sélecteur d'humeur, neuvaines, prières essentielles, fiches théologiques. Gratuit, sans pub.">
 <link rel="canonical" href="https://logangamba.github.io/compagnon-spirituel/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='16' fill='%23F4EFEA' stroke='%237A431D' stroke-width='1.4'/%3E%3Cpath d='M17 8V26M11 13H23' stroke='%237A431D' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='16' fill='%23F9F8F6' stroke='%231B3B2B' stroke-width='1.4'/%3E%3Cpath d='M17 8V26M11 13H23' stroke='%231B3B2B' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NF3RPV6K');</script>
@@ -19,40 +19,41 @@
 
 <style>
 :root {
-  --bg: #F4EFEA;
-  --bg-card: #FAF7F2;
-  --bg-card-alt: #ECE4D8;
-  --text: #27231F;
-  --text-muted: #736A5E;
-  --accent: #7A431D;
-  --accent-dark: #522C12;
-  --accent-soft: #B89774;
-  --border: #DED3C2;
-  --border-soft: #EAE1D3;
-  --focus: #3A6B5B;
-  --shadow-sm: 0 2px 12px rgba(82,44,18,0.05);
-  --shadow-md: 0 12px 32px rgba(82,44,18,0.10);
+  --bg: #F9F8F6;
+  --bg-card: #FFFFFF;
+  --bg-card-alt: #F0ECE4;
+  --text: #1F2421;
+  --text-muted: #6B726E;
+  --accent: #1B3B2B;
+  --accent-dark: #11261C;
+  --accent-soft: #4A7C59;
+  --accent-gold: #C5A059;
+  --border: #E2DDD5;
+  --border-soft: #EFECE6;
+  --focus: #C5A059;
+  --shadow-sm: 0 4px 20px rgba(27,59,43,0.06);
+  --shadow-md: 0 16px 40px rgba(27,59,43,0.12);
   --ease: cubic-bezier(.16,1,.3,1);
   --on-accent: #FFFFFF;
 }
 
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg: #1A1714; --bg-card: #231F1B; --bg-card-alt: #2D2823;
-    --text: #EBE3D5; --text-muted: #A39685; --accent: #D4A373;
-    --accent-dark: #E8B98B; --accent-soft: #70553E; --border: #38312B;
-    --border-soft: #2E2823; --focus: #73A692;
-    --shadow-sm: 0 2px 12px rgba(0,0,0,0.3); --shadow-md: 0 12px 32px rgba(0,0,0,0.5);
-    --on-accent: #1A1714;
+    --bg: #121614; --bg-card: #1A211D; --bg-card-alt: #242E28;
+    --text: #F4F2EE; --text-muted: #A3ACA7; --accent: #4EA374;
+    --accent-dark: #72C496; --accent-soft: #2D6144; --accent-gold: #D4AF37;
+    --border: #2D3832; --border-soft: #222B26; --focus: #D4AF37;
+    --shadow-sm: 0 4px 20px rgba(0,0,0,0.5); --shadow-md: 0 16px 40px rgba(0,0,0,0.7);
+    --on-accent: #121614;
   }
 }
 :root[data-theme="dark"]{
-  --bg: #1A1714; --bg-card: #231F1B; --bg-card-alt: #2D2823;
-  --text: #EBE3D5; --text-muted: #A39685; --accent: #D4A373;
-  --accent-dark: #E8B98B; --accent-soft: #70553E; --border: #38312B;
-  --border-soft: #2E2823; --focus: #73A692;
-  --shadow-sm: 0 2px 12px rgba(0,0,0,0.3); --shadow-md: 0 12px 32px rgba(0,0,0,0.5);
-  --on-accent: #1A1714;
+  --bg: #121614; --bg-card: #1A211D; --bg-card-alt: #242E28;
+  --text: #F4F2EE; --text-muted: #A3ACA7; --accent: #4EA374;
+  --accent-dark: #72C496; --accent-soft: #2D6144; --accent-gold: #D4AF37;
+  --border: #2D3832; --border-soft: #222B26; --focus: #D4AF37;
+  --shadow-sm: 0 4px 20px rgba(0,0,0,0.5); --shadow-md: 0 16px 40px rgba(0,0,0,0.7);
+  --on-accent: #121614;
 }
 
 * { box-sizing: border-box; }
@@ -66,10 +67,6 @@ body {
   font-family: 'Inter', sans-serif; line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   transition: background .3s ease, color .3s ease;
-  background-image:
-    radial-gradient(ellipse 900px 500px at 12% -8%, rgba(122,67,29,0.06), transparent 60%),
-    radial-gradient(ellipse 700px 500px at 100% 8%, rgba(122,67,29,0.04), transparent 60%);
-  background-attachment: fixed;
 }
 h1,h2,h3,h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; margin: 0; }
 p { margin: 0 0 1em; }
@@ -85,8 +82,9 @@ svg { display: block; }
 /* HEADER */
 header {
   position: sticky; top: 0; z-index: 40;
-  background: rgba(244,239,234,0.88); backdrop-filter: blur(10px) saturate(140%);
+  background: var(--bg); backdrop-filter: blur(12px) saturate(140%);
   border-bottom: 1px solid var(--border-soft);
+  opacity: 0.98;
 }
 .header-row { display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1080px; margin:0 auto; gap:20px; position:relative; }
 @media (max-width:640px){ .header-row{ padding:14px 20px; } }
@@ -104,11 +102,11 @@ header {
 .hamburger.open span:nth-child(2){ opacity:0; }
 .hamburger.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
-/* MENU DÉROULANT */
+/* MENU DÉROULANT ÉPURÉ */
 .nav-panel {
   position: absolute; right: 28px; top: 64px;
-  background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
-  box-shadow: var(--shadow-md); width: min(300px, calc(100vw - 40px)); padding: 8px;
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+  box-shadow: var(--shadow-md); width: min(260px, calc(100vw - 40px)); padding: 8px;
   display: none; flex-direction: column; z-index: 50;
 }
 @media (max-width:640px){ .nav-panel{ right:20px; } }
@@ -118,35 +116,35 @@ header {
   100% { opacity: 1; transform: none; }
 }
 
-.nav-link { padding:12px 14px; text-decoration:none; font-size:0.94rem; border-radius:6px; color:var(--text); display:flex; align-items:center; gap:10px; transition: background .15s ease, font-weight .15s ease, color .15s ease; }
+.nav-link { padding:12px 14px; text-decoration:none; font-size:0.94rem; border-radius:8px; color:var(--text); display:flex; align-items:center; gap:10px; transition: background .15s ease, font-weight .15s ease, color .15s ease; }
 @media (hover: hover) { .nav-link:hover { background: var(--bg-card-alt); } }
 .nav-link:active { background: var(--border); }
-.nav-link.highlight { background: var(--bg-card-alt); font-weight:700; color:var(--accent-dark); }
+.nav-link.highlight { background: var(--bg-card-alt); font-weight:700; color:var(--accent); }
 
 main { padding: 20px 0 60px; }
-section { padding: 64px 0; border-bottom: 1px solid var(--border-soft); scroll-margin-top:84px; display:none; animation: fadeIn .5s var(--ease); position:relative; }
+section { padding: 50px 0 64px; border-bottom: 1px solid var(--border-soft); scroll-margin-top:84px; display:none; animation: fadeIn .5s var(--ease); position:relative; }
 section.active { display:block; }
 section::after {
   content:''; position:absolute; left:50%; bottom:0; transform:translateX(-50%);
   width:64px; height:3px; border-radius:3px;
-  background: linear-gradient(90deg, transparent, var(--accent-soft), transparent);
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
   opacity:0.6;
 }
 section:last-of-type::after, section#apropos::after { display:none; }
 @keyframes fadeIn { from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:none;} }
 
-.eyebrow { color:var(--accent); font-weight:700; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
-.eyebrow::before { content:''; width:20px; height:1px; background:var(--accent-soft); }
+.eyebrow { color: var(--accent-gold); font-weight:700; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.eyebrow::before { content:''; width:20px; height:1px; background:var(--accent-gold); }
 .hero h2 { font-size:clamp(2.1rem, 4.6vw, 3.2rem); max-width:660px; line-height:1.08; margin-bottom:18px; }
 .hero p.lead { max-width:560px; color:var(--text-muted); font-size:1.08rem; margin-bottom:30px; }
 .hero-actions { display:flex; gap:12px; flex-wrap:wrap; }
 
 .quote-banner { margin-top:44px; padding:26px 30px; border-radius:12px; background:var(--bg-card); border:1px solid var(--border); box-shadow:var(--shadow-sm); display:flex; gap:18px; align-items:flex-start; max-width:640px; }
-.quote-banner svg { color:var(--accent-soft); flex-shrink:0; margin-top:2px; }
+.quote-banner svg { color:var(--accent-gold); flex-shrink:0; margin-top:2px; }
 .quote-banner blockquote { font-family:'Fraunces',serif; font-style:italic; font-size:1.08rem; margin:0 0 6px; line-height:1.55; }
 .quote-banner cite { font-style:normal; font-size:0.82rem; color:var(--text-muted); }
 
-.btn { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--accent); background:transparent; color:var(--accent); padding:11px 20px; border-radius:6px; font-size:0.9rem; font-weight:500; transition: background .18s ease, color .18s ease, box-shadow .18s ease; }
+.btn { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--accent); background:transparent; color:var(--accent); padding:11px 20px; border-radius:8px; font-size:0.9rem; font-weight:500; transition: background .18s ease, color .18s ease, box-shadow .18s ease; }
 .btn:hover { background:var(--accent); color:var(--on-accent); box-shadow: var(--shadow-sm); }
 .btn-solid { background:var(--accent); color:var(--on-accent); border-color:var(--accent); }
 .btn-solid:hover { background:var(--accent-dark); border-color:var(--accent-dark); }
@@ -156,105 +154,170 @@ section:last-of-type::after, section#apropos::after { display:none; }
 .section-head p { color:var(--text-muted); margin:0; }
 .illustration { display:block; margin: 28px auto; color: var(--accent); }
 
+/* BANNIÈRES ULTRA STYLÉES (Style Hozana avec photo & dégradé haute lisibilité) */
+.page-banner {
+  border-radius: 18px;
+  padding: 56px 40px;
+  margin-bottom: 36px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  color: #FFFFFF;
+}
+.page-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(17,38,28,0.92) 0%, rgba(27,59,43,0.82) 100%);
+  z-index: 1;
+}
+.page-banner > * {
+  position: relative;
+  z-index: 2;
+}
+.page-banner h2 {
+  font-size: clamp(2.1rem, 4.2vw, 2.8rem);
+  color: #FFFFFF;
+  margin-bottom: 10px;
+}
+.page-banner p {
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+  font-size: 1.08rem;
+  max-width: 580px;
+}
+
 /* Grids & cards */
 .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; perspective: 1000px;}
 #moodsGrid { margin-top: 24px; }
 
 .card {
-  background:var(--bg-card); border:1px solid var(--border); border-radius:12px;
-  padding:22px; text-align:left; transition: transform 0.4s var(--ease), box-shadow 0.4s ease, border-color 0.3s ease;
-  width:100%; display:flex; flex-direction:column; gap:6px; position:relative; overflow:hidden;
+  background:var(--bg-card); border:1px solid var(--border); border-radius:14px;
+  padding:24px; text-align:left; transition: transform 0.4s var(--ease), box-shadow 0.4s ease, border-color 0.3s ease;
+  width:100%; display:flex; flex-direction:column; gap:8px; position:relative; overflow:hidden;
+  box-shadow: var(--shadow-sm);
 }
-.card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent-soft); opacity:0; transition: opacity .2s ease; }
-.card:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--accent-soft); }
+.card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--accent-gold); opacity:0; transition: opacity .2s ease; }
+.card:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); border-color:var(--accent-soft); }
 .card:hover::before { opacity:1; }
-.card .icon-badge { width:36px; height:36px; border-radius:9px; background:var(--bg-card-alt); display:flex; align-items:center; justify-content:center; color:var(--accent); margin-bottom:6px; }
-.card .icon-badge svg { width:18px; height:18px; }
-.card h3 { font-size:1.02rem; }
-.card .cat { font-size:0.7rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.03em; }
-.card .muted { font-size:0.84rem; color:var(--text-muted); }
+.card .icon-badge { width:40px; height:40px; border-radius:10px; background:var(--bg-card-alt); display:flex; align-items:center; justify-content:center; color:var(--accent); margin-bottom:8px; }
+.card .icon-badge svg { width:20px; height:20px; }
+.card h3 { font-size:1.08rem; color:var(--text); }
+.card .cat { font-size:0.72rem; color:var(--accent-gold); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; }
+.card .muted { font-size:0.88rem; color:var(--text-muted); }
+
+/* Thématiques Cards (Explorer) */
+.thematic-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 200px;
+  transition: transform .3s var(--ease), box-shadow .3s ease, border-color .3s ease;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+.thematic-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-gold);
+}
+.thematic-card h3 { font-size: 1.3rem; margin-bottom: 6px; color: var(--text); }
+.thematic-card p { font-size: 0.88rem; color: var(--text-muted); margin: 0; }
+.thematic-card .icon-top {
+  width: 46px; height: 46px; border-radius: 12px; background: var(--bg-card-alt);
+  display: flex; align-items:center; justify-content:center; color: var(--accent); margin-bottom: 20px;
+}
+.thematic-card .icon-top svg { width: 24px; height: 24px; }
 
 /* Humeurs */
-.detail-panel { margin-top:24px; background:var(--bg-card); border:1px solid var(--accent-soft); border-radius:10px; padding:28px; display:none; animation: fadeIn .35s var(--ease); box-shadow: var(--shadow-sm); }
+.detail-panel { margin-top:24px; background:var(--bg-card); border:1px solid var(--accent-gold); border-radius:14px; padding:32px; display:none; animation: fadeIn .35s var(--ease); box-shadow: var(--shadow-md); }
 .detail-panel.show { display:block; }
-.detail-panel blockquote { font-family:'Fraunces',serif; font-style:italic; font-size:1.2rem; margin:0 0 8px; line-height:1.5; }
+.detail-panel blockquote { font-family:'Fraunces',serif; font-style:italic; font-size:1.25rem; margin:0 0 8px; line-height:1.5; }
 .detail-panel cite { font-style:normal; font-size:0.85rem; color:var(--text-muted); display:block; margin-bottom:18px; }
-.detail-panel h4 { font-size:0.95rem; margin:18px 0 6px; }
+.detail-panel h4 { font-size:0.95rem; margin:18px 0 6px; color:var(--accent); }
 
 .chip-row { display:flex; gap:8px; flex-wrap:wrap; }
-.chip { border:1px solid var(--border); background:var(--bg-card); color:var(--text-muted); padding:7px 14px; border-radius:999px; font-size:0.82rem; font-weight:500; transition: all .18s ease; }
-.chip:hover { border-color:var(--accent-soft); color:var(--text); }
+.chip { border:1px solid var(--border); background:var(--bg-card); color:var(--text-muted); padding:8px 16px; border-radius:999px; font-size:0.84rem; font-weight:500; transition: all .18s ease; }
+.chip:hover { border-color:var(--accent-gold); color:var(--text); }
 .chip.active { background:var(--accent); border-color:var(--accent); color:var(--on-accent); }
 
-/* Prayers Custom Smooth Accordion */
-.prayer-accordion-item { border:1px solid var(--border); border-radius:8px; background:var(--bg-card); margin-bottom:10px; overflow:hidden; transition: border-color .2s ease; }
-.prayer-accordion-item:hover { border-color: var(--accent-soft); }
-.prayer-accordion-header { padding:16px 18px; font-family:'Fraunces',serif; font-size:1.02rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; user-select:none; }
+/* Prayers Accordion */
+.prayer-accordion-item { border:1px solid var(--border); border-radius:12px; background:var(--bg-card); margin-bottom:12px; overflow:hidden; transition: border-color .2s ease; box-shadow: var(--shadow-sm); }
+.prayer-accordion-item:hover { border-color: var(--accent-gold); }
+.prayer-accordion-header { padding:18px 20px; font-family:'Fraunces',serif; font-size:1.08rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; user-select:none; }
 .prayer-accordion-header::after { content:'+'; color:var(--accent); font-size:1.3rem; transition: transform .25s var(--ease); }
 .prayer-accordion-item.open .prayer-accordion-header::after { transform: rotate(45deg); }
 .prayer-accordion-content-wrap { display:grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s var(--ease); }
 .prayer-accordion-item.open .prayer-accordion-content-wrap { grid-template-rows: 1fr; }
 .prayer-accordion-body { overflow:hidden; }
-.prayer-accordion-inner { padding:0 18px 18px; color:var(--text); font-size:0.96rem; line-height:1.8; white-space:pre-line; }
+.prayer-accordion-inner { padding:0 20px 20px; color:var(--text); font-size:0.98rem; line-height:1.8; white-space:pre-line; }
 
 /* Novena day list */
-.novena-days { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
-.novena-day { background:var(--bg-card-alt); border-radius:8px; padding:14px 16px; }
-.novena-day .num { color:var(--accent); font-weight:700; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.03em; }
-.novena-day .prayer { font-family:'Fraunces',serif; font-style:italic; margin:4px 0; }
-.novena-day .action { font-size:0.86rem; color:var(--text-muted); }
+.novena-days { display:flex; flex-direction:column; gap:12px; margin-top:20px; }
+.novena-day { background:var(--bg-card-alt); border-radius:10px; padding:16px 18px; }
+.novena-day .num { color:var(--accent-gold); font-weight:700; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.04em; }
+.novena-day .prayer { font-family:'Fraunces',serif; font-style:italic; margin:6px 0; font-size:1.05rem; }
+.novena-day .action { font-size:0.88rem; color:var(--text-muted); }
 
 /* Chapelet */
 .chapelet-wrap { text-align:center; }
-.chapelet-hud { margin-top:24px; padding:26px; background:var(--bg-card); border-radius:12px; box-shadow:var(--shadow-sm); }
-.chapelet-hud .mystery-label { font-size:0.8rem; color:var(--accent); font-weight:600; text-transform:uppercase; letter-spacing:0.03em; margin-bottom:8px; }
-.chapelet-hud h3 { font-size:1.4rem; margin-bottom:8px; }
-.chapelet-hud .mystery-desc { color:var(--text-muted); margin-bottom:14px; font-style: italic;}
+.chapelet-hud { margin-top:24px; padding:32px; background:var(--bg-card); border-radius:16px; box-shadow:var(--shadow-md); border:1px solid var(--border); }
+.chapelet-hud .mystery-label { font-size:0.82rem; color:var(--accent-gold); font-weight:600; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:8px; }
+.chapelet-hud h3 { font-size:1.5rem; margin-bottom:8px; }
+.chapelet-hud .mystery-desc { color:var(--text-muted); margin-bottom:16px; font-style: italic;}
 
 .rosary-text-box {
-  background: var(--bg-card-alt); border: 1px solid var(--border-soft); border-radius: 8px;
-  padding: 24px; margin: 20px 0; font-family: 'Fraunces', serif; font-size: 1.1rem;
-  line-height: 1.6; white-space: pre-line; color: var(--text);
-  min-height: 160px; display: flex; flex-direction: column; justify-content: center;
+  background: var(--bg-card-alt); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px; margin: 24px 0; font-family: 'Fraunces', serif; font-size: 1.15rem;
+  line-height: 1.7; white-space: pre-line; color: var(--text);
+  min-height: 180px; display: flex; flex-direction: column; justify-content: center;
 }
 .rosary-text-title {
   font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 700;
-  text-transform: uppercase; color: var(--accent); margin-bottom: 12px; letter-spacing: 0.05em;
+  text-transform: uppercase; color: var(--accent-gold); margin-bottom: 12px; letter-spacing: 0.05em;
 }
 
-.chapelet-controls { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
-.dots { display:flex; gap:6px; justify-content:center; margin-top:14px; }
-.dots span { width:7px; height:7px; border-radius:50%; background:var(--border); transition: all 0.2s; }
-.dots span.on { background:var(--accent); transform: scale(1.2);}
+.chapelet-controls { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.dots { display:flex; gap:8px; justify-content:center; margin-top:16px; }
+.dots span { width:8px; height:8px; border-radius:50%; background:var(--border); transition: all 0.2s; }
+.dots span.on { background:var(--accent-gold); transform: scale(1.3);}
 
 /* Modal */
-.modal-backdrop { position:fixed; inset:0; background:rgba(39,35,31,0.5); display:flex; align-items:flex-start; justify-content:center; padding:40px 20px; overflow-y:auto; z-index:60; visibility:hidden; opacity:0; pointer-events:none; transition: opacity .28s ease, visibility 0s linear .28s; }
+.modal-backdrop { position:fixed; inset:0; background:rgba(18,22,20,0.65); display:flex; align-items:flex-start; justify-content:center; padding:40px 20px; overflow-y:auto; z-index:60; visibility:hidden; opacity:0; pointer-events:none; transition: opacity .28s ease, visibility 0s linear .28s; }
 .modal-backdrop.open { visibility:visible; opacity:1; pointer-events:auto; transition: opacity .28s ease; }
-.modal { background:var(--bg-card); max-width:660px; width:100%; border-radius:12px; padding:36px; position:relative; margin-bottom:40px; transform:translateY(14px) scale(.97); transition: transform .32s var(--ease); box-shadow: var(--shadow-md); }
+.modal { background:var(--bg-card); max-width:680px; width:100%; border-radius:16px; padding:40px; position:relative; margin-bottom:40px; transform:translateY(14px) scale(.97); transition: transform .32s var(--ease); box-shadow: var(--shadow-md); border: 1px solid var(--border); }
 .modal-backdrop.open .modal { transform:none; }
-.modal-close { position:absolute; top:16px; right:16px; width:34px; height:34px; border-radius:50%; border:1px solid var(--border); background:var(--bg); font-size:1.1rem; display:flex; align-items:center; justify-content:center; color:var(--text-muted); }
-.modal .cat { font-size:0.72rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.03em; }
-.modal h3 { font-size:1.4rem; margin:6px 0 4px; }
-.modal .muted { color:var(--text-muted); font-size:0.88rem; margin-bottom:16px; }
-.modal .body-text { font-size:1rem; line-height:1.75; text-align: justify; }
-.modal .body-text p { margin-bottom: 14px; }
+.modal-close { position:absolute; top:20px; right:20px; width:36px; height:36px; border-radius:50%; border:1px solid var(--border); background:var(--bg); font-size:1.1rem; display:flex; align-items:center; justify-content:center; color:var(--text-muted); }
+.modal .cat { font-size:0.75rem; color:var(--accent-gold); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; }
+.modal h3 { font-size:1.5rem; margin:8px 0 4px; }
+.modal .muted { color:var(--text-muted); font-size:0.9rem; margin-bottom:20px; }
+.modal .body-text { font-size:1.02rem; line-height:1.8; text-align: justify; }
+.modal .body-text p { margin-bottom: 16px; }
 
 /* Consent */
-.consent-banner { position:fixed; left:0; right:0; bottom:0; z-index:80; background:var(--bg-card); border-top:1px solid var(--border); padding:18px 26px; display:flex; gap:20px; align-items:center; justify-content:space-between; flex-wrap:wrap; transform:translateY(110%); transition: transform .35s var(--ease); box-shadow: var(--shadow-md); }
+.consent-banner { position:fixed; left:0; right:0; bottom:0; z-index:80; background:var(--bg-card); border-top:1px solid var(--border); padding:20px 28px; display:flex; gap:20px; align-items:center; justify-content:space-between; flex-wrap:wrap; transform:translateY(110%); transition: transform .35s var(--ease); box-shadow: var(--shadow-md); }
 .consent-banner.show { transform:none; }
-.consent-text p { margin:0; font-size:0.85rem; color:var(--text-muted); line-height:1.6; max-width: 640px; }
-.link-btn { color:var(--accent); text-decoration:underline; font-size:inherit; }
+.consent-text p { margin:0; font-size:0.88rem; color:var(--text-muted); line-height:1.6; max-width: 640px; }
+.link-btn { color:var(--accent); text-decoration:underline; font-size:inherit; font-weight:600; }
 
 /* Footer */
-footer { padding:52px 0 40px; }
+footer { padding:60px 0 40px; border-top: 1px solid var(--border-soft); margin-top: 40px; background: var(--bg-card); }
 .footer-grid { display:flex; gap:40px; flex-wrap:wrap; margin: 24px 0 30px; }
-.footer-col h4 { font-size:0.78rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:12px; }
-.footer-col { display:flex; flex-direction:column; gap:8px; min-width:160px; }
-.footer-link { text-align:left; font-size:0.88rem; color:var(--text-muted); transition:color .15s ease; }
+.footer-col h4 { font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:14px; }
+.footer-col { display:flex; flex-direction:column; gap:10px; min-width:160px; }
+.footer-link { text-align:left; font-size:0.9rem; color:var(--text-muted); transition:color .15s ease; }
 .footer-link:hover { color:var(--accent); }
-.legal-block { font-size:0.78rem; color:var(--text-muted); max-width:640px; line-height:1.7; border-top:1px solid var(--border-soft); padding-top:22px; }
+.legal-block { font-size:0.8rem; color:var(--text-muted); max-width:680px; line-height:1.7; border-top:1px solid var(--border); padding-top:24px; }
 
-.skip-link { position:absolute; left:12px; top:-60px; z-index:100; background:var(--accent); color:var(--on-accent); padding:10px 16px; border-radius:6px; font-size:0.85rem; transition: top .2s ease; }
+.skip-link { position:absolute; left:12px; top:-60px; z-index:100; background:var(--accent); color:var(--on-accent); padding:10px 16px; border-radius:8px; font-size:0.85rem; transition: top .2s ease; }
 .skip-link:focus { top:12px; }
 </style>
 
@@ -291,15 +354,10 @@ footer { padding:52px 0 40px; }
       </button>
     </div>
     
+    <!-- MENU DÉROULANT ÉPURÉ (Accueil, Explorer, À propos) -->
     <nav class="nav-panel nav-links" id="navPanel" aria-label="Menu principal">
       <a href="#" class="nav-link highlight" id="nav-accueil" onclick="showPage('accueil'); return false;">Accueil</a>
-      <a href="#" class="nav-link" id="nav-humeurs" onclick="showPage('humeurs'); return false;">Mes humeurs</a>
-      <a href="#" class="nav-link" id="nav-chapelet" onclick="showPage('chapelet'); return false;">Saint Rosaire</a>
-      <a href="#" class="nav-link" id="nav-prieres" onclick="showPage('prieres'); return false;">Prières essentielles</a>
-      <a href="#" class="nav-link" id="nav-neuvaines" onclick="showPage('neuvaines'); return false;">Neuvaines</a>
-      <a href="#" class="nav-link" id="nav-versets" onclick="showPage('versets'); return false;">Versets bibliques</a>
-      <a href="#" class="nav-link" id="nav-saints" onclick="showPage('saints'); return false;">Figures de saints</a>
-      <a href="#" class="nav-link" id="nav-fiches" onclick="showPage('fiches'); return false;">Réflexion et théologie</a>
+      <a href="#" class="nav-link" id="nav-thematiques" onclick="showPage('thematiques'); return false;">Explorer</a>
       <a href="#" class="nav-link" id="nav-apropos" onclick="showPage('apropos'); return false;">À propos</a>
     </nav>
   </div>
@@ -315,7 +373,7 @@ footer { padding:52px 0 40px; }
         <p class="lead">Pose tes valises ici. Que tu aies besoin de traverser une épreuve, de réciter ton rosaire ou d'approfondir un point de doctrine, cet espace est ton point d'ancrage quotidien pour tenir bon dans la foi.</p>
         <div class="hero-actions">
           <button class="btn btn-solid" onclick="showPage('chapelet')">Prier le Rosaire</button>
-          <button class="btn" onclick="showPage('fiches')">Explorer les fiches</button>
+          <button class="btn" onclick="showPage('thematiques')">Explorer les parcours</button>
         </div>
 
         <div class="quote-banner" id="dailyQuote">
@@ -327,7 +385,6 @@ footer { padding:52px 0 40px; }
         </div>
       </div>
 
-      <!-- Nouvelle illustration d'accueil professionnelle et raffinée -->
       <svg class="illustration" width="280" height="150" viewBox="0 0 280 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M140 15V135" stroke="currentColor" stroke-width="1.2" opacity="0.25" stroke-dasharray="3 3"/>
         <path d="M90 45C110 35 130 40 140 50C150 40 170 35 190 45V125C170 115 150 110 140 120C130 110 110 115 90 125V45Z" fill="currentColor" opacity="0.05" stroke="currentColor" stroke-width="1.2"/>
@@ -339,12 +396,25 @@ footer { padding:52px 0 40px; }
     </div>
   </section>
 
+  <!-- EXPLORER (anciennement Thématiques) -->
+  <section id="thematiques">
+    <div class="wrap">
+      <div class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1548625149-fc4a29cf7092?auto=format&fit=crop&w=1600&q=80');">
+        <p class="eyebrow" style="color: var(--accent-gold); margin-bottom: 6px;">Navigation principale</p>
+        <h2>Explorer & Sélections</h2>
+        <p>Explorez les grands axes de la vie chrétienne, de la doctrine, de la prière et des neuvaines.</p>
+      </div>
+      <div class="grid" id="thematicGrid" style="margin-top:24px;"></div>
+    </div>
+  </section>
+
   <!-- HUMEURS -->
   <section id="humeurs">
     <div class="wrap">
-      <div class="section-head">
-        <h2 class="gsap-split">Comment te sens-tu aujourd'hui ?</h2>
-        <p>Clique sur ton état du jour. Re-clique pour obtenir un nouveau verset, une autre prière et un autre geste si besoin.</p>
+      <div class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1600&q=80');">
+        <p class="eyebrow" style="color: var(--accent-gold); margin-bottom: 6px;">Accompagnement</p>
+        <h2>Mes humeurs du jour</h2>
+        <p>Clique sur ton état du moment pour retrouver un verset, une prière du cœur et un geste concret.</p>
       </div>
       <div class="grid" id="moodsGrid"></div>
       <div class="detail-panel" id="moodDetail"></div>
@@ -354,9 +424,10 @@ footer { padding:52px 0 40px; }
   <!-- CHAPELET -->
   <section id="chapelet">
     <div class="wrap chapelet-wrap">
-      <div class="section-head" style="text-align:left;">
-        <h2 class="gsap-split">Saint Rosaire</h2>
-        <p>Laisse-toi guider pas à pas. Le mystère du jour est sélectionné, il te suffit d'avancer en récitant la prière affichée.</p>
+      <div class="page-banner" style="text-align:left; background-image: url('https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1600&q=80');">
+        <p class="eyebrow" style="color: var(--accent-gold); margin-bottom: 6px;">Prière méditative</p>
+        <h2>Saint Rosaire</h2>
+        <p>Laisse-toi guider pas à pas à travers les mystères pour méditer la vie du Christ avec Marie.</p>
       </div>
       <svg class="illustration" width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="chapeletSvg">
         <circle cx="140" cy="140" r="96" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.28"/>
@@ -384,14 +455,11 @@ footer { padding:52px 0 40px; }
   <!-- PRIÈRES -->
   <section id="prieres">
     <div class="wrap">
-      <div class="section-head">
-        <h2 class="gsap-split">Prières essentielles</h2>
-        <p>Les textes traditionnels, à portée de main.</p>
+      <div class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1600&q=80');">
+        <p class="eyebrow" style="color: var(--accent-gold); margin-bottom: 6px;">Tradition</p>
+        <h2>Prières essentielles</h2>
+        <p>Les textes fondamentaux et traditionnels de l'Église à portée de main.</p>
       </div>
-      <svg class="illustration" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-bottom: 24px;">
-        <path d="M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6a1 1 0 0 1-1-1z" />
-        <path d="M9 9h6M12 6v8" />
-      </svg>
       <div id="prayersList"></div>
     </div>
   </section>
@@ -399,25 +467,11 @@ footer { padding:52px 0 40px; }
   <!-- NEUVAINES -->
   <section id="neuvaines">
     <div class="wrap">
-      <div class="section-head">
-        <h2 class="gsap-split">Neuvaines</h2>
-        <p>Neuf jours de prière, de méditation profonde et d'action concrète à ton rythme.</p>
+      <div class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1600&q=80');">
+        <p class="eyebrow" style="color: var(--accent-gold); margin-bottom: 6px;">Cheminement spirituel</p>
+        <h2>Grandes neuvaines</h2>
+        <p>Neuf jours de prière, de méditation profonde et d'action concrète pour porter vos intentions dans la durée.</p>
       </div>
-      <!-- Nouvelle illustration de neuvaines soignée et professionnelle -->
-      <svg class="illustration" width="280" height="130" viewBox="0 0 280 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M40 95C80 45 200 45 240 95" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.35"/>
-        <g fill="currentColor">
-          <circle cx="45" cy="90" r="4" opacity="0.25"/>
-          <circle cx="75" cy="70" r="4.5" opacity="0.35"/>
-          <circle cx="110" cy="56" r="5" opacity="0.45"/>
-          <circle cx="140" cy="50" r="7" opacity="0.15"/>
-          <circle cx="140" cy="50" r="3.5" fill="var(--accent-soft)"/>
-          <path d="M140 38Q137 45 140 48Q143 45 140 38Z" fill="var(--accent-soft)"/>
-          <circle cx="170" cy="56" r="5" opacity="0.45"/>
-          <circle cx="205" cy="70" r="4.5" opacity="0.35"/>
-          <circle cx="235" cy="90" r="4" opacity="0.25"/>
-        </g>
-      </svg>
       <div class="grid" id="novenasGrid"></div>
       <div class="detail-panel" id="novenaDetail"></div>
     </div>
@@ -426,9 +480,10 @@ footer { padding:52px 0 40px; }
   <!-- FICHES -->
   <section id="fiches">
     <div class="wrap">
-      <div class="section-head">
-        <h2 class="gsap-split">Fiches théologiques</h2>
-        <p>Des textes courts et structurés pour comprendre et approfondir.</p>
+      <div class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1600&q=80');">
+        <p class="eyebrow" style="color: var(--accent-gold); margin-bottom: 6px;">Étude & Doctrine</p>
+        <h2>Fiches théologiques</h2>
+        <p>Des textes courts et structurés pour comprendre et approfondir la foi catholique.</p>
       </div>
       <div class="grid" id="fichesGrid"></div>
     </div>
@@ -437,9 +492,10 @@ footer { padding:52px 0 40px; }
   <!-- VERSETS BIBLIQUES -->
   <section id="versets">
     <div class="wrap">
-      <div class="section-head">
-        <h2 class="gsap-split">Versets bibliques</h2>
-        <p>Choisis un thème pour retrouver une parole à méditer.</p>
+      <div class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1600&q=80');">
+        <p class="eyebrow" style="color: var(--accent-gold); margin-bottom: 6px;">Écritures</p>
+        <h2>Versets bibliques</h2>
+        <p>Choisis un thème pour retrouver une parole inspirante à méditer.</p>
       </div>
       <div class="chip-row" id="verseThemes"></div>
       <div class="grid" id="versesGrid" style="margin-top:18px;"></div>
@@ -449,8 +505,9 @@ footer { padding:52px 0 40px; }
   <!-- FIGURES DE SAINTS -->
   <section id="saints">
     <div class="wrap">
-      <div class="section-head">
-        <h2 class="gsap-split">Figures de saints</h2>
+      <div class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1600&q=80');">
+        <p class="eyebrow" style="color: var(--accent-gold); margin-bottom: 6px;">Modèles de vie</p>
+        <h2>Figures de saints</h2>
         <p>Des vies qui éclairent, à des époques et dans des chemins très différents.</p>
       </div>
       <div class="grid" id="saintsGrid"></div>
@@ -488,11 +545,10 @@ footer { padding:52px 0 40px; }
       <div class="footer-col">
         <h4>Navigation</h4>
         <button class="footer-link" onclick="showPage('accueil')">Accueil</button>
-        <button class="footer-link" onclick="showPage('humeurs')">Mes humeurs</button>
+        <button class="footer-link" onclick="showPage('thematiques')">Explorer</button>
         <button class="footer-link" onclick="showPage('chapelet')">Saint Rosaire</button>
-        <button class="footer-link" onclick="showPage('prieres')">Prières</button>
         <button class="footer-link" onclick="showPage('neuvaines')">Neuvaines</button>
-        <button class="footer-link" onclick="showPage('fiches')">Fiches</button>
+        <button class="footer-link" onclick="showPage('fiches')">Fiches théologiques</button>
       </div>
       <div class="footer-col">
         <h4>Légal</h4>
@@ -772,6 +828,15 @@ const NOVENAS = [
   ]}
 ];
 
+const THEMATICS = [
+  { title: "La Vierge Marie", desc: "Rosaire, prières mariales et sanctification sous son manteau protecteur.", target: "chapelet", icon: '<path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/>' },
+  { title: "Combat Spirituel", desc: "Armure de Dieu, vigilance et prières de protection contre les tentations.", target: "humeurs", icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>' },
+  { title: "Doctrine & Fiches", desc: "Approfondissez les grands dogmes, les sacrements et la théologie de l'Église.", target: "fiches", icon: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>' },
+  { title: "Figures de Saints", desc: "Des vies inspirantes et des modèles de sainteté à travers les siècles.", target: "saints", icon: '<path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/>' },
+  { title: "Prières Essentielles", desc: "Les textes fondamentaux et la tradition de prière quotidienne.", target: "prieres", icon: '<path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>' },
+  { title: "Chemin de Neuvaines", desc: "Neuf jours de méditation pour porter vos intentions dans la durée.", target: "neuvaines", icon: '<path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4m-4.93-7.07l-2.83 2.83m-8.48 8.48l-2.83 2.83"/>' }
+];
+
 const FICHES = [
   { id: 'incarnation', title: "L'Incarnation du Verbe", sub: 'Comment Dieu a pris chair en Jésus', cat: 'christologie', body: `<h3>1. Le mystère de l'Union Hypostatique</h3><p>L'Incarnation n'est pas une simple "apparition" de Dieu ni la transformation de Dieu en homme. Le <strong>Concile de Chalcédoine (451)</strong> a défini le dogme de l'Union Hypostatique : en Jésus-Christ, la nature divine et la nature humaine sont unies <em>"sans confusion, sans changement, sans division et sans séparation"</em> dans l'unique Personne (Hypostase) du Verbe éternel. Jésus possède donc un corps humain, un cœur humain, une intelligence humaine, et une volonté humaine, tout en restant pleinement Dieu.</p><h3>2. Les quatre raisons de l'Incarnation (CEC 456-460)</h3><ul><li><strong>Pour nous sauver et nous réconcilier avec Dieu :</strong> Notre nature blessée par le péché originel ne pouvait réparer seule l'offense infinie faite à Dieu. Il fallait un Sauveur qui soit Dieu pour que la réparation soit infinie, et Homme pour représenter l'humanité.</li><li><strong>Pour nous faire connaître l'amour de Dieu :</strong> (1 Jn 4, 9). Dieu se rend visible et vulnérable dans la crèche pour attirer notre cœur sans l'écraser par sa majesté.</li><li><strong>Pour être notre modèle de sainteté :</strong> Le Christ nous montre le chemin de l'humanité parfaite, accomplie dans l'amour.</li><li><strong>Pour nous rendre participants de la nature divine :</strong> Comme l'écrit saint Irénée : <em>"Le Verbe de Dieu s'est fait homme pour que l'homme devienne fils de Dieu."</em></li></ul><h3>3. La convenance selon Saint Thomas d'Aquin</h3><p>Dans sa <em>Somme théologique</em>, saint Thomas se demande si l'Incarnation était "convenable". Il répond par un grand principe philosophique : <strong>"Le Bien est de soi diffusif"</strong> (<em>Bonum est diffusivum sui</em>). Dieu étant le Souverain Bien, il est dans sa nature de vouloir se communiquer à ses créatures de la façon la plus intime et absolue qui soit : en épousant notre condition.</p>` },
   { id: 'redemption', title: 'La Rédemption par la Croix', sub: 'Le sens théologique du sacrifice de Jésus', cat: 'salut', body: `<h3>1. Pourquoi la Croix ? La doctrine de la Satisfaction</h3><p>Saint Anselme (XIe siècle) explique dans son œuvre <em>Cur Deus Homo</em> que le péché a causé un désordre d'une gravité infinie car il offense la majesté d'un Dieu infini. L'humanité devait payer une dette, mais seul Dieu en avait les moyens. Le Christ, vrai Dieu et vrai homme, offre sur la Croix une réparation ou "satisfaction vicariante" (à notre place) qui restaure la justice.</p><h3>2. La surabondance de l'Amour (Thomas d'Aquin)</h3><p>Saint Thomas sublime la pensée d'Anselme : ce n'est pas la "quantité de souffrance" physique qui a sauvé le monde (Dieu n'est pas un tyran sanguinaire). C'est la <strong>charité infinie</strong> et <strong>l'obéissance parfaite</strong> du Christ dans sa souffrance. <em>"C'est par amour que le Christ a souffert, et c'est cet amour qui a donné à sa Passion une valeur réparatrice surabondante"</em> (ST IIIa, q. 48, a. 2). La Croix est d'abord le sommet de l'Amour.</p><h3>3. Les quatre modes d'action du Salut</h3><ul><li><strong>Le Mérite :</strong> Le Christ, Nouvel Adam, a mérité la grâce pour tous les hommes par son obéissance, inversant la désobéissance du premier Adam.</li><li><strong>La Satisfaction :</strong> Il a offert une réparation qui plaît plus à Dieu que tous les péchés du monde ne lui déplaisent.</li><li><strong>Le Sacrifice :</strong> La Croix est l'acte liturgique parfait où le Christ est à la fois le Prêtre et la Victime.</li><li><strong>La Rédemption :</strong> Le paiement de notre "rançon" (au sens spirituel), nous arrachant à l'esclavage de la mort et de Satan.</li></ul>` },
@@ -955,7 +1020,7 @@ function updateThemeIcon(){
   document.querySelector('.icon-sun').style.display = dark ? 'block' : 'none';
 }
 
-// ===================== RENDUS (Humeurs, Fiches, etc.) =====================
+// ===================== RENDUS (Humeurs, Fiches, Thématiques, etc.) =====================
 const MOOD_ICONS = {
   souffrance: '<path d="M12 3v18M6 8h12" stroke-linecap="round"/>',
   doute: '<circle cx="12" cy="12" r="9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17" stroke-linecap="round"/>',
@@ -1022,7 +1087,6 @@ function renderPrayers(){
     const header = item.querySelector('.prayer-accordion-header');
     header.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
-      // Close all others for a clean accordion effect, or let multiple stay open. Let's toggle this one smoothly:
       item.classList.toggle('open', !isOpen);
     });
     list.appendChild(item);
@@ -1039,6 +1103,23 @@ function renderNovenas(){
     btn.innerHTML = `<span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">${flame}</svg></span><h3>${n.title}</h3><p class="muted">${n.sub}</p>`;
     btn.onclick = () => showNovena(n);
     grid.appendChild(btn);
+  });
+}
+
+function renderThematics(){
+  const grid = document.getElementById('thematicGrid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  THEMATICS.forEach(t => {
+    const card = document.createElement('div');
+    card.className = 'thematic-card';
+    card.innerHTML = `
+      <div class="icon-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">${t.icon}</svg></div>
+      <h3>${t.title}</h3>
+      <p>${t.desc}</p>
+    `;
+    card.onclick = () => showPage(t.target);
+    grid.appendChild(card);
   });
 }
 
@@ -1207,7 +1288,6 @@ function renderChapelet(){
     textBox.textContent = TEXTES_PRIERES.fatima;
   }
 
-  // Animation fluide GSAP intégrée proprement ici
   if (typeof gsap !== 'undefined') {
     gsap.fromTo(".rosary-text-box", { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" });
   }
@@ -1297,6 +1377,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderMoods();
   renderPrayers();
   renderNovenas();
+  renderThematics();
   renderFiches();
   renderVerseThemes();
   renderVerses();

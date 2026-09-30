@@ -73,7 +73,7 @@ body {
 }
 h1,h2,h3,h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; margin: 0; }
 p { margin: 0 0 1em; }
-a { color: inherit; }
+a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; transition: transform .12s ease; }
 button:active { transform: scale(0.97); }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
@@ -112,10 +112,7 @@ header {
   display: none; flex-direction: column; z-index: 50;
 }
 @media (max-width:640px){ .nav-panel{ right:20px; } }
-.nav-panel.open {
-  display: flex;
-  animation: menuPop 0.2s cubic-bezier(.16,1,.3,1) forwards;
-}
+.nav-panel.open { display: flex; animation: menuPop 0.2s cubic-bezier(.16,1,.3,1) forwards; }
 @keyframes menuPop {
   0% { opacity: 0; transform: translateY(-8px) scale(0.98); }
   100% { opacity: 1; transform: none; }
@@ -144,11 +141,7 @@ section:last-of-type::after, section#apropos::after { display:none; }
 .hero p.lead { max-width:560px; color:var(--text-muted); font-size:1.08rem; margin-bottom:30px; }
 .hero-actions { display:flex; gap:12px; flex-wrap:wrap; }
 
-.quote-banner {
-  margin-top:44px; padding:26px 30px; border-radius:12px; background:var(--bg-card);
-  border:1px solid var(--border); box-shadow:var(--shadow-sm); display:flex; gap:18px; align-items:flex-start;
-  max-width:640px;
-}
+.quote-banner { margin-top:44px; padding:26px 30px; border-radius:12px; background:var(--bg-card); border:1px solid var(--border); box-shadow:var(--shadow-sm); display:flex; gap:18px; align-items:flex-start; max-width:640px; }
 .quote-banner svg { color:var(--accent-soft); flex-shrink:0; margin-top:2px; }
 .quote-banner blockquote { font-family:'Fraunces',serif; font-style:italic; font-size:1.08rem; margin:0 0 6px; line-height:1.55; }
 .quote-banner cite { font-style:normal; font-size:0.82rem; color:var(--text-muted); }
@@ -164,18 +157,15 @@ section:last-of-type::after, section#apropos::after { display:none; }
 .illustration { display:block; margin: 28px auto; color: var(--accent); }
 
 /* Grids & cards */
-.grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; perspective: 1000px;}
 #moodsGrid { margin-top: 24px; }
 
 .card {
   background:var(--bg-card); border:1px solid var(--border); border-radius:12px;
-  padding:22px; text-align:left; transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s ease;
+  padding:22px; text-align:left; transition: transform 0.4s var(--ease), box-shadow 0.4s ease, border-color 0.3s ease;
   width:100%; display:flex; flex-direction:column; gap:6px; position:relative; overflow:hidden;
 }
-.card::before {
-  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
-  background:var(--accent-soft); opacity:0; transition: opacity .2s ease;
-}
+.card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent-soft); opacity:0; transition: opacity .2s ease; }
 .card:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--accent-soft); }
 .card:hover::before { opacity:1; }
 .card .icon-badge { width:36px; height:36px; border-radius:9px; background:var(--bg-card-alt); display:flex; align-items:center; justify-content:center; color:var(--accent); margin-bottom:6px; }
@@ -185,21 +175,14 @@ section:last-of-type::after, section#apropos::after { display:none; }
 .card .muted { font-size:0.84rem; color:var(--text-muted); }
 
 /* Humeurs */
-.detail-panel {
-  margin-top:24px; background:var(--bg-card); border:1px solid var(--accent-soft); border-radius:10px;
-  padding:28px; display:none; animation: fadeIn .35s var(--ease); box-shadow: var(--shadow-sm);
-}
+.detail-panel { margin-top:24px; background:var(--bg-card); border:1px solid var(--accent-soft); border-radius:10px; padding:28px; display:none; animation: fadeIn .35s var(--ease); box-shadow: var(--shadow-sm); }
 .detail-panel.show { display:block; }
 .detail-panel blockquote { font-family:'Fraunces',serif; font-style:italic; font-size:1.2rem; margin:0 0 8px; line-height:1.5; }
 .detail-panel cite { font-style:normal; font-size:0.85rem; color:var(--text-muted); display:block; margin-bottom:18px; }
 .detail-panel h4 { font-size:0.95rem; margin:18px 0 6px; }
 
 .chip-row { display:flex; gap:8px; flex-wrap:wrap; }
-.chip {
-  border:1px solid var(--border); background:var(--bg-card); color:var(--text-muted);
-  padding:7px 14px; border-radius:999px; font-size:0.82rem; font-weight:500;
-  transition: all .18s ease;
-}
+.chip { border:1px solid var(--border); background:var(--bg-card); color:var(--text-muted); padding:7px 14px; border-radius:999px; font-size:0.82rem; font-weight:500; transition: all .18s ease; }
 .chip:hover { border-color:var(--accent-soft); color:var(--text); }
 .chip.active { background:var(--accent); border-color:var(--accent); color:var(--on-accent); }
 
@@ -218,17 +201,28 @@ section:last-of-type::after, section#apropos::after { display:none; }
 .novena-day .prayer { font-family:'Fraunces',serif; font-style:italic; margin:4px 0; }
 .novena-day .action { font-size:0.86rem; color:var(--text-muted); }
 
-/* Chapelet */
+/* Chapelet (Refondu avec Textes) */
 .chapelet-wrap { text-align:center; }
 .chapelet-hud { margin-top:24px; padding:26px; background:var(--bg-card); border-radius:12px; box-shadow:var(--shadow-sm); }
 .chapelet-hud .mystery-label { font-size:0.8rem; color:var(--accent); font-weight:600; text-transform:uppercase; letter-spacing:0.03em; margin-bottom:8px; }
 .chapelet-hud h3 { font-size:1.4rem; margin-bottom:8px; }
-.chapelet-hud .mystery-desc { color:var(--text-muted); margin-bottom:14px; }
-.chapelet-hud .grain-counter { font-size:0.82rem; color:var(--text-muted); margin-bottom:18px; }
+.chapelet-hud .mystery-desc { color:var(--text-muted); margin-bottom:14px; font-style: italic;}
+
+.rosary-text-box {
+  background: var(--bg-card-alt); border: 1px solid var(--border-soft); border-radius: 8px;
+  padding: 24px; margin: 20px 0; font-family: 'Fraunces', serif; font-size: 1.1rem;
+  line-height: 1.6; white-space: pre-line; color: var(--text);
+  min-height: 160px; display: flex; flex-direction: column; justify-content: center;
+}
+.rosary-text-title {
+  font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 700;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 12px; letter-spacing: 0.05em;
+}
+
 .chapelet-controls { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
 .dots { display:flex; gap:6px; justify-content:center; margin-top:14px; }
-.dots span { width:7px; height:7px; border-radius:50%; background:var(--border); }
-.dots span.on { background:var(--accent); }
+.dots span { width:7px; height:7px; border-radius:50%; background:var(--border); transition: all 0.2s; }
+.dots span.on { background:var(--accent); transform: scale(1.2);}
 
 /* Modal */
 .modal-backdrop { position:fixed; inset:0; background:rgba(43,40,35,0.5); display:flex; align-items:flex-start; justify-content:center; padding:40px 20px; overflow-y:auto; z-index:60; visibility:hidden; opacity:0; pointer-events:none; transition: opacity .28s ease, visibility 0s linear .28s; }
@@ -259,23 +253,11 @@ footer { padding:52px 0 40px; }
 
 .skip-link { position:absolute; left:12px; top:-60px; z-index:100; background:var(--accent); color:var(--on-accent); padding:10px 16px; border-radius:6px; font-size:0.85rem; transition: top .2s ease; }
 .skip-link:focus { top:12px; }
-  /* Effets d'interaction 3D */
-.grid {
-  perspective: 1000px;
-}
-
-.card {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-.card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 16px 32px rgba(123, 75, 48, 0.15);
-}
 </style>
+
+<!-- Script GSAP pour l'animation fluide du texte -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -292,7 +274,7 @@ footer { padding:52px 0 40px; }
         <path d="M17 8V26M11 13H23" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
       </svg>
       <span class="brand-text">
-        <h1>Le Compagnon Spirituel</h1>
+        <h1 class="gsap-split">Le Compagnon Spirituel</h1>
         <p>Prière, réflexion et présence</p>
       </span>
     </a>
@@ -326,7 +308,7 @@ footer { padding:52px 0 40px; }
     <div class="wrap">
       <div class="hero">
         <p class="eyebrow">Bienvenue</p>
-        <h2>Un espace pour prier, se documenter et ne pas céder aux tentations.</h2>
+        <h2 class="gsap-split">Un espace pour prier, se documenter et ne pas céder aux tentations.</h2>
         <p class="lead">Pose tes valises ici. Que tu aies besoin de traverser une épreuve, de réciter ton rosaire ou d'approfondir un point de doctrine, cet espace est ton point d'ancrage quotidien pour tenir bon dans la foi.</p>
         <div class="hero-actions">
           <button class="btn btn-solid" onclick="showPage('chapelet')">Prier le Rosaire</button>
@@ -359,7 +341,7 @@ footer { padding:52px 0 40px; }
   <section id="humeurs">
     <div class="wrap">
       <div class="section-head">
-        <h2>Comment te sens-tu aujourd'hui ?</h2>
+        <h2 class="gsap-split">Comment te sens-tu aujourd'hui ?</h2>
         <p>Clique sur ton état du jour. Re-clique pour obtenir un nouveau verset, une autre prière et un autre geste si besoin.</p>
       </div>
       <div class="grid" id="moodsGrid"></div>
@@ -371,9 +353,10 @@ footer { padding:52px 0 40px; }
   <section id="chapelet">
     <div class="wrap chapelet-wrap">
       <div class="section-head" style="text-align:left;">
-        <h2>Saint Rosaire</h2>
-        <p>Le mystère du jour est choisi automatiquement selon la tradition. Avance grain par grain.</p>
+        <h2 class="gsap-split">Saint Rosaire</h2>
+        <p>Laisse-toi guider pas à pas. Le mystère du jour est sélectionné, il te suffit d'avancer en récitant la prière affichée.</p>
       </div>
+      <!-- Le Rosaire redevient fixe, sans flottement -->
       <svg class="illustration" width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="chapeletSvg">
         <circle cx="140" cy="140" r="96" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.28"/>
       </svg>
@@ -381,7 +364,12 @@ footer { padding:52px 0 40px; }
         <p class="mystery-label" id="mysteryLabel"></p>
         <h3 id="mysteryTitle"></h3>
         <p class="mystery-desc" id="mysteryDesc"></p>
-        <p class="grain-counter" id="grainCounter"></p>
+        
+        <div class="rosary-text-box">
+          <div class="rosary-text-title" id="rosaryStepTitle"></div>
+          <div id="rosaryPrayerText"></div>
+        </div>
+
         <div class="dots" id="grainDots"></div>
         <div class="chapelet-controls" style="margin-top:18px;">
           <button class="btn" onclick="prevGrain()">← Précédent</button>
@@ -396,7 +384,7 @@ footer { padding:52px 0 40px; }
   <section id="prieres">
     <div class="wrap">
       <div class="section-head">
-        <h2>Prières essentielles</h2>
+        <h2 class="gsap-split">Prières essentielles</h2>
         <p>Les textes traditionnels, à portée de main.</p>
       </div>
       <svg class="illustration" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-bottom: 24px;">
@@ -411,7 +399,7 @@ footer { padding:52px 0 40px; }
   <section id="neuvaines">
     <div class="wrap">
       <div class="section-head">
-        <h2>Neuvaines</h2>
+        <h2 class="gsap-split">Neuvaines</h2>
         <p>Neuf jours de prière, de méditation profonde et d'action concrète à ton rythme.</p>
       </div>
       <svg class="illustration" width="300" height="140" viewBox="0 0 300 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -439,7 +427,7 @@ footer { padding:52px 0 40px; }
   <section id="fiches">
     <div class="wrap">
       <div class="section-head">
-        <h2>Fiches théologiques</h2>
+        <h2 class="gsap-split">Fiches théologiques</h2>
         <p>Des textes courts et structurés pour comprendre et approfondir.</p>
       </div>
       <div class="grid" id="fichesGrid"></div>
@@ -450,7 +438,7 @@ footer { padding:52px 0 40px; }
   <section id="versets">
     <div class="wrap">
       <div class="section-head">
-        <h2>Versets bibliques</h2>
+        <h2 class="gsap-split">Versets bibliques</h2>
         <p>Choisis un thème pour retrouver une parole à méditer.</p>
       </div>
       <div class="chip-row" id="verseThemes"></div>
@@ -462,7 +450,7 @@ footer { padding:52px 0 40px; }
   <section id="saints">
     <div class="wrap">
       <div class="section-head">
-        <h2>Figures de saints</h2>
+        <h2 class="gsap-split">Figures de saints</h2>
         <p>Des vies qui éclairent, à des époques et dans des chemins très différents.</p>
       </div>
       <div class="grid" id="saintsGrid"></div>
@@ -473,19 +461,13 @@ footer { padding:52px 0 40px; }
   <section id="apropos">
     <div class="wrap" style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
       <div class="section-head" style="text-align: left; margin-bottom: 24px;">
-        <h2>À propos</h2>
+        <h2 class="gsap-split">À propos</h2>
       </div>
       <div style="line-height: 1.8; font-size: 1.05rem; display: flex; flex-direction: column; gap: 16px;">
-        <p>
-          J'ai créé ce site pour avoir l'essentiel sous la main. C'est un carnet de route pour la prière, le rosaire et l'étude.
-        </p>
-        <p>
-          Les textes s'appuient sur la tradition de l'Église, des Saintes Écritures et les pères de l'Eglise. C'est un outil modeste pour t'aider à tenir le cap, jour après jour.
-        </p>
+        <p>J'ai créé ce site pour avoir l'essentiel sous la main. C'est un carnet de route pour la prière, le rosaire et l'étude.</p>
+        <p>Les textes s'appuient sur la tradition de l'Église, des Saintes Écritures et les pères de l'Eglise. C'est un outil modeste pour t'aider à tenir le cap, jour après jour.</p>
         <div style="background: var(--bg-card-alt, rgba(0,0,0,0.03)); border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: 4px; margin: 10px 0;">
-          <p style="margin: 0; font-size: 0.95rem;">
-            <em>Note :</em> Cet espace est un projet personnel. Il sert d'outil d'accompagnement et ne remplace évidemment pas les sacrements, un directeur spirituel ou le magistère de l'Église.
-          </p>
+          <p style="margin: 0; font-size: 0.95rem;"><em>Note :</em> Cet espace est un projet personnel. Il sert d'outil d'accompagnement et ne remplace évidemment pas les sacrements, un directeur spirituel ou le magistère de l'Église.</p>
         </div>
         <hr style="border: none; border-top: 1px solid var(--border); margin: 20px 0;">
         <div style="font-size: 0.9rem; color: var(--text-muted); display: grid; gap: 8px;">
@@ -553,7 +535,46 @@ footer { padding:52px 0 40px; }
 </div>
 
 <script>
-// ===================== DATA =====================
+// ===================== DATA & TEXTES =====================
+
+const TEXTES_PRIERES = {
+  notrePere: "Notre Père, qui es aux cieux,\nque ton nom soit sanctifié,\nque ton règne vienne,\nque ta volonté soit faite sur la terre comme au ciel.\n\nDonne-nous aujourd'hui notre pain de ce jour.\nPardonne-nous nos offenses,\ncomme nous pardonnons aussi à ceux qui nous ont offensés.\n\nEt ne nous laisse pas entrer en tentation,\nmais délivre-nous du Mal. Amen.",
+  aveMaria: "Je vous salue, Marie, pleine de grâce ;\nle Seigneur est avec vous.\nVous êtes bénie entre toutes les femmes,\net Jésus, le fruit de vos entrailles, est béni.\n\nSainte Marie, Mère de Dieu,\npriez pour nous, pauvres pécheurs,\nmaintenant et à l'heure de notre mort. Amen.",
+  gloria: "Gloire au Père, et au Fils, et au Saint-Esprit,\n\ncomme il était au commencement,\nmaintenant et toujours,\npour les siècles des siècles. Amen.",
+  fatima: "Ô mon Jésus,\npardonnez-nous nos péchés, préservez-nous du feu de l'enfer, et conduisez au Ciel toutes les âmes, spécialement celles qui ont le plus besoin de votre sainte miséricorde. Amen."
+};
+
+const MYSTERIES = {
+  joyeux: { label:'Mystères Joyeux', days:'lundi et samedi', items:[
+    {title:"L'Annonciation", text:"Marie accueille l'ange Gabriel.", fruit:"L'humilité"},
+    {title:'La Visitation', text:'Marie rend visite à Élisabeth.', fruit:"La charité fraternelle"},
+    {title:'La Nativité', text:'Jésus naît à Bethléem.', fruit:"L'esprit de pauvreté"},
+    {title:'La Présentation', text:'Marie et Joseph présentent Jésus au Temple.', fruit:"L'obéissance et la pureté"},
+    {title:'Le Recouvrement', text:'Jésus est retrouvé parmi les docteurs.', fruit:"La recherche de Dieu en toutes choses"}
+  ]},
+  douloureux: { label:'Mystères Douloureux', days:'mardi et vendredi', items:[
+    {title:"L'Agonie", text:'Jésus prie seul à Gethsémani.', fruit:"La contrition de nos péchés"},
+    {title:'La Flagellation', text:'Jésus est battu.', fruit:"La maîtrise des sens"},
+    {title:'Le Couronnement d\'épines', text:'Jésus est couronné d\'épines.', fruit:"Le courage moral et la mortification de l'esprit"},
+    {title:'Le Portement de croix', text:'Jésus porte sa croix.', fruit:"La patience dans les épreuves"},
+    {title:'La Crucifixion', text:'Jésus meurt sur la croix.', fruit:"Le pardon et l'amour de Dieu"}
+  ]},
+  lumineux: { label:'Mystères Lumineux', days:'jeudi', items:[
+    {title:'Le Baptême', text:'Jésus est baptisé par Jean.', fruit:"La fidélité aux promesses du baptême"},
+    {title:'Les Noces de Cana', text:"Jésus change l'eau en vin.", fruit:"La confiance en la Vierge Marie"},
+    {title:'Annonce du Royaume', text:'Jésus appelle à la conversion.', fruit:"La conversion du cœur"},
+    {title:'La Transfiguration', text:'Jésus se transfigure.', fruit:"La grâce de la contemplation"},
+    {title:"L'institution de l'Eucharistie", text:'Jésus donne son corps et son sang.', fruit:"L'amour et le respect de l'Eucharistie"}
+  ]},
+  glorieux: { label:'Mystères Glorieux', days:'mercredi et dimanche', items:[
+    {title:'La Résurrection', text:"Jésus ressuscite d'entre les morts.", fruit:"La foi et la conversion de notre vie"},
+    {title:"L'Ascension", text:'Jésus monte aux cieux.', fruit:"L'espérance et le désir du Ciel"},
+    {title:'La Pentecôte', text:"L'Esprit Saint descend.", fruit:"Le zèle apostolique et la descente du Saint-Esprit"},
+    {title:'Assomption de Marie', text:'Marie est élevée au ciel.', fruit:"La grâce d'une bonne mort"},
+    {title:'Couronnement de Marie', text:'Marie est couronnée reine.', fruit:"Une très grande confiance en la Vierge Marie"}
+  ]}
+};
+
 const MOODS = [
   { 
     id:'souffrance', label:'Épreuve / Souffrance',
@@ -612,37 +633,6 @@ const MOODS = [
   }
 ];
 
-const MYSTERIES = {
-  joyeux: { label:'Mystères Joyeux', days:'lundi et samedi', items:[
-    {title:"L'Annonciation", text:"Marie accueille l'ange Gabriel."},
-    {title:'La Visitation', text:'Marie rend visite à Élisabeth.'},
-    {title:'La Nativité', text:'Jésus naît à Bethléem.'},
-    {title:'La Présentation', text:'Marie et Joseph présentent Jésus au Temple.'},
-    {title:'Le Recouvrement', text:'Jésus est retrouvé parmi les docteurs.'}
-  ]},
-  douloureux: { label:'Mystères Douloureux', days:'mardi et vendredi', items:[
-    {title:"L'Agonie", text:'Jésus prie seul à Gethsémani.'},
-    {title:'La Flagellation', text:'Jésus est battu.'},
-    {title:'Le Couronnement d\'épines', text:'Jésus est couronné d\'épines.'},
-    {title:'Le Portement de croix', text:'Jésus porte sa croix.'},
-    {title:'La Crucifixion', text:'Jésus meurt sur la croix.'}
-  ]},
-  lumineux: { label:'Mystères Lumineux', days:'jeudi', items:[
-    {title:'Le Baptême', text:'Jésus est baptisé par Jean.'},
-    {title:'Les Noces de Cana', text:"Jésus change l'eau en vin."},
-    {title:'Annonce du Royaume', text:'Jésus appelle à la conversion.'},
-    {title:'La Transfiguration', text:'Jésus se transfigure.'},
-    {title:"L'institution de l'Eucharistie", text:'Jésus donne son corps et son sang.'}
-  ]},
-  glorieux: { label:'Mystères Glorieux', days:'mercredi et dimanche', items:[
-    {title:'La Résurrection', text:"Jésus ressuscite d'entre les morts."},
-    {title:"L'Ascension", text:'Jésus monte aux cieux.'},
-    {title:'La Pentecôte', text:"L'Esprit Saint descend."},
-    {title:'Assomption de Marie', text:'Marie est élevée au ciel.'},
-    {title:'Couronnement de Marie', text:'Marie est couronnée reine.'}
-  ]}
-};
-
 const PRAYERS = [
   { title:'Notre Père', text:"Notre Père, qui es aux cieux,\nque ton nom soit sanctifié,\nque ton règne vienne,\nque ta volonté soit faite sur la terre comme au ciel.\n\nDonne-nous aujourd'hui notre pain de ce jour.\nPardonne-nous nos offenses,\ncomme nous pardonnons aussi à ceux qui nous ont offensés.\n\nEt ne nous laisse pas entrer en tentation,\nmais délivre-nous du Mal.\n\nAmen." },
   { title:'Je vous salue Marie', text:"Je vous salue, Marie, pleine de grâce ;\nle Seigneur est avec vous.\nVous êtes bénie entre toutes les femmes,\net Jésus, le fruit de vos entrailles, est béni.\n\nSainte Marie, Mère de Dieu,\npriez pour nous, pauvres pécheurs,\nmaintenant et à l'heure de notre mort.\n\nAmen." },
@@ -650,7 +640,7 @@ const PRAYERS = [
   { title:'Je crois en Dieu (Credo)', text:"Je crois en Dieu, le Père tout-puissant,\nCréateur du ciel et de la terre.\n\nEt en Jésus-Christ, son Fils unique, notre Seigneur,\nqui a été conçu du Saint-Esprit,\nest né de la Vierge Marie,\na souffert sous Ponce Pilate,\na été crucifié, est mort et a été enseveli,\nest descendu aux enfers.\n\nLe troisième jour il est ressuscité des morts,\nest monté aux cieux,\nest assis à la droite de Dieu le Père tout-puissant,\nd'où il viendra juger les vivants et les morts.\n\nJe crois en l'Esprit Saint,\nà la sainte Église catholique,\nà la communion des saints,\nà la rémission des péchés,\nà la résurrection de la chair,\nà la vie éternelle.\n\nAmen." },
   { title:'Souvenez-vous (Prière à saint Bernard)', text:"Souvenez-vous, ô très pieuse Vierge Marie,\nqu'on n'a jamais ouï dire qu'aucun de ceux qui ont côtoyé votre protection,\nimploré votre aide ou réclamé vos suffrages,\nait été abandonné.\n\nAnimé d'une pareille confiance,\nô Vierge des vierges, ô ma Mère, je cours vers vous,\net, gémissant sous le poids de mes péchés,\nje me prosterne devant vous.\n\nÔ Mère du Verbe incarné,\nne méprisez pas mes prières,\nmais écoutez-les favorablement et daignez les exaucer.\n\nAmen." },
   { title:'L\'Angélus', text:"— L'Ange du Seigneur porta l'annonce à Marie,\n— Et elle a conçu du Saint-Esprit.\n(Je vous salue Marie...)\n\n— Voici la servante du Seigneur,\n— Qu'il m'advienne selon votre parole.\n(Je vous salue Marie...)\n\n— Et le Verbe s'est fait chair,\n— Et il a habité parmi nous.\n(Je vous salue Marie...)\n\nPriez pour nous, ô Sainte Mère de Dieu,\nAfin que nous soyons rendus dignes des promesses du Christ.\n\nPrions : Que ta grâce, Seigneur, se répande dans nos cœurs...\nPar Jésus, le Christ, notre Seigneur.\n\nAmen." },
-  { title:'Acte de contrition', text:"Mon Dieu, j'ai un profond regret de vous avoir offensé,\nparce que vous êtes infiniment bon, infiniment aimable\net que le péché vous déplaît.\n\nJe prends la ferme résolution,\navec le secours de votre sainte grâce,\nde ne plus vous offenser et de faire pénitence.\n\nAmen." },
+  { title:'Acte de contrition', text:"Mon Dieu, j'ai un profond regret de vous avoir offensé,\nparce que vous êtes infiniment bon, infiniment aimable\net que le péché vous déplaît.\n\nJe prends la ferme résolution,\navec le secours de votre sainte grace,\nde ne plus vous offenser et de faire pénitence.\n\nAmen." },
   { title:"Prière à l'ange gardien", text:"Ange de Dieu, qui êtes mon gardien,\npuisque le ciel m'a confié à vous par sa bonté,\n\nvous, aujourd'hui, éclairez-moi, gardez-moi,\nconduisez-moi et gouvernez-moi.\n\nAmen." },
   { title:'Bénédicité (avant le repas)', text:"Bénissez-nous, Seigneur,\nainsi que ces dons que nous allons recevoir de votre munificence.\n\nPar Jésus-Christ notre Seigneur.\n\nAmen." },
   { title:'Grâces (après le repas)', text:"Nous vous rendons grâces pour tous vos bienfaits,\nDieu tout-puissant,\nqui vivez et régnez pour les siècles des siècles.\n\nAmen." },
@@ -730,7 +720,7 @@ const NOVENAS = [
     {prayer:'Prince de la milice céleste, repousse en enfer Satan et les esprits mauvais qui rôdent.', action:'Identifie la principale tentation qui te fait tomber actuellement et nomme-la clairement.'},
     {prayer:'Toi dont le nom signifie "Qui est comme Dieu ?", donne-moi l\'humilité qui terrasse l\'orgueil.', action:'Accepte volontiers de passer au second plan ou de céder ta place aujourd\'hui.'},
     {prayer:'Ange de la paix, pacifie mon cœur tourmenté et chasse les angoisses soufflées par l\'Ennemi.', action:'Refuse d\'entretenir une pensée anxieuse. Dès qu\'elle vient, dis : "Jésus, je m\'en remets à toi".'},
-    {prayer:'Protecteur de l\'Église, veille sur le Pape, les évêques et tous les fidèles dans l\'épreuve.', action:'Prie pour l\'Église persécutée dans le monde, ou pour ceux qui subissent des moqueries pour leur foi.'},
+    {prayer:'Protecteur de l\'Église, veille sur le Pape, les évêques et tous les fidèles dans l\'épreuve.', action:'Prie pour l\'Église persécutée dans le monde, ou pour ceux qui subissent des moqueries pour leur faith.'},
     {prayer:'Archange de la lumière, éclaire mon intelligence pour que je ne me laisse pas tromper par les mensonges du monde.', action:'Éteins tes écrans 30 minutes plus tôt ce soir pour lire quelques pages de l\'Évangile ou d\'un livre spirituel.'},
     {prayer:'Défenseur des agonisants, sois à mes côtés à l\'heure de ma mort pour me présenter à Dieu.', action:'Prie avec ferveur pour une personne de ton entourage qui est gravement malade ou en fin de vie.'},
     {prayer:'Saint Michel, donne-moi le courage de confesser ma foi sans honte au milieu du monde.', action:'Ne cache pas tes convictions si une conversation aborde la foi aujourd\'hui, reste doux mais ferme.'},
@@ -770,7 +760,7 @@ const FICHES = [
   { id: 'marie', title: 'Marie dans le plan de Dieu', sub: 'Mère de Dieu, médiatrice de grâce et Nouvelle Ève', cat: 'mariologie', body: `<h3>1. Les quatre dogmes mariaux intangibles</h3><ul><li><strong>La Maternité divine (Théotokos - Éphèse, 431) :</strong> Marie n'a pas seulement enfanté la "nature humaine" de Jésus, elle a enfanté la Personne du Verbe incarné. Elle est donc véritablement Mère de Dieu.</li><li><strong>La Virginité perpétuelle (Latran, 649) :</strong> Marie a conçu par le Saint-Esprit sans semence humaine, a enfanté sans lésion, et est demeurée vierge tout au long de sa vie terrestre (signe de sa consécration totale).</li><li><strong>L'Immaculée Conception (Pie IX, 1854) :</strong> En prévision des mérites de la mort de son Fils sur la Croix, Marie a été préservée dès l'instant de sa conception de toute tache du péché originel. Elle est la "pleine de grâce".</li><li><strong>L'Assomption (Pie XII, 1950) :</strong> Au terme de son parcours terrestre, Marie a été élevée en corps et en âme dans la gloire du Ciel, anticipant la résurrection de nos propres corps à la fin des temps.</li></ul><h3>2. La Nouvelle Ève (Typologie patristique)</h3><p>Dès le IIe siècle, saint Irénée de Lyon oppose la désobéissance d'Ève à l'obéissance de Marie. Là où Ève a cru au mensonge du serpent (l'ange déchu) et a fait entrer la mort, Marie a cru à la vérité de l'Ange Gabriel, a prononcé son <em>Fiat</em> ("Que tout m'advienne selon ta parole"), et a fait entrer la Vie dans le monde.</p><h3>3. Médiation et culte d'Hyperdulie</h3><p>La médiation maternelle de Marie n'obscurcit en rien l'unique médiation du Christ ; au contraire, elle en découle et en montre la puissance (Lumen Gentium 60). L'Église ne voue jamais d'adoration (culte de <em>Latrie</em> réservé à Dieu) à Marie. Elle lui rend un culte d'<em>Hyperdulie</em>, une vénération suprême supérieure aux autres saints en raison de son lien charnel et spirituel unique avec la Trinité.</p>` },
   { id: 'trinite', title: 'La Trinité', sub: "Le mystère d'un Dieu qui est relation", cat: 'theologie', body: `<h3>1. Formule fondamentale de la Foi</h3><p>Le mystère central de la foi chrétienne. Dieu est Unique en Essence (ou Nature, ou Substance) et Trine en Personnes. Il n'y a pas trois dieux (trithéisme), ni un seul Dieu qui porterait trois masques différents selon les époques (modalisme). Le Père, le Fils et le Saint-Esprit possèdent entièrement et de façon indivisible la même nature divine.</p><h3>2. La théorie des Relations Subsistantes (ST Ia)</h3><p>Saint Thomas d'Aquin explique que puisque les trois Personnes partagent exactement la même substance infinie, elles ne peuvent se distinguer entre elles que par leurs <strong>relations d'origine</strong> :</p><ul><li><strong>Le Père :</strong> Est le Principe sans principe. Il engendre éternellement le Fils.</li><li><strong>Le Fils (Le Verbe) :</strong> Procède du Père par voie de l'intelligence (la Pensée parfaite que Dieu a de lui-même).</li><li><strong>Le Saint-Esprit :</strong> Procède du Père et du Fils (<em>Filioque</em>) par voie de volonté et d'amour infini (le souffle mutuel d'amour entre le Père et le Fils).</li></ul><h3>3. La Périchorèse (ou Circoninsession)</h3><p>La théologie utilise ce concept vertigineux pour décrire comment les Personnes divines s'interpénètrent mutuellement. L'unité divine est si absolue que le Père est tout entier dans le Fils, le Fils tout entier dans le Père, et le Saint-Esprit tout entier dans le Père et le Fils. Dieu est, de toute éternité, une communion familiale, une danse d'amour infini.</p>` },
   { id: 'eschatologie', title: 'Les fins dernières', sub: 'Mort, jugement, ciel, enfer et purgatoire', cat: 'eschatologie', body: `<h3>1. Le double Jugement</h3><p>La doctrine catholique distingue :</p><ul><li><strong>Le Jugement particulier :</strong> A lieu pour chaque âme dans l'instant immédiat de la mort physique. L'âme voit alors sa vie à la lumière éblouissante de la vérité divine, et son éternité est fixée (Ciel, Purgatoire ou Enfer).</li><li><strong>Le Jugement dernier :</strong> Aura lieu à la fin des temps, lors du retour glorieux du Christ (Parousie). Il s'accompagnera de la <strong>Résurrection de la chair</strong> (nos âmes retrouveront nos corps transfigurés) pour juger publiquement toute l'histoire de l'humanité.</li></ul><h3>2. Le Purgatoire (Le feu purificateur de l'Amour)</h3><p>Le Purgatoire n'est pas un "mini-enfer" ni un camp de torture. Sainte Catherine de Gênes le décrit comme un mystère de joie paradoxale. C'est l'état des âmes qui meurent en état de grâce (sauvées) mais qui conservent des attachements désordonnés aux créatures ou n'ont pas expié les peines temporelles de leurs péchés. Au Purgatoire, l'Amour ardent de Dieu brûle douloureusement les dernières scories de l'égoïsme pour rendre l'âme capable de supporter la splendeur du Ciel.</p><h3>3. La Vision Béatifique (Ciel) et le Dam (Enfer)</h3><p><strong>Le Ciel</strong> est l'état de bonheur suprême et définitif. L'intellect humain est élevé par la "lumière de gloire" pour contempler l'Essence de Dieu face à face (la Vision Béatifique). <strong>L'Enfer</strong> est un dogme terrible mais nécessaire pour que la liberté humaine ait un sens. Il consiste en la "peine du dam" (la privation éternelle et désespérante de Dieu pour lequel nous sommes faits) et l'endurcissement définitif de la volonté dans la haine.</p>` },
-  { id: 'conscience', title: 'La conscience morale', sub: 'Voix de Dieu en toi et Loi naturelle', cat: 'morale', body: `<h3>1. Le sanctuaire inviolable de l'homme</h3><p>Le concile Vatican II (<em>Gaudium et Spes, 16</em>) définit la conscience avec poésie : <em>"La conscience est le centre le plus secret de l'homme, le sanctuaire où il est seul avec Dieu et où Sa voix se fait entendre."</em> Elle ordonne à l'homme, au moment opportun, d'accomplir le bien et d'éviter le mal.</p><h3>2. Synderèse et Jugement de conscience (Saint Thomas)</h3><p>Saint Thomas d'Aquin décompose le mécanisme moral en deux étapes :</p><ul><li><strong>La Synderèse :</strong> C'est l'étincelle intellectuelle innée, la connaissance infaillible des principes moraux fondamentaux (ex: "il ne faut pas tuer l'innocent", "il faut rendre à chacun ce qui lui est dû").</li><li><strong>Le Jugement de la conscience :</strong> C'est l'application pratique de cette loi générale à un cas particulier (ex: "dans cette situation complexe, agir ainsi revient à tuer, je dois l'éviter"). C'est ici que l'erreur est possible si l'homme raisonne mal.</li></ul><h3>3. Le devoir grave de former sa conscience</h3><p>Jean-Paul II a rappelé dans son encyclique <em>Veritatis Splendor</em> que la conscience n'est pas créatrice de la vérité morale ; elle ne fait que la découvrir. Une conscience peut être aveuglée par l'habitude du péché, l'ignorance ou la pression sociale. Le chrétien a l'obligation stricte d'éclairer sa conscience (par l'Évangile, la prière, et le Magistère) pour qu'elle juge droit.</p>` },
+  { id: 'conscience', title: 'La conscience morale', sub: 'Voix de Dieu en toi et Loi naturelle', cat: 'morale', body: `<h3>1. Le sanctuaire inviolable de l'homme</h3><p>Le concile Vatican II (<em>Gaudium et Spes, 16</em>) définit la conscience avec poésie : <em>"La conscience est le centre le plus secret de l'homme, le sanctuaire où il est seul avec Dieu et où Sa voix se fait entendre."</em> Elle ordonne à l'homme, au moment opportun, d'accomplir le bien et d'éviter le mal.</p><h3>2. Synderèse et Jugement de conscience (Saint Thomas)</h3><p>Saint Thomas d'Aquin décompose le mechanism moral en deux étapes :</p><ul><li><strong>La Synderèse :</strong> C'est l'étincelle intellectuelle innée, la connaissance infaillible des principes moraux fondamentaux (ex: "il ne faut pas tuer l'innocent", "il faut rendre à chacun ce qui lui est dû").</li><li><strong>Le Jugement de la conscience :</strong> C'est l'application pratique de cette loi générale à un cas particulier (ex: "dans cette situation complexe, agir ainsi revient à tuer, je dois l'éviter"). C'est ici que l'erreur est possible si l'homme raisonne mal.</li></ul><h3>3. Le devoir grave de former sa conscience</h3><p>Jean-Paul II a rappelé dans son encyclique <em>Veritatis Splendor</em> que la conscience n'est pas créatrice de la vérité morale ; elle ne fait que la découvrir. Une conscience peut être aveuglée par l'habitude du péché, l'ignorance ou la pression sociale. Le chrétien a l'obligation stricte d'éclairer sa conscience (par l'Évangile, la prière, et le Magistère) pour qu'elle juge droit.</p>` },
   { id: 'resurrection-chair', title: 'La Résurrection de la chair', sub: 'Le destin ultime de notre corps selon le Credo', cat: 'eschatologie', body: `<h3>1. Un scandale pour la pensée antique</h3><p>Pour les philosophes grecs (notamment platoniciens), le corps était la "prison de l'âme" dont il fallait se débarrasser pour que l'esprit soit libre. Le christianisme prend le contre-pied total : le corps fait partie intégrante de la personne humaine voulue et sauvée par Dieu. C'est pourquoi le Credo proclame : <em>"Je crois à la résurrection de la chair"</em>.</p><h3>2. L'analogie du grain de blé (Saint Paul)</h3><p>Dans 1 Corinthiens 15, Paul répond à ceux qui se demandent comment les corps ressuscitent : <em>"Ce que tu sèmes ne revit que s'il meurt... On sème un corps corruptible, il ressuscite corps incorruptible."</em> Il ne s'agit pas d'une simple réanimation biologique (comme pour Lazare qui est mort une seconde fois), mais d'une transformation radicale du corps par la gloire divine, à l'image du corps ressuscité du Christ.</p><h3>3. La dignité de la matière</h3><p>Puisque la chair est appelée à ressusciter pour l'éternité, tout ce que nous faisons dans et avec notre corps (nos actes d'amour, nos souffrances offertes, notre travail) a une valeur éternelle. Le christianisme refuse tout mépris du corps ou de la création matérielle.</p>` },
   { id: 'dons-esprit', title: 'Les Sept Dons du Saint-Esprit', sub: "Les souffles de force et de sagesse pour l'âme", cat: 'pneumatologie', body: `<h3>1. Qu'est-ce qu'un don spirituel ?</h3><p>Basés sur la prophétie d'Isaïe (Is 11, 2-3), les sept dons (Sagesse, Intelligence, Conseil, Force, Science, Piété, Crainte de Dieu) sont des dispositions permanentes que l'Esprit Saint infuse dans l'âme. Ils rendent l'homme docile à l'inspiration divine, un peu comme un voilier déploie ses voiles pour capturer le vent.</p><h3>2. Distinction entre dons et vertus</h3><ul><li><strong>Les vertus</strong> (cardinales et théologales) perfectionnent nos facultés pour agir selon la raison éclairée par la foi.</li><li><strong>Les dons</strong> élèvent l'âme pour qu'elle agisse sous la motion directe et immédiate de l'Esprit Saint, dépassant le simple effort humain.</li></ul><h3>3. Aperçu de quelques dons majeurs</h3><ul><li><strong>La Sagesse :</strong> Goûter les choses de Dieu, voir le monde avec le regard même du Créateur.</li><li><strong>La Force :</strong> Surmonter la peur, les persécutions et tenir ferme dans l'épreuve.</li><li><strong>La Crainte de Dieu :</strong> Non pas la peur panique d'un tyran, mais le respect filial et l'horreur absolue de blesser l'Amour infini.</li></ul>` },
   { id: 'vertus', title: 'Les Vertus (Théologales et Cardinales)', sub: "Les boussoles de l'action chrétienne", cat: 'morale', body: `<h3>1. Les Vertus Cardinales (le pivot de la vie morale)</h3><p>Héritées de la philosophie antique et chrétiennes par leur baptême, elles guident notre comportement relationnel et personnel :</p><ul><li><strong>La Prudence :</strong> Discerner en toute circonstance le vrai bien et choisir les bons moyens pour l'accomplir.</li><li><strong>La Tempérance :</strong> Maîtriser nos désirs et modérer l'attrait aux plaisirs terrestres.</li><li><strong>La Force d'âme :</strong> Persévérer dans l'effort et affronter les difficultés avec constance.</li><li><strong>La Justice :</strong> Rendre à chacun ce qui lui est dû, dans le respect de Dieu et du prochain.</li></ul><h3>2. Les Vertus Théologales (ancrées en Dieu)</h3><p>Infusées directement par Dieu dans l'âme lors du baptême, elles ont Dieu pour origine, pour mobile et pour objet :</p><ul><li><strong>La Foi :</strong> Croire en Dieu et en tout ce qu'Il nous a révélé.</li><li><strong>L'Espérance :</strong> Attendre de Dieu le bonheur éternel et les grâces pour y parvenir, en s'appuyant sur ses promesses.</li><li><strong>La Charité :</strong> Aimer Dieu par-dessus tout et aimer son prochain comme soi-même pour l'amour de Dieu. C'est la reine des vertus (1 Co 13).</li></ul>` },
@@ -786,7 +776,7 @@ const FICHES = [
   { id: 'descente-enfers', title: 'La Descente aux enfers', sub: "Le Christ victorieux dans le séjour des morts", cat: 'christologie', body: `<h3>1. Le sens du Symbole des Apôtres</h3><p>L'affirmation "Il est descendu aux enfers" (au shéol ou séjour des morts) signifie que Jésus a connu la vraie mort humaine et a partagé la condition de tous les hommes qui l'ont précédé depuis Adam.</p><h3>2. La libération des justes</h3><p>Saint Thomas d'Aquin explique que le Christ, par son âme unie à sa divinité, est descendu proclamer la victoire de la Rédemption aux âmes des justes (les patriarches et prophètes) qui attendaient l'ouverture des portes du Ciel.</p><h3>3. La portée cosmique du Salut</h3><p>Aucun recoin de l'univers, pas même la mort et le domaine de l'ombre, n'échappe à la souveraineté du Rédempteur. La mort est vaincue de l'intérieur.</p>` },
   { id: 'loi-nouvelle', title: 'La Loi Nouvelle de l\'Évangile', sub: "La grâce de l'Esprit Saint écrite dans les cœurs", cat: 'morale', body: `<h3>1. La Loi ancienne vs la Loi nouvelle</h3><p>La Loi de Moïse (les commandements gravés sur la pierre) ordonnait l'extérieur. La Loi Nouvelle, apportée par le Christ, est avant tout <strong>la grâce même du Saint-Esprit</strong> infuse dans le cœur des croyants par la foi et les sacrements (ST I-IIae, q. 106).</p><h3>2. La loi de l'amour et de la liberté</h3><p>Saint Thomas d'Aquin enseigne que la Loi Nouvelle consiste principalement dans la grâce de l'Esprit Saint qui pousse l'homme à agir par amour plutôt que par pure crainte de la punition. Les Béatitudes en sont la synthèse parfaite.</p><h3>3. L'accomplissement de la loi</h3><p>Le Christ ne vient pas abolir la loi morale naturelle ou les commandements, mais leur donner leur plénitude en touchant la racine intérieure des pensées et des intentions.</p>` },
   { id: 'jugement-dernier', title: 'Le Jugement Dernier', sub: "La manifestation publique de la vérité finale", cat: 'eschatologie', body: `<h3>1. La révélation de l'histoire</h3><p>Au retour glorieux du Christ, tous les hommes ressusciteront avec leur corps pour comparaître devant le tribunal universel. Le Jugement Dernier mettra en pleine lumière tout le bien et le mal accomplis par chacun au cours de l'histoire humaine.</p><h3>2. Le triomphe de la justice et de l'amour</h3><p>Ce jugement ne sera pas une surprise arbitraire, mais la constatation publique de l'orientation que chaque être aura librement donnée à sa vie terrestre vis-à-vis de Dieu et du prochain.</p><h3>3. Les cieux nouveaux et la terre nouvelle</h3><p>Après ce jugement, l'univers matériel lui-même sera transformé et transfiguré. Dieu fera sa demeure éternelle avec les hommes dans une communion parfaite, sans pleurs ni souffrance.</p>` },
-  { id: 'tresor-eglise', title: 'Le Trésor des Saints et des Indulgences', sub: "La communion de la charité ecclésiale", cat: 'ecclésiologie', body: `<h3>1. Qu'est-ce que le Trésor de l'Église ?</h3><p>C'est l'immense réserve de mérites infinis accumulés par le Christ, auxquels s'ajoutent les prières et les bonnes œuvres de la Vierge Marie et de tous les saints, qui ne s'appartiennent pas à eux-mêmes mais bénéficient à tout le Corps mystique.</p><h3>2. La solidarité spirituelle</h3><p>De même que les membres d'un corps humain partagent leurs forces, les âmes unies par la charité s'entraident mutuellement. Ce qui est surabondant chez l'un peut réparer la faiblesse ou la dette temporelle d'un autre.</p><h3>3. Le sens des indulgences</h3><p>L'indulgence n'est pas un "pardon des péchés" (qui s'obtient exclusivement à la Confession), mais la rémission devant Dieu de la peine temporelle due pour les péchés déjà pardonnés, obtenue grâce à l'intercession de l'Église qui puise dans ce trésor spirituel.</p>` },
+  { id: 'tresor-eglise', title: 'Le Trésor des Saints et des Indulgences', sub: "La communion de la charité ecclésiale", cat: 'ecclésiologie', body: `<h3>1. Qu'est-ce que le Trésor de l'Église ?</h3><p>C'est l'immense réserve de mérites infinis accumulés par le Christ, auxquels s'ajoutent les prières et les bonnes œuvres de la Vierge Marie et de tous les saints, qui ne s'appartiennent pas à eux-mêmes mais bénéficient à tout le Corps mystique.</p><h3>2. La solidarité spirituelle</h3><p>De même que les membres d'un corps humain partagent leurs forces, les âmes unies par la charité s'entraident mutuellement. Ce qui est surabondant chez l'un peut réparer la faiblesse ou la debt temporelle d'un autre.</p><h3>3. Le sens des indulgences</h3><p>L'indulgence n'est pas un "pardon des péchés" (qui s'obtient exclusivement à la Confession), mais la rémission devant Dieu de la peine temporelle due pour les péchés déjà pardonnés, obtenue grâce à l'intercession de l'Église qui puise dans ce trésor spirituel.</p>` },
   { id: 'prie-liturgique', title: 'Prière liturgique et Oraison personnelle', sub: "La double respiration de la vie spirituelle", cat: 'spiritualité', body: `<h3>1. La Liturgie : prière officielle du Corps du Christ</h3><p>La liturgie (la Messe, la liturgie des heures, les sacrements) est l'action du Christ tout entier (Tête et Membres). Elle n'est pas une invention humaine mais une participation directe au culte éternel rendu au Père dans le Ciel.</p><h3>2. L'Oraison : l'intimité secrète</h3><p>L'oraison ou prière personnelle est la rencontre singulière, silencieuse et amicale entre l'âme et son Créateur dans le secret du cœur. Elle nourrit la source intérieure sans laquelle la liturgie risque de devenir une simple routine extérieure.</p><h3>3. Une harmonie indispensable</h3><p>La vie chrétienne authentique marie ces deux dimensions : la liturgie unit l'âme à l'Église universelle et aux sacrements, tandis que l'oraison creuse l'intimité filiale avec le Seigneur.</p>` },
   { id: 'vertus-acquises', title: 'L\'Acquisition des Vertus Morales', sub: "L'art de s'exercer au bien par la grâce", cat: 'morale', body: `<h3>1. Qu'est-ce qu'une vertu ?</h3><p>Une vertu est une disposition habituelle et ferme à faire le bien. Elle permet à la personne non seulement d'accomplir des actes bons, mais de donner le meilleur d'elle-même avec joie et facilité.</p><h3>2. Répétition des actes et habitude</h3><p>Les vertus cardinales humaines (prudence, tempérance, force, justice) s'acquièrent par la répétition d'actes répétés, sous l'impulsion de la volonté et avec le secours de la grâce divine.</p><h3>3. Le rôle transformateur de la grâce</h3><p>La vie vertueuse n'est pas une simple performance morale ou sportive personnelle. Élevée par les vertus théologales (foi, espérance, charité), elle devient une participation directe à la vie même de Dieu agissant en nous.</p>` },
   { id: 'royaume-dieu', title: 'Le Royaume de Dieu', sub: "Déjà là et pas encore", cat: 'eschatologie', body: `<h3>1. Le cœur de la prédication de Jésus</h3><p>Tout au long des Évangiles, le thème central de Jésus est l'annonce du Royaume de Dieu (ou Royaume des cieux). Ce n'est pas un territoire politique terrestre, mais le règne effectif de la grâce et de l'amour de Dieu dans les cœurs.</p><h3>2. La tension du "Déjà là et Pas encore"</h3><p>Le Royaume est déjà inauguré sur terre par l'Incarnation, la Résurrection du Christ et la présence de l'Église. Cependant, il n'est pas encore pleinement achevé dans sa gloire visible, attendant la fin des temps pour manifester sa plénitude.</p><h3>3. L'engagement du disciple</h3><p>Demander "que ton règne vienne" dans le Notre Père, c'est s'engager concrètement à laisser Dieu régner sur ses propres choix, ses pensées et ses relations dès aujourd'hui.</p>` },
@@ -854,7 +844,7 @@ const SAINTS = [
   { 
     name:'Augustin d\'Hippone', period:'354 – 430', feast:'28 août', patronage:'Théologiens',
     painting:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Sandro_Botticelli_-_St_Augustine_-_WGA02613.jpg/600px-Sandro_Botticelli_-_St_Augustine_-_WGA02613.jpg',
-    longBio:`<p><strong>Sa vie :</strong> Né en Afrique du Nord, Augustin est doté d'une intelligence brillante mais mène une jeunesse dissolue, cherchant la vérité dans les philosophies païennes et les hérésies (manichéisme), au grand désespoir de sa mère chrétienne, sainte Monique, qui prie en larmes pendant des années. À Milan, écoutant les sermons de saint Ambroise, et lors d'une crise dans un jardin ("Prends et lis"), il se convertit et deviendra évêque d'Hippone.</p><p><strong>Sa spiritualité :</strong> Augustin est le penseur de la grâce et de l'intériorité. Il a compris que le cœur de l'homme est fait pour Dieu seul et reste inquiet tant qu'il ne repose pas en Lui. Sa théologie sur la Trinité et le péché originel a structuré toute la pensée chrétienne occidentale.</p><p><strong>Le fait marquant :</strong> Il rédige <em>Les Confessions</em>, la toute première autobiographie intime de l'histoire humaine, avec cette déclaration vertigineuse : <em>"Bien tard je t'ai aimée, ô beauté si ancienne et si nouvelle, bien tard je t'ai aimée !"</em></p>`
+    longBio:`<p><strong>Sa vie :</strong> Né en Afrique du Nord, Augustin est doté d'une intelligence brillante mais mène une jeunesse dissolue, cherchant la vérité dans les philosophies païennes et les hérésies (manichéisme), au grand désespoir de sa mère chrétienne, sainte Monique, qui prie en larmes pendant des années. À Milan, écoutant les sermons de saint Ambroise, et lors d'une crise dans un jardin ("Prends et lis"), il se convertit et deviendra évêque d'Hippone.</p><p><strong>Sa spiritualité :</strong> Augustin est le penseur de la grâce et de l'intériorité. Il a compris que le cœur de l'homme est fait pour Dieu seul et reste inquiet tant qu'il ne repose pas en Lui. Sa theology sur la Trinité et le péché originel a structuré toute la pensée chrétienne occidentale.</p><p><strong>Le fait marquant :</strong> Il rédige <em>Les Confessions</em>, la toute première autobiographie intime de l'histoire humaine, avec cette déclaration vertigineuse : <em>"Bien tard je t'ai aimée, ô beauté si ancienne et si nouvelle, bien tard je t'ai aimée !"</em></p>`
   },
   { 
     name:'Louis IX (Saint Louis)', period:'1214 – 1270', feast:'25 août', patronage:'France, monarques, maçons',
@@ -918,16 +908,15 @@ const SAINTS = [
   }
 ];
 
-// ===================== STATE =====================
 let state = {
   consent: JSON.parse(localStorage.getItem('consentGA') ?? 'null'),
   mysterySet: ['glorieux','joyeux','douloureux','glorieux','lumineux','douloureux','joyeux'][new Date().getDay()],
   mysteryIdx: 0,
-  grain: 0,
-  totalGrains: 10
+  rosaryStep: 0, // Nouveau compteur : 0 à 12 pour une dizaine complète
+  totalBeads: 10
 };
 
-// ===================== NAV =====================
+// ===================== NAVIGATION =====================
 function showPage(id){
   document.querySelectorAll('main > section').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -939,11 +928,14 @@ function showPage(id){
   document.getElementById('navPanel').classList.remove('open');
   document.getElementById('menuToggle').classList.remove('open');
   window.scrollTo({top:0, behavior:'smooth'});
+  initTextAnimations(); // Relance l'animation du titre
 }
+
 function toggleMenu(){
   document.getElementById('navPanel').classList.toggle('open');
   document.getElementById('menuToggle').classList.toggle('open');
 }
+
 function toggleTheme(){
   const cur = document.documentElement.getAttribute('data-theme');
   const next = cur === 'dark' ? 'light' : 'dark';
@@ -951,6 +943,7 @@ function toggleTheme(){
   localStorage.setItem('theme', next);
   updateThemeIcon();
 }
+
 function updateThemeIcon(){
   const dark = document.documentElement.getAttribute('data-theme') === 'dark'
     || (!document.documentElement.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -958,7 +951,7 @@ function updateThemeIcon(){
   document.querySelector('.icon-sun').style.display = dark ? 'block' : 'none';
 }
 
-// ===================== HUMEURS =====================
+// ===================== RENDUS (Humeurs, Fiches, etc.) =====================
 const MOOD_ICONS = {
   souffrance: '<path d="M12 3v18M6 8h12" stroke-linecap="round"/>',
   doute: '<circle cx="12" cy="12" r="9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17" stroke-linecap="round"/>',
@@ -978,6 +971,7 @@ function renderMoods(){
     grid.appendChild(btn);
   });
 }
+
 function showMood(m){
   const panel = document.getElementById('moodDetail');
   const randomItem = m.items[Math.floor(Math.random() * m.items.length)];
@@ -997,7 +991,6 @@ function showMood(m){
   panel.classList.add('show');
 }
 
-// ===================== PRIÈRES =====================
 function renderPrayers(){
   const list = document.getElementById('prayersList');
   if(!list) return;
@@ -1009,7 +1002,6 @@ function renderPrayers(){
   });
 }
 
-// ===================== NEUVAINES =====================
 function renderNovenas(){
   const grid = document.getElementById('novenasGrid');
   if(!grid) return;
@@ -1022,6 +1014,7 @@ function renderNovenas(){
     grid.appendChild(btn);
   });
 }
+
 function showNovena(n){
   const panel = document.getElementById('novenaDetail');
   let html = `<h3 style="margin-bottom:4px;">${n.title}</h3><p class="muted" style="margin-bottom:6px;">${n.sub}</p><div class="novena-days">`;
@@ -1037,7 +1030,6 @@ function showNovena(n){
   panel.classList.add('show');
 }
 
-// ===================== FICHES ET SAINTS =====================
 function renderFiches(){
   const grid = document.getElementById('fichesGrid');
   if(!grid) return;
@@ -1050,6 +1042,7 @@ function renderFiches(){
     grid.appendChild(btn);
   });
 }
+
 function showFiche(f) {
   document.getElementById('ficheModalContent').innerHTML = `
     <span class="cat">${f.cat.toUpperCase()}</span>
@@ -1061,6 +1054,8 @@ function showFiche(f) {
   `;
   document.getElementById('ficheModal').classList.add('open');
 }
+
+function closeFicheModal(){ document.getElementById('ficheModal').classList.remove('open'); }
 
 function renderSaints(){
   const grid = document.getElementById('saintsGrid');
@@ -1090,16 +1085,13 @@ function showSaint(s){
     <div class="chip-row" style="margin-bottom:14px;">
       <span class="chip"><strong>Patronages :</strong> ${s.patronage}</span>
     </div>
-    
     <div class="body-text" style="margin-top:16px;">
       ${s.longBio}
     </div>
   `;
   document.getElementById('ficheModal').classList.add('open');
 }
-function closeFicheModal(){ document.getElementById('ficheModal').classList.remove('open'); }
 
-// ===================== VERSETS =====================
 function renderVerses(theme){
   const grid = document.getElementById('versesGrid');
   if(!grid) return;
@@ -1112,6 +1104,7 @@ function renderVerses(theme){
     grid.appendChild(card);
   });
 }
+
 function renderVerseThemes(){
   const row = document.getElementById('verseThemes');
   if(!row) return;
@@ -1128,6 +1121,7 @@ function renderVerseThemes(){
     row.appendChild(chip);
   });
 }
+
 function renderDailyQuote(){
   if (!BIBLE_VERSES || BIBLE_VERSES.length === 0) return;
   const dayIndex = new Date().getDate() % BIBLE_VERSES.length;
@@ -1136,6 +1130,118 @@ function renderDailyQuote(){
   const refEl = document.getElementById('dailyQuoteRef');
   if(textEl) textEl.textContent = v.text;
   if(refEl) refEl.textContent = `${v.ref} — Parole du jour`;
+}
+
+// ===================== CHAPELET PAS À PAS =====================
+function nextGrain(){
+  if(state.rosaryStep < 12){ 
+    state.rosaryStep++; 
+  } else { 
+    state.mysteryIdx = (state.mysteryIdx + 1) % 5; 
+    state.rosaryStep = 0; 
+  }
+  renderChapelet();
+}
+
+function prevGrain(){
+  if(state.rosaryStep > 0){ 
+    state.rosaryStep--; 
+  } else { 
+    state.mysteryIdx = (state.mysteryIdx - 1 + 5) % 5; 
+    state.rosaryStep = 12; 
+  }
+  renderChapelet();
+}
+
+function resetChapelet(){ state.mysteryIdx = 0; state.rosaryStep = 0; renderChapelet(); }
+
+function renderChapelet(){
+  const set = MYSTERIES[state.mysterySet];
+  if(!set) return;
+  const myst = set.items[state.mysteryIdx];
+  
+  document.getElementById('mysteryLabel').textContent = `${set.label} · ${set.days}`;
+  document.getElementById('mysteryTitle').textContent = `Mystère ${state.mysteryIdx+1} : ${myst.title}`;
+  document.getElementById('mysteryDesc').textContent = `Fruit du mystère : ${myst.fruit}`;
+
+  const titleBox = document.getElementById('rosaryStepTitle');
+  const textBox = document.getElementById('rosaryPrayerText');
+  let currentBead = 0;
+
+  if (state.rosaryStep === 0) {
+    titleBox.textContent = "1. Réciter le Notre Père";
+    textBox.textContent = TEXTES_PRIERES.notrePere;
+  } 
+  else if (state.rosaryStep >= 1 && state.rosaryStep <= 10) {
+    currentBead = state.rosaryStep;
+    titleBox.textContent = `2. Je vous salue Marie (Grain ${currentBead} sur 10)`;
+    textBox.textContent = TEXTES_PRIERES.aveMaria;
+  } 
+  else if (state.rosaryStep === 11) {
+    currentBead = 10;
+    titleBox.textContent = "3. Réciter le Gloire au Père";
+    textBox.textContent = TEXTES_PRIERES.gloria;
+  } 
+  else if (state.rosaryStep === 12) {
+    currentBead = 10;
+    titleBox.textContent = "4. Réciter la prière de Fatima";
+    textBox.textContent = TEXTES_PRIERES.fatima;
+  }
+
+  const dots = document.getElementById('grainDots');
+  if(dots) {
+    dots.innerHTML = '';
+    for(let i=0; i < state.totalBeads; i++){
+      const s = document.createElement('span');
+      if(i < currentBead) s.classList.add('on');
+      dots.appendChild(s);
+    }
+  }
+  
+  drawChapeletSvg(currentBead);
+}
+
+function drawChapeletSvg(currentBead){
+  const svg = document.getElementById('chapeletSvg');
+  if(!svg) return;
+  const cx=140, cy=140, r=96;
+  let beads = '';
+  for(let i=0; i < state.totalBeads; i++){
+    const angle = (i / state.totalBeads) * Math.PI * 2 - Math.PI / 2;
+    const x = cx + Math.cos(angle) * r;
+    const y = cy + Math.sin(angle) * r;
+    const highlighted = i < currentBead;
+    beads += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="currentColor" opacity="${highlighted ? 0.9 : 0.22}"/>`;
+  }
+  const cross = `
+    <rect x="${cx-4}" y="${cy-26}" width="8" height="46" rx="3" fill="currentColor"/>
+    <rect x="${cx-16}" y="${cy-14}" width="32" height="8" rx="3" fill="currentColor"/>
+  `;
+  svg.innerHTML = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.28"/>${beads}${cross}`;
+}
+
+// ===================== ANIMATION TEXTE (GSAP) =====================
+function initTextAnimations() {
+  if (typeof gsap === 'undefined') return;
+  
+  const activeSection = document.querySelector('section.active');
+  if (!activeSection) return;
+
+  activeSection.querySelectorAll('.gsap-split').forEach(title => {
+    if (title.classList.contains('splitted')) return;
+    
+    const text = title.innerText;
+    title.innerHTML = text.split(' ').map(word => `<span style="display:inline-block; opacity:0; transform:translateY(12px);">${word}</span>&nbsp;`).join('');
+    title.classList.add('splitted');
+    
+    gsap.to(title.querySelectorAll('span'), { 
+      opacity: 1, 
+      y: 0, 
+      duration: 0.4, 
+      stagger: 0.04, 
+      ease: "power2.out" 
+    });
+  });
 }
 
 // ===================== LEGAL & CONSENT =====================
@@ -1158,113 +1264,13 @@ function declineConsent(){
   document.getElementById('consentBanner').classList.remove('show');
 }
 
-// ===================== CHAPELET =====================
-function nextGrain(){
-  if(state.grain < state.totalGrains - 1){ state.grain++; }
-  else { state.mysteryIdx = (state.mysteryIdx+1) % 5; state.grain = 0; }
-  renderChapelet();
-}
-function prevGrain(){
-  if(state.grain > 0){ state.grain--; }
-  else { state.mysteryIdx = (state.mysteryIdx-1+5) % 5; state.grain = state.totalGrains-1; }
-  renderChapelet();
-}
-function resetChapelet(){ state.mysteryIdx = 0; state.grain = 0; renderChapelet(); }
-
-function renderChapelet(){
-  const set = MYSTERIES[state.mysterySet];
-  if(!set) return;
-  const myst = set.items[state.mysteryIdx];
-  const lbl = document.getElementById('mysteryLabel');
-  if(lbl) lbl.textContent = `${set.label} · ${set.days}`;
-  const title = document.getElementById('mysteryTitle');
-  if(title) title.textContent = `${state.mysteryIdx+1}. ${myst.title}`;
-  const desc = document.getElementById('mysteryDesc');
-  if(desc) desc.textContent = myst.text;
-  const counter = document.getElementById('grainCounter');
-  if(counter) counter.textContent = `Grain ${state.grain+1} sur ${state.totalGrains}`;
-
-  const dots = document.getElementById('grainDots');
-  if(dots) {
-    dots.innerHTML = '';
-    for(let i=0;i<state.totalGrains;i++){
-      const s = document.createElement('span');
-      if(i <= state.grain) s.classList.add('on');
-      dots.appendChild(s);
-    }
-  }
-  drawChapeletSvg();
-}
-function drawChapeletSvg(){
-  const svg = document.getElementById('chapeletSvg');
-  if(!svg) return;
-  const cx=140, cy=140, r=96;
-  const beadCount = 10;
-  let beads = '';
-  for(let i=0;i<beadCount;i++){
-    const angle = (i/beadCount)*Math.PI*2 - Math.PI/2;
-    const x = cx + Math.cos(angle)*r;
-    const y = cy + Math.sin(angle)*r;
-    const highlighted = i <= state.grain;
-    beads += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="currentColor" opacity="${highlighted?0.9:0.22}"/>`;
-  }
-  const cross = `
-    <rect x="${cx-4}" y="${cy-26}" width="8" height="46" rx="3" fill="currentColor"/>
-    <rect x="${cx-16}" y="${cy-14}" width="32" height="8" rx="3" fill="currentColor"/>
-  `;
-  svg.innerHTML = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.28"/>${beads}${cross}`;
-}
-// ===================== ANIMATIONS GSAP =====================
-function initCardAnimations() {
-  if (typeof gsap === 'undefined') return;
-
-  // 1. Animation d'apparition fluide des cartes à l'affichage d'une page
-  const cards = document.querySelectorAll('.active .card');
-  if (cards.length > 0) {
-    gsap.fromTo(cards, 
-      { opacity: 0, y: 30, scale: 0.96 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.05, ease: "power2.out" }
-    );
-  }
-
-  // 2. Effet d'inclinaison 3D au survol de la souris
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const rotateX = ((y - centerY) / centerY) * -7;
-      const rotateY = ((x - centerX) / centerX) * 7;
-
-      gsap.to(card, {
-        rotateX: rotateX,
-        rotateY: rotateY,
-        scale: 1.02,
-        duration: 0.2,
-        ease: "power1.out"
-      });
-    });
-
-    card.addEventListener('mouseleave', () => {
-      gsap.to(card, {
-        rotateX: 0,
-        rotateY: 0,
-        scale: 1,
-        duration: 0.5,
-        ease: "power2.out"
-      });
-    });
-  });
-}
 // ===================== INIT =====================
 document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme');
   if(savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeIcon();
 
+  // On lance toutes les fonctions de rendu
   renderMoods();
   renderPrayers();
   renderNovenas();
@@ -1274,6 +1280,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSaints();
   renderDailyQuote();
   renderChapelet();
+
+  initTextAnimations();
 
   if(state.consent === null){
     setTimeout(()=> {

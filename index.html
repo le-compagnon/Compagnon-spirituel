@@ -259,7 +259,23 @@ footer { padding:52px 0 40px; }
 
 .skip-link { position:absolute; left:12px; top:-60px; z-index:100; background:var(--accent); color:var(--on-accent); padding:10px 16px; border-radius:6px; font-size:0.85rem; transition: top .2s ease; }
 .skip-link:focus { top:12px; }
+  /* Effets d'interaction 3D */
+.grid {
+  perspective: 1000px;
+}
+
+.card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 16px 32px rgba(123, 75, 48, 0.15);
+}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1198,7 +1214,51 @@ function drawChapeletSvg(){
   `;
   svg.innerHTML = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.28"/>${beads}${cross}`;
 }
+// ===================== ANIMATIONS GSAP =====================
+function initCardAnimations() {
+  if (typeof gsap === 'undefined') return;
 
+  // 1. Animation d'apparition fluide des cartes à l'affichage d'une page
+  const cards = document.querySelectorAll('.active .card');
+  if (cards.length > 0) {
+    gsap.fromTo(cards, 
+      { opacity: 0, y: 30, scale: 0.96 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.05, ease: "power2.out" }
+    );
+  }
+
+  // 2. Effet d'inclinaison 3D au survol de la souris
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -7;
+      const rotateY = ((x - centerX) / centerX) * 7;
+
+      gsap.to(card, {
+        rotateX: rotateX,
+        rotateY: rotateY,
+        scale: 1.02,
+        duration: 0.2,
+        ease: "power1.out"
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        rotateX: 0,
+        rotateY: 0,
+        scale: 1,
+        duration: 0.5,
+        ease: "power2.out"
+      });
+    });
+  });
+}
 // ===================== INIT =====================
 document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme');

@@ -1187,7 +1187,10 @@ function renderChapelet(){
     titleBox.textContent = "4. Réciter la prière de Fatima";
     textBox.textContent = TEXTES_PRIERES.fatima;
   }
+        gsap.fromTo(".rosary-text-box", { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" });
 
+        const dots = document.getElementById('grainDots');
+        if(dots) {
   const dots = document.getElementById('grainDots');
   if(dots) {
     dots.innerHTML = '';

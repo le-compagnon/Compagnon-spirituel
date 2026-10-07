@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1B3B2B">
 <title>Le Compagnon Spirituel</title>
-<meta name="description" content="Espace sobre pour prier, réfléchir et tenir. Rosaire interactif, sélecteur d'humeur, neuvaines, prières essentielles, fiches théologiques. Gratuit, sans pub.">
 <link rel="canonical" href="https://logangamba.github.io/compagnon-spirituel/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='16' fill='%23F9F8F6' stroke='%231B3B2B' stroke-width='1.4'/%3E%3Cpath d='M17 8V26M11 13H23' stroke='%231B3B2B' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
 
@@ -102,7 +101,7 @@ header {
 .hamburger.open span:nth-child(2){ opacity:0; }
 .hamburger.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
-/* MENU DÉROULANT ÉPURÉ */
+/* MENU DÉROULANT */
 .nav-panel {
   position: absolute; right: 28px; top: 64px;
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
@@ -189,7 +188,7 @@ section:last-of-type::after, section#apropos::after { display:none; }
   max-width: 580px;
 }
 
-/* Grids & cards */
+/* CARTES */
 .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; perspective: 1000px;}
 #moodsGrid { margin-top: 24px; }
 
@@ -208,7 +207,7 @@ section:last-of-type::after, section#apropos::after { display:none; }
 .card .cat { font-size:0.72rem; color:var(--accent-gold); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; }
 .card .muted { font-size:0.88rem; color:var(--text-muted); }
 
-/* Thématiques Cards (Explorer) */
+/* Explorer */
 .thematic-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -370,7 +369,7 @@ footer { padding:60px 0 40px; border-top: 1px solid var(--border-soft); margin-t
       <div class="hero">
         <p class="">Bienvenue</p>
         <h2 class="gsap-split">Un espace pour prier, se documenter et ne pas céder aux tentations.</h2>
-        <p class="lead">Pose tes valises ici. Que tu aies besoin de traverser une épreuve, de réciter ton rosaire ou d'approfondir un point de doctrine, cet espace est ton point d'ancrage quotidien pour tenir bon dans la foi.</p>
+        <p class="lead">Pose tes valises ici. Que tu aies besoin de réciter ton rosaire ou d'approfondir un point de doctrine, cet espace est ton point d'ancrage pour tenir bon.</p>
         <div class="hero-actions">
           <button class="btn btn-solid" onclick="showPage('chapelet')">Prier le Rosaire</button>
           <button class="btn" onclick="showPage('thematiques')">Explorer les parcours</button>
@@ -786,12 +785,12 @@ const NOVENAS = [
 ];
 
 const THEMATICS = [
-  { title: "La Vierge Marie", desc: "Saint rosaire", target: "chapelet", icon: '<path d="M12 21V10M12 10C12 7 9 4 6 5c-2 1-2 4 0 6 2 2 4 3 6-1zM12 10c0-3 3-6 6-5 2 1 2 4 0 6-2 2-4 3-6-1z" stroke-linecap="round" stroke-linejoin="round"/>' },
-  { title: "Combat Spirituel", desc: "Parole et prières", target: "humeurs", icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>' },
+  { title: "Sainte Vierge Marie", desc: "Saint rosaire", target: "chapelet", icon: '<path d="M12 21V10M12 10C12 7 9 4 6 5c-2 1-2 4 0 6 2 2 4 3 6-1zM12 10c0-3 3-6 6-5 2 1 2 4 0 6-2 2-4 3-6-1z" stroke-linecap="round" stroke-linejoin="round"/>' },
+  { title: "Combat Spirituel", desc: "Prières", target: "humeurs", icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>' },
   { title: "Doctrine & Fiches", desc: "Magistère de l'Église", target: "fiches", icon: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>' },
   { title: "Figures de Saints", desc: "Vies de Saints", target: "saints", icon: '<path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/>' },
-  { title: "Prières Essentielles", desc: "Prières fondamentales", target: "prieres", icon: '<path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>' },
-  { title: "Chemin de Neuvaines", desc: "Neuf jours de prière", target: "neuvaines", icon: '<path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4m-4.93-7.07l-2.83 2.83m-8.48 8.48l-2.83 2.83"/>' }
+  { title: "Prières Essentielles", desc: "Le socle de la Foi", target: "prieres", icon: '<path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>' },
+  { title: "Chemin de Neuvaines", desc: "Neuf jours de prière", target: "neuvaines", icon: '<path d="M9.5 2C9.5 2 9.5 3.6 9.5 4.5C9.5 5.6 10.4 6.5 11.5 6.5C12.6 6.5 13.5 5.6 13.5 4.5C13.5 3.6 13.5 2 13.5 2M11.5 7V18.5C11.5 18.5 9.5 17.5 7.5 18.5C5.5 19.5 5.5 22 7.5 22C9.5 22 11.5 18.5 11.5 18.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>' }
 ];
 
 const FICHES = [

@@ -552,39 +552,39 @@ footer { padding:60px 0 40px; border-top: 1px solid var(--border-soft); margin-t
 
 const TEXTES_PRIERES = {
   notrePere: "Notre Père, qui es aux cieux,\nque ton nom soit sanctifié,\nque ton règne vienne,\nque ta volonté soit faite sur la terre comme au ciel.\nDonne-nous aujourd'hui notre pain de ce jour.\nPardonne-nous nos offenses,\ncomme nous pardonnons aussi à ceux qui nous ont offensés.\nEt ne nous laisse pas entrer en tentation,\nmais délivre-nous du Mal. Amen.",
-  aveMaria: "Je vous salue, Marie, pleine de grâce, le Seigneur est avec vous.\nVous êtes bénie entre toutes les femmes,et Jésus, le fruit de vos entrailles, est béni.\nSainte Marie, Mère de Dieu,priez pour nous, pauvres pécheurs,maintenant et à l'heure de notre mort. \nAmen.",
+  aveMaria: "Je vous salue, Marie, pleine de grâce, le Seigneur est avec vous.\nVous êtes bénie entre toutes les femmes, et Jésus, le fruit de vos entrailles, est béni.\nSainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et à l'heure de notre mort. \nAmen.",
   gloria: "Gloire au Père, et au Fils, et au Saint-Esprit, comme il était au commencement, maintenant et toujours, et pour les siècles des siècles. \nAmen.",
   fatima: "Ô mon Jésus,\nPardonnez-nous nos péchés, préservez-nous du feu de l'enfer, et conduisez au Ciel toutes les âmes, spécialement celles qui ont le plus besoin de votre sainte miséricorde. \nAmen."
 };
 
 const MYSTERIES = {
   joyeux: { label:'Mystères Joyeux', days:'lundi et samedi', items:[
-    {title:"L'Annonciation", text:"Marie accueille l'ange Gabriel.", fruit:"L'humilité"},
-    {title:'La Visitation', text:'Marie rend visite à Élisabeth.', fruit:"La charité fraternelle"},
-    {title:'La Nativité', text:'Jésus naît à Bethléem.', fruit:"L'esprit de pauvreté"},
-    {title:'La Présentation', text:'Marie et Joseph présentent Jésus au Temple.', fruit:"L'obéissance et la pureté"},
-    {title:'Le Recouvrement', text:'Jésus est retrouvé parmi les docteurs.', fruit:"La recherche de Dieu en toutes choses"}
+    {title:"L'Annonciation", text:"Marie accueille l'ange Gabriel", fruit:"L'humilité"},
+    {title:'La Visitation', text:'Marie rend visite à Élisabeth', fruit:"La charité fraternelle"},
+    {title:'La Naissance de Jésus', text:'Jésus naît à Bethléem', fruit:"L'esprit de pauvreté"},
+    {title:'La Présentation de Jésus au temple', text:'Marie et Joseph présentent Jésus au Temple', fruit:"L'esprit d'obéissance et la pureté"},
+    {title:'Le Recouvrement de Jésus au temple', text:'Jésus est retrouvé parmi les docteurs', fruit:"La recherche de Dieu en toutes choses"}
   ]},
   douloureux: { label:'Mystères Douloureux', days:'mardi et vendredi', items:[
-    {title:"L'Agonie", text:'Jésus prie seul à Gethsémani.', fruit:"La contrition de nos péchés"},
-    {title:'La Flagellation', text:'Jésus est battu.', fruit:"La maîtrise des sens"},
-    {title:'Le Couronnement d\'épines', text:'Jésus est couronné d\'épines.', fruit:"Le courage moral et la mortification de l'esprit"},
-    {title:'Le Portement de croix', text:'Jésus porte sa croix.', fruit:"La patience dans les épreuves"},
-    {title:'La Crucifixion', text:'Jésus meurt sur la croix.', fruit:"Le pardon et l'amour de Dieu"}
+    {title:"L'Agonie de Jésus", text:'Jésus prie seul à Gethsémani', fruit:"La contrition de nos péchés"},
+    {title:'La Flagellation', text:'Jésus est battu', fruit:"La maîtrise des sens"},
+    {title:'Le Couronnement d\'épines', text:'Jésus est couronné d\'épines', fruit:"L'humilité et le pardon de nos péchés d'orgueil"},
+    {title:'Le Portement de la croix', text:'Jésus porte sa croix', fruit:"La patience dans les épreuves"},
+    {title:'Le Crucifiement et la mort de Jésus sur la croix', text:'Jésus est crucifié', fruit:"La soif du salut des âmes"},
   ]},
   lumineux: { label:'Mystères Lumineux', days:'jeudi', items:[
-    {title:'Le Baptême', text:'Jésus est baptisé par Jean.', fruit:"La fidélité aux promesses du baptême"},
-    {title:'Les Noces de Cana', text:"Jésus change l'eau en vin.", fruit:"La confiance en la Vierge Marie"},
-    {title:'Annonce du Royaume', text:'Jésus appelle à la conversion.', fruit:"La conversion du cœur"},
+    {title:'Le Baptême de Jésus', text:'Jésus est baptisé par Jean le Baptiste', fruit:"La fidélité aux promesses du baptême"},
+    {title:'Les Noces de Cana', text:"Jésus change l'eau en vin.", fruit:"La confiance en Vierge Marie"},
+    {title:'L'annonce du Royaume de Dieu', text:'Jésus appelle à la conversion.', fruit:"La conversion du cœur"},
     {title:'La Transfiguration', text:'Jésus se transfigure.', fruit:"La grâce de la contemplation"},
-    {title:"L'institution de l'Eucharistie", text:'Jésus donne son corps et son sang.', fruit:"L'amour et le respect de l'Eucharistie"}
+    {title:"L'institution de l'Eucharistie", text:'Jésus donne son corps et son sang.', fruit:"L'amour de l'Eucharistie"}
   ]},
   glorieux: { label:'Mystères Glorieux', days:'mercredi et dimanche', items:[
-    {title:'La Résurrection', text:"Jésus ressuscite d'entre les morts.", fruit:"La foi et la conversion de notre vie"},
+    {title:'La Résurrection', text:"Jésus ressuscite d'entre les morts.", fruit:"La foi et la conversion des coeurs"},
     {title:"L'Ascension", text:'Jésus monte aux cieux.', fruit:"L'espérance et le désir du Ciel"},
-    {title:'La Pentecôte', text:"L'Esprit Saint descend.", fruit:"Le zèle apostolique et la descente du Saint-Esprit"},
-    {title:'Assomption de Marie', text:'Marie est élevée au ciel.', fruit:"La grâce d'une bonne mort"},
-    {title:'Couronnement de Marie', text:'Marie est couronnée reine.', fruit:"Une très grande confiance en la Vierge Marie"}
+    {title:'La Pentecôte', text:"L'Esprit Saint descend.", fruit:"La charité et le zèle apostolique"},
+    {title:'L'assomption de Marie', text:'Marie est élevée au ciel.', fruit:"La grâce d'une bonne mort et la dévotion filiale à Marie"},
+    {title:'Le couronnement de Marie', text:'Marie est couronnée reine.', fruit:"La persévérance finale et la confiance en la Vierge Marie"}
   ]}
 };
 

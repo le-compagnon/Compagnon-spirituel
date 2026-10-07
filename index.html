@@ -133,8 +133,8 @@ section::after {
 section:last-of-type::after, section#apropos::after { display:none; }
 @keyframes fadeIn { from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:none;} }
 
-.eyebrow { color: var(--accent-gold); font-weight:700; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
-.eyebrow::before { content:''; width:20px; height:1px; background:var(--accent-gold); }
+. { color: var(--accent-gold); font-weight:700; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.::before { content:''; width:20px; height:1px; background:var(--accent-gold); }
 .hero h2 { font-size:clamp(2.1rem, 4.6vw, 3.2rem); max-width:660px; line-height:1.08; margin-bottom:18px; }
 .hero p.lead { max-width:560px; color:var(--text-muted); font-size:1.08rem; margin-bottom:30px; }
 .hero-actions { display:flex; gap:12px; flex-wrap:wrap; }
@@ -368,7 +368,7 @@ footer { padding:60px 0 40px; border-top: 1px solid var(--border-soft); margin-t
   <section id="accueil" class="active">
     <div class="wrap">
       <div class="hero">
-        <p class="eyebrow">Bienvenue</p>
+        <p class="">Bienvenue</p>
         <h2 class="gsap-split">Un espace pour prier, se documenter et ne pas céder aux tentations.</h2>
         <p class="lead">Pose tes valises ici. Que tu aies besoin de traverser une épreuve, de réciter ton rosaire ou d'approfondir un point de doctrine, cet espace est ton point d'ancrage quotidien pour tenir bon dans la foi.</p>
         <div class="hero-actions">
@@ -401,7 +401,7 @@ footer { padding:60px 0 40px; border-top: 1px solid var(--border-soft); margin-t
   <section id="humeurs">
     <div class="wrap">
 <div class="page-banner" style="background-image: url('COURONNE.jpeg');">
-        <p class="eyebrow" style="color: #FFFFFF; margin-bottom: 6px;">Mes humeurs du jour</p>
+        <p class="" style="color: #FFFFFF; margin-bottom: 6px;">Mes humeurs du jour</p>
       </div>
       <div class="grid" id="moodsGrid"></div>
       <div class="detail-panel" id="moodDetail"></div>
@@ -412,7 +412,7 @@ footer { padding:60px 0 40px; border-top: 1px solid var(--border-soft); margin-t
   <section id="chapelet">
     <div class="wrap chapelet-wrap">
 <div class="page-banner" style="text-align:left; background-image: url('MARIE2.jpeg'); background-position: bottom; background-size: cover;">        
-  <p class="eyebrow" style="color: var(--accent-gold); margin-bottom: 6px;">Saint Rosaire</p>
+  <p class="eyebrow" style="color: #FFFFFF; margin-bottom: 6px;">Saint Rosaire</p>
       </div>
       <svg class="illustration" width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="chapeletSvg">
         <circle cx="140" cy="140" r="96" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.28"/>
@@ -441,7 +441,7 @@ footer { padding:60px 0 40px; border-top: 1px solid var(--border-soft); margin-t
   <section id="prieres">
     <div class="wrap">
       <div class="page-banner" style="background-image: url('MICHEL2.jpeg');">
-        <p class="eyebrow" style="color: var(--accent-gold); margin-bottom: 6px;">Prières</p>
+        <p class="eyebrow" style="color: #FFFFFF; margin-bottom: 6px;">Prières</p>
       </div>
       <div id="prayersList"></div>
     </div>

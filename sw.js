@@ -32,8 +32,8 @@ self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'TEST_NOTIF') {
     self.registration.showNotification("Le Compagnon Spirituel", {
       body: "Vos rappels quotidiens sont bien activés !",
-      icon: "MARIE3.jpeg",
-      badge: "MARIE3.jpeg"
+      icon: "LOGO.jpeg",
+      badge: "LOGO.jpeg"
     });
   }
 });

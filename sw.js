@@ -1,0 +1,30 @@
+const CACHE_NAME = 'compagnon-v1';
+const ASSETS = [
+  './',
+  './index.html',
+  './ACCUEIL.jpeg',
+  './ACCUEIL2.jpeg',
+  './ACCUEIL3.jpeg',
+  './CATHERINE.jpeg',
+  './COURONNE.jpeg',
+  './FICHES2.jpeg',
+  './MARIE.jpeg',
+  './MARIE2.jpeg',
+  './MICHEL.jpeg',
+  './MICHEL2.jpeg',
+  './NEUVAINE.jpeg',
+  './NEUVAINE2.jpeg',
+  './NEUVAINE3.jpeg'
+];
+
+self.addEventListener('install', (e) => {
+  e.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+  );
+});
+
+self.addEventListener('fetch', (e) => {
+  e.respondWith(
+    caches.match(e.request).then((response) => response || fetch(e.request))
+  );
+});

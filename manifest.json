@@ -1,0 +1,20 @@
+{
+  "name": "Le Compagnon",
+  "short_name": "Compagnon",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FAF9F6",
+  "theme_color": "#FAF9F6",
+  "icons": [
+    {
+      "src": "ACCUEIL.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "ACCUEIL.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

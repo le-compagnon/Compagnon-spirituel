@@ -1386,5 +1386,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+  <!-- Bouton d'activation des rappels -->
+  <div style="text-align: center; margin: 30px 0;">
+    <button onclick="activerRappelQuotidien()" style="padding: 12px 20px; border-radius: 25px; border: 1px solid #1B3B2B; background: transparent; color: #1B3B2B; font-family: inherit; font-size: 0.9rem; cursor: pointer; font-weight: 500;">
+      🔔 Activer les rappels
+    </button>
+  </div>
+
+  <!-- Script d'activation -->
+  <script>
+    function activerRappelQuotidien() {
+      if (!('Notification' in window)) {
+        alert("Les notifications ne sont pas supportées sur ce navigateur.");
+        return;
+      }
+
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          localStorage.setItem('rappel_actif', 'true');
+          alert("Rappel quotidien activé avec succès !");
+          
+          if (navigator.serviceWorker.controller) {
+            navigator.serviceWorker.controller.postMessage({ type: 'TEST_NOTIF' });
+          }
+        } else {
+          alert("Permission refusée. Tu peux l'activer dans les réglages de ton téléphone.");
+        }
+      });
+    }
+  </script>
 </body>
 </html>

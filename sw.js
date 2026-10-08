@@ -27,4 +27,13 @@ self.addEventListener('fetch', (e) => {
   e.respondWith(
     caches.match(e.request).then((response) => response || fetch(e.request))
   );
+  // Écoute du signal envoyé depuis la page pour la notification
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'TEST_NOTIF') {
+    self.registration.showNotification("Le Compagnon Spirituel", {
+      body: "Vos rappels quotidiens sont bien activés !",
+      icon: "MARIE3.jpeg",
+      badge: "MARIE3.jpeg"
+    });
+  }
 });

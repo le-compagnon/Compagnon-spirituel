@@ -1511,7 +1511,8 @@ function filterSaintsByCategory() {
   
   cards.forEach(card => {
     const cardCategory = card.getAttribute('data-category');
-    if (selectedCat === 'all' || cardCategory.includes(selectedCat)) {
+    // Si on choisit "all", ou si la catégorie correspond (en ignorant les majuscules/minuscules et les petits détails de texte)
+    if (selectedCat === 'all' || cardCategory.toLowerCase().includes(selectedCat.toLowerCase())) {
       card.style.display = 'flex';
     } else {
       card.style.display = 'none';

@@ -331,6 +331,16 @@ footer { padding:60px 0 40px; border-top: 1px solid var(--border-soft); margin-t
 <!-- Script GSAP pour l'animation fluide du texte -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
+<script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('Service Worker enregistré !', reg))
+          .catch(err => console.log('Erreur Service Worker :', err));
+      });
+    }
+  </script>
+  
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->

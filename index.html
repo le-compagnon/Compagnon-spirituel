@@ -200,17 +200,20 @@ section:last-of-type::after, section#apropos::after { display:none; }
 .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; perspective: 1000px;}
   /* Adaptation 2 colonnes sur mobile */
 @media (max-width: 600px) {
-  .grid {
+  #thematicGrid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px !important;
   }
-  .card {
-    padding: 12px 10px !important;
+  #thematicGrid .card {
+    padding: 12px 8px !important;
+    min-height: 110px !important;
   }
-  .card h3 {
-    font-size: 0.88rem !important;
+  #thematicGrid .card h3 {
+    font-size: 0.85rem !important;
+    margin-top: 6px !important;
+    margin-bottom: 2px !important;
   }
-  .card .muted {
+  #thematicGrid .card .muted {
     font-size: 0.72rem !important;
   }
 }

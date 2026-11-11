@@ -1780,7 +1780,7 @@ function initTextAnimations() {
 // ===================== LEGAL & CONSENT =====================
 function showLegal(title, body){
   document.getElementById('legalTitle').textContent = title;
-  document.getElementById('legalBody').textContent = body;
+  document.getElementById('legalBody').innerHTML = body;
   document.getElementById('legalModal').classList.add('open');
 }
 function closeLegal(){ document.getElementById('legalModal').classList.remove('open'); }

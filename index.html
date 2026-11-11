@@ -200,18 +200,18 @@ section:last-of-type::after, section#apropos::after { display:none; }
 .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; perspective: 1000px;}
   /* Adaptation 2 colonnes sur mobile */
 @media (max-width: 600px) {
-  #thematiques .grid, .themes-grid {
+  .grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px !important;
   }
-  #thematiques .card {
-    padding: 14px 10px !important;
+  .card {
+    padding: 12px 10px !important;
   }
-  #thematiques .card h3 {
-    font-size: 0.9rem !important;
+  .card h3 {
+    font-size: 0.88rem !important;
   }
-  #thematiques .card .muted {
-    font-size: 0.75rem !important;
+  .card .muted {
+    font-size: 0.72rem !important;
   }
 }
 #moodsGrid { margin-top: 24px; }

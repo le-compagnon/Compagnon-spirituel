@@ -198,6 +198,22 @@ section:last-of-type::after, section#apropos::after { display:none; }
 
 /* CARTES */
 .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; perspective: 1000px;}
+  /* Adaptation 2 colonnes sur mobile */
+@media (max-width: 600px) {
+  #thematiques.grid, .themes-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  #thematiques .card {
+    padding: 14px 10px !important;
+  }
+  #thematiques .card h3 {
+    font-size: 0.9rem !important;
+  }
+  #thematiques .card .muted {
+    font-size: 0.75rem !important;
+  }
+}
 #moodsGrid { margin-top: 24px; }
 
 .card {

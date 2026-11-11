@@ -1,4 +1,4 @@
-const CACHE_NAME = 'compagnon-v3';
+const CACHE_NAME = 'compagnon-v4';
 const ASSETS = [
   './',
   './index.html',

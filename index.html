@@ -200,20 +200,20 @@ section:last-of-type::after, section#apropos::after { display:none; }
 .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; perspective: 1000px;}
   /* Adaptation 2 colonnes sur mobile */
 @media (max-width: 600px) {
-  #thematicGrid {
+ #thematicGrid, #fichesGrid, #novenasGrid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px !important;
   }
-  #thematicGrid .card {
+  #thematicGrid .card, #fichesGrid .card, #novenasGrid .card {
     padding: 12px 8px !important;
     min-height: 110px !important;
   }
-  #thematicGrid .card h3 {
+  #thematicGrid .card h3, #fichesGrid .card h3, #novenasGrid .card h3 {
     font-size: 0.85rem !important;
     margin-top: 6px !important;
     margin-bottom: 2px !important;
   }
-  #thematicGrid .card .muted {
+  #thematicGrid .card .muted, #fichesGrid .card .muted, #novenasGrid .card .muted {
     font-size: 0.72rem !important;
   }
 }
